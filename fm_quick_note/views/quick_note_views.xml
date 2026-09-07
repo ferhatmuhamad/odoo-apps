@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="fm_quick_note_view_list" model="ir.ui.view">
+        <field name="name">fm.quick.note.view.list</field>
+        <field name="model">fm.quick.note</field>
+        <field name="arch" type="xml">
+            <list string="Notes" multi_edit="1" decoration-danger="is_overdue" decoration-bf="is_pinned">
+                <field name="is_pinned" widget="boolean_toggle"/>
+                <field name="name"/>
+                <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}" optional="show"/>
+                <field name="user_id" optional="show"/>
+                <field name="date_deadline" optional="show"/>
+                <field name="priority" widget="priority"/>
+                <field name="is_overdue" column_invisible="1"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="fm_quick_note_view_form" model="ir.ui.view">
+        <field name="name">fm.quick.note.view.form</field>
+        <field name="model">fm.quick.note</field>
+        <field name="arch" type="xml">
+            <form string="Note">
+                <header>
+                    <button name="action_toggle_pin" type="object"
+                            string="Pin / Unpin" class="btn-secondary"/>
+                </header>
+                <sheet>
+                    <widget name="web_ribbon" title="Archived" bg_color="text-bg-danger"
+                            invisible="active"/>
+                    <div class="oe_title">
+                        <label for="name" string="Title"/>
+                        <h1>
+                            <field name="name" placeholder="e.g. Call the supplier back"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="user_id" options="{'no_create': True}"/>
+                            <field name="priority" widget="priority"/>
+                            <field name="is_pinned"/>
+                        </group>
+                        <group>
+                            <field name="date_deadline"/>
+                            <field name="is_overdue" invisible="not is_overdue"/>
+                            <field name="tag_ids" widget="many2many_tags"
+                                   options="{'color_field': 'color'}"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Content" name="content">
+                            <field name="content" placeholder="Write your note here..."/>
+                        </page>
+                    </notebook>
+                    <field name="active" invisible="1"/>
+                    <field name="color" invisible="1"/>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="fm_quick_note_view_kanban" model="ir.ui.view">
+        <field name="name">fm.quick.note.view.kanban</field>
+        <field name="model">fm.quick.note</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="priority" color="color" sample="1">
+                <field name="color"/>
+                <field name="is_overdue"/>
+                <templates>
+                    <t t-name="card">
+                        <div class="d-flex justify-content-between">
+                            <field name="name" class="fw-bold fs-5"/>
+                            <field name="priority" widget="priority"/>
+                        </div>
+                        <field name="tag_ids" widget="many2many_tags"
+                               options="{'color_field': 'color'}"/>
+                        <field name="content" class="text-muted"/>
+                        <footer class="pt-2">
+                            <field name="user_id" class="text-muted"/>
+                            <field name="date_deadline"
+                                   t-attf-class="ms-auto {{ record.is_overdue.raw_value ? 'text-danger fw-bold' : 'text-muted' }}"/>
+                        </footer>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="fm_quick_note_view_search" model="ir.ui.view">
+        <field name="name">fm.quick.note.view.search</field>
+        <field name="model">fm.quick.note</field>
+        <field name="arch" type="xml">
+            <search string="Search Notes">
+                <field name="name" string="Title or Content"
+                       filter_domain="['|', ('name', 'ilike', self), ('content', 'ilike', self)]"/>
+                <field name="tag_ids"/>
+                <field name="user_id"/>
+                <filter name="filter_my_notes" string="My Notes"
+                        domain="[('user_id', '=', uid)]"/>
+                <filter name="filter_pinned" string="Pinned"
+                        domain="[('is_pinned', '=', True)]"/>
+                <separator/>
+                <filter name="filter_overdue" string="Overdue"
+                        domain="[('date_deadline', '&lt;', context_today().strftime('%Y-%m-%d'))]"/>
+                <filter name="filter_has_deadline" string="With Deadline"
+                        domain="[('date_deadline', '!=', False)]"/>
+                <separator/>
+                <filter name="filter_archived" string="Archived"
+                        domain="[('active', '=', False)]"/>
+                <group>
+                    <filter name="group_by_user" string="Owner" domain="[]" context="{'group_by': 'user_id'}"/>
+                    <filter name="group_by_priority" string="Priority" domain="[]" context="{'group_by': 'priority'}"/>
+                    <filter name="group_by_deadline" string="Deadline" domain="[]" context="{'group_by': 'date_deadline'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="fm_quick_note_action" model="ir.actions.act_window">
+        <field name="name">Notes</field>
+        <field name="res_model">fm.quick.note</field>
+        <field name="view_mode">kanban,list,form</field>
+        <field name="search_view_id" ref="fm_quick_note_view_search"/>
+        <field name="context">{'search_default_filter_my_notes': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first note
+            </p>
+            <p>
+                Keep short reminders close at hand. Add tags, set a priority
+                and a deadline, and pin the ones that matter most.
+            </p>
+        </field>
+    </record>
+
+</odoo>

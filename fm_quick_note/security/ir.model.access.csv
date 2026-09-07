@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_fm_quick_note_user,fm.quick.note.user,model_fm_quick_note,group_quick_note_user,1,1,1,1
+access_fm_quick_note_manager,fm.quick.note.manager,model_fm_quick_note,group_quick_note_manager,1,1,1,1
+access_fm_quick_note_tag_user,fm.quick.note.tag.user,model_fm_quick_note_tag,group_quick_note_user,1,0,0,0
+access_fm_quick_note_tag_manager,fm.quick.note.tag.manager,model_fm_quick_note_tag,group_quick_note_manager,1,1,1,1
