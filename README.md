@@ -17,9 +17,9 @@ Semua module dibangun **hanya di atas Odoo Community**, sehingga berjalan di
 
 <!-- Tambahkan tiap module baru ke tabel ini -->
 
-| Module | Deskripsi | Lisensi |
-|---|---|---|
-| _(belum ada)_ | | |
+| Module | Deskripsi | Versi | Lisensi |
+|---|---|---|---|
+| [`fm_quick_note`](fm_quick_note/) | Quick Notes — catatan pribadi dengan tag, prioritas, dan deadline | 17.0, 18.0, 19.0 | LGPL-3 |
 
 ## Instalasi
 
