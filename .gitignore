@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# macOS
+.DS_Store
+
+# Editor
+.idea/
+.vscode/
+*.swp
+
+# Odoo runtime (JANGAN pernah masuk repo yang disubmit)
+*.log
+.odoo-data/
+odoo.conf
+
+# Dokumen kerja internal — sengaja TIDAK dipublikasikan ke GitHub.
+# File ini tetap ada di disk sebagai panduan saat membuat module.
+CLAUDE.md
+docs/
