@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem id="menu_quick_note_root"
+              name="Quick Notes"
+              web_icon="fm_quick_note,static/description/icon.png"
+              sequence="95"
+              groups="group_quick_note_user"/>
+
+    <menuitem id="menu_quick_note_all"
+              name="Notes"
+              parent="menu_quick_note_root"
+              action="fm_quick_note_action"
+              sequence="10"/>
+
+    <menuitem id="menu_quick_note_config"
+              name="Configuration"
+              parent="menu_quick_note_root"
+              sequence="90"
+              groups="group_quick_note_manager"/>
+
+    <menuitem id="menu_quick_note_tag"
+              name="Tags"
+              parent="menu_quick_note_config"
+              action="fm_quick_note_tag_action"
+              sequence="10"/>
+
+</odoo>

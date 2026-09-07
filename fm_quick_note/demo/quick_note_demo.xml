@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+
+        <record id="demo_tag_personal" model="fm.quick.note.tag">
+            <field name="name">Personal</field>
+            <field name="color">4</field>
+        </record>
+
+        <record id="demo_tag_work" model="fm.quick.note.tag">
+            <field name="name">Work</field>
+            <field name="color">2</field>
+        </record>
+
+        <record id="demo_note_groceries" model="fm.quick.note">
+            <field name="name">Buy groceries</field>
+            <field name="content">Milk, bread, coffee beans.</field>
+            <field name="priority">0</field>
+            <field name="tag_ids" eval="[(4, ref('demo_tag_personal'))]"/>
+        </record>
+
+        <record id="demo_note_report" model="fm.quick.note">
+            <field name="name">Send the monthly report</field>
+            <field name="content">Export the figures and email them to the team.</field>
+            <field name="priority">2</field>
+            <field name="is_pinned" eval="True"/>
+            <field name="tag_ids" eval="[(4, ref('demo_tag_work'))]"/>
+        </record>
+
+    </data>
+</odoo>
