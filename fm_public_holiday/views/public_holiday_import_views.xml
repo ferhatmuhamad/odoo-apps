@@ -8,39 +8,54 @@
             <form string="Import Public Holidays">
                 <field name="state" invisible="1"/>
                 <field name="library_available" invisible="1"/>
+                <field name="country_count" invisible="1"/>
+                <field name="missing_country_ids" invisible="1" widget="many2many_tags"/>
 
                 <!-- ============ STEP 1 : choose ============ -->
                 <div invisible="state != 'draft'">
                     <group>
-                        <group>
-                            <field name="country_id" options="{'no_create': True, 'no_open': True}"/>
-                            <field name="year_from"/>
-                            <field name="year_to"/>
+                        <group string="Countries">
+                            <field name="country_ids" widget="many2many_tags" nolabel="1"
+                                   colspan="2" options="{'no_create': True, 'no_open': True}"
+                                   placeholder="Type a country name, or use the buttons below"/>
+                            <div colspan="2" class="mt-1">
+                                <button name="action_select_all" type="object"
+                                        string="Select all available" class="btn btn-link ps-0"
+                                        icon="fa-check-square-o"/>
+                                <button name="action_clear_countries" type="object"
+                                        string="Clear" class="btn btn-link"
+                                        icon="fa-times" invisible="country_count == 0"/>
+                            </div>
                         </group>
-                        <group>
-                            <field name="calendar_ids" widget="many2many_tags"
-                                   options="{'no_create': True}"
-                                   placeholder="Leave empty for every working schedule"/>
+                        <group string="Period">
+                            <field name="year_from" options="{'enable_formatting': False}"/>
+                            <field name="year_to" options="{'enable_formatting': False}"/>
                         </group>
                     </group>
 
+                    <group string="Apply to">
+                        <field name="calendar_ids" widget="many2many_tags" nolabel="1"
+                               colspan="2" options="{'no_create': True}"
+                               placeholder="Leave empty for every working schedule of this company"/>
+                    </group>
+
                     <div class="alert alert-info" role="status" invisible="available_count == 0">
-                        <field name="available_count" class="fw-bold"/>
-                        <span> holiday date(s) ready to import.</span>
+                        <strong><field name="available_count" class="d-inline"/> holiday date(s)</strong>
+                        <span> ready to import:</span>
                         <pre class="mt-2 mb-0" style="white-space:pre-wrap; font-size:0.9em;"><field name="preview" nolabel="1" readonly="1"/></pre>
                     </div>
 
-                    <div class="alert alert-warning" role="alert"
-                         invisible="not country_id or available_count > 0">
+                    <div class="alert alert-warning" role="alert" invisible="not missing_names">
                         <p class="mb-1">
-                            <strong>This country is not in the bundled data.</strong>
+                            <strong>No data yet for:</strong>
+                            <field name="missing_names" class="d-inline" readonly="1"/>
                         </p>
                         <p class="mb-0" invisible="not library_available">
-                            Use <em>Fetch from library</em> below to generate it.
+                            Click <em>Fetch from library</em> to generate those dates.
                         </p>
                         <p class="mb-0" invisible="library_available">
-                            To unlock the other countries, ask your administrator to install
-                            the Python package: <code>pip install holidays</code>
+                            To unlock more countries, ask your administrator to install the
+                            Python package: <code>pip install holidays</code>
                         </p>
                     </div>
                 </div>
@@ -63,11 +78,11 @@
 
                 <footer>
                     <button name="action_import" type="object" string="Import"
-                            class="btn-primary" invisible="state != 'draft'"
+                            class="btn-primary" invisible="state != 'draft' or available_count == 0"
                             data-hotkey="q"/>
                     <button name="action_fetch_from_library" type="object"
                             string="Fetch from library" class="btn-secondary"
-                            invisible="state != 'draft' or not library_available"/>
+                            invisible="state != 'draft' or not library_available or not missing_names"/>
                     <button name="action_back" type="object" string="Import more"
                             class="btn-primary" invisible="state != 'done'"/>
                     <button string="Close" class="btn-secondary" special="cancel"

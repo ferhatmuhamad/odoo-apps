@@ -10,11 +10,11 @@ class PublicHolidayImport(models.TransientModel):
     _name = 'fm.public.holiday.import'
     _description = 'Import Public Holidays'
 
-    country_id = fields.Many2one(
+    country_ids = fields.Many2many(
         'res.country',
-        string='Country',
-        required=True,
-        help="Country whose public holidays you want to add to your working schedules.",
+        string='Countries',
+        help="Countries whose public holidays you want to add to your working "
+             "schedules. Pick as many as you need.",
     )
     year_from = fields.Integer(
         string='From Year',
@@ -40,7 +40,13 @@ class PublicHolidayImport(models.TransientModel):
 
     available_count = fields.Integer(
         string='Holidays Found', compute='_compute_available', readonly=True)
+    country_count = fields.Integer(
+        string='Countries Selected', compute='_compute_available', readonly=True)
     preview = fields.Text(string='Preview', compute='_compute_available', readonly=True)
+    missing_country_ids = fields.Many2many(
+        'res.country', 'fm_holiday_import_missing_rel', 'wizard_id', 'country_id',
+        string='Countries Without Data', compute='_compute_available', readonly=True)
+    missing_names = fields.Char(compute='_compute_available', readonly=True)
     library_available = fields.Boolean(
         string='Library Installed', compute='_compute_library', readonly=True)
 
@@ -54,26 +60,67 @@ class PublicHolidayImport(models.TransientModel):
         for wizard in self:
             wizard.library_available = available
 
-    @api.depends('country_id', 'year_from', 'year_to')
+    @api.depends('country_ids', 'year_from', 'year_to')
     def _compute_available(self):
+        Holiday = self.env['fm.public.holiday']
         for wizard in self:
-            holidays = wizard._find_holidays()
-            wizard.available_count = len(holidays)
-            if not holidays:
+            wizard.country_count = len(wizard.country_ids)
+            if not wizard.country_ids or not wizard.year_from or not wizard.year_to:
+                wizard.available_count = 0
                 wizard.preview = False
+                wizard.missing_country_ids = [(5, 0, 0)]
+                wizard.missing_names = False
                 continue
-            shown = holidays[:12]
-            lines = ["%s  —  %s" % (h.date, h.name) for h in shown]
-            if len(holidays) > len(shown):
-                lines.append(_("… and %s more", len(holidays) - len(shown)))
-            wizard.preview = "\n".join(lines)
 
+            groups = Holiday._read_group(
+                [('country_id', 'in', wizard.country_ids.ids),
+                 ('year', '>=', wizard.year_from),
+                 ('year', '<=', wizard.year_to)],
+                groupby=['country_id'],
+                aggregates=['__count'],
+            )
+            counts = {country.id: count for country, count in groups}
+
+            lines, total, missing = [], 0, []
+            for country in wizard.country_ids.sorted('name'):
+                found = counts.get(country.id, 0)
+                total += found
+                if found:
+                    lines.append(_("%(country)s — %(count)s dates",
+                                   country=country.name, count=found))
+                else:
+                    missing.append(country)
+
+            wizard.available_count = total
+            wizard.preview = "\n".join(lines) or False
+            wizard.missing_country_ids = [(6, 0, [c.id for c in missing])]
+            wizard.missing_names = ", ".join(c.name for c in missing) or False
+
+    # ------------------------------------------------------------------
+    # selection helpers
+    # ------------------------------------------------------------------
+    def action_select_all(self):
+        """Select every country that already has data in the reference list."""
+        self.ensure_one()
+        groups = self.env['fm.public.holiday']._read_group([], groupby=['country_id'])
+        country_ids = [country.id for (country,) in groups]
+        self.country_ids = [(6, 0, country_ids)]
+        return self._reopen()
+
+    def action_clear_countries(self):
+        self.ensure_one()
+        self.country_ids = [(5, 0, 0)]
+        return self._reopen()
+
+    # ------------------------------------------------------------------
+    # helpers
+    # ------------------------------------------------------------------
     def _find_holidays(self):
         self.ensure_one()
-        if not self.country_id or not self.year_from or not self.year_to:
+        if not self.country_ids or not self.year_from or not self.year_to:
             return self.env['fm.public.holiday']
         return self.env['fm.public.holiday'].search([
-            ('country_id', '=', self.country_id.id),
+            ('country_id', 'in', self.country_ids.ids),
             ('year', '>=', self.year_from),
             ('year', '<=', self.year_to),
         ], order='date')
@@ -90,8 +137,8 @@ class PublicHolidayImport(models.TransientModel):
         """Return the UTC datetimes covering a full day, expressed in the
         current user's timezone.
 
-        `hr_holidays` re-bases public holidays from the user's timezone into
-        the working schedule's timezone when the record is created
+        `hr_holidays` re-bases public holidays from the user's timezone into the
+        working schedule's timezone when the record is created
         (`_prepare_public_holidays_values`). Converting with the calendar
         timezone here would apply that shift twice, so we deliberately use the
         user timezone and let Odoo do the rest.
@@ -101,21 +148,42 @@ class PublicHolidayImport(models.TransientModel):
         end = tz.localize(datetime.combine(day, time.max)).astimezone(pytz.UTC)
         return start.replace(tzinfo=None), end.replace(tzinfo=None)
 
-    def _check_years(self):
+    def _check_input(self):
         self.ensure_one()
+        if not self.country_ids:
+            raise UserError(_("Select at least one country."))
         if self.year_to < self.year_from:
             raise UserError(_("The last year cannot be earlier than the first year."))
         if self.year_to - self.year_from > 20:
             raise UserError(_("Please import at most 21 years at a time."))
 
+    def _reopen(self):
+        return {
+            'type': 'ir.actions.act_window',
+            'res_model': self._name,
+            'res_id': self.id,
+            'view_mode': 'form',
+            'target': 'new',
+        }
+
+    # ------------------------------------------------------------------
+    # actions
+    # ------------------------------------------------------------------
     def action_fetch_from_library(self):
-        """Pull holidays for this country from the optional `holidays` package."""
+        """Pull holidays from the optional `holidays` package.
+
+        Only the selected countries that have no data yet are fetched.
+        """
         self.ensure_one()
-        self._check_years()
-        if not self.country_id.code:
-            raise UserError(_("The selected country has no ISO code."))
-        created = self.env['fm.public.holiday']._fetch_from_library(
-            self.country_id.code, self.year_from, self.year_to)
+        self._check_input()
+        targets = self.missing_country_ids or self.country_ids
+        Holiday = self.env['fm.public.holiday']
+        created = 0
+        for country in targets:
+            if not country.code:
+                continue
+            created += Holiday._fetch_from_library(
+                country.code, self.year_from, self.year_to)
         message = (
             _("%s holiday dates added to the reference list.", created) if created
             else _("Nothing new — every date was already in the reference list.")
@@ -130,27 +198,18 @@ class PublicHolidayImport(models.TransientModel):
             },
         }
 
-    def _reopen(self):
-        return {
-            'type': 'ir.actions.act_window',
-            'res_model': self._name,
-            'res_id': self.id,
-            'view_mode': 'form',
-            'target': 'new',
-        }
-
     def action_import(self):
         """Copy the selected holidays into the chosen working schedules."""
         self.ensure_one()
-        self._check_years()
+        self._check_input()
 
         holidays = self._find_holidays()
         if not holidays:
             raise UserError(_(
-                "No holiday found for %(country)s between %(y1)s and %(y2)s.\n\n"
-                "Use “Fetch from library” first if this country is not part of the "
-                "bundled data.",
-                country=self.country_id.name, y1=self.year_from, y2=self.year_to,
+                "No holiday found for the selected countries between %(y1)s and "
+                "%(y2)s.\n\nUse “Fetch from library” first if these countries are "
+                "not part of the bundled data.",
+                y1=self.year_from, y2=self.year_to,
             ))
 
         calendars = self._target_calendars()
@@ -177,6 +236,7 @@ class PublicHolidayImport(models.TransientModel):
                 if holiday.date in existing:
                     skipped += 1
                     continue
+                existing.add(holiday.date)  # two countries may share a date
                 date_from, date_to = self._day_bounds_utc(holiday.date)
                 vals_list.append({
                     'name': holiday.name,
