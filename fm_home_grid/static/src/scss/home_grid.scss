@@ -142,35 +142,6 @@ $fm-speed: 0.2s;
   }
 }
 
-// ── Dark Mode Toggle Button ──────────────────────────────────
-.o_fm_hg-darkmode-btn {
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 10px;
-  background: $fm-white;
-  border: 1px solid $fm-black-12;
-  box-shadow: $fm-shadow-sm;
-  cursor: pointer;
-  color: $fm-text-muted;
-  font-size: 16px;
-  transition: all $fm-speed $fm-ease;
-  -webkit-tap-highlight-color: transparent;
-
-  &:hover {
-    color: $fm-brand;
-    border-color: $fm-brand;
-    box-shadow: 0 0 0 3px rgba($fm-brand, 0.12);
-  }
-
-  &:active {
-    transform: scale(0.92);
-  }
-}
-
 // ── Body ─────────────────────────────────────────────────────
 .o_fm_hg-body {
   width: 100%;
@@ -424,11 +395,6 @@ $fm-speed: 0.2s;
     padding: 9px 36px 9px 40px;
     font-size: 0.85rem;
   }
-  .o_fm_hg-darkmode-btn {
-    width: 36px;
-    height: 36px;
-    font-size: 14px;
-  }
 
   .o_fm_hg-body {
     // Matches the banner / search row padding at this breakpoint so the three
@@ -499,20 +465,6 @@ $fm-speed: 0.2s;
     &:hover {
       color: #e0e0e0;
       background: $fm-white-08;
-    }
-  }
-
-  // Dark mode toggle (in dark mode)
-  .o_fm_hg-darkmode-btn {
-    background: $fm-white-08;
-    border-color: $fm-white-12;
-    color: #e8c94a;
-    box-shadow: none;
-
-    &:hover {
-      background: $fm-white-15;
-      border-color: #e8c94a;
-      box-shadow: 0 0 0 3px rgba(#e8c94a, 0.15);
     }
   }
 

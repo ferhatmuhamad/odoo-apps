@@ -18,6 +18,20 @@ patch(WebClient.prototype, {
   setup() {
     super.setup(...arguments);
 
+    // The navbar's dark rules hang off `body.fm-dark`. That class used to come
+    // from a separate theme module, so without this the dark styles never
+    // applied. Track the OS preference here, on the WebClient, so the whole
+    // interface follows it - not just the home screen.
+    this._fmDarkMQ = window.matchMedia("(prefers-color-scheme: dark)");
+    this._fmSyncDark = () => {
+      const mode = localStorage.getItem("fm_hg_theme") || "system";
+      const dark = mode === "dark" || (mode === "system" && this._fmDarkMQ.matches);
+      document.body.classList.toggle("fm-dark", dark);
+    };
+    this._fmSyncDark();
+    this._fmDarkMQ.addEventListener("change", this._fmSyncDark);
+    this.env.bus.addEventListener("FM_HG:THEME-CHANGED", this._fmSyncDark);
+
     // Determine initial view: if user was on homegrid before refresh, stay there.
     const wasOnGrid = sessionStorage.getItem("fm_hg_visible") === "1";
     const startOnGrid = wasOnGrid || !_hasActionInHash();
@@ -86,6 +100,8 @@ patch(WebClient.prototype, {
     });
 
     onWillUnmount(() => {
+      this._fmDarkMQ.removeEventListener("change", this._fmSyncDark);
+      this.env.bus.removeEventListener("FM_HG:THEME-CHANGED", this._fmSyncDark);
       this.env.bus.removeEventListener("MENUS:APP-CHANGED", onAppChanged);
       this.env.bus.removeEventListener(
         "ACTION_MANAGER:UI-UPDATED",
