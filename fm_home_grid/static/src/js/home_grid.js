@@ -19,7 +19,9 @@ export class HomeGrid extends Component {
     this.searchRef = useRef("searchInput");
 
     // themeMode: "light" | "dark" | "system"
-    const savedMode = localStorage.getItem("fm_hg_theme") || "light";
+    // No toggle button is shipped, so "system" is the only sensible default:
+    // without it the theme would be stuck on light forever.
+    const savedMode = localStorage.getItem("fm_hg_theme") || "system";
     this.state = useState({
       query: "",
       focusedIndex: -1,
@@ -207,15 +209,6 @@ export class HomeGrid extends Component {
     return false;
   }
 
-  /** Cycle: light → dark → system → light … */
-  cycleTheme() {
-    const order = ["light", "dark", "system"];
-    const idx = order.indexOf(this.state.themeMode);
-    this.state.themeMode = order[(idx + 1) % order.length];
-    localStorage.setItem("fm_hg_theme", this.state.themeMode);
-    // Notify WebClient so global dark mode class updates too
-    this.env.bus.trigger("FM_HG:THEME-CHANGED");
-  }
 
   /** React to OS theme change while in system mode */
   _onSystemThemeChange() {
@@ -227,27 +220,7 @@ export class HomeGrid extends Component {
     }
   }
 
-  get themeIcon() {
-    switch (this.state.themeMode) {
-      case "dark":
-        return "fa fa-moon-o";
-      case "system":
-        return "fa fa-desktop";
-      default:
-        return "fa fa-sun-o";
-    }
-  }
 
-  get themeTooltip() {
-    switch (this.state.themeMode) {
-      case "dark":
-        return "Dark Mode (klik untuk System)";
-      case "system":
-        return "System Mode (klik untuk Light)";
-      default:
-        return "Light Mode (klik untuk Dark)";
-    }
-  }
 
   // ── Keyboard ─────────────────────────────────────────
 
