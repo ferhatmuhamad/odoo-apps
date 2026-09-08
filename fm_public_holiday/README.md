@@ -53,12 +53,13 @@ After installation you will find a new **Public Holidays** app in the main menu.
 
 **Public Holidays → Import to Schedules**
 
-1. **Country** — pick the country whose holidays you need.
+1. **Countries** — pick one or several. Type to search, or use
+   **Select all available** to take every country that has data. Remove a country
+   by clicking the × on its tag, or **Clear** to start over.
 2. **From Year / To Year** — the range you want. Defaults to the current year.
 3. **Working Schedules** — leave empty to apply to *every* working schedule of the
    current company, or pick specific ones.
-4. Check the blue box: it tells you how many dates were found and previews the
-   first twelve.
+4. Check the blue box: it lists how many dates were found per country.
 5. Click **Import**.
 
 You will get a summary showing how many holidays were **created**, how many were
@@ -70,8 +71,12 @@ Verify the result under **Time Off → Configuration → Public Holidays**.
 
 ## Features
 
-**Preview before writing.** The wizard shows the number of dates and a sample
-before anything is created, so you never import blindly.
+**Several countries at once.** Multinational companies can import Indonesia,
+Singapore and Malaysia in a single run. Dates shared between countries — 1 January,
+for example — are created only once per schedule.
+
+**Preview before writing.** The wizard lists how many dates were found for each
+selected country before anything is created, so you never import blindly.
 
 **Safe to run twice.** Existing dates are detected per schedule and skipped. The
 summary reports them as *Already present*. Running the import again after adding a
@@ -173,8 +178,13 @@ Grant the Administrator group under **Settings → Users & Companies → Users**
 
 ## Troubleshooting
 
-**“No holiday found for … between … and …”**
-The country is not in the bundled data, or the year range falls outside 2025–2030.
+**A country shows up under “No data yet”**
+It is not in the bundled data, or the year range falls outside 2025–2030.
+Install the `holidays` package and click **Fetch from library**, which only
+generates the countries that are missing.
+
+**“No holiday found for the selected countries between … and …”**
+None of the selected countries has data for that year range.
 Install the `holidays` package and use **Fetch from library**, or add the dates
 manually to the reference list.
 

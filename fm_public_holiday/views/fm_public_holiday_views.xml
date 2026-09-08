@@ -9,7 +9,7 @@
                 <field name="date"/>
                 <field name="name"/>
                 <field name="country_id"/>
-                <field name="year" optional="hide"/>
+                <field name="year" optional="hide" options="{'enable_formatting': False}"/>
             </list>
         </field>
     </record>
@@ -30,7 +30,7 @@
                             <field name="country_id" options="{'no_create': True}"/>
                         </group>
                         <group>
-                            <field name="year"/>
+                            <field name="year" options="{'enable_formatting': False}"/>
                         </group>
                     </group>
                 </sheet>
