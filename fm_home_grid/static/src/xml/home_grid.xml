@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-name="fm_home_grid.HomeGrid">
+        <div t-attf-class="o_fm_hg {{ isDark ? 'o_fm_hg--dark' : '' }}">
+            <!-- Banner: greeting and user name on the left, clock and date on the right -->
+            <div class="o_fm_hg-banner">
+                <div class="o_fm_hg-banner-card">
+                    <div class="o_fm_hg-banner-left">
+                        <span class="o_fm_hg-greeting" t-esc="greeting"/>
+                        <span class="o_fm_hg-username" t-esc="userName"/>
+                    </div>
+                    <div class="o_fm_hg-banner-right">
+                        <span class="o_fm_hg-clock" t-esc="clock"/>
+                        <span class="o_fm_hg-date" t-esc="dateLabel"/>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Search Bar -->
+            <div class="o_fm_hg-search">
+                <div class="o_fm_hg-search-box">
+                    <i class="oi oi-search o_fm_hg-search-icon"/>
+                    <input
+                        t-ref="searchInput"
+                        type="text"
+                        class="o_fm_hg-search-input"
+                        placeholder="Search apps and menus…"
+                        t-att-value="state.query"
+                        t-on-input="onSearchInput"
+                        autocomplete="off"
+                        spellcheck="false"
+                    />
+                    <button t-if="state.query" class="o_fm_hg-search-clear" t-on-click="clearSearch" aria-label="Clear search">
+                        <i class="oi oi-close"/>
+                    </button>
+                </div>
+            </div>
+
+            <!-- App Grid -->
+            <div class="o_fm_hg-body">
+                <div class="o_fm_hg-grid">
+                    <t t-foreach="filteredApps" t-as="app" t-key="app.id">
+                        <a class="o_fm_hg-app"
+                           t-att-class="{ 'o_fm_hg-focused': state.focusedIndex === app_index }"
+                           t-on-click.prevent="() => this.openMenu(app)"
+                           href="#"
+                           t-att-title="app.label"
+                        >
+                            <t t-set="icon" t-value="getAppIcon(app)"/>
+                            <div class="o_fm_hg-app-icon-wrap">
+                                <t t-if="icon.type === 'img'">
+                                    <img t-att-src="icon.src" class="o_fm_hg-app-icon" t-att-alt="app.label" loading="lazy"/>
+                                </t>
+                                <t t-else="">
+                                    <div class="o_fm_hg-app-icon o_fm_hg-fa-icon"
+                                         t-attf-style="background-color: {{ icon.backgroundColor }}; color: {{ icon.color }};">
+                                        <i t-att-class="icon.iconClass"/>
+                                    </div>
+                                </t>
+                            </div>
+                            <span class="o_fm_hg-app-label" t-esc="app.label"/>
+                        </a>
+                    </t>
+                </div>
+
+                <!-- Menu Items Search Results -->
+                <t t-if="state.query and searchResults.length">
+                    <div class="o_fm_hg-divider">
+                        <span>Menu</span>
+                    </div>
+                    <div class="o_fm_hg-results">
+                        <t t-foreach="searchResults" t-as="item" t-key="item.id">
+                            <a class="o_fm_hg-menuitem"
+                               t-att-class="{ 'o_fm_hg-focused': state.focusedIndex === (filteredApps.length + item_index) }"
+                               t-on-click.prevent="() => this.openMenu(item)"
+                               href="#"
+                            >
+                                <i class="fa fa-angle-right o_fm_hg-menuitem-arrow"/>
+                                <div class="o_fm_hg-menuitem-info">
+                                    <span class="o_fm_hg-menuitem-label" t-esc="item.label"/>
+                                    <span class="o_fm_hg-menuitem-path" t-if="item.parents" t-esc="item.parents"/>
+                                </div>
+                            </a>
+                        </t>
+                    </div>
+                </t>
+
+                <!-- No Results -->
+                <t t-if="state.query and !filteredApps.length and !searchResults.length">
+                    <div class="o_fm_hg-empty">
+                        <i class="oi oi-search"/>
+                        <p>No result for “<t t-esc="state.query"/>”</p>
+                    </div>
+                </t>
+            </div>
+        </div>
+    </t>
+
+</templates>

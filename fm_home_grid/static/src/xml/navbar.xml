@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <!-- Replace the apps dropdown with a home-grid toggle button.
+         Shows the current module's icon; on hover swaps to the grid icon. -->
+    <t t-name="web.NavBar.AppsMenu" t-inherit="web.NavBar.AppsMenu" t-inherit-mode="extension">
+        <xpath expr="//Dropdown" position="replace">
+            <div class="o_fm_hg-navbar-btn" t-on-click.stop.prevent="() => this.env.bus.trigger('FM_HG:TOGGLE-HOME')" role="button" aria-label="Home Menu" tabindex="0">
+                <t t-if="fmAppIconSrc">
+                    <!-- Module app icon (hidden on hover) -->
+                    <img class="o_fm_navbar-app-icon" t-att-src="fmAppIconSrc" t-att-alt="currentApp.name"/>
+                    <!-- Grid icon (shown on hover) -->
+                    <i class="oi oi-apps o_fm_navbar-grid-icon"/>
+                </t>
+                <t t-else="">
+                    <i class="oi oi-apps"/>
+                </t>
+            </div>
+        </xpath>
+    </t>
+
+</templates>
