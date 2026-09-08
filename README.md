@@ -20,6 +20,7 @@ Semua module dibangun **hanya di atas Odoo Community**, sehingga berjalan di
 | Module | Deskripsi | Versi | Lisensi |
 |---|---|---|---|
 | [`fm_quick_note`](fm_quick_note/) | Quick Notes — catatan pribadi dengan tag, prioritas, dan deadline | 17.0, 18.0, 19.0 | LGPL-3 |
+| [`fm_public_holiday`](fm_public_holiday/) | Public Holiday Importer — hari libur 16 negara ke working schedule | 17.0, 18.0, 19.0 | LGPL-3 |
 
 ## Instalasi
 
