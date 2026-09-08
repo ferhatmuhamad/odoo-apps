@@ -33,10 +33,18 @@ class PublicHolidayImport(models.TransientModel):
              "working schedule of the current company.",
     )
     state = fields.Selection(
-        [('draft', 'Draft'), ('done', 'Done')],
+        [('draft', 'Draft'), ('select', 'Select'), ('done', 'Done')],
         default='draft',
         readonly=True,
     )
+    holiday_ids = fields.Many2many(
+        'fm.public.holiday',
+        string='Holidays to Import',
+        help="Uncheck any holiday you do not want to add to your schedules by "
+             "removing its line.",
+    )
+    selected_count = fields.Integer(
+        string='Selected', compute='_compute_selected', readonly=True)
 
     available_count = fields.Integer(
         string='Holidays Found', compute='_compute_available', readonly=True)
@@ -53,6 +61,11 @@ class PublicHolidayImport(models.TransientModel):
     created_count = fields.Integer(string='Created', readonly=True)
     skipped_count = fields.Integer(string='Already Present', readonly=True)
     calendar_count = fields.Integer(string='Schedules Updated', readonly=True)
+
+    @api.depends('holiday_ids')
+    def _compute_selected(self):
+        for wizard in self:
+            wizard.selected_count = len(wizard.holiday_ids)
 
     @api.depends_context('uid')
     def _compute_library(self):
@@ -110,6 +123,31 @@ class PublicHolidayImport(models.TransientModel):
     def action_clear_countries(self):
         self.ensure_one()
         self.country_ids = [(5, 0, 0)]
+        return self._reopen()
+
+    def action_load_holidays(self):
+        """Move to the selection step with every matching holiday pre-checked."""
+        self.ensure_one()
+        self._check_input()
+        holidays = self._find_holidays()
+        if not holidays:
+            raise UserError(_(
+                "No holiday found for the selected countries between %(y1)s and "
+                "%(y2)s.\n\nUse “Fetch from library” first if these countries are "
+                "not part of the bundled data.",
+                y1=self.year_from, y2=self.year_to,
+            ))
+        self.write({'state': 'select', 'holiday_ids': [(6, 0, holidays.ids)]})
+        return self._reopen()
+
+    def action_check_all_holidays(self):
+        self.ensure_one()
+        self.holiday_ids = [(6, 0, self._find_holidays().ids)]
+        return self._reopen()
+
+    def action_uncheck_all_holidays(self):
+        self.ensure_one()
+        self.holiday_ids = [(5, 0, 0)]
         return self._reopen()
 
     # ------------------------------------------------------------------
@@ -203,13 +241,10 @@ class PublicHolidayImport(models.TransientModel):
         self.ensure_one()
         self._check_input()
 
-        holidays = self._find_holidays()
+        holidays = self.holiday_ids.sorted('date')
         if not holidays:
             raise UserError(_(
-                "No holiday found for the selected countries between %(y1)s and "
-                "%(y2)s.\n\nUse “Fetch from library” first if these countries are "
-                "not part of the bundled data.",
-                y1=self.year_from, y2=self.year_to,
+                "Every holiday has been unchecked, so there is nothing to import."
             ))
 
         calendars = self._target_calendars()
@@ -260,7 +295,8 @@ class PublicHolidayImport(models.TransientModel):
         return self._reopen()
 
     def action_back(self):
+        """Return to the first step."""
         self.ensure_one()
-        self.write({'state': 'draft', 'created_count': 0,
-                    'skipped_count': 0, 'calendar_count': 0})
+        self.write({'state': 'draft', 'created_count': 0, 'skipped_count': 0,
+                    'calendar_count': 0, 'holiday_ids': [(5, 0, 0)]})
         return self._reopen()

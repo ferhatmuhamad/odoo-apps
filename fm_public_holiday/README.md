@@ -53,14 +53,33 @@ After installation you will find a new **Public Holidays** app in the main menu.
 
 **Public Holidays → Import to Schedules**
 
+### Step 1 — scope
+
 1. **Countries** — pick one or several. Type to search, or use
    **Select all available** to take every country that has data. Remove a country
    by clicking the × on its tag, or **Clear** to start over.
 2. **From Year / To Year** — the range you want. Defaults to the current year.
 3. **Working Schedules** — leave empty to apply to *every* working schedule of the
    current company, or pick specific ones.
-4. Check the blue box: it lists how many dates were found per country.
-5. Click **Import**.
+4. Click **Next: choose holidays**.
+
+### Step 2 — pick the holidays you actually want
+
+You now see every matching holiday, one line per date, all checked.
+
+**Remove the line of any holiday you do not want.** A company that does not
+observe Christmas, for example, simply deletes that row — the remaining dates are
+imported untouched.
+
+**Check all** puts everything back. **Uncheck all** empties the list.
+The counter at the top always shows how many of the total will be imported.
+
+Click **Import** when the list is right, or **Back** to change countries or years.
+
+### Step 3 — result
+
+A summary shows how many holidays were **created**, how many were **already
+present**, and how many schedules were updated.
 
 You will get a summary showing how many holidays were **created**, how many were
 **already present**, and how many schedules were updated.
@@ -70,6 +89,10 @@ Verify the result under **Time Off → Configuration → Public Holidays**.
 ---
 
 ## Features
+
+**Pick holiday by holiday.** Not every company observes every public holiday.
+The second step lists each date individually so you can leave out the ones that do
+not apply, instead of importing everything and cleaning up afterwards.
 
 **Several countries at once.** Multinational companies can import Indonesia,
 Singapore and Malaysia in a single run. Dates shared between countries — 1 January,
