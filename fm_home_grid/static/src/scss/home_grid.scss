@@ -1,0 +1,681 @@
+// ============================================================
+// Modern Home Grid – Modern Enterprise-style App Grid
+// Light + Dark mode · Mobile-first · PWA-friendly
+// ============================================================
+
+// ── Variables ────────────────────────────────────────────────
+$fm-bg: #d8d7e5;
+$fm-bg-dark: #112a37;
+$fm-text: #2c2c33;
+$fm-text-muted: #6b6b7b;
+$fm-text-light: #9d9dad;
+$fm-brand: #714b67;
+$fm-white: #ffffff;
+$fm-black-05: rgba(0, 0, 0, 0.05);
+$fm-black-08: rgba(0, 0, 0, 0.08);
+$fm-black-12: rgba(0, 0, 0, 0.12);
+$fm-white-08: rgba(255, 255, 255, 0.08);
+$fm-white-12: rgba(255, 255, 255, 0.12);
+$fm-white-15: rgba(255, 255, 255, 0.15);
+$fm-white-20: rgba(255, 255, 255, 0.2);
+$fm-shadow-sm: 0 1px 4px rgba(0, 0, 0, 0.08);
+$fm-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.12);
+$fm-radius: 8px;
+$fm-radius-sm: 10px;
+// One shared content column for the banner, the search row and the app grid.
+$fm-content-max: 1000px;
+$fm-gutter: 20px;
+$fm-gutter-sm: 14px;
+// The white icon tile is centred inside its grid cell, and the cell has to be
+// wide enough for the label ("Purchase Requisition"), not the icon. So the
+// tiles always sit inset from the grid's content edge by half that difference.
+// The banner and the search row take the same inset, otherwise they look wider
+// than the app row even though their content boxes line up exactly.
+$fm-tile-inset: 22px; // (104 - 60) / 2
+$fm-tile-inset-sm: 13px; // (80  - 54) / 2  @media <576
+$fm-tile-inset-md: 33px; // (130 - 64) / 2  @media >=768
+$fm-tile-inset-lg: 34px; // (140 - 72) / 2  @media >=992
+$fm-ease: cubic-bezier(0.4, 0, 0.2, 1);
+$fm-speed: 0.2s;
+
+// ── Container ────────────────────────────────────────────────
+.o_fm_hg {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: calc(100vh - 46px);
+  min-height: calc(100dvh - 46px); // mobile safe-area
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  background-color: $fm-bg;
+  animation: fmFadeIn $fm-speed $fm-ease both;
+}
+
+@keyframes fmFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+// ── Search ───────────────────────────────────────────────────
+// Same max-width and horizontal padding as .o_fm_hg-body (and the attendance
+// banner), so all three content columns line up edge to edge with the app grid.
+.o_fm_hg-search {
+  width: 100%;
+  // Deliberately narrower than the content column: the search box is a single
+  // control, and a 1000px-wide input reads as a divider rather than a field.
+  max-width: $fm-content-max * 0.6;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 28px 20px 8px;
+  z-index: 2;
+}
+
+.o_fm_hg-search-box {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+}
+
+.o_fm_hg-search-icon {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: $fm-text-light;
+  font-size: 14px;
+  z-index: 1;
+  pointer-events: none;
+  transition: color $fm-speed $fm-ease;
+}
+
+.o_fm_hg-search-input {
+  width: 100%;
+  padding: 11px 40px 11px 44px;
+  border: 1px solid $fm-black-12;
+  border-radius: 10px;
+  background: $fm-white;
+  font-size: 0.9rem;
+  color: $fm-text;
+  outline: none;
+  box-shadow: $fm-shadow-sm;
+  transition: all $fm-speed $fm-ease;
+
+  &::placeholder {
+    color: $fm-text-light;
+  }
+
+  &:focus {
+    border-color: $fm-brand;
+    box-shadow: 0 0 0 3px rgba($fm-brand, 0.12);
+
+    & + .o_fm_hg-search-icon,
+    ~ .o_fm_hg-search-icon {
+      color: $fm-brand;
+    }
+  }
+}
+
+.o_fm_hg-search-clear {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  padding: 4px 8px;
+  cursor: pointer;
+  color: $fm-text-light;
+  font-size: 14px;
+  line-height: 1;
+  border-radius: 50%;
+  transition: all $fm-speed $fm-ease;
+  &:hover {
+    color: $fm-text;
+    background: $fm-black-05;
+  }
+}
+
+// ── Dark Mode Toggle Button ──────────────────────────────────
+.o_fm_hg-darkmode-btn {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: $fm-white;
+  border: 1px solid $fm-black-12;
+  box-shadow: $fm-shadow-sm;
+  cursor: pointer;
+  color: $fm-text-muted;
+  font-size: 16px;
+  transition: all $fm-speed $fm-ease;
+  -webkit-tap-highlight-color: transparent;
+
+  &:hover {
+    color: $fm-brand;
+    border-color: $fm-brand;
+    box-shadow: 0 0 0 3px rgba($fm-brand, 0.12);
+  }
+
+  &:active {
+    transform: scale(0.92);
+  }
+}
+
+// ── Body ─────────────────────────────────────────────────────
+.o_fm_hg-body {
+  width: 100%;
+  max-width: $fm-content-max;
+  padding: 16px 20px 48px;
+  z-index: 2;
+}
+
+// ── App Grid ─────────────────────────────────────────────────
+.o_fm_hg-grid {
+  display: grid;
+  // Columns sized to the tile instead of `1fr`: with `1fr` a 4-column row on a
+  // 960px content box gives 236px columns for a 130px tile, leaving 106px of
+  // dead space that reads as the icons drifting apart.
+  grid-template-columns: repeat(auto-fit, 104px);
+  gap: 14px;
+  padding: 8px 0;
+  justify-content: center;
+}
+
+.o_fm_hg-app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 104px;
+  padding: 16px 8px 14px;
+  border-radius: $fm-radius;
+  cursor: pointer;
+  text-decoration: none !important;
+  color: $fm-text !important;
+  position: relative;
+  transition:
+    background $fm-speed $fm-ease,
+    transform $fm-speed $fm-ease;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+
+  &:hover {
+    background: $fm-black-05;
+    transform: translateY(-2px);
+  }
+
+  &:active {
+    transform: scale(0.96);
+    background: $fm-black-08;
+  }
+
+  &.o_fm_hg-focused {
+    background: $fm-black-08;
+    box-shadow: 0 0 0 2px rgba($fm-brand, 0.4);
+  }
+}
+
+.o_fm_hg-app-icon-wrap {
+  margin-bottom: 8px;
+  transition: transform $fm-speed $fm-ease;
+
+  .o_fm_hg-app:hover & {
+    transform: scale(1.05);
+  }
+}
+
+.o_fm_hg-app-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: $fm-radius;
+  object-fit: contain;
+  padding: 8px;
+  display: block;
+  background: $fm-white;
+  box-shadow: $fm-shadow-sm;
+  transition: box-shadow $fm-speed $fm-ease;
+
+  .o_fm_hg-app:hover & {
+    box-shadow: $fm-shadow-md;
+  }
+}
+
+.o_fm_hg-fa-icon {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  padding: 0; // icon font doesn't need extra padding
+}
+
+.o_fm_hg-app-label {
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-align: center;
+  line-height: 1.3;
+  word-break: break-word;
+  max-width: 100%;
+  color: $fm-text;
+}
+
+// ── Divider ──────────────────────────────────────────────────
+.o_fm_hg-divider {
+  display: flex;
+  align-items: center;
+  margin: 24px 0 14px;
+  gap: 12px;
+
+  &::before,
+  &::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: $fm-black-12;
+  }
+
+  span {
+    font-size: 0.72rem;
+    color: $fm-text-muted;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+  }
+}
+
+// ── Search Results ───────────────────────────────────────────
+.o_fm_hg-results {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.o_fm_hg-menuitem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  border-radius: $fm-radius-sm;
+  cursor: pointer;
+  text-decoration: none !important;
+  color: $fm-text !important;
+  transition: background $fm-speed $fm-ease;
+  -webkit-tap-highlight-color: transparent;
+
+  &:hover,
+  &.o_fm_hg-focused {
+    background: $fm-black-05;
+  }
+}
+
+.o_fm_hg-menuitem-arrow {
+  flex-shrink: 0;
+  font-size: 14px;
+  color: $fm-text-light;
+  width: 16px;
+  text-align: center;
+}
+
+.o_fm_hg-menuitem-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.o_fm_hg-menuitem-label {
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: $fm-text;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.o_fm_hg-menuitem-path {
+  font-size: 0.74rem;
+  color: $fm-text-muted;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+// ── Empty State ──────────────────────────────────────────────
+.o_fm_hg-empty {
+  text-align: center;
+  padding: 48px 20px;
+  color: $fm-text-muted;
+
+  .oi-search {
+    font-size: 32px;
+    display: block;
+    margin-bottom: 12px;
+    opacity: 0.5;
+  }
+
+  p {
+    font-size: 0.9rem;
+    margin: 0;
+  }
+}
+
+// ── Responsive ───────────────────────────────────────────────
+
+// Tablet +
+@media (min-width: 768px) {
+  .o_fm_hg-search {
+    padding-top: 36px;
+  }
+  .o_fm_hg-grid {
+    grid-template-columns: repeat(auto-fit, 130px);
+    gap: 16px;
+  }
+  .o_fm_hg-app {
+    width: 130px;
+    padding: 18px 10px 14px;
+  }
+  .o_fm_hg-app-icon {
+    width: 64px;
+    height: 64px;
+    padding: 7px;
+  }
+  .o_fm_hg-results {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px;
+  }
+}
+
+// Desktop +
+@media (min-width: 992px) {
+  .o_fm_hg-grid {
+    grid-template-columns: repeat(auto-fit, 140px);
+  }
+  .o_fm_hg-app {
+    width: 140px;
+    padding: 20px 12px 16px;
+  }
+  .o_fm_hg-app-icon {
+    width: 72px;
+    height: 72px;
+    padding: 8px;
+  }
+  .o_fm_hg-app-label {
+    font-size: 0.82rem;
+  }
+}
+
+// Small phones
+@media (max-width: 575.98px) {
+  .o_fm_hg-search {
+    padding: 18px 14px 4px;
+    gap: 8px;
+  }
+  .o_fm_hg-search-input {
+    padding: 9px 36px 9px 40px;
+    font-size: 0.85rem;
+  }
+  .o_fm_hg-darkmode-btn {
+    width: 36px;
+    height: 36px;
+    font-size: 14px;
+  }
+
+  .o_fm_hg-body {
+    // Matches the banner / search row padding at this breakpoint so the three
+    // content columns stay aligned on phones too.
+    padding: 8px 14px 32px;
+  }
+  .o_fm_hg-grid {
+    grid-template-columns: repeat(auto-fit, 80px);
+    gap: 10px;
+  }
+  .o_fm_hg-app {
+    width: 80px;
+    padding: 12px 6px 10px;
+  }
+  .o_fm_hg-app-icon {
+    width: 54px;
+    height: 54px;
+    border-radius: 8px;
+    padding: 6px;
+  }
+  .o_fm_hg-app-label {
+    font-size: 0.7rem;
+  }
+  .o_fm_hg-fa-icon {
+    font-size: 20px;
+  }
+}
+
+// Touch-device optimisations
+@media (pointer: coarse) {
+  .o_fm_hg-app {
+    min-height: 84px;
+  }
+  .o_fm_hg-menuitem {
+    min-height: 48px;
+  }
+  .o_fm_hg-search-clear {
+    padding: 8px 10px;
+  }
+}
+
+// ══════════════════════════════════════════════════════════════
+// DARK MODE
+// ══════════════════════════════════════════════════════════════
+.o_fm_hg--dark {
+  background-color: $fm-bg-dark;
+
+  // Search
+  .o_fm_hg-search-input {
+    background: $fm-white-08;
+    border-color: $fm-white-12;
+    color: #e8e8e8;
+    box-shadow: none;
+
+    &::placeholder {
+      color: #78909c;
+    }
+    &:focus {
+      border-color: lighten($fm-brand, 15%);
+      box-shadow: 0 0 0 3px rgba($fm-brand, 0.25);
+    }
+  }
+  .o_fm_hg-search-icon {
+    color: #78909c;
+  }
+  .o_fm_hg-search-clear {
+    color: #78909c;
+    &:hover {
+      color: #e0e0e0;
+      background: $fm-white-08;
+    }
+  }
+
+  // Dark mode toggle (in dark mode)
+  .o_fm_hg-darkmode-btn {
+    background: $fm-white-08;
+    border-color: $fm-white-12;
+    color: #e8c94a;
+    box-shadow: none;
+
+    &:hover {
+      background: $fm-white-15;
+      border-color: #e8c94a;
+      box-shadow: 0 0 0 3px rgba(#e8c94a, 0.15);
+    }
+  }
+
+  // App items
+  .o_fm_hg-app {
+    color: #e0e0e0 !important;
+
+    &:hover {
+      background: $fm-white-08;
+    }
+    &:active {
+      background: $fm-white-12;
+    }
+    &.o_fm_hg-focused {
+      background: $fm-white-12;
+      box-shadow: 0 0 0 2px rgba(lighten($fm-brand, 20%), 0.4);
+    }
+  }
+
+  // Icon: transparent bg + border
+  .o_fm_hg-app-icon {
+    background: transparent;
+    border: 1.5px solid $fm-white-20;
+    box-shadow: none;
+
+    .o_fm_hg-app:hover & {
+      box-shadow: 0 0 12px rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.35);
+    }
+  }
+
+  // FA icon in dark mode
+  .o_fm_hg-fa-icon {
+    border-color: $fm-white-20;
+  }
+
+  // App label
+  .o_fm_hg-app-label {
+    color: #c8d8e0;
+  }
+
+  // Divider
+  .o_fm_hg-divider {
+    &::before,
+    &::after {
+      background: $fm-white-12;
+    }
+    span {
+      color: #78909c;
+    }
+  }
+
+  // Menu items
+  .o_fm_hg-menuitem {
+    color: #d0d8dc !important;
+
+    &:hover,
+    &.o_fm_hg-focused {
+      background: $fm-white-08;
+    }
+  }
+  .o_fm_hg-menuitem-arrow {
+    color: #607d8b;
+  }
+  .o_fm_hg-menuitem-label {
+    color: #d0d8dc;
+  }
+  .o_fm_hg-menuitem-path {
+    color: #78909c;
+  }
+
+  // Empty state
+  .o_fm_hg-empty {
+    color: #78909c;
+  }
+}
+
+// ── Banner ───────────────────────────────────────────────────
+// Same content column as the search row and the app grid, so all three line
+// up edge to edge.
+.o_fm_hg-banner {
+  width: 100%;
+  // Same width as the search box, so the two stacked elements share one edge.
+  max-width: $fm-content-max * 0.6;
+  padding: 20px 20px 0;
+  z-index: 3;
+}
+
+.o_fm_hg-banner-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
+  padding: 16px 20px;
+  border-radius: 18px;
+  background: linear-gradient(160deg, #ffffff 0%, #f8f7fd 100%);
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  box-shadow: 0 2px 10px rgba(30, 25, 60, 0.06);
+  color: $fm-text;
+  overflow: hidden;
+}
+
+.o_fm_hg-banner-left,
+.o_fm_hg-banner-right {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.o_fm_hg-banner-right {
+  flex: none;
+  text-align: right;
+}
+
+.o_fm_hg-greeting {
+  font-size: 0.8rem;
+  color: $fm-text-muted;
+  line-height: 1.3;
+}
+
+.o_fm_hg-username {
+  font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: $fm-text;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.o_fm_hg-clock {
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.15;
+  font-variant-numeric: tabular-nums;
+  color: $fm-brand;
+}
+
+.o_fm_hg-date {
+  font-size: 0.76rem;
+  color: $fm-text-muted;
+  line-height: 1.3;
+}
+
+@media (max-width: 575.98px) {
+  .o_fm_hg-banner { padding: 14px 14px 0; }
+  .o_fm_hg-banner-card { flex-direction: column; align-items: flex-start; gap: 8px; padding: 14px 16px; }
+  .o_fm_hg-banner-right { text-align: left; }
+  .o_fm_hg-username { font-size: 1.15rem; }
+  .o_fm_hg-clock { font-size: 1.25rem; }
+}
+
+// dark
+.o_fm_hg--dark {
+  .o_fm_hg-banner-card {
+    background: linear-gradient(160deg, #173442 0%, #142c39 100%);
+    border-color: rgba(255, 255, 255, 0.10);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
+    color: #e6ecf2;
+  }
+  .o_fm_hg-username { color: #e6ecf2; }
+  .o_fm_hg-greeting,
+  .o_fm_hg-date { color: #93a3b3; }
+  .o_fm_hg-clock { color: #c9a6bd; }
+}

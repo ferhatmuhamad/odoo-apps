@@ -1,0 +1,340 @@
+// ============================================================
+// Fm Navbar – Global & Home Grid overrides
+// ============================================================
+
+$fm-ease: cubic-bezier(0.4, 0, 0.2, 1);
+$fm-speed: 0.2s;
+$fm-brand: #714b67;
+$fm-navbar-bg-light: #d8d7e5;
+$fm-navbar-bg-dark: #112a37;
+
+// ============================================================
+// 1. HOME-GRID TOGGLE BUTTON (always present)
+// ============================================================
+
+// Odoo wraps the apps menu in a plain block element. `align-self` on the
+// button alone therefore does nothing and it sticks to the top of the 46px
+// bar instead of lining up with the menu entries next to it.
+.o_main_navbar .o_navbar_apps_menu {
+  display: flex !important;
+  align-items: center;
+  align-self: stretch;
+}
+
+.o_fm_hg-navbar-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin: 0 4px;
+  flex-shrink: 0;
+  align-self: center;
+  transition:
+    background $fm-speed $fm-ease,
+    transform $fm-speed $fm-ease;
+  -webkit-tap-highlight-color: transparent;
+
+  .oi-apps {
+    font-size: 18px;
+    color: inherit;
+    transition: transform $fm-speed $fm-ease;
+  }
+
+  // ── App-icon / grid-icon hover swap ──
+  .o_fm_navbar-app-icon {
+    display: block;
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
+    object-fit: cover;
+    transition: opacity 0.15s ease;
+  }
+
+  .o_fm_navbar-grid-icon {
+    display: none !important;
+  }
+
+  &:hover {
+    .o_fm_navbar-app-icon {
+      display: none !important;
+    }
+    .o_fm_navbar-grid-icon {
+      display: block !important;
+    }
+  }
+
+  &:active {
+    transform: scale(0.92);
+  }
+}
+
+// Mobile
+@media (max-width: 767.98px) {
+  .o_fm_hg-navbar-btn {
+    width: 34px;
+    height: 34px;
+    .oi-apps {
+      font-size: 17px;
+    }
+    .o_fm_navbar-app-icon {
+      width: 22px;
+      height: 22px;
+    }
+  }
+}
+
+// ============================================================
+// 2. GLOBAL NAVBAR – LIGHT MODE (Enterprise-style white)
+//    Applies to all pages EXCEPT when dark mode is active.
+// ============================================================
+body:not(.fm-dark) {
+  .o_main_navbar {
+    background: #ffffff !important;
+    // Drawn with a shadow, not a border: a 1px border shrinks the navbar's
+    // content box to 45px, which clips the bottom of the menu sections and
+    // systray and leaves the launcher button a pixel off-centre.
+    border-bottom: none !important;
+    box-shadow: 0 1px 0 #e2e2e2 !important;
+
+    // Override navbar CSS custom properties
+    --NavBar-entry-backgroundColor: #ffffff;
+    --NavBar-entry-backgroundColor--hover: #{rgba(#000, 0.05)};
+    --NavBar-entry-backgroundColor--focus: #{rgba(#000, 0.05)};
+    --NavBar-entry-backgroundColor--active: #{rgba(#000, 0.08)};
+    --NavBar-entry-color: #333333;
+    --NavBar-entry-color--hover: #000000;
+    --NavBar-entry-color--active: #000000;
+    --NavBar-brand-color: #333333;
+    --NavBar-entry-borderColor-active: transparent;
+
+    // ── Toggle button ──
+    .o_fm_hg-navbar-btn {
+      color: #333333 !important;
+
+      &:hover {
+        background: rgba(#000, 0.06);
+      }
+      &:active {
+        background: rgba(#000, 0.1);
+      }
+    }
+
+    // ── Module brand title ──
+    .o_menu_brand {
+      color: #333333 !important;
+    }
+
+    // ── Menu sections ──
+    .o_menu_sections {
+      .o_nav_entry,
+      .dropdown-toggle {
+        background: transparent !important;
+        color: #333333 !important;
+        border-color: transparent !important;
+
+        &:hover {
+          background: rgba(#000, 0.05) !important;
+          color: #000000 !important;
+        }
+        &:focus {
+          background: rgba(#000, 0.05) !important;
+          color: #000000 !important;
+        }
+        &:active {
+          background: rgba(#000, 0.08) !important;
+          color: #000000 !important;
+        }
+      }
+
+      .dropdown.show > .dropdown-toggle {
+        background: rgba(#000, 0.08) !important;
+        color: #000000 !important;
+      }
+
+      > * > a,
+      > * > button {
+        color: #333333 !important;
+
+        &:hover,
+        &:focus {
+          background: rgba(#000, 0.05) !important;
+          color: #000000 !important;
+        }
+      }
+    }
+
+    // ── Systray icons ──
+    .o_menu_systray {
+      // General icons & toggles (exclude attendance widget)
+      > :not([class*="attendance"]) {
+        .oi,
+        .fa:not(.text-success):not(.text-danger):not(.fa-sign-in):not(
+            .fa-sign-out
+          ) {
+          color: #333333 !important;
+        }
+      }
+
+      > :not([class*="attendance"]) > .dropdown-toggle,
+      > :not([class*="attendance"]) > button,
+      > :not([class*="attendance"]) > a {
+        color: #333333 !important;
+
+        &:hover {
+          background: rgba(#000, 0.05) !important;
+          color: #000000 !important;
+        }
+      }
+
+      // Badge notification counts – keep white on green
+      .badge {
+        color: #fff !important;
+      }
+    }
+
+    // ── Attendance widget – keep original colors ──
+    .o_menu_systray [class*="attendance"] {
+      .fa,
+      .btn,
+      a,
+      button,
+      span {
+        color: unset;
+      }
+      .text-success {
+        color: var(--bs-success) !important;
+      }
+      .text-danger {
+        color: var(--bs-danger) !important;
+      }
+      .btn-success {
+        background-color: var(--bs-success) !important;
+        color: #fff !important;
+      }
+      .btn-warning {
+        background-color: var(--bs-warning) !important;
+        color: #000 !important;
+      }
+    }
+
+    // ── User profile avatar – thin black border ──
+    .o_user_menu .o_user_avatar {
+      border: 2px solid #4a4a4a !important;
+    }
+  }
+}
+
+// ============================================================
+// 3. GLOBAL NAVBAR – DARK MODE additions
+//    The main dark navbar is in dark_mode_global.scss.
+//    Here we only add the user-avatar border and button colors.
+// ============================================================
+body.fm-dark {
+  .o_main_navbar {
+    // ── Toggle button ──
+    .o_fm_hg-navbar-btn {
+      color: rgba(255, 255, 255, 0.85) !important;
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.08);
+      }
+      &:active {
+        background: rgba(255, 255, 255, 0.12);
+      }
+    }
+
+    // ── User profile avatar – thin light border ──
+    .o_user_menu .o_user_avatar {
+      border: 1px solid rgba(255, 255, 255, 0.45) !important;
+    }
+  }
+}
+
+// ============================================================
+// 4. HOME-GRID ACTIVE – LIGHT overrides
+//    When the full-page homegrid is visible, use a distinct
+//    tinted background and hide module-specific UI.
+// ============================================================
+body.o_fm_hg-active:not(.fm-dark) {
+  .o_main_navbar {
+    background: $fm-navbar-bg-light !important;
+    border-bottom: none !important;
+    box-shadow: none !important;
+
+    // Hide module title & menu sections on the homegrid page
+    .o_menu_brand,
+    .o_menu_sections {
+      display: none !important;
+    }
+
+    // Toggle button → brand color on homegrid
+    .o_fm_hg-navbar-btn {
+      color: $fm-brand !important;
+
+      &:hover {
+        background: rgba($fm-brand, 0.1);
+      }
+      &:active {
+        background: rgba($fm-brand, 0.18);
+      }
+    }
+
+    // Systray icons → black on homegrid
+    .o_menu_systray {
+      > :not([class*="attendance"]) {
+        .oi,
+        .fa:not(.text-success):not(.text-danger):not(.fa-sign-in):not(
+            .fa-sign-out
+          ) {
+          color: #333333 !important;
+        }
+      }
+
+      > :not([class*="attendance"]) > .dropdown-toggle,
+      > :not([class*="attendance"]) > button,
+      > :not([class*="attendance"]) > a {
+        color: #333333 !important;
+
+        &:hover {
+          background: rgba(#000, 0.06) !important;
+        }
+      }
+
+      .badge {
+        color: #fff !important;
+      }
+    }
+
+    // User avatar on homegrid
+    .o_user_menu .o_user_avatar {
+      border: 2px solid #4a4a4a !important;
+      background: white !important;
+      border-radius: 6px !important;
+    }
+  }
+}
+
+// ============================================================
+// 5. HOME-GRID ACTIVE – DARK overrides
+// ============================================================
+body.o_fm_hg-active.fm-dark {
+  .o_main_navbar {
+    background: $fm-navbar-bg-dark !important;
+    border-bottom: none !important;
+    box-shadow: none !important;
+
+    // Hide module title & menu sections
+    .o_menu_brand,
+    .o_menu_sections {
+      display: none !important;
+    }
+
+    // Toggle button stays light in dark homegrid
+    .o_fm_hg-navbar-btn {
+      color: rgba(255, 255, 255, 0.85) !important;
+    }
+  }
+}
