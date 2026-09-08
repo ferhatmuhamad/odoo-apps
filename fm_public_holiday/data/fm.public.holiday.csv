@@ -1,0 +1,1275 @@
+id,country_id:id,name,date
+ph_id_2025_01_01,base.id,New Year's Day,2025-01-01
+ph_id_2025_01_27,base.id,Isra' and Mi'raj,2025-01-27
+ph_id_2025_01_29,base.id,Lunar New Year,2025-01-29
+ph_id_2025_03_29,base.id,Day of Silence,2025-03-29
+ph_id_2025_03_31,base.id,Eid al-Fitr,2025-03-31
+ph_id_2025_04_01,base.id,Eid al-Fitr Second Day,2025-04-01
+ph_id_2025_04_18,base.id,Good Friday,2025-04-18
+ph_id_2025_04_20,base.id,Easter Sunday,2025-04-20
+ph_id_2025_05_01,base.id,International Labor Day,2025-05-01
+ph_id_2025_05_12,base.id,Vesak Day,2025-05-12
+ph_id_2025_05_29,base.id,Ascension Day,2025-05-29
+ph_id_2025_06_01,base.id,Pancasila Day,2025-06-01
+ph_id_2025_06_06,base.id,Eid al-Adha,2025-06-06
+ph_id_2025_06_27,base.id,Islamic New Year,2025-06-27
+ph_id_2025_08_17,base.id,Independence Day,2025-08-17
+ph_id_2025_09_05,base.id,Prophet's Birthday,2025-09-05
+ph_id_2025_12_25,base.id,Christmas Day,2025-12-25
+ph_id_2026_01_01,base.id,New Year's Day,2026-01-01
+ph_id_2026_01_16,base.id,Isra' and Mi'raj,2026-01-16
+ph_id_2026_02_17,base.id,Lunar New Year,2026-02-17
+ph_id_2026_03_19,base.id,Day of Silence,2026-03-19
+ph_id_2026_03_21,base.id,Eid al-Fitr,2026-03-21
+ph_id_2026_03_22,base.id,Eid al-Fitr Second Day,2026-03-22
+ph_id_2026_04_03,base.id,Good Friday,2026-04-03
+ph_id_2026_04_05,base.id,Easter Sunday,2026-04-05
+ph_id_2026_05_01,base.id,International Labor Day,2026-05-01
+ph_id_2026_05_14,base.id,Ascension Day,2026-05-14
+ph_id_2026_05_27,base.id,Eid al-Adha,2026-05-27
+ph_id_2026_05_31,base.id,Vesak Day,2026-05-31
+ph_id_2026_06_01,base.id,Pancasila Day,2026-06-01
+ph_id_2026_06_16,base.id,Islamic New Year,2026-06-16
+ph_id_2026_08_17,base.id,Independence Day,2026-08-17
+ph_id_2026_08_25,base.id,Prophet's Birthday,2026-08-25
+ph_id_2026_12_25,base.id,Christmas Day,2026-12-25
+ph_id_2027_01_01,base.id,New Year's Day,2027-01-01
+ph_id_2027_01_06,base.id,Isra' and Mi'raj (estimated),2027-01-06
+ph_id_2027_02_06,base.id,Lunar New Year (estimated),2027-02-06
+ph_id_2027_03_08,base.id,Day of Silence,2027-03-08
+ph_id_2027_03_10,base.id,Eid al-Fitr (estimated),2027-03-10
+ph_id_2027_03_11,base.id,Eid al-Fitr Second Day (estimated),2027-03-11
+ph_id_2027_03_26,base.id,Good Friday,2027-03-26
+ph_id_2027_03_28,base.id,Easter Sunday,2027-03-28
+ph_id_2027_05_01,base.id,International Labor Day,2027-05-01
+ph_id_2027_05_06,base.id,Ascension Day,2027-05-06
+ph_id_2027_05_17,base.id,Eid al-Adha (estimated),2027-05-17
+ph_id_2027_05_20,base.id,Vesak Day (estimated),2027-05-20
+ph_id_2027_06_01,base.id,Pancasila Day,2027-06-01
+ph_id_2027_06_06,base.id,Islamic New Year (estimated),2027-06-06
+ph_id_2027_08_15,base.id,Prophet's Birthday (estimated),2027-08-15
+ph_id_2027_08_17,base.id,Independence Day,2027-08-17
+ph_id_2027_12_25,base.id,Christmas Day,2027-12-25
+ph_id_2027_12_26,base.id,Isra' and Mi'raj (estimated),2027-12-26
+ph_id_2028_01_01,base.id,New Year's Day,2028-01-01
+ph_id_2028_01_26,base.id,Lunar New Year (estimated),2028-01-26
+ph_id_2028_02_27,base.id,Eid al-Fitr (estimated),2028-02-27
+ph_id_2028_02_28,base.id,Eid al-Fitr Second Day (estimated),2028-02-28
+ph_id_2028_03_26,base.id,Day of Silence,2028-03-26
+ph_id_2028_04_14,base.id,Good Friday,2028-04-14
+ph_id_2028_04_16,base.id,Easter Sunday,2028-04-16
+ph_id_2028_05_01,base.id,International Labor Day,2028-05-01
+ph_id_2028_05_05,base.id,Eid al-Adha (estimated),2028-05-05
+ph_id_2028_05_09,base.id,Vesak Day (estimated),2028-05-09
+ph_id_2028_05_25,base.id,Ascension Day,2028-05-25
+ph_id_2028_05_26,base.id,Islamic New Year (estimated),2028-05-26
+ph_id_2028_06_01,base.id,Pancasila Day,2028-06-01
+ph_id_2028_08_04,base.id,Prophet's Birthday (estimated),2028-08-04
+ph_id_2028_08_17,base.id,Independence Day,2028-08-17
+ph_id_2028_12_14,base.id,Isra' and Mi'raj (estimated),2028-12-14
+ph_id_2028_12_25,base.id,Christmas Day,2028-12-25
+ph_id_2029_01_01,base.id,New Year's Day,2029-01-01
+ph_id_2029_02_13,base.id,Lunar New Year (estimated),2029-02-13
+ph_id_2029_02_15,base.id,Eid al-Fitr (estimated),2029-02-15
+ph_id_2029_02_16,base.id,Eid al-Fitr Second Day (estimated),2029-02-16
+ph_id_2029_03_15,base.id,Day of Silence,2029-03-15
+ph_id_2029_03_30,base.id,Good Friday,2029-03-30
+ph_id_2029_04_01,base.id,Easter Sunday,2029-04-01
+ph_id_2029_04_25,base.id,Eid al-Adha (estimated),2029-04-25
+ph_id_2029_05_01,base.id,International Labor Day,2029-05-01
+ph_id_2029_05_10,base.id,Ascension Day,2029-05-10
+ph_id_2029_05_15,base.id,Islamic New Year (estimated),2029-05-15
+ph_id_2029_05_27,base.id,Vesak Day (estimated),2029-05-27
+ph_id_2029_06_01,base.id,Pancasila Day,2029-06-01
+ph_id_2029_07_24,base.id,Prophet's Birthday (estimated),2029-07-24
+ph_id_2029_08_17,base.id,Independence Day,2029-08-17
+ph_id_2029_12_04,base.id,Isra' and Mi'raj (estimated),2029-12-04
+ph_id_2029_12_25,base.id,Christmas Day,2029-12-25
+ph_id_2030_01_01,base.id,New Year's Day,2030-01-01
+ph_id_2030_02_03,base.id,Lunar New Year (estimated),2030-02-03
+ph_id_2030_02_04,base.id,Eid al-Fitr (estimated),2030-02-04
+ph_id_2030_02_05,base.id,Eid al-Fitr Second Day (estimated),2030-02-05
+ph_id_2030_03_05,base.id,Day of Silence,2030-03-05
+ph_id_2030_04_14,base.id,Eid al-Adha (estimated),2030-04-14
+ph_id_2030_04_19,base.id,Good Friday,2030-04-19
+ph_id_2030_04_21,base.id,Easter Sunday,2030-04-21
+ph_id_2030_05_01,base.id,International Labor Day,2030-05-01
+ph_id_2030_05_04,base.id,Islamic New Year (estimated),2030-05-04
+ph_id_2030_05_16,base.id,Vesak Day (estimated),2030-05-16
+ph_id_2030_05_30,base.id,Ascension Day,2030-05-30
+ph_id_2030_06_01,base.id,Pancasila Day,2030-06-01
+ph_id_2030_07_13,base.id,Prophet's Birthday (estimated),2030-07-13
+ph_id_2030_08_17,base.id,Independence Day,2030-08-17
+ph_id_2030_11_23,base.id,Isra' and Mi'raj (estimated),2030-11-23
+ph_id_2030_12_25,base.id,Christmas Day,2030-12-25
+ph_my_2025_01_29,base.my,Chinese New Year,2025-01-29
+ph_my_2025_01_30,base.my,Chinese New Year (Second Day),2025-01-30
+ph_my_2025_03_31,base.my,Eid al-Fitr,2025-03-31
+ph_my_2025_04_01,base.my,Eid al-Fitr (Second Day),2025-04-01
+ph_my_2025_05_01,base.my,Labor Day,2025-05-01
+ph_my_2025_05_12,base.my,Vesak Day,2025-05-12
+ph_my_2025_06_02,base.my,Birthday of HM Yang di-Pertuan Agong,2025-06-02
+ph_my_2025_06_07,base.my,Eid al-Adha,2025-06-07
+ph_my_2025_06_27,base.my,Islamic New Year,2025-06-27
+ph_my_2025_08_31,base.my,National Day,2025-08-31
+ph_my_2025_09_01,base.my,National Day (observed),2025-09-01
+ph_my_2025_09_05,base.my,Prophet Muhammad's Birthday,2025-09-05
+ph_my_2025_09_15,base.my,Additional holiday,2025-09-15
+ph_my_2025_09_16,base.my,Malaysia Day,2025-09-16
+ph_my_2025_12_25,base.my,Christmas Day,2025-12-25
+ph_my_2026_02_17,base.my,Chinese New Year,2026-02-17
+ph_my_2026_02_18,base.my,Chinese New Year (Second Day),2026-02-18
+ph_my_2026_03_20,base.my,Eid al-Fitr (additional holiday),2026-03-20
+ph_my_2026_03_21,base.my,Eid al-Fitr,2026-03-21
+ph_my_2026_03_22,base.my,Eid al-Fitr (Second Day),2026-03-22
+ph_my_2026_03_23,base.my,Eid al-Fitr (Second Day) (observed),2026-03-23
+ph_my_2026_05_01,base.my,Labor Day,2026-05-01
+ph_my_2026_05_27,base.my,Eid al-Adha,2026-05-27
+ph_my_2026_05_31,base.my,Vesak Day,2026-05-31
+ph_my_2026_06_01,base.my,Birthday of HM Yang di-Pertuan Agong,2026-06-01
+ph_my_2026_06_02,base.my,Vesak Day (observed),2026-06-02
+ph_my_2026_06_17,base.my,Islamic New Year,2026-06-17
+ph_my_2026_08_25,base.my,Prophet Muhammad's Birthday,2026-08-25
+ph_my_2026_08_31,base.my,National Day,2026-08-31
+ph_my_2026_09_16,base.my,Malaysia Day,2026-09-16
+ph_my_2026_12_25,base.my,Christmas Day,2026-12-25
+ph_my_2027_02_06,base.my,Chinese New Year (estimated),2027-02-06
+ph_my_2027_02_07,base.my,Chinese New Year (Second Day) (estimated),2027-02-07
+ph_my_2027_02_08,base.my,"Chinese New Year (Second Day) (observed, estimated)",2027-02-08
+ph_my_2027_03_10,base.my,Eid al-Fitr (estimated),2027-03-10
+ph_my_2027_03_11,base.my,Eid al-Fitr (Second Day) (estimated),2027-03-11
+ph_my_2027_05_01,base.my,Labor Day,2027-05-01
+ph_my_2027_05_17,base.my,Eid al-Adha (estimated),2027-05-17
+ph_my_2027_05_20,base.my,Vesak Day (estimated),2027-05-20
+ph_my_2027_06_06,base.my,Islamic New Year (estimated),2027-06-06
+ph_my_2027_06_07,base.my,Birthday of HM Yang di-Pertuan Agong,2027-06-07
+ph_my_2027_08_15,base.my,Prophet Muhammad's Birthday (estimated),2027-08-15
+ph_my_2027_08_16,base.my,"Prophet Muhammad's Birthday (observed, estimated)",2027-08-16
+ph_my_2027_08_31,base.my,National Day,2027-08-31
+ph_my_2027_09_16,base.my,Malaysia Day,2027-09-16
+ph_my_2027_12_25,base.my,Christmas Day,2027-12-25
+ph_my_2028_01_26,base.my,Chinese New Year (estimated),2028-01-26
+ph_my_2028_01_27,base.my,Chinese New Year (Second Day) (estimated),2028-01-27
+ph_my_2028_02_27,base.my,Eid al-Fitr (estimated),2028-02-27
+ph_my_2028_02_28,base.my,Eid al-Fitr (Second Day) (estimated),2028-02-28
+ph_my_2028_02_29,base.my,"Eid al-Fitr (observed, estimated)",2028-02-29
+ph_my_2028_05_01,base.my,Labor Day,2028-05-01
+ph_my_2028_05_05,base.my,Eid al-Adha (estimated),2028-05-05
+ph_my_2028_05_09,base.my,Vesak Day (estimated),2028-05-09
+ph_my_2028_05_26,base.my,Islamic New Year (estimated),2028-05-26
+ph_my_2028_06_05,base.my,Birthday of HM Yang di-Pertuan Agong,2028-06-05
+ph_my_2028_08_04,base.my,Prophet Muhammad's Birthday (estimated),2028-08-04
+ph_my_2028_08_31,base.my,National Day,2028-08-31
+ph_my_2028_09_16,base.my,Malaysia Day,2028-09-16
+ph_my_2028_12_25,base.my,Christmas Day,2028-12-25
+ph_my_2029_02_13,base.my,Chinese New Year (estimated),2029-02-13
+ph_my_2029_02_14,base.my,Chinese New Year (Second Day) (estimated),2029-02-14
+ph_my_2029_02_15,base.my,Eid al-Fitr (estimated),2029-02-15
+ph_my_2029_02_16,base.my,Eid al-Fitr (Second Day) (estimated),2029-02-16
+ph_my_2029_04_25,base.my,Eid al-Adha (estimated),2029-04-25
+ph_my_2029_05_01,base.my,Labor Day,2029-05-01
+ph_my_2029_05_15,base.my,Islamic New Year (estimated),2029-05-15
+ph_my_2029_05_27,base.my,Vesak Day (estimated),2029-05-27
+ph_my_2029_05_28,base.my,"Vesak Day (observed, estimated)",2029-05-28
+ph_my_2029_06_04,base.my,Birthday of HM Yang di-Pertuan Agong,2029-06-04
+ph_my_2029_07_24,base.my,Prophet Muhammad's Birthday (estimated),2029-07-24
+ph_my_2029_08_31,base.my,National Day,2029-08-31
+ph_my_2029_09_16,base.my,Malaysia Day,2029-09-16
+ph_my_2029_09_17,base.my,Malaysia Day (observed),2029-09-17
+ph_my_2029_12_25,base.my,Christmas Day,2029-12-25
+ph_my_2030_02_03,base.my,Chinese New Year (estimated),2030-02-03
+ph_my_2030_02_04,base.my,Chinese New Year (Second Day) (estimated); Eid al-Fitr (estimated),2030-02-04
+ph_my_2030_02_05,base.my,Eid al-Fitr (Second Day) (estimated),2030-02-05
+ph_my_2030_02_06,base.my,"Chinese New Year (observed, estimated)",2030-02-06
+ph_my_2030_04_14,base.my,Eid al-Adha (estimated),2030-04-14
+ph_my_2030_04_15,base.my,"Eid al-Adha (observed, estimated)",2030-04-15
+ph_my_2030_05_01,base.my,Labor Day,2030-05-01
+ph_my_2030_05_04,base.my,Islamic New Year (estimated),2030-05-04
+ph_my_2030_05_16,base.my,Vesak Day (estimated),2030-05-16
+ph_my_2030_06_03,base.my,Birthday of HM Yang di-Pertuan Agong,2030-06-03
+ph_my_2030_07_13,base.my,Prophet Muhammad's Birthday (estimated),2030-07-13
+ph_my_2030_08_31,base.my,National Day,2030-08-31
+ph_my_2030_09_16,base.my,Malaysia Day,2030-09-16
+ph_my_2030_12_25,base.my,Christmas Day,2030-12-25
+ph_sg_2025_01_01,base.sg,New Year's Day,2025-01-01
+ph_sg_2025_01_29,base.sg,Chinese New Year,2025-01-29
+ph_sg_2025_01_30,base.sg,Chinese New Year,2025-01-30
+ph_sg_2025_03_31,base.sg,Eid al-Fitr,2025-03-31
+ph_sg_2025_04_18,base.sg,Good Friday,2025-04-18
+ph_sg_2025_05_01,base.sg,Labor Day,2025-05-01
+ph_sg_2025_05_03,base.sg,Polling Day,2025-05-03
+ph_sg_2025_05_12,base.sg,Vesak Day,2025-05-12
+ph_sg_2025_06_07,base.sg,Eid al-Adha,2025-06-07
+ph_sg_2025_08_09,base.sg,National Day,2025-08-09
+ph_sg_2025_10_20,base.sg,Diwali,2025-10-20
+ph_sg_2025_12_25,base.sg,Christmas Day,2025-12-25
+ph_sg_2026_01_01,base.sg,New Year's Day,2026-01-01
+ph_sg_2026_02_17,base.sg,Chinese New Year,2026-02-17
+ph_sg_2026_02_18,base.sg,Chinese New Year,2026-02-18
+ph_sg_2026_03_21,base.sg,Eid al-Fitr,2026-03-21
+ph_sg_2026_04_03,base.sg,Good Friday,2026-04-03
+ph_sg_2026_05_01,base.sg,Labor Day,2026-05-01
+ph_sg_2026_05_27,base.sg,Eid al-Adha,2026-05-27
+ph_sg_2026_05_31,base.sg,Vesak Day,2026-05-31
+ph_sg_2026_06_01,base.sg,Vesak Day (observed),2026-06-01
+ph_sg_2026_08_09,base.sg,National Day,2026-08-09
+ph_sg_2026_08_10,base.sg,National Day (observed),2026-08-10
+ph_sg_2026_11_08,base.sg,Diwali,2026-11-08
+ph_sg_2026_11_09,base.sg,Diwali (observed),2026-11-09
+ph_sg_2026_12_25,base.sg,Christmas Day,2026-12-25
+ph_sg_2027_01_01,base.sg,New Year's Day,2027-01-01
+ph_sg_2027_02_06,base.sg,Chinese New Year,2027-02-06
+ph_sg_2027_02_07,base.sg,Chinese New Year,2027-02-07
+ph_sg_2027_02_08,base.sg,Chinese New Year (observed),2027-02-08
+ph_sg_2027_03_10,base.sg,Eid al-Fitr,2027-03-10
+ph_sg_2027_03_26,base.sg,Good Friday,2027-03-26
+ph_sg_2027_05_01,base.sg,Labor Day,2027-05-01
+ph_sg_2027_05_17,base.sg,Eid al-Adha,2027-05-17
+ph_sg_2027_05_20,base.sg,Vesak Day,2027-05-20
+ph_sg_2027_08_09,base.sg,National Day,2027-08-09
+ph_sg_2027_10_28,base.sg,Diwali,2027-10-28
+ph_sg_2027_12_25,base.sg,Christmas Day,2027-12-25
+ph_sg_2028_01_01,base.sg,New Year's Day,2028-01-01
+ph_sg_2028_01_26,base.sg,Chinese New Year (estimated),2028-01-26
+ph_sg_2028_01_27,base.sg,Chinese New Year (estimated),2028-01-27
+ph_sg_2028_02_27,base.sg,Eid al-Fitr (estimated),2028-02-27
+ph_sg_2028_02_28,base.sg,"Eid al-Fitr (observed, estimated)",2028-02-28
+ph_sg_2028_04_14,base.sg,Good Friday,2028-04-14
+ph_sg_2028_05_01,base.sg,Labor Day,2028-05-01
+ph_sg_2028_05_05,base.sg,Eid al-Adha (estimated),2028-05-05
+ph_sg_2028_05_09,base.sg,Vesak Day (estimated),2028-05-09
+ph_sg_2028_08_09,base.sg,National Day,2028-08-09
+ph_sg_2028_11_15,base.sg,Diwali,2028-11-15
+ph_sg_2028_12_25,base.sg,Christmas Day,2028-12-25
+ph_sg_2029_01_01,base.sg,New Year's Day,2029-01-01
+ph_sg_2029_02_13,base.sg,Chinese New Year (estimated),2029-02-13
+ph_sg_2029_02_14,base.sg,Chinese New Year (estimated),2029-02-14
+ph_sg_2029_02_15,base.sg,Eid al-Fitr (estimated),2029-02-15
+ph_sg_2029_03_30,base.sg,Good Friday,2029-03-30
+ph_sg_2029_04_25,base.sg,Eid al-Adha (estimated),2029-04-25
+ph_sg_2029_05_01,base.sg,Labor Day,2029-05-01
+ph_sg_2029_05_27,base.sg,Vesak Day (estimated),2029-05-27
+ph_sg_2029_05_28,base.sg,"Vesak Day (observed, estimated)",2029-05-28
+ph_sg_2029_08_09,base.sg,National Day,2029-08-09
+ph_sg_2029_11_05,base.sg,Diwali,2029-11-05
+ph_sg_2029_12_25,base.sg,Christmas Day,2029-12-25
+ph_sg_2030_01_01,base.sg,New Year's Day,2030-01-01
+ph_sg_2030_02_03,base.sg,Chinese New Year (estimated),2030-02-03
+ph_sg_2030_02_04,base.sg,Chinese New Year (estimated); Eid al-Fitr (estimated),2030-02-04
+ph_sg_2030_02_05,base.sg,"Chinese New Year (observed, estimated)",2030-02-05
+ph_sg_2030_04_14,base.sg,Eid al-Adha (estimated),2030-04-14
+ph_sg_2030_04_15,base.sg,"Eid al-Adha (observed, estimated)",2030-04-15
+ph_sg_2030_04_19,base.sg,Good Friday,2030-04-19
+ph_sg_2030_05_01,base.sg,Labor Day,2030-05-01
+ph_sg_2030_05_16,base.sg,Vesak Day (estimated),2030-05-16
+ph_sg_2030_08_09,base.sg,National Day,2030-08-09
+ph_sg_2030_10_26,base.sg,Diwali,2030-10-26
+ph_sg_2030_12_25,base.sg,Christmas Day,2030-12-25
+ph_ph_2025_01_01,base.ph,New Year's Day,2025-01-01
+ph_ph_2025_01_29,base.ph,Chinese New Year,2025-01-29
+ph_ph_2025_04_01,base.ph,Eid al-Fitr,2025-04-01
+ph_ph_2025_04_09,base.ph,Day of Valor,2025-04-09
+ph_ph_2025_04_17,base.ph,Maundy Thursday,2025-04-17
+ph_ph_2025_04_18,base.ph,Good Friday,2025-04-18
+ph_ph_2025_04_19,base.ph,Black Saturday,2025-04-19
+ph_ph_2025_05_01,base.ph,Labor Day,2025-05-01
+ph_ph_2025_05_12,base.ph,Elections special (non-working) day,2025-05-12
+ph_ph_2025_06_06,base.ph,Eid al-Adha,2025-06-06
+ph_ph_2025_06_12,base.ph,Independence Day,2025-06-12
+ph_ph_2025_07_27,base.ph,Additional special (non-working) day,2025-07-27
+ph_ph_2025_08_21,base.ph,Ninoy Aquino Day,2025-08-21
+ph_ph_2025_08_25,base.ph,National Heroes Day,2025-08-25
+ph_ph_2025_10_31,base.ph,All Saints' Eve,2025-10-31
+ph_ph_2025_11_01,base.ph,All Saints' Day,2025-11-01
+ph_ph_2025_11_30,base.ph,Bonifacio Day,2025-11-30
+ph_ph_2025_12_08,base.ph,Immaculate Conception,2025-12-08
+ph_ph_2025_12_24,base.ph,Christmas Eve,2025-12-24
+ph_ph_2025_12_25,base.ph,Christmas Day,2025-12-25
+ph_ph_2025_12_30,base.ph,Rizal Day,2025-12-30
+ph_ph_2025_12_31,base.ph,New Year's Eve,2025-12-31
+ph_ph_2026_01_01,base.ph,New Year's Day,2026-01-01
+ph_ph_2026_02_17,base.ph,Chinese New Year,2026-02-17
+ph_ph_2026_03_20,base.ph,Eid al-Fitr,2026-03-20
+ph_ph_2026_04_02,base.ph,Maundy Thursday,2026-04-02
+ph_ph_2026_04_03,base.ph,Good Friday,2026-04-03
+ph_ph_2026_04_04,base.ph,Black Saturday,2026-04-04
+ph_ph_2026_04_09,base.ph,Day of Valor,2026-04-09
+ph_ph_2026_05_01,base.ph,Labor Day,2026-05-01
+ph_ph_2026_05_27,base.ph,Eid al-Adha,2026-05-27
+ph_ph_2026_06_12,base.ph,Independence Day,2026-06-12
+ph_ph_2026_08_21,base.ph,Ninoy Aquino Day,2026-08-21
+ph_ph_2026_08_31,base.ph,National Heroes Day,2026-08-31
+ph_ph_2026_11_01,base.ph,All Saints' Day,2026-11-01
+ph_ph_2026_11_02,base.ph,All Souls' Day,2026-11-02
+ph_ph_2026_11_30,base.ph,Bonifacio Day,2026-11-30
+ph_ph_2026_12_08,base.ph,Immaculate Conception,2026-12-08
+ph_ph_2026_12_24,base.ph,Christmas Eve,2026-12-24
+ph_ph_2026_12_25,base.ph,Christmas Day,2026-12-25
+ph_ph_2026_12_30,base.ph,Rizal Day,2026-12-30
+ph_ph_2026_12_31,base.ph,New Year's Eve,2026-12-31
+ph_ph_2027_01_01,base.ph,New Year's Day,2027-01-01
+ph_ph_2027_02_06,base.ph,Chinese New Year,2027-02-06
+ph_ph_2027_03_09,base.ph,Eid al-Fitr (estimated),2027-03-09
+ph_ph_2027_03_25,base.ph,Maundy Thursday,2027-03-25
+ph_ph_2027_03_26,base.ph,Good Friday,2027-03-26
+ph_ph_2027_03_27,base.ph,Black Saturday,2027-03-27
+ph_ph_2027_04_09,base.ph,Day of Valor,2027-04-09
+ph_ph_2027_05_01,base.ph,Labor Day,2027-05-01
+ph_ph_2027_05_16,base.ph,Eid al-Adha (estimated),2027-05-16
+ph_ph_2027_06_12,base.ph,Independence Day,2027-06-12
+ph_ph_2027_08_21,base.ph,Ninoy Aquino Day,2027-08-21
+ph_ph_2027_08_30,base.ph,National Heroes Day,2027-08-30
+ph_ph_2027_11_01,base.ph,All Saints' Day,2027-11-01
+ph_ph_2027_11_30,base.ph,Bonifacio Day,2027-11-30
+ph_ph_2027_12_08,base.ph,Immaculate Conception,2027-12-08
+ph_ph_2027_12_25,base.ph,Christmas Day,2027-12-25
+ph_ph_2027_12_30,base.ph,Rizal Day,2027-12-30
+ph_ph_2027_12_31,base.ph,New Year's Eve,2027-12-31
+ph_ph_2028_01_01,base.ph,New Year's Day,2028-01-01
+ph_ph_2028_01_26,base.ph,Chinese New Year,2028-01-26
+ph_ph_2028_02_26,base.ph,Eid al-Fitr (estimated),2028-02-26
+ph_ph_2028_04_09,base.ph,Day of Valor,2028-04-09
+ph_ph_2028_04_13,base.ph,Maundy Thursday,2028-04-13
+ph_ph_2028_04_14,base.ph,Good Friday,2028-04-14
+ph_ph_2028_04_15,base.ph,Black Saturday,2028-04-15
+ph_ph_2028_05_01,base.ph,Labor Day,2028-05-01
+ph_ph_2028_05_05,base.ph,Eid al-Adha (estimated),2028-05-05
+ph_ph_2028_06_12,base.ph,Independence Day,2028-06-12
+ph_ph_2028_08_21,base.ph,Ninoy Aquino Day,2028-08-21
+ph_ph_2028_08_28,base.ph,National Heroes Day,2028-08-28
+ph_ph_2028_11_01,base.ph,All Saints' Day,2028-11-01
+ph_ph_2028_11_30,base.ph,Bonifacio Day,2028-11-30
+ph_ph_2028_12_08,base.ph,Immaculate Conception,2028-12-08
+ph_ph_2028_12_25,base.ph,Christmas Day,2028-12-25
+ph_ph_2028_12_30,base.ph,Rizal Day,2028-12-30
+ph_ph_2028_12_31,base.ph,New Year's Eve,2028-12-31
+ph_ph_2029_01_01,base.ph,New Year's Day,2029-01-01
+ph_ph_2029_02_13,base.ph,Chinese New Year,2029-02-13
+ph_ph_2029_02_14,base.ph,Eid al-Fitr (estimated),2029-02-14
+ph_ph_2029_03_29,base.ph,Maundy Thursday,2029-03-29
+ph_ph_2029_03_30,base.ph,Good Friday,2029-03-30
+ph_ph_2029_03_31,base.ph,Black Saturday,2029-03-31
+ph_ph_2029_04_09,base.ph,Day of Valor,2029-04-09
+ph_ph_2029_04_24,base.ph,Eid al-Adha (estimated),2029-04-24
+ph_ph_2029_05_01,base.ph,Labor Day,2029-05-01
+ph_ph_2029_06_12,base.ph,Independence Day,2029-06-12
+ph_ph_2029_08_21,base.ph,Ninoy Aquino Day,2029-08-21
+ph_ph_2029_08_27,base.ph,National Heroes Day,2029-08-27
+ph_ph_2029_11_01,base.ph,All Saints' Day,2029-11-01
+ph_ph_2029_11_30,base.ph,Bonifacio Day,2029-11-30
+ph_ph_2029_12_08,base.ph,Immaculate Conception,2029-12-08
+ph_ph_2029_12_25,base.ph,Christmas Day,2029-12-25
+ph_ph_2029_12_30,base.ph,Rizal Day,2029-12-30
+ph_ph_2029_12_31,base.ph,New Year's Eve,2029-12-31
+ph_ph_2030_01_01,base.ph,New Year's Day,2030-01-01
+ph_ph_2030_02_03,base.ph,Chinese New Year,2030-02-03
+ph_ph_2030_02_04,base.ph,Eid al-Fitr (estimated),2030-02-04
+ph_ph_2030_04_09,base.ph,Day of Valor,2030-04-09
+ph_ph_2030_04_13,base.ph,Eid al-Adha (estimated),2030-04-13
+ph_ph_2030_04_18,base.ph,Maundy Thursday,2030-04-18
+ph_ph_2030_04_19,base.ph,Good Friday,2030-04-19
+ph_ph_2030_04_20,base.ph,Black Saturday,2030-04-20
+ph_ph_2030_05_01,base.ph,Labor Day,2030-05-01
+ph_ph_2030_06_12,base.ph,Independence Day,2030-06-12
+ph_ph_2030_08_21,base.ph,Ninoy Aquino Day,2030-08-21
+ph_ph_2030_08_26,base.ph,National Heroes Day,2030-08-26
+ph_ph_2030_11_01,base.ph,All Saints' Day,2030-11-01
+ph_ph_2030_11_30,base.ph,Bonifacio Day,2030-11-30
+ph_ph_2030_12_08,base.ph,Immaculate Conception,2030-12-08
+ph_ph_2030_12_25,base.ph,Christmas Day,2030-12-25
+ph_ph_2030_12_30,base.ph,Rizal Day,2030-12-30
+ph_ph_2030_12_31,base.ph,New Year's Eve,2030-12-31
+ph_th_2025_01_01,base.th,New Year's Day,2025-01-01
+ph_th_2025_01_11,base.th,National Children's Day,2025-01-11
+ph_th_2025_02_12,base.th,Makha Bucha,2025-02-12
+ph_th_2025_04_06,base.th,Chakri Memorial Day,2025-04-06
+ph_th_2025_04_07,base.th,Chakri Memorial Day (in lieu),2025-04-07
+ph_th_2025_04_13,base.th,Songkran Festival,2025-04-13
+ph_th_2025_04_14,base.th,Songkran Festival,2025-04-14
+ph_th_2025_04_15,base.th,Songkran Festival,2025-04-15
+ph_th_2025_04_16,base.th,Songkran Festival (in lieu),2025-04-16
+ph_th_2025_05_01,base.th,National Labor Day,2025-05-01
+ph_th_2025_05_04,base.th,Coronation Day,2025-05-04
+ph_th_2025_05_05,base.th,Coronation Day (in lieu),2025-05-05
+ph_th_2025_05_11,base.th,Visakha Bucha,2025-05-11
+ph_th_2025_05_12,base.th,Visakha Bucha (in lieu),2025-05-12
+ph_th_2025_06_02,base.th,Bridge Public Holiday,2025-06-02
+ph_th_2025_06_03,base.th,HM Queen Suthida's Birthday,2025-06-03
+ph_th_2025_07_10,base.th,Asarnha Bucha,2025-07-10
+ph_th_2025_07_11,base.th,Buddhist Lent Day,2025-07-11
+ph_th_2025_07_28,base.th,HM King Maha Vajiralongkorn's Birthday,2025-07-28
+ph_th_2025_08_11,base.th,Bridge Public Holiday,2025-08-11
+ph_th_2025_08_12,base.th,HM Queen Sirikit The Queen Mother's Birthday; National Mother's Day,2025-08-12
+ph_th_2025_10_13,base.th,HM King Bhumibol Adulyadej Memorial Day,2025-10-13
+ph_th_2025_10_23,base.th,HM King Chulalongkorn Memorial Day,2025-10-23
+ph_th_2025_12_05,base.th,HM King Bhumibol Adulyadej the Great's Birthday; National Day; National Father's Day,2025-12-05
+ph_th_2025_12_10,base.th,Constitution Day,2025-12-10
+ph_th_2025_12_31,base.th,New Year's Eve,2025-12-31
+ph_th_2026_01_01,base.th,New Year's Day,2026-01-01
+ph_th_2026_01_02,base.th,Bridge Public Holiday,2026-01-02
+ph_th_2026_01_10,base.th,National Children's Day,2026-01-10
+ph_th_2026_03_03,base.th,Makha Bucha,2026-03-03
+ph_th_2026_04_06,base.th,Chakri Memorial Day,2026-04-06
+ph_th_2026_04_13,base.th,Songkran Festival,2026-04-13
+ph_th_2026_04_14,base.th,Songkran Festival,2026-04-14
+ph_th_2026_04_15,base.th,Songkran Festival,2026-04-15
+ph_th_2026_05_01,base.th,National Labor Day,2026-05-01
+ph_th_2026_05_04,base.th,Coronation Day,2026-05-04
+ph_th_2026_05_31,base.th,Visakha Bucha,2026-05-31
+ph_th_2026_06_01,base.th,Visakha Bucha (in lieu),2026-06-01
+ph_th_2026_06_03,base.th,HM Queen Suthida's Birthday,2026-06-03
+ph_th_2026_07_28,base.th,HM King Maha Vajiralongkorn's Birthday,2026-07-28
+ph_th_2026_07_29,base.th,Asarnha Bucha,2026-07-29
+ph_th_2026_07_30,base.th,Buddhist Lent Day,2026-07-30
+ph_th_2026_08_12,base.th,HM Queen Sirikit The Queen Mother's Birthday; National Mother's Day,2026-08-12
+ph_th_2026_10_13,base.th,HM King Bhumibol Adulyadej Memorial Day,2026-10-13
+ph_th_2026_10_23,base.th,HM King Chulalongkorn Memorial Day,2026-10-23
+ph_th_2026_12_05,base.th,HM King Bhumibol Adulyadej the Great's Birthday; National Day; National Father's Day,2026-12-05
+ph_th_2026_12_07,base.th,HM King Bhumibol Adulyadej the Great's Birthday (in lieu); National Day (in lieu); National Father's Day (in lieu),2026-12-07
+ph_th_2026_12_10,base.th,Constitution Day,2026-12-10
+ph_th_2026_12_31,base.th,New Year's Eve,2026-12-31
+ph_th_2027_01_01,base.th,New Year's Day,2027-01-01
+ph_th_2027_01_09,base.th,National Children's Day,2027-01-09
+ph_th_2027_02_21,base.th,Makha Bucha,2027-02-21
+ph_th_2027_02_22,base.th,Makha Bucha (in lieu),2027-02-22
+ph_th_2027_04_06,base.th,Chakri Memorial Day,2027-04-06
+ph_th_2027_04_13,base.th,Songkran Festival,2027-04-13
+ph_th_2027_04_14,base.th,Songkran Festival,2027-04-14
+ph_th_2027_04_15,base.th,Songkran Festival,2027-04-15
+ph_th_2027_05_01,base.th,National Labor Day,2027-05-01
+ph_th_2027_05_03,base.th,National Labor Day (in lieu),2027-05-03
+ph_th_2027_05_04,base.th,Coronation Day,2027-05-04
+ph_th_2027_05_20,base.th,Visakha Bucha,2027-05-20
+ph_th_2027_06_03,base.th,HM Queen Suthida's Birthday,2027-06-03
+ph_th_2027_07_18,base.th,Asarnha Bucha,2027-07-18
+ph_th_2027_07_19,base.th,Buddhist Lent Day,2027-07-19
+ph_th_2027_07_20,base.th,Asarnha Bucha (in lieu),2027-07-20
+ph_th_2027_07_28,base.th,HM King Maha Vajiralongkorn's Birthday,2027-07-28
+ph_th_2027_08_12,base.th,HM Queen Sirikit The Queen Mother's Birthday; National Mother's Day,2027-08-12
+ph_th_2027_10_13,base.th,HM King Bhumibol Adulyadej Memorial Day,2027-10-13
+ph_th_2027_10_23,base.th,HM King Chulalongkorn Memorial Day,2027-10-23
+ph_th_2027_10_25,base.th,HM King Chulalongkorn Memorial Day (in lieu),2027-10-25
+ph_th_2027_12_05,base.th,HM King Bhumibol Adulyadej the Great's Birthday; National Day; National Father's Day,2027-12-05
+ph_th_2027_12_06,base.th,HM King Bhumibol Adulyadej the Great's Birthday (in lieu); National Day (in lieu); National Father's Day (in lieu),2027-12-06
+ph_th_2027_12_10,base.th,Constitution Day,2027-12-10
+ph_th_2027_12_31,base.th,New Year's Eve,2027-12-31
+ph_th_2028_01_01,base.th,New Year's Day,2028-01-01
+ph_th_2028_01_03,base.th,New Year's Day (in lieu),2028-01-03
+ph_th_2028_01_08,base.th,National Children's Day,2028-01-08
+ph_th_2028_02_10,base.th,Makha Bucha,2028-02-10
+ph_th_2028_04_06,base.th,Chakri Memorial Day,2028-04-06
+ph_th_2028_04_13,base.th,Songkran Festival,2028-04-13
+ph_th_2028_04_14,base.th,Songkran Festival,2028-04-14
+ph_th_2028_04_15,base.th,Songkran Festival,2028-04-15
+ph_th_2028_04_17,base.th,Songkran Festival (in lieu),2028-04-17
+ph_th_2028_05_01,base.th,National Labor Day,2028-05-01
+ph_th_2028_05_04,base.th,Coronation Day,2028-05-04
+ph_th_2028_05_08,base.th,Visakha Bucha,2028-05-08
+ph_th_2028_06_03,base.th,HM Queen Suthida's Birthday,2028-06-03
+ph_th_2028_06_05,base.th,HM Queen Suthida's Birthday (in lieu),2028-06-05
+ph_th_2028_07_06,base.th,Asarnha Bucha,2028-07-06
+ph_th_2028_07_07,base.th,Buddhist Lent Day,2028-07-07
+ph_th_2028_07_28,base.th,HM King Maha Vajiralongkorn's Birthday,2028-07-28
+ph_th_2028_08_12,base.th,HM Queen Sirikit The Queen Mother's Birthday; National Mother's Day,2028-08-12
+ph_th_2028_08_14,base.th,HM Queen Sirikit The Queen Mother's Birthday (in lieu); National Mother's Day (in lieu),2028-08-14
+ph_th_2028_10_13,base.th,HM King Bhumibol Adulyadej Memorial Day,2028-10-13
+ph_th_2028_10_23,base.th,HM King Chulalongkorn Memorial Day,2028-10-23
+ph_th_2028_12_05,base.th,HM King Bhumibol Adulyadej the Great's Birthday; National Day; National Father's Day,2028-12-05
+ph_th_2028_12_10,base.th,Constitution Day,2028-12-10
+ph_th_2028_12_11,base.th,Constitution Day (in lieu),2028-12-11
+ph_th_2028_12_31,base.th,New Year's Eve,2028-12-31
+ph_th_2029_01_01,base.th,New Year's Day,2029-01-01
+ph_th_2029_01_02,base.th,New Year's Eve (in lieu),2029-01-02
+ph_th_2029_01_13,base.th,National Children's Day,2029-01-13
+ph_th_2029_02_27,base.th,Makha Bucha,2029-02-27
+ph_th_2029_04_06,base.th,Chakri Memorial Day,2029-04-06
+ph_th_2029_04_13,base.th,Songkran Festival,2029-04-13
+ph_th_2029_04_14,base.th,Songkran Festival,2029-04-14
+ph_th_2029_04_15,base.th,Songkran Festival,2029-04-15
+ph_th_2029_04_16,base.th,Songkran Festival (in lieu),2029-04-16
+ph_th_2029_05_01,base.th,National Labor Day,2029-05-01
+ph_th_2029_05_04,base.th,Coronation Day,2029-05-04
+ph_th_2029_05_27,base.th,Visakha Bucha,2029-05-27
+ph_th_2029_05_28,base.th,Visakha Bucha (in lieu),2029-05-28
+ph_th_2029_06_03,base.th,HM Queen Suthida's Birthday,2029-06-03
+ph_th_2029_06_04,base.th,HM Queen Suthida's Birthday (in lieu),2029-06-04
+ph_th_2029_07_25,base.th,Asarnha Bucha,2029-07-25
+ph_th_2029_07_26,base.th,Buddhist Lent Day,2029-07-26
+ph_th_2029_07_28,base.th,HM King Maha Vajiralongkorn's Birthday,2029-07-28
+ph_th_2029_07_30,base.th,HM King Maha Vajiralongkorn's Birthday (in lieu),2029-07-30
+ph_th_2029_08_12,base.th,HM Queen Sirikit The Queen Mother's Birthday; National Mother's Day,2029-08-12
+ph_th_2029_08_13,base.th,HM Queen Sirikit The Queen Mother's Birthday (in lieu); National Mother's Day (in lieu),2029-08-13
+ph_th_2029_10_13,base.th,HM King Bhumibol Adulyadej Memorial Day,2029-10-13
+ph_th_2029_10_15,base.th,HM King Bhumibol Adulyadej Memorial Day (in lieu),2029-10-15
+ph_th_2029_10_23,base.th,HM King Chulalongkorn Memorial Day,2029-10-23
+ph_th_2029_12_05,base.th,HM King Bhumibol Adulyadej the Great's Birthday; National Day; National Father's Day,2029-12-05
+ph_th_2029_12_10,base.th,Constitution Day,2029-12-10
+ph_th_2029_12_31,base.th,New Year's Eve,2029-12-31
+ph_th_2030_01_01,base.th,New Year's Day,2030-01-01
+ph_th_2030_01_12,base.th,National Children's Day,2030-01-12
+ph_th_2030_02_17,base.th,Makha Bucha,2030-02-17
+ph_th_2030_02_18,base.th,Makha Bucha (in lieu),2030-02-18
+ph_th_2030_04_06,base.th,Chakri Memorial Day,2030-04-06
+ph_th_2030_04_08,base.th,Chakri Memorial Day (in lieu),2030-04-08
+ph_th_2030_04_13,base.th,Songkran Festival,2030-04-13
+ph_th_2030_04_14,base.th,Songkran Festival,2030-04-14
+ph_th_2030_04_15,base.th,Songkran Festival,2030-04-15
+ph_th_2030_04_16,base.th,Songkran Festival (in lieu),2030-04-16
+ph_th_2030_05_01,base.th,National Labor Day,2030-05-01
+ph_th_2030_05_04,base.th,Coronation Day,2030-05-04
+ph_th_2030_05_06,base.th,Coronation Day (in lieu),2030-05-06
+ph_th_2030_05_16,base.th,Visakha Bucha,2030-05-16
+ph_th_2030_06_03,base.th,HM Queen Suthida's Birthday,2030-06-03
+ph_th_2030_07_14,base.th,Asarnha Bucha,2030-07-14
+ph_th_2030_07_15,base.th,Buddhist Lent Day,2030-07-15
+ph_th_2030_07_16,base.th,Asarnha Bucha (in lieu),2030-07-16
+ph_th_2030_07_28,base.th,HM King Maha Vajiralongkorn's Birthday,2030-07-28
+ph_th_2030_07_29,base.th,HM King Maha Vajiralongkorn's Birthday (in lieu),2030-07-29
+ph_th_2030_08_12,base.th,HM Queen Sirikit The Queen Mother's Birthday; National Mother's Day,2030-08-12
+ph_th_2030_10_13,base.th,HM King Bhumibol Adulyadej Memorial Day,2030-10-13
+ph_th_2030_10_14,base.th,HM King Bhumibol Adulyadej Memorial Day (in lieu),2030-10-14
+ph_th_2030_10_23,base.th,HM King Chulalongkorn Memorial Day,2030-10-23
+ph_th_2030_12_05,base.th,HM King Bhumibol Adulyadej the Great's Birthday; National Day; National Father's Day,2030-12-05
+ph_th_2030_12_10,base.th,Constitution Day,2030-12-10
+ph_th_2030_12_31,base.th,New Year's Eve,2030-12-31
+ph_vn_2025_01_01,base.vn,New Year's Day,2025-01-01
+ph_vn_2025_01_27,base.vn,29 of Lunar New Year,2025-01-27
+ph_vn_2025_01_28,base.vn,Lunar New Year's Eve,2025-01-28
+ph_vn_2025_01_29,base.vn,Lunar New Year,2025-01-29
+ph_vn_2025_01_30,base.vn,Second Day of Lunar New Year,2025-01-30
+ph_vn_2025_01_31,base.vn,Third Day of Lunar New Year,2025-01-31
+ph_vn_2025_02_01,base.vn,Fourth Day of Lunar New Year,2025-02-01
+ph_vn_2025_04_07,base.vn,Hung Kings' Commemoration Day,2025-04-07
+ph_vn_2025_04_30,base.vn,Liberation Day/Reunification Day,2025-04-30
+ph_vn_2025_05_01,base.vn,International Labor Day,2025-05-01
+ph_vn_2025_09_01,base.vn,National Day,2025-09-01
+ph_vn_2025_09_02,base.vn,National Day,2025-09-02
+ph_vn_2026_01_01,base.vn,New Year's Day,2026-01-01
+ph_vn_2026_02_16,base.vn,Lunar New Year's Eve,2026-02-16
+ph_vn_2026_02_17,base.vn,Lunar New Year,2026-02-17
+ph_vn_2026_02_18,base.vn,Second Day of Lunar New Year,2026-02-18
+ph_vn_2026_02_19,base.vn,Third Day of Lunar New Year,2026-02-19
+ph_vn_2026_02_20,base.vn,Fourth Day of Lunar New Year,2026-02-20
+ph_vn_2026_04_26,base.vn,Hung Kings' Commemoration Day,2026-04-26
+ph_vn_2026_04_27,base.vn,Hung Kings' Commemoration Day (observed),2026-04-27
+ph_vn_2026_04_30,base.vn,Liberation Day/Reunification Day,2026-04-30
+ph_vn_2026_05_01,base.vn,International Labor Day,2026-05-01
+ph_vn_2026_09_01,base.vn,National Day,2026-09-01
+ph_vn_2026_09_02,base.vn,National Day,2026-09-02
+ph_vn_2027_01_01,base.vn,New Year's Day,2027-01-01
+ph_vn_2027_02_04,base.vn,29 of Lunar New Year,2027-02-04
+ph_vn_2027_02_05,base.vn,Lunar New Year's Eve,2027-02-05
+ph_vn_2027_02_06,base.vn,Lunar New Year,2027-02-06
+ph_vn_2027_02_07,base.vn,Second Day of Lunar New Year,2027-02-07
+ph_vn_2027_02_08,base.vn,Third Day of Lunar New Year,2027-02-08
+ph_vn_2027_02_09,base.vn,Fourth Day of Lunar New Year,2027-02-09
+ph_vn_2027_02_10,base.vn,Fifth Day of Lunar New Year,2027-02-10
+ph_vn_2027_04_16,base.vn,Hung Kings' Commemoration Day,2027-04-16
+ph_vn_2027_04_30,base.vn,Liberation Day/Reunification Day,2027-04-30
+ph_vn_2027_05_01,base.vn,International Labor Day,2027-05-01
+ph_vn_2027_05_03,base.vn,International Labor Day (observed),2027-05-03
+ph_vn_2027_09_02,base.vn,National Day,2027-09-02
+ph_vn_2027_09_03,base.vn,National Day,2027-09-03
+ph_vn_2028_01_01,base.vn,New Year's Day,2028-01-01
+ph_vn_2028_01_03,base.vn,New Year's Day (observed),2028-01-03
+ph_vn_2028_01_24,base.vn,29 of Lunar New Year,2028-01-24
+ph_vn_2028_01_25,base.vn,Lunar New Year's Eve,2028-01-25
+ph_vn_2028_01_26,base.vn,Lunar New Year,2028-01-26
+ph_vn_2028_01_27,base.vn,Second Day of Lunar New Year,2028-01-27
+ph_vn_2028_01_28,base.vn,Third Day of Lunar New Year,2028-01-28
+ph_vn_2028_01_29,base.vn,Fourth Day of Lunar New Year,2028-01-29
+ph_vn_2028_04_04,base.vn,Hung Kings' Commemoration Day,2028-04-04
+ph_vn_2028_04_30,base.vn,Liberation Day/Reunification Day,2028-04-30
+ph_vn_2028_05_01,base.vn,International Labor Day,2028-05-01
+ph_vn_2028_05_02,base.vn,Liberation Day/Reunification Day (observed),2028-05-02
+ph_vn_2028_09_01,base.vn,National Day,2028-09-01
+ph_vn_2028_09_02,base.vn,National Day,2028-09-02
+ph_vn_2028_09_04,base.vn,National Day (observed),2028-09-04
+ph_vn_2029_01_01,base.vn,New Year's Day,2029-01-01
+ph_vn_2029_02_12,base.vn,Lunar New Year's Eve,2029-02-12
+ph_vn_2029_02_13,base.vn,Lunar New Year,2029-02-13
+ph_vn_2029_02_14,base.vn,Second Day of Lunar New Year,2029-02-14
+ph_vn_2029_02_15,base.vn,Third Day of Lunar New Year,2029-02-15
+ph_vn_2029_02_16,base.vn,Fourth Day of Lunar New Year,2029-02-16
+ph_vn_2029_04_23,base.vn,Hung Kings' Commemoration Day,2029-04-23
+ph_vn_2029_04_30,base.vn,Liberation Day/Reunification Day,2029-04-30
+ph_vn_2029_05_01,base.vn,International Labor Day,2029-05-01
+ph_vn_2029_09_02,base.vn,National Day,2029-09-02
+ph_vn_2029_09_03,base.vn,National Day,2029-09-03
+ph_vn_2029_09_04,base.vn,National Day (observed),2029-09-04
+ph_vn_2030_01_01,base.vn,New Year's Day,2030-01-01
+ph_vn_2030_01_31,base.vn,29 of Lunar New Year,2030-01-31
+ph_vn_2030_02_01,base.vn,Lunar New Year's Eve,2030-02-01
+ph_vn_2030_02_02,base.vn,Lunar New Year,2030-02-02
+ph_vn_2030_02_03,base.vn,Second Day of Lunar New Year,2030-02-03
+ph_vn_2030_02_04,base.vn,Third Day of Lunar New Year,2030-02-04
+ph_vn_2030_02_05,base.vn,Fourth Day of Lunar New Year,2030-02-05
+ph_vn_2030_02_06,base.vn,Fifth Day of Lunar New Year,2030-02-06
+ph_vn_2030_04_12,base.vn,Hung Kings' Commemoration Day,2030-04-12
+ph_vn_2030_04_30,base.vn,Liberation Day/Reunification Day,2030-04-30
+ph_vn_2030_05_01,base.vn,International Labor Day,2030-05-01
+ph_vn_2030_09_02,base.vn,National Day,2030-09-02
+ph_vn_2030_09_03,base.vn,National Day,2030-09-03
+ph_in_2025_01_26,base.in,Republic Day,2025-01-26
+ph_in_2025_02_26,base.in,Maha Shivaratri,2025-02-26
+ph_in_2025_03_14,base.in,Holi,2025-03-14
+ph_in_2025_03_31,base.in,Eid al-Fitr,2025-03-31
+ph_in_2025_04_10,base.in,Mahavira's Birthday,2025-04-10
+ph_in_2025_04_14,base.in,Dr. B. R. Ambedkar's Birthday,2025-04-14
+ph_in_2025_04_18,base.in,Good Friday,2025-04-18
+ph_in_2025_05_12,base.in,Buddha Purnima,2025-05-12
+ph_in_2025_06_07,base.in,Eid al-Adha,2025-06-07
+ph_in_2025_07_06,base.in,Ashura,2025-07-06
+ph_in_2025_08_15,base.in,Independence Day,2025-08-15
+ph_in_2025_08_16,base.in,Janmashtami (Vaishnava),2025-08-16
+ph_in_2025_09_05,base.in,Prophet's Birthday,2025-09-05
+ph_in_2025_10_02,base.in,Dussehra; Mahatma Gandhi's Birthday,2025-10-02
+ph_in_2025_10_20,base.in,Diwali (Deepavali),2025-10-20
+ph_in_2025_11_05,base.in,Guru Nanak's Birthday,2025-11-05
+ph_in_2025_12_25,base.in,Christmas,2025-12-25
+ph_in_2026_01_26,base.in,Republic Day,2026-01-26
+ph_in_2026_03_04,base.in,Holi,2026-03-04
+ph_in_2026_03_21,base.in,Eid al-Fitr,2026-03-21
+ph_in_2026_03_26,base.in,Ram Navami,2026-03-26
+ph_in_2026_03_31,base.in,Mahavira's Birthday,2026-03-31
+ph_in_2026_04_03,base.in,Good Friday,2026-04-03
+ph_in_2026_04_14,base.in,Dr. B. R. Ambedkar's Birthday,2026-04-14
+ph_in_2026_05_01,base.in,Buddha Purnima,2026-05-01
+ph_in_2026_05_27,base.in,Eid al-Adha,2026-05-27
+ph_in_2026_06_26,base.in,Ashura,2026-06-26
+ph_in_2026_08_15,base.in,Independence Day,2026-08-15
+ph_in_2026_08_26,base.in,Prophet's Birthday,2026-08-26
+ph_in_2026_09_04,base.in,Janmashtami (Vaishnava),2026-09-04
+ph_in_2026_10_02,base.in,Mahatma Gandhi's Birthday,2026-10-02
+ph_in_2026_10_20,base.in,Dussehra,2026-10-20
+ph_in_2026_11_08,base.in,Diwali (Deepavali),2026-11-08
+ph_in_2026_11_24,base.in,Guru Nanak's Birthday,2026-11-24
+ph_in_2026_12_25,base.in,Christmas,2026-12-25
+ph_in_2027_01_26,base.in,Republic Day,2027-01-26
+ph_in_2027_03_06,base.in,Maha Shivaratri,2027-03-06
+ph_in_2027_03_10,base.in,Eid al-Fitr (estimated),2027-03-10
+ph_in_2027_03_22,base.in,Holi,2027-03-22
+ph_in_2027_03_26,base.in,Good Friday,2027-03-26
+ph_in_2027_04_14,base.in,Dr. B. R. Ambedkar's Birthday,2027-04-14
+ph_in_2027_04_15,base.in,Ram Navami,2027-04-15
+ph_in_2027_04_18,base.in,Mahavira's Birthday,2027-04-18
+ph_in_2027_05_17,base.in,Eid al-Adha (estimated),2027-05-17
+ph_in_2027_05_20,base.in,Buddha Purnima,2027-05-20
+ph_in_2027_06_16,base.in,Ashura (estimated),2027-06-16
+ph_in_2027_08_15,base.in,Independence Day; Prophet's Birthday (estimated),2027-08-15
+ph_in_2027_08_25,base.in,Janmashtami (Vaishnava),2027-08-25
+ph_in_2027_10_02,base.in,Mahatma Gandhi's Birthday,2027-10-02
+ph_in_2027_10_09,base.in,Dussehra,2027-10-09
+ph_in_2027_10_29,base.in,Diwali (Deepavali),2027-10-29
+ph_in_2027_11_14,base.in,Guru Nanak's Birthday,2027-11-14
+ph_in_2027_12_25,base.in,Christmas,2027-12-25
+ph_in_2028_01_26,base.in,Republic Day,2028-01-26
+ph_in_2028_02_23,base.in,Maha Shivaratri,2028-02-23
+ph_in_2028_02_27,base.in,Eid al-Fitr (estimated),2028-02-27
+ph_in_2028_03_11,base.in,Holi,2028-03-11
+ph_in_2028_04_03,base.in,Ram Navami,2028-04-03
+ph_in_2028_04_07,base.in,Mahavira's Birthday,2028-04-07
+ph_in_2028_04_14,base.in,Dr. B. R. Ambedkar's Birthday; Good Friday,2028-04-14
+ph_in_2028_05_06,base.in,Eid al-Adha (estimated),2028-05-06
+ph_in_2028_05_08,base.in,Buddha Purnima,2028-05-08
+ph_in_2028_06_04,base.in,Ashura (estimated),2028-06-04
+ph_in_2028_08_04,base.in,Prophet's Birthday (estimated),2028-08-04
+ph_in_2028_08_13,base.in,Janmashtami (Vaishnava),2028-08-13
+ph_in_2028_08_15,base.in,Independence Day,2028-08-15
+ph_in_2028_09_27,base.in,Dussehra,2028-09-27
+ph_in_2028_10_02,base.in,Mahatma Gandhi's Birthday,2028-10-02
+ph_in_2028_10_17,base.in,Diwali (Deepavali),2028-10-17
+ph_in_2028_11_02,base.in,Guru Nanak's Birthday,2028-11-02
+ph_in_2028_12_25,base.in,Christmas,2028-12-25
+ph_in_2029_01_26,base.in,Republic Day,2029-01-26
+ph_in_2029_02_11,base.in,Maha Shivaratri,2029-02-11
+ph_in_2029_02_15,base.in,Eid al-Fitr (estimated),2029-02-15
+ph_in_2029_03_01,base.in,Holi,2029-03-01
+ph_in_2029_03_30,base.in,Good Friday,2029-03-30
+ph_in_2029_04_14,base.in,Dr. B. R. Ambedkar's Birthday,2029-04-14
+ph_in_2029_04_25,base.in,Eid al-Adha (estimated),2029-04-25
+ph_in_2029_04_26,base.in,Mahavira's Birthday,2029-04-26
+ph_in_2029_05_24,base.in,Ashura (estimated),2029-05-24
+ph_in_2029_05_27,base.in,Buddha Purnima,2029-05-27
+ph_in_2029_07_25,base.in,Prophet's Birthday (estimated),2029-07-25
+ph_in_2029_08_15,base.in,Independence Day,2029-08-15
+ph_in_2029_09_01,base.in,Janmashtami (Vaishnava),2029-09-01
+ph_in_2029_10_02,base.in,Mahatma Gandhi's Birthday,2029-10-02
+ph_in_2029_10_16,base.in,Dussehra,2029-10-16
+ph_in_2029_11_05,base.in,Diwali (Deepavali),2029-11-05
+ph_in_2029_11_21,base.in,Guru Nanak's Birthday,2029-11-21
+ph_in_2029_12_25,base.in,Christmas,2029-12-25
+ph_in_2030_01_26,base.in,Republic Day,2030-01-26
+ph_in_2030_02_05,base.in,Eid al-Fitr (estimated),2030-02-05
+ph_in_2030_03_02,base.in,Maha Shivaratri,2030-03-02
+ph_in_2030_03_20,base.in,Holi,2030-03-20
+ph_in_2030_04_12,base.in,Ram Navami,2030-04-12
+ph_in_2030_04_14,base.in,Dr. B. R. Ambedkar's Birthday; Eid al-Adha (estimated),2030-04-14
+ph_in_2030_04_16,base.in,Mahavira's Birthday,2030-04-16
+ph_in_2030_04_19,base.in,Good Friday,2030-04-19
+ph_in_2030_05_13,base.in,Ashura (estimated),2030-05-13
+ph_in_2030_05_17,base.in,Buddha Purnima,2030-05-17
+ph_in_2030_07_14,base.in,Prophet's Birthday (estimated),2030-07-14
+ph_in_2030_08_15,base.in,Independence Day,2030-08-15
+ph_in_2030_08_21,base.in,Janmashtami (Vaishnava),2030-08-21
+ph_in_2030_10_02,base.in,Mahatma Gandhi's Birthday,2030-10-02
+ph_in_2030_10_06,base.in,Dussehra,2030-10-06
+ph_in_2030_10_26,base.in,Diwali (Deepavali),2030-10-26
+ph_in_2030_11_10,base.in,Guru Nanak's Birthday,2030-11-10
+ph_in_2030_12_25,base.in,Christmas,2030-12-25
+ph_ae_2025_01_01,base.ae,New Year's Day,2025-01-01
+ph_ae_2025_03_30,base.ae,Eid al-Fitr,2025-03-30
+ph_ae_2025_03_31,base.ae,Eid al-Fitr Holiday,2025-03-31
+ph_ae_2025_04_01,base.ae,Eid al-Fitr Holiday,2025-04-01
+ph_ae_2025_06_03,base.ae,Day of Arafah,2025-06-03
+ph_ae_2025_06_04,base.ae,Eid al-Adha,2025-06-04
+ph_ae_2025_06_05,base.ae,Eid al-Adha Holiday,2025-06-05
+ph_ae_2025_06_06,base.ae,Eid al-Adha Holiday,2025-06-06
+ph_ae_2025_06_26,base.ae,Islamic New Year,2025-06-26
+ph_ae_2025_09_05,base.ae,Prophet's Birthday,2025-09-05
+ph_ae_2025_12_02,base.ae,National Day,2025-12-02
+ph_ae_2025_12_03,base.ae,National Day,2025-12-03
+ph_ae_2026_01_01,base.ae,New Year's Day,2026-01-01
+ph_ae_2026_03_20,base.ae,Eid al-Fitr (estimated),2026-03-20
+ph_ae_2026_03_21,base.ae,Eid al-Fitr Holiday (estimated),2026-03-21
+ph_ae_2026_03_22,base.ae,Eid al-Fitr Holiday (estimated),2026-03-22
+ph_ae_2026_05_26,base.ae,Day of Arafah (estimated),2026-05-26
+ph_ae_2026_05_27,base.ae,Eid al-Adha (estimated),2026-05-27
+ph_ae_2026_05_28,base.ae,Eid al-Adha Holiday (estimated),2026-05-28
+ph_ae_2026_05_29,base.ae,Eid al-Adha Holiday (estimated),2026-05-29
+ph_ae_2026_06_16,base.ae,Islamic New Year (estimated),2026-06-16
+ph_ae_2026_08_25,base.ae,Prophet's Birthday (estimated),2026-08-25
+ph_ae_2026_12_02,base.ae,National Day,2026-12-02
+ph_ae_2026_12_03,base.ae,National Day,2026-12-03
+ph_ae_2027_01_01,base.ae,New Year's Day,2027-01-01
+ph_ae_2027_03_09,base.ae,Eid al-Fitr (estimated),2027-03-09
+ph_ae_2027_03_10,base.ae,Eid al-Fitr Holiday (estimated),2027-03-10
+ph_ae_2027_03_11,base.ae,Eid al-Fitr Holiday (estimated),2027-03-11
+ph_ae_2027_05_15,base.ae,Day of Arafah (estimated),2027-05-15
+ph_ae_2027_05_16,base.ae,Eid al-Adha (estimated),2027-05-16
+ph_ae_2027_05_17,base.ae,Eid al-Adha Holiday (estimated),2027-05-17
+ph_ae_2027_05_18,base.ae,Eid al-Adha Holiday (estimated),2027-05-18
+ph_ae_2027_06_06,base.ae,Islamic New Year (estimated),2027-06-06
+ph_ae_2027_08_14,base.ae,Prophet's Birthday (estimated),2027-08-14
+ph_ae_2027_12_02,base.ae,National Day,2027-12-02
+ph_ae_2027_12_03,base.ae,National Day,2027-12-03
+ph_ae_2028_01_01,base.ae,New Year's Day,2028-01-01
+ph_ae_2028_02_26,base.ae,Eid al-Fitr (estimated),2028-02-26
+ph_ae_2028_02_27,base.ae,Eid al-Fitr Holiday (estimated),2028-02-27
+ph_ae_2028_02_28,base.ae,Eid al-Fitr Holiday (estimated),2028-02-28
+ph_ae_2028_05_04,base.ae,Day of Arafah (estimated),2028-05-04
+ph_ae_2028_05_05,base.ae,Eid al-Adha (estimated),2028-05-05
+ph_ae_2028_05_06,base.ae,Eid al-Adha Holiday (estimated),2028-05-06
+ph_ae_2028_05_07,base.ae,Eid al-Adha Holiday (estimated),2028-05-07
+ph_ae_2028_05_25,base.ae,Islamic New Year (estimated),2028-05-25
+ph_ae_2028_08_03,base.ae,Prophet's Birthday (estimated),2028-08-03
+ph_ae_2028_12_02,base.ae,National Day,2028-12-02
+ph_ae_2028_12_03,base.ae,National Day,2028-12-03
+ph_ae_2029_01_01,base.ae,New Year's Day,2029-01-01
+ph_ae_2029_02_14,base.ae,Eid al-Fitr (estimated),2029-02-14
+ph_ae_2029_02_15,base.ae,Eid al-Fitr Holiday (estimated),2029-02-15
+ph_ae_2029_02_16,base.ae,Eid al-Fitr Holiday (estimated),2029-02-16
+ph_ae_2029_04_23,base.ae,Day of Arafah (estimated),2029-04-23
+ph_ae_2029_04_24,base.ae,Eid al-Adha (estimated),2029-04-24
+ph_ae_2029_04_25,base.ae,Eid al-Adha Holiday (estimated),2029-04-25
+ph_ae_2029_04_26,base.ae,Eid al-Adha Holiday (estimated),2029-04-26
+ph_ae_2029_05_14,base.ae,Islamic New Year (estimated),2029-05-14
+ph_ae_2029_07_24,base.ae,Prophet's Birthday (estimated),2029-07-24
+ph_ae_2029_12_02,base.ae,National Day,2029-12-02
+ph_ae_2029_12_03,base.ae,National Day,2029-12-03
+ph_ae_2030_01_01,base.ae,New Year's Day,2030-01-01
+ph_ae_2030_02_04,base.ae,Eid al-Fitr (estimated),2030-02-04
+ph_ae_2030_02_05,base.ae,Eid al-Fitr Holiday (estimated),2030-02-05
+ph_ae_2030_02_06,base.ae,Eid al-Fitr Holiday (estimated),2030-02-06
+ph_ae_2030_04_12,base.ae,Day of Arafah (estimated),2030-04-12
+ph_ae_2030_04_13,base.ae,Eid al-Adha (estimated),2030-04-13
+ph_ae_2030_04_14,base.ae,Eid al-Adha Holiday (estimated),2030-04-14
+ph_ae_2030_04_15,base.ae,Eid al-Adha Holiday (estimated),2030-04-15
+ph_ae_2030_05_03,base.ae,Islamic New Year (estimated),2030-05-03
+ph_ae_2030_07_13,base.ae,Prophet's Birthday (estimated),2030-07-13
+ph_ae_2030_12_02,base.ae,National Day,2030-12-02
+ph_ae_2030_12_03,base.ae,National Day,2030-12-03
+ph_be_2025_01_01,base.be,New Year's Day,2025-01-01
+ph_be_2025_04_20,base.be,Easter Sunday,2025-04-20
+ph_be_2025_04_21,base.be,Easter Monday,2025-04-21
+ph_be_2025_05_01,base.be,Labor Day,2025-05-01
+ph_be_2025_05_29,base.be,Ascension Day,2025-05-29
+ph_be_2025_06_08,base.be,Pentecost,2025-06-08
+ph_be_2025_06_09,base.be,Pentecost Monday,2025-06-09
+ph_be_2025_07_21,base.be,National Day,2025-07-21
+ph_be_2025_08_15,base.be,Assumption Day,2025-08-15
+ph_be_2025_11_01,base.be,All Saints' Day,2025-11-01
+ph_be_2025_11_11,base.be,Armistice Day,2025-11-11
+ph_be_2025_12_25,base.be,Christmas Day,2025-12-25
+ph_be_2026_01_01,base.be,New Year's Day,2026-01-01
+ph_be_2026_04_05,base.be,Easter Sunday,2026-04-05
+ph_be_2026_04_06,base.be,Easter Monday,2026-04-06
+ph_be_2026_05_01,base.be,Labor Day,2026-05-01
+ph_be_2026_05_14,base.be,Ascension Day,2026-05-14
+ph_be_2026_05_24,base.be,Pentecost,2026-05-24
+ph_be_2026_05_25,base.be,Pentecost Monday,2026-05-25
+ph_be_2026_07_21,base.be,National Day,2026-07-21
+ph_be_2026_08_15,base.be,Assumption Day,2026-08-15
+ph_be_2026_11_01,base.be,All Saints' Day,2026-11-01
+ph_be_2026_11_11,base.be,Armistice Day,2026-11-11
+ph_be_2026_12_25,base.be,Christmas Day,2026-12-25
+ph_be_2027_01_01,base.be,New Year's Day,2027-01-01
+ph_be_2027_03_28,base.be,Easter Sunday,2027-03-28
+ph_be_2027_03_29,base.be,Easter Monday,2027-03-29
+ph_be_2027_05_01,base.be,Labor Day,2027-05-01
+ph_be_2027_05_06,base.be,Ascension Day,2027-05-06
+ph_be_2027_05_16,base.be,Pentecost,2027-05-16
+ph_be_2027_05_17,base.be,Pentecost Monday,2027-05-17
+ph_be_2027_07_21,base.be,National Day,2027-07-21
+ph_be_2027_08_15,base.be,Assumption Day,2027-08-15
+ph_be_2027_11_01,base.be,All Saints' Day,2027-11-01
+ph_be_2027_11_11,base.be,Armistice Day,2027-11-11
+ph_be_2027_12_25,base.be,Christmas Day,2027-12-25
+ph_be_2028_01_01,base.be,New Year's Day,2028-01-01
+ph_be_2028_04_16,base.be,Easter Sunday,2028-04-16
+ph_be_2028_04_17,base.be,Easter Monday,2028-04-17
+ph_be_2028_05_01,base.be,Labor Day,2028-05-01
+ph_be_2028_05_25,base.be,Ascension Day,2028-05-25
+ph_be_2028_06_04,base.be,Pentecost,2028-06-04
+ph_be_2028_06_05,base.be,Pentecost Monday,2028-06-05
+ph_be_2028_07_21,base.be,National Day,2028-07-21
+ph_be_2028_08_15,base.be,Assumption Day,2028-08-15
+ph_be_2028_11_01,base.be,All Saints' Day,2028-11-01
+ph_be_2028_11_11,base.be,Armistice Day,2028-11-11
+ph_be_2028_12_25,base.be,Christmas Day,2028-12-25
+ph_be_2029_01_01,base.be,New Year's Day,2029-01-01
+ph_be_2029_04_01,base.be,Easter Sunday,2029-04-01
+ph_be_2029_04_02,base.be,Easter Monday,2029-04-02
+ph_be_2029_05_01,base.be,Labor Day,2029-05-01
+ph_be_2029_05_10,base.be,Ascension Day,2029-05-10
+ph_be_2029_05_20,base.be,Pentecost,2029-05-20
+ph_be_2029_05_21,base.be,Pentecost Monday,2029-05-21
+ph_be_2029_07_21,base.be,National Day,2029-07-21
+ph_be_2029_08_15,base.be,Assumption Day,2029-08-15
+ph_be_2029_11_01,base.be,All Saints' Day,2029-11-01
+ph_be_2029_11_11,base.be,Armistice Day,2029-11-11
+ph_be_2029_12_25,base.be,Christmas Day,2029-12-25
+ph_be_2030_01_01,base.be,New Year's Day,2030-01-01
+ph_be_2030_04_21,base.be,Easter Sunday,2030-04-21
+ph_be_2030_04_22,base.be,Easter Monday,2030-04-22
+ph_be_2030_05_01,base.be,Labor Day,2030-05-01
+ph_be_2030_05_30,base.be,Ascension Day,2030-05-30
+ph_be_2030_06_09,base.be,Pentecost,2030-06-09
+ph_be_2030_06_10,base.be,Pentecost Monday,2030-06-10
+ph_be_2030_07_21,base.be,National Day,2030-07-21
+ph_be_2030_08_15,base.be,Assumption Day,2030-08-15
+ph_be_2030_11_01,base.be,All Saints' Day,2030-11-01
+ph_be_2030_11_11,base.be,Armistice Day,2030-11-11
+ph_be_2030_12_25,base.be,Christmas Day,2030-12-25
+ph_fr_2025_01_01,base.fr,New Year's Day,2025-01-01
+ph_fr_2025_04_21,base.fr,Easter Monday,2025-04-21
+ph_fr_2025_05_01,base.fr,Labor Day,2025-05-01
+ph_fr_2025_05_08,base.fr,Victory Day,2025-05-08
+ph_fr_2025_05_29,base.fr,Ascension Day,2025-05-29
+ph_fr_2025_06_09,base.fr,Pentecost Monday,2025-06-09
+ph_fr_2025_07_14,base.fr,National Day,2025-07-14
+ph_fr_2025_08_15,base.fr,Assumption Day,2025-08-15
+ph_fr_2025_11_01,base.fr,All Saints' Day,2025-11-01
+ph_fr_2025_11_11,base.fr,Armistice Day,2025-11-11
+ph_fr_2025_12_25,base.fr,Christmas Day,2025-12-25
+ph_fr_2026_01_01,base.fr,New Year's Day,2026-01-01
+ph_fr_2026_04_06,base.fr,Easter Monday,2026-04-06
+ph_fr_2026_05_01,base.fr,Labor Day,2026-05-01
+ph_fr_2026_05_08,base.fr,Victory Day,2026-05-08
+ph_fr_2026_05_14,base.fr,Ascension Day,2026-05-14
+ph_fr_2026_05_25,base.fr,Pentecost Monday,2026-05-25
+ph_fr_2026_07_14,base.fr,National Day,2026-07-14
+ph_fr_2026_08_15,base.fr,Assumption Day,2026-08-15
+ph_fr_2026_11_01,base.fr,All Saints' Day,2026-11-01
+ph_fr_2026_11_11,base.fr,Armistice Day,2026-11-11
+ph_fr_2026_12_25,base.fr,Christmas Day,2026-12-25
+ph_fr_2027_01_01,base.fr,New Year's Day,2027-01-01
+ph_fr_2027_03_29,base.fr,Easter Monday,2027-03-29
+ph_fr_2027_05_01,base.fr,Labor Day,2027-05-01
+ph_fr_2027_05_06,base.fr,Ascension Day,2027-05-06
+ph_fr_2027_05_08,base.fr,Victory Day,2027-05-08
+ph_fr_2027_05_17,base.fr,Pentecost Monday,2027-05-17
+ph_fr_2027_07_14,base.fr,National Day,2027-07-14
+ph_fr_2027_08_15,base.fr,Assumption Day,2027-08-15
+ph_fr_2027_11_01,base.fr,All Saints' Day,2027-11-01
+ph_fr_2027_11_11,base.fr,Armistice Day,2027-11-11
+ph_fr_2027_12_25,base.fr,Christmas Day,2027-12-25
+ph_fr_2028_01_01,base.fr,New Year's Day,2028-01-01
+ph_fr_2028_04_17,base.fr,Easter Monday,2028-04-17
+ph_fr_2028_05_01,base.fr,Labor Day,2028-05-01
+ph_fr_2028_05_08,base.fr,Victory Day,2028-05-08
+ph_fr_2028_05_25,base.fr,Ascension Day,2028-05-25
+ph_fr_2028_06_05,base.fr,Pentecost Monday,2028-06-05
+ph_fr_2028_07_14,base.fr,National Day,2028-07-14
+ph_fr_2028_08_15,base.fr,Assumption Day,2028-08-15
+ph_fr_2028_11_01,base.fr,All Saints' Day,2028-11-01
+ph_fr_2028_11_11,base.fr,Armistice Day,2028-11-11
+ph_fr_2028_12_25,base.fr,Christmas Day,2028-12-25
+ph_fr_2029_01_01,base.fr,New Year's Day,2029-01-01
+ph_fr_2029_04_02,base.fr,Easter Monday,2029-04-02
+ph_fr_2029_05_01,base.fr,Labor Day,2029-05-01
+ph_fr_2029_05_08,base.fr,Victory Day,2029-05-08
+ph_fr_2029_05_10,base.fr,Ascension Day,2029-05-10
+ph_fr_2029_05_21,base.fr,Pentecost Monday,2029-05-21
+ph_fr_2029_07_14,base.fr,National Day,2029-07-14
+ph_fr_2029_08_15,base.fr,Assumption Day,2029-08-15
+ph_fr_2029_11_01,base.fr,All Saints' Day,2029-11-01
+ph_fr_2029_11_11,base.fr,Armistice Day,2029-11-11
+ph_fr_2029_12_25,base.fr,Christmas Day,2029-12-25
+ph_fr_2030_01_01,base.fr,New Year's Day,2030-01-01
+ph_fr_2030_04_22,base.fr,Easter Monday,2030-04-22
+ph_fr_2030_05_01,base.fr,Labor Day,2030-05-01
+ph_fr_2030_05_08,base.fr,Victory Day,2030-05-08
+ph_fr_2030_05_30,base.fr,Ascension Day,2030-05-30
+ph_fr_2030_06_10,base.fr,Pentecost Monday,2030-06-10
+ph_fr_2030_07_14,base.fr,National Day,2030-07-14
+ph_fr_2030_08_15,base.fr,Assumption Day,2030-08-15
+ph_fr_2030_11_01,base.fr,All Saints' Day,2030-11-01
+ph_fr_2030_11_11,base.fr,Armistice Day,2030-11-11
+ph_fr_2030_12_25,base.fr,Christmas Day,2030-12-25
+ph_de_2025_01_01,base.de,New Year's Day,2025-01-01
+ph_de_2025_04_18,base.de,Good Friday,2025-04-18
+ph_de_2025_04_21,base.de,Easter Monday,2025-04-21
+ph_de_2025_05_01,base.de,Labor Day,2025-05-01
+ph_de_2025_05_29,base.de,Ascension Day,2025-05-29
+ph_de_2025_06_09,base.de,Pentecost Monday,2025-06-09
+ph_de_2025_10_03,base.de,German Unity Day,2025-10-03
+ph_de_2025_12_25,base.de,Christmas Day,2025-12-25
+ph_de_2025_12_26,base.de,Second Day of Christmas,2025-12-26
+ph_de_2026_01_01,base.de,New Year's Day,2026-01-01
+ph_de_2026_04_03,base.de,Good Friday,2026-04-03
+ph_de_2026_04_06,base.de,Easter Monday,2026-04-06
+ph_de_2026_05_01,base.de,Labor Day,2026-05-01
+ph_de_2026_05_14,base.de,Ascension Day,2026-05-14
+ph_de_2026_05_25,base.de,Pentecost Monday,2026-05-25
+ph_de_2026_10_03,base.de,German Unity Day,2026-10-03
+ph_de_2026_12_25,base.de,Christmas Day,2026-12-25
+ph_de_2026_12_26,base.de,Second Day of Christmas,2026-12-26
+ph_de_2027_01_01,base.de,New Year's Day,2027-01-01
+ph_de_2027_03_26,base.de,Good Friday,2027-03-26
+ph_de_2027_03_29,base.de,Easter Monday,2027-03-29
+ph_de_2027_05_01,base.de,Labor Day,2027-05-01
+ph_de_2027_05_06,base.de,Ascension Day,2027-05-06
+ph_de_2027_05_17,base.de,Pentecost Monday,2027-05-17
+ph_de_2027_10_03,base.de,German Unity Day,2027-10-03
+ph_de_2027_12_25,base.de,Christmas Day,2027-12-25
+ph_de_2027_12_26,base.de,Second Day of Christmas,2027-12-26
+ph_de_2028_01_01,base.de,New Year's Day,2028-01-01
+ph_de_2028_04_14,base.de,Good Friday,2028-04-14
+ph_de_2028_04_17,base.de,Easter Monday,2028-04-17
+ph_de_2028_05_01,base.de,Labor Day,2028-05-01
+ph_de_2028_05_25,base.de,Ascension Day,2028-05-25
+ph_de_2028_06_05,base.de,Pentecost Monday,2028-06-05
+ph_de_2028_10_03,base.de,German Unity Day,2028-10-03
+ph_de_2028_12_25,base.de,Christmas Day,2028-12-25
+ph_de_2028_12_26,base.de,Second Day of Christmas,2028-12-26
+ph_de_2029_01_01,base.de,New Year's Day,2029-01-01
+ph_de_2029_03_30,base.de,Good Friday,2029-03-30
+ph_de_2029_04_02,base.de,Easter Monday,2029-04-02
+ph_de_2029_05_01,base.de,Labor Day,2029-05-01
+ph_de_2029_05_10,base.de,Ascension Day,2029-05-10
+ph_de_2029_05_21,base.de,Pentecost Monday,2029-05-21
+ph_de_2029_10_03,base.de,German Unity Day,2029-10-03
+ph_de_2029_12_25,base.de,Christmas Day,2029-12-25
+ph_de_2029_12_26,base.de,Second Day of Christmas,2029-12-26
+ph_de_2030_01_01,base.de,New Year's Day,2030-01-01
+ph_de_2030_04_19,base.de,Good Friday,2030-04-19
+ph_de_2030_04_22,base.de,Easter Monday,2030-04-22
+ph_de_2030_05_01,base.de,Labor Day,2030-05-01
+ph_de_2030_05_30,base.de,Ascension Day,2030-05-30
+ph_de_2030_06_10,base.de,Pentecost Monday,2030-06-10
+ph_de_2030_10_03,base.de,German Unity Day,2030-10-03
+ph_de_2030_12_25,base.de,Christmas Day,2030-12-25
+ph_de_2030_12_26,base.de,Second Day of Christmas,2030-12-26
+ph_nl_2025_01_01,base.nl,New Year's Day,2025-01-01
+ph_nl_2025_04_18,base.nl,Good Friday,2025-04-18
+ph_nl_2025_04_20,base.nl,Easter Sunday,2025-04-20
+ph_nl_2025_04_21,base.nl,Easter Monday,2025-04-21
+ph_nl_2025_04_26,base.nl,King's Day,2025-04-26
+ph_nl_2025_05_05,base.nl,Liberation Day,2025-05-05
+ph_nl_2025_05_29,base.nl,Ascension Day,2025-05-29
+ph_nl_2025_06_08,base.nl,Pentecost,2025-06-08
+ph_nl_2025_06_09,base.nl,Pentecost Monday,2025-06-09
+ph_nl_2025_12_25,base.nl,Christmas Day,2025-12-25
+ph_nl_2025_12_26,base.nl,Second Day of Christmas,2025-12-26
+ph_nl_2026_01_01,base.nl,New Year's Day,2026-01-01
+ph_nl_2026_04_03,base.nl,Good Friday,2026-04-03
+ph_nl_2026_04_05,base.nl,Easter Sunday,2026-04-05
+ph_nl_2026_04_06,base.nl,Easter Monday,2026-04-06
+ph_nl_2026_04_27,base.nl,King's Day,2026-04-27
+ph_nl_2026_05_14,base.nl,Ascension Day,2026-05-14
+ph_nl_2026_05_24,base.nl,Pentecost,2026-05-24
+ph_nl_2026_05_25,base.nl,Pentecost Monday,2026-05-25
+ph_nl_2026_12_25,base.nl,Christmas Day,2026-12-25
+ph_nl_2026_12_26,base.nl,Second Day of Christmas,2026-12-26
+ph_nl_2027_01_01,base.nl,New Year's Day,2027-01-01
+ph_nl_2027_03_26,base.nl,Good Friday,2027-03-26
+ph_nl_2027_03_28,base.nl,Easter Sunday,2027-03-28
+ph_nl_2027_03_29,base.nl,Easter Monday,2027-03-29
+ph_nl_2027_04_27,base.nl,King's Day,2027-04-27
+ph_nl_2027_05_06,base.nl,Ascension Day,2027-05-06
+ph_nl_2027_05_16,base.nl,Pentecost,2027-05-16
+ph_nl_2027_05_17,base.nl,Pentecost Monday,2027-05-17
+ph_nl_2027_12_25,base.nl,Christmas Day,2027-12-25
+ph_nl_2027_12_26,base.nl,Second Day of Christmas,2027-12-26
+ph_nl_2028_01_01,base.nl,New Year's Day,2028-01-01
+ph_nl_2028_04_14,base.nl,Good Friday,2028-04-14
+ph_nl_2028_04_16,base.nl,Easter Sunday,2028-04-16
+ph_nl_2028_04_17,base.nl,Easter Monday,2028-04-17
+ph_nl_2028_04_27,base.nl,King's Day,2028-04-27
+ph_nl_2028_05_25,base.nl,Ascension Day,2028-05-25
+ph_nl_2028_06_04,base.nl,Pentecost,2028-06-04
+ph_nl_2028_06_05,base.nl,Pentecost Monday,2028-06-05
+ph_nl_2028_12_25,base.nl,Christmas Day,2028-12-25
+ph_nl_2028_12_26,base.nl,Second Day of Christmas,2028-12-26
+ph_nl_2029_01_01,base.nl,New Year's Day,2029-01-01
+ph_nl_2029_03_30,base.nl,Good Friday,2029-03-30
+ph_nl_2029_04_01,base.nl,Easter Sunday,2029-04-01
+ph_nl_2029_04_02,base.nl,Easter Monday,2029-04-02
+ph_nl_2029_04_27,base.nl,King's Day,2029-04-27
+ph_nl_2029_05_10,base.nl,Ascension Day,2029-05-10
+ph_nl_2029_05_20,base.nl,Pentecost,2029-05-20
+ph_nl_2029_05_21,base.nl,Pentecost Monday,2029-05-21
+ph_nl_2029_12_25,base.nl,Christmas Day,2029-12-25
+ph_nl_2029_12_26,base.nl,Second Day of Christmas,2029-12-26
+ph_nl_2030_01_01,base.nl,New Year's Day,2030-01-01
+ph_nl_2030_04_19,base.nl,Good Friday,2030-04-19
+ph_nl_2030_04_21,base.nl,Easter Sunday,2030-04-21
+ph_nl_2030_04_22,base.nl,Easter Monday,2030-04-22
+ph_nl_2030_04_27,base.nl,King's Day,2030-04-27
+ph_nl_2030_05_05,base.nl,Liberation Day,2030-05-05
+ph_nl_2030_05_30,base.nl,Ascension Day,2030-05-30
+ph_nl_2030_06_09,base.nl,Pentecost,2030-06-09
+ph_nl_2030_06_10,base.nl,Pentecost Monday,2030-06-10
+ph_nl_2030_12_25,base.nl,Christmas Day,2030-12-25
+ph_nl_2030_12_26,base.nl,Second Day of Christmas,2030-12-26
+ph_es_2025_01_01,base.es,New Year's Day,2025-01-01
+ph_es_2025_01_06,base.es,Epiphany,2025-01-06
+ph_es_2025_04_18,base.es,Good Friday,2025-04-18
+ph_es_2025_05_01,base.es,Labor Day,2025-05-01
+ph_es_2025_08_15,base.es,Assumption Day,2025-08-15
+ph_es_2025_11_01,base.es,All Saints' Day,2025-11-01
+ph_es_2025_12_06,base.es,Constitution Day,2025-12-06
+ph_es_2025_12_08,base.es,Immaculate Conception,2025-12-08
+ph_es_2025_12_25,base.es,Christmas Day,2025-12-25
+ph_es_2026_01_01,base.es,New Year's Day,2026-01-01
+ph_es_2026_01_06,base.es,Epiphany,2026-01-06
+ph_es_2026_04_03,base.es,Good Friday,2026-04-03
+ph_es_2026_05_01,base.es,Labor Day,2026-05-01
+ph_es_2026_08_15,base.es,Assumption Day,2026-08-15
+ph_es_2026_10_12,base.es,National Day,2026-10-12
+ph_es_2026_12_08,base.es,Immaculate Conception,2026-12-08
+ph_es_2026_12_25,base.es,Christmas Day,2026-12-25
+ph_es_2027_01_01,base.es,New Year's Day,2027-01-01
+ph_es_2027_01_06,base.es,Epiphany,2027-01-06
+ph_es_2027_03_26,base.es,Good Friday,2027-03-26
+ph_es_2027_05_01,base.es,Labor Day,2027-05-01
+ph_es_2027_10_12,base.es,National Day,2027-10-12
+ph_es_2027_11_01,base.es,All Saints' Day,2027-11-01
+ph_es_2027_12_06,base.es,Constitution Day,2027-12-06
+ph_es_2027_12_08,base.es,Immaculate Conception,2027-12-08
+ph_es_2027_12_25,base.es,Christmas Day,2027-12-25
+ph_es_2028_01_01,base.es,New Year's Day,2028-01-01
+ph_es_2028_01_06,base.es,Epiphany,2028-01-06
+ph_es_2028_04_14,base.es,Good Friday,2028-04-14
+ph_es_2028_05_01,base.es,Labor Day,2028-05-01
+ph_es_2028_08_15,base.es,Assumption Day,2028-08-15
+ph_es_2028_10_12,base.es,National Day,2028-10-12
+ph_es_2028_11_01,base.es,All Saints' Day,2028-11-01
+ph_es_2028_12_06,base.es,Constitution Day,2028-12-06
+ph_es_2028_12_08,base.es,Immaculate Conception,2028-12-08
+ph_es_2028_12_25,base.es,Christmas Day,2028-12-25
+ph_es_2029_01_01,base.es,New Year's Day,2029-01-01
+ph_es_2029_01_06,base.es,Epiphany,2029-01-06
+ph_es_2029_03_30,base.es,Good Friday,2029-03-30
+ph_es_2029_05_01,base.es,Labor Day,2029-05-01
+ph_es_2029_08_15,base.es,Assumption Day,2029-08-15
+ph_es_2029_10_12,base.es,National Day,2029-10-12
+ph_es_2029_11_01,base.es,All Saints' Day,2029-11-01
+ph_es_2029_12_06,base.es,Constitution Day,2029-12-06
+ph_es_2029_12_08,base.es,Immaculate Conception,2029-12-08
+ph_es_2029_12_25,base.es,Christmas Day,2029-12-25
+ph_es_2030_01_01,base.es,New Year's Day,2030-01-01
+ph_es_2030_04_19,base.es,Good Friday,2030-04-19
+ph_es_2030_05_01,base.es,Labor Day,2030-05-01
+ph_es_2030_08_15,base.es,Assumption Day,2030-08-15
+ph_es_2030_10_12,base.es,National Day,2030-10-12
+ph_es_2030_11_01,base.es,All Saints' Day,2030-11-01
+ph_es_2030_12_06,base.es,Constitution Day,2030-12-06
+ph_es_2030_12_25,base.es,Christmas Day,2030-12-25
+ph_us_2025_01_01,base.us,New Year's Day,2025-01-01
+ph_us_2025_01_20,base.us,Martin Luther King Jr. Day,2025-01-20
+ph_us_2025_02_17,base.us,Washington's Birthday,2025-02-17
+ph_us_2025_05_26,base.us,Memorial Day,2025-05-26
+ph_us_2025_06_19,base.us,Juneteenth National Independence Day,2025-06-19
+ph_us_2025_07_04,base.us,Independence Day,2025-07-04
+ph_us_2025_09_01,base.us,Labor Day,2025-09-01
+ph_us_2025_10_13,base.us,Columbus Day,2025-10-13
+ph_us_2025_11_11,base.us,Veterans Day,2025-11-11
+ph_us_2025_11_27,base.us,Thanksgiving Day,2025-11-27
+ph_us_2025_12_25,base.us,Christmas Day,2025-12-25
+ph_us_2026_01_01,base.us,New Year's Day,2026-01-01
+ph_us_2026_01_19,base.us,Martin Luther King Jr. Day,2026-01-19
+ph_us_2026_02_16,base.us,Washington's Birthday,2026-02-16
+ph_us_2026_05_25,base.us,Memorial Day,2026-05-25
+ph_us_2026_06_19,base.us,Juneteenth National Independence Day,2026-06-19
+ph_us_2026_07_03,base.us,Independence Day (observed),2026-07-03
+ph_us_2026_07_04,base.us,Independence Day,2026-07-04
+ph_us_2026_09_07,base.us,Labor Day,2026-09-07
+ph_us_2026_10_12,base.us,Columbus Day,2026-10-12
+ph_us_2026_11_11,base.us,Veterans Day,2026-11-11
+ph_us_2026_11_26,base.us,Thanksgiving Day,2026-11-26
+ph_us_2026_12_25,base.us,Christmas Day,2026-12-25
+ph_us_2027_01_01,base.us,New Year's Day,2027-01-01
+ph_us_2027_01_18,base.us,Martin Luther King Jr. Day,2027-01-18
+ph_us_2027_02_15,base.us,Washington's Birthday,2027-02-15
+ph_us_2027_05_31,base.us,Memorial Day,2027-05-31
+ph_us_2027_06_18,base.us,Juneteenth National Independence Day (observed),2027-06-18
+ph_us_2027_06_19,base.us,Juneteenth National Independence Day,2027-06-19
+ph_us_2027_07_04,base.us,Independence Day,2027-07-04
+ph_us_2027_07_05,base.us,Independence Day (observed),2027-07-05
+ph_us_2027_09_06,base.us,Labor Day,2027-09-06
+ph_us_2027_10_11,base.us,Columbus Day,2027-10-11
+ph_us_2027_11_11,base.us,Veterans Day,2027-11-11
+ph_us_2027_11_25,base.us,Thanksgiving Day,2027-11-25
+ph_us_2027_12_24,base.us,Christmas Day (observed),2027-12-24
+ph_us_2027_12_25,base.us,Christmas Day,2027-12-25
+ph_us_2027_12_31,base.us,New Year's Day (observed),2027-12-31
+ph_us_2028_01_01,base.us,New Year's Day,2028-01-01
+ph_us_2028_01_17,base.us,Martin Luther King Jr. Day,2028-01-17
+ph_us_2028_02_21,base.us,Washington's Birthday,2028-02-21
+ph_us_2028_05_29,base.us,Memorial Day,2028-05-29
+ph_us_2028_06_19,base.us,Juneteenth National Independence Day,2028-06-19
+ph_us_2028_07_04,base.us,Independence Day,2028-07-04
+ph_us_2028_09_04,base.us,Labor Day,2028-09-04
+ph_us_2028_10_09,base.us,Columbus Day,2028-10-09
+ph_us_2028_11_10,base.us,Veterans Day (observed),2028-11-10
+ph_us_2028_11_11,base.us,Veterans Day,2028-11-11
+ph_us_2028_11_23,base.us,Thanksgiving Day,2028-11-23
+ph_us_2028_12_25,base.us,Christmas Day,2028-12-25
+ph_us_2029_01_01,base.us,New Year's Day,2029-01-01
+ph_us_2029_01_15,base.us,Martin Luther King Jr. Day,2029-01-15
+ph_us_2029_02_19,base.us,Washington's Birthday,2029-02-19
+ph_us_2029_05_28,base.us,Memorial Day,2029-05-28
+ph_us_2029_06_19,base.us,Juneteenth National Independence Day,2029-06-19
+ph_us_2029_07_04,base.us,Independence Day,2029-07-04
+ph_us_2029_09_03,base.us,Labor Day,2029-09-03
+ph_us_2029_10_08,base.us,Columbus Day,2029-10-08
+ph_us_2029_11_11,base.us,Veterans Day,2029-11-11
+ph_us_2029_11_12,base.us,Veterans Day (observed),2029-11-12
+ph_us_2029_11_22,base.us,Thanksgiving Day,2029-11-22
+ph_us_2029_12_25,base.us,Christmas Day,2029-12-25
+ph_us_2030_01_01,base.us,New Year's Day,2030-01-01
+ph_us_2030_01_21,base.us,Martin Luther King Jr. Day,2030-01-21
+ph_us_2030_02_18,base.us,Washington's Birthday,2030-02-18
+ph_us_2030_05_27,base.us,Memorial Day,2030-05-27
+ph_us_2030_06_19,base.us,Juneteenth National Independence Day,2030-06-19
+ph_us_2030_07_04,base.us,Independence Day,2030-07-04
+ph_us_2030_09_02,base.us,Labor Day,2030-09-02
+ph_us_2030_10_14,base.us,Columbus Day,2030-10-14
+ph_us_2030_11_11,base.us,Veterans Day,2030-11-11
+ph_us_2030_11_28,base.us,Thanksgiving Day,2030-11-28
+ph_us_2030_12_25,base.us,Christmas Day,2030-12-25
+ph_mx_2025_01_01,base.mx,New Year's Day,2025-01-01
+ph_mx_2025_02_03,base.mx,Constitution Day,2025-02-03
+ph_mx_2025_03_17,base.mx,Benito Juárez's birthday,2025-03-17
+ph_mx_2025_05_01,base.mx,Labor Day,2025-05-01
+ph_mx_2025_09_16,base.mx,Independence Day,2025-09-16
+ph_mx_2025_11_17,base.mx,Revolution Day,2025-11-17
+ph_mx_2025_12_25,base.mx,Christmas Day,2025-12-25
+ph_mx_2026_01_01,base.mx,New Year's Day,2026-01-01
+ph_mx_2026_02_02,base.mx,Constitution Day,2026-02-02
+ph_mx_2026_03_16,base.mx,Benito Juárez's birthday,2026-03-16
+ph_mx_2026_05_01,base.mx,Labor Day,2026-05-01
+ph_mx_2026_09_16,base.mx,Independence Day,2026-09-16
+ph_mx_2026_11_16,base.mx,Revolution Day,2026-11-16
+ph_mx_2026_12_25,base.mx,Christmas Day,2026-12-25
+ph_mx_2027_01_01,base.mx,New Year's Day,2027-01-01
+ph_mx_2027_02_01,base.mx,Constitution Day,2027-02-01
+ph_mx_2027_03_15,base.mx,Benito Juárez's birthday,2027-03-15
+ph_mx_2027_05_01,base.mx,Labor Day,2027-05-01
+ph_mx_2027_09_16,base.mx,Independence Day,2027-09-16
+ph_mx_2027_11_15,base.mx,Revolution Day,2027-11-15
+ph_mx_2027_12_25,base.mx,Christmas Day,2027-12-25
+ph_mx_2028_01_01,base.mx,New Year's Day,2028-01-01
+ph_mx_2028_02_07,base.mx,Constitution Day,2028-02-07
+ph_mx_2028_03_20,base.mx,Benito Juárez's birthday,2028-03-20
+ph_mx_2028_05_01,base.mx,Labor Day,2028-05-01
+ph_mx_2028_09_16,base.mx,Independence Day,2028-09-16
+ph_mx_2028_11_20,base.mx,Revolution Day,2028-11-20
+ph_mx_2028_12_25,base.mx,Christmas Day,2028-12-25
+ph_mx_2029_01_01,base.mx,New Year's Day,2029-01-01
+ph_mx_2029_02_05,base.mx,Constitution Day,2029-02-05
+ph_mx_2029_03_19,base.mx,Benito Juárez's birthday,2029-03-19
+ph_mx_2029_05_01,base.mx,Labor Day,2029-05-01
+ph_mx_2029_09_16,base.mx,Independence Day,2029-09-16
+ph_mx_2029_11_19,base.mx,Revolution Day,2029-11-19
+ph_mx_2029_12_25,base.mx,Christmas Day,2029-12-25
+ph_mx_2030_01_01,base.mx,New Year's Day,2030-01-01
+ph_mx_2030_02_04,base.mx,Constitution Day,2030-02-04
+ph_mx_2030_03_18,base.mx,Benito Juárez's birthday,2030-03-18
+ph_mx_2030_05_01,base.mx,Labor Day,2030-05-01
+ph_mx_2030_09_16,base.mx,Independence Day,2030-09-16
+ph_mx_2030_10_01,base.mx,Change of Federal Government,2030-10-01
+ph_mx_2030_11_18,base.mx,Revolution Day,2030-11-18
+ph_mx_2030_12_25,base.mx,Christmas Day,2030-12-25
+ph_br_2025_01_01,base.br,Universal Fraternization Day,2025-01-01
+ph_br_2025_04_18,base.br,Good Friday,2025-04-18
+ph_br_2025_04_21,base.br,Tiradentes' Day,2025-04-21
+ph_br_2025_05_01,base.br,Worker's Day,2025-05-01
+ph_br_2025_09_07,base.br,Independence Day,2025-09-07
+ph_br_2025_10_12,base.br,Our Lady of Aparecida,2025-10-12
+ph_br_2025_11_02,base.br,All Souls' Day,2025-11-02
+ph_br_2025_11_15,base.br,Republic Proclamation Day,2025-11-15
+ph_br_2025_11_20,base.br,National Day of Zumbi and Black Awareness,2025-11-20
+ph_br_2025_12_25,base.br,Christmas Day,2025-12-25
+ph_br_2026_01_01,base.br,Universal Fraternization Day,2026-01-01
+ph_br_2026_04_03,base.br,Good Friday,2026-04-03
+ph_br_2026_04_21,base.br,Tiradentes' Day,2026-04-21
+ph_br_2026_05_01,base.br,Worker's Day,2026-05-01
+ph_br_2026_09_07,base.br,Independence Day,2026-09-07
+ph_br_2026_10_12,base.br,Our Lady of Aparecida,2026-10-12
+ph_br_2026_11_02,base.br,All Souls' Day,2026-11-02
+ph_br_2026_11_15,base.br,Republic Proclamation Day,2026-11-15
+ph_br_2026_11_20,base.br,National Day of Zumbi and Black Awareness,2026-11-20
+ph_br_2026_12_25,base.br,Christmas Day,2026-12-25
+ph_br_2027_01_01,base.br,Universal Fraternization Day,2027-01-01
+ph_br_2027_03_26,base.br,Good Friday,2027-03-26
+ph_br_2027_04_21,base.br,Tiradentes' Day,2027-04-21
+ph_br_2027_05_01,base.br,Worker's Day,2027-05-01
+ph_br_2027_09_07,base.br,Independence Day,2027-09-07
+ph_br_2027_10_12,base.br,Our Lady of Aparecida,2027-10-12
+ph_br_2027_11_02,base.br,All Souls' Day,2027-11-02
+ph_br_2027_11_15,base.br,Republic Proclamation Day,2027-11-15
+ph_br_2027_11_20,base.br,National Day of Zumbi and Black Awareness,2027-11-20
+ph_br_2027_12_25,base.br,Christmas Day,2027-12-25
+ph_br_2028_01_01,base.br,Universal Fraternization Day,2028-01-01
+ph_br_2028_04_14,base.br,Good Friday,2028-04-14
+ph_br_2028_04_21,base.br,Tiradentes' Day,2028-04-21
+ph_br_2028_05_01,base.br,Worker's Day,2028-05-01
+ph_br_2028_09_07,base.br,Independence Day,2028-09-07
+ph_br_2028_10_12,base.br,Our Lady of Aparecida,2028-10-12
+ph_br_2028_11_02,base.br,All Souls' Day,2028-11-02
+ph_br_2028_11_15,base.br,Republic Proclamation Day,2028-11-15
+ph_br_2028_11_20,base.br,National Day of Zumbi and Black Awareness,2028-11-20
+ph_br_2028_12_25,base.br,Christmas Day,2028-12-25
+ph_br_2029_01_01,base.br,Universal Fraternization Day,2029-01-01
+ph_br_2029_03_30,base.br,Good Friday,2029-03-30
+ph_br_2029_04_21,base.br,Tiradentes' Day,2029-04-21
+ph_br_2029_05_01,base.br,Worker's Day,2029-05-01
+ph_br_2029_09_07,base.br,Independence Day,2029-09-07
+ph_br_2029_10_12,base.br,Our Lady of Aparecida,2029-10-12
+ph_br_2029_11_02,base.br,All Souls' Day,2029-11-02
+ph_br_2029_11_15,base.br,Republic Proclamation Day,2029-11-15
+ph_br_2029_11_20,base.br,National Day of Zumbi and Black Awareness,2029-11-20
+ph_br_2029_12_25,base.br,Christmas Day,2029-12-25
+ph_br_2030_01_01,base.br,Universal Fraternization Day,2030-01-01
+ph_br_2030_04_19,base.br,Good Friday,2030-04-19
+ph_br_2030_04_21,base.br,Tiradentes' Day,2030-04-21
+ph_br_2030_05_01,base.br,Worker's Day,2030-05-01
+ph_br_2030_09_07,base.br,Independence Day,2030-09-07
+ph_br_2030_10_12,base.br,Our Lady of Aparecida,2030-10-12
+ph_br_2030_11_02,base.br,All Souls' Day,2030-11-02
+ph_br_2030_11_15,base.br,Republic Proclamation Day,2030-11-15
+ph_br_2030_11_20,base.br,National Day of Zumbi and Black Awareness,2030-11-20
+ph_br_2030_12_25,base.br,Christmas Day,2030-12-25
