@@ -52,6 +52,28 @@ class TestPublicHoliday(TransactionCase):
         self.assertIn(self.indonesia.name, wizard.preview)
         self.assertFalse(wizard.missing_names)
 
+    def test_preview_works_on_an_unsaved_record(self):
+        """The form view computes on a NewId record before it is saved.
+
+        Regression test: `country.id` is a NewId there, so a plain dictionary
+        lookup against real ids silently returned zero and every country was
+        reported as having no data.
+        """
+        wizard = self.Wizard.new({
+            'country_ids': [(6, 0, self.indonesia.ids)],
+            'year_from': 2026,
+            'year_to': 2026,
+        })
+        expected = self.Holiday.search_count([
+            ('country_id', '=', self.indonesia.id), ('year', '=', 2026)])
+        self.assertTrue(expected)
+        self.assertEqual(wizard.available_count, expected)
+        self.assertIn(self.indonesia.name, wizard.preview)
+        self.assertFalse(
+            wizard.missing_names,
+            "Indonesia is bundled, it must not be reported as missing",
+        )
+
     def test_multiple_countries_are_added_up(self):
         both = self.indonesia | self.singapore
         wizard = self._wizard(countries=both)
