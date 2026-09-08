@@ -1,3 +1,7 @@
+from datetime import datetime
+
+import pytz
+
 from odoo.exceptions import UserError
 from odoo.tests.common import TransactionCase
 
@@ -24,6 +28,7 @@ class TestPublicHoliday(TransactionCase):
             'country_ids': [(6, 0, (countries or self.indonesia).ids)],
             'year_from': 2026,
             'year_to': 2026,
+            'apply_mode': 'schedules',
             'calendar_ids': [(6, 0, self.calendar.ids)],
         }
         vals.update(kw)
@@ -152,6 +157,49 @@ class TestPublicHoliday(TransactionCase):
         # Jakarta is UTC+7, so a local day starts at 17:00 UTC the day before
         self.assertEqual(leave.date_from.hour, 17)
         self.assertGreater((leave.date_to - leave.date_from).seconds, 23 * 3600)
+
+    # ---------------- global mode ----------------
+
+    def test_global_mode_creates_one_entry_per_holiday(self):
+        """One company-wide record, not one per working schedule."""
+        wizard = self._wizard(apply_mode='global', calendar_ids=[(5, 0, 0)])
+        wizard.action_load_holidays()
+        expected = wizard.selected_count
+        wizard.action_import()
+
+        self.assertEqual(wizard.created_count, expected)
+        globals_ = self.Leave.search([
+            ('calendar_id', '=', False), ('resource_id', '=', False)])
+        self.assertEqual(len(globals_), expected)
+
+    def test_global_entry_applies_to_every_schedule(self):
+        """A leave without calendar_id must block time on any schedule."""
+        wizard = self._wizard(apply_mode='global', calendar_ids=[(5, 0, 0)])
+        wizard.action_load_holidays()
+        wizard.action_import()
+
+        other = self.env['resource.calendar'].create({
+            'name': 'Created after the import', 'tz': 'Asia/Jakarta'})
+        leaves = other._leave_intervals_batch(
+            datetime(2026, 1, 1, tzinfo=pytz.UTC),
+            datetime(2026, 12, 31, tzinfo=pytz.UTC),
+        )[False]
+        self.assertTrue(
+            len(leaves) > 0,
+            "a schedule created after the import should still see the holidays",
+        )
+
+    def test_global_mode_skips_dates_already_taken(self):
+        first = self._wizard(apply_mode='global', calendar_ids=[(5, 0, 0)])
+        first.action_load_holidays()
+        first.action_import()
+        created = first.created_count
+
+        second = self._wizard(apply_mode='global', calendar_ids=[(5, 0, 0)])
+        second.action_load_holidays()
+        second.action_import()
+        self.assertEqual(second.created_count, 0)
+        self.assertEqual(second.skipped_count, created)
 
     # ---------------- validation ----------------
 

@@ -26,6 +26,17 @@ class PublicHolidayImport(models.TransientModel):
         required=True,
         default=lambda self: fields.Date.today().year,
     )
+    apply_mode = fields.Selection(
+        [('global', 'All working schedules (one entry per holiday)'),
+         ('schedules', 'Specific working schedules')],
+        string='Apply to',
+        default='global',
+        required=True,
+        help="All working schedules: creates a single company-wide entry per "
+             "holiday, and any schedule created later is covered automatically.\n"
+             "Specific working schedules: creates one entry per schedule, so "
+             "different offices can observe different holidays.",
+    )
     calendar_ids = fields.Many2many(
         'resource.calendar',
         string='Working Schedules',
@@ -176,6 +187,25 @@ class PublicHolidayImport(models.TransientModel):
             ('company_id', 'in', [False, self.env.company.id]),
         ])
 
+    def _global_tz(self):
+        """Timezone used for company-wide entries.
+
+        A global entry has no working schedule, so `hr_holidays` performs no
+        timezone conversion on it. We therefore resolve the timezone ourselves,
+        preferring the company's default working schedule.
+        """
+        self.ensure_one()
+        return (self.env.company.resource_calendar_id.tz
+                or self.env.user.tz
+                or 'UTC')
+
+    @staticmethod
+    def _bounds_in_tz(day, tz_name):
+        tz = pytz.timezone(tz_name or 'UTC')
+        start = tz.localize(datetime.combine(day, time.min)).astimezone(pytz.UTC)
+        end = tz.localize(datetime.combine(day, time.max)).astimezone(pytz.UTC)
+        return start.replace(tzinfo=None), end.replace(tzinfo=None)
+
     def _day_bounds_utc(self, day):
         """Return the UTC datetimes covering a full day, expressed in the
         current user's timezone.
@@ -242,7 +272,7 @@ class PublicHolidayImport(models.TransientModel):
         }
 
     def action_import(self):
-        """Copy the selected holidays into the chosen working schedules."""
+        """Copy the selected holidays into the working schedules."""
         self.ensure_one()
         self._check_input()
 
@@ -252,6 +282,71 @@ class PublicHolidayImport(models.TransientModel):
                 "Every holiday has been unchecked, so there is nothing to import."
             ))
 
+        if self.apply_mode == 'global':
+            created, skipped, touched = self._import_global(holidays)
+        else:
+            created, skipped, touched = self._import_per_schedule(holidays)
+
+        self.write({
+            'state': 'done',
+            'created_count': created,
+            'skipped_count': skipped,
+            'calendar_count': touched,
+        })
+        return self._reopen()
+
+    def _import_global(self, holidays):
+        """Create one company-wide entry per holiday (no working schedule).
+
+        Odoo treats a leave without `calendar_id` as applying to every schedule
+        (`resource.calendar._leave_intervals_batch`), so one record is enough
+        and schedules created later are covered too.
+        """
+        self.ensure_one()
+        Leave = self.env['resource.calendar.leaves']
+        tz_name = self._global_tz()
+        tz = pytz.timezone(tz_name)
+
+        # Odoo refuses two overlapping public holidays in the same company,
+        # and a global entry is checked against every schedule. So any date that
+        # already carries a public holiday - global or per schedule - is skipped.
+        taken = {
+            pytz.UTC.localize(leave.date_from).astimezone(tz).date()
+            for leave in Leave.search([
+                ('resource_id', '=', False),
+                ('company_id', 'in', [False, self.env.company.id]),
+            ])
+            if leave.date_from
+        }
+
+        vals_list, created, skipped = [], 0, 0
+        for holiday in holidays:
+            if holiday.date in taken:
+                skipped += 1
+                continue
+            taken.add(holiday.date)
+            date_from, date_to = self._bounds_in_tz(holiday.date, tz_name)
+            vals_list.append({
+                'name': holiday.name,
+                'calendar_id': False,
+                'company_id': self.env.company.id,
+                'date_from': date_from,
+                'date_to': date_to,
+                'resource_id': False,
+                'time_type': 'leave',
+            })
+        if vals_list:
+            Leave.create(vals_list)
+            created = len(vals_list)
+
+        schedules = self.env['resource.calendar'].search_count([
+            ('company_id', 'in', [False, self.env.company.id]),
+        ])
+        return created, skipped, schedules
+
+    def _import_per_schedule(self, holidays):
+        """Create one entry per working schedule."""
+        self.ensure_one()
         calendars = self._target_calendars()
         if not calendars:
             raise UserError(_("There is no working schedule to add the holidays to."))
@@ -290,14 +385,7 @@ class PublicHolidayImport(models.TransientModel):
             if vals_list:
                 Leave.create(vals_list)
                 created += len(vals_list)
-
-        self.write({
-            'state': 'done',
-            'created_count': created,
-            'skipped_count': skipped,
-            'calendar_count': len(calendars),
-        })
-        return self._reopen()
+        return created, skipped, len(calendars)
 
     def action_back(self):
         """Return to the first step."""

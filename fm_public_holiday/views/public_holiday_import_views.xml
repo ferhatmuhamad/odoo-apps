@@ -35,9 +35,16 @@
                     </group>
 
                     <group string="Apply to">
+                        <field name="apply_mode" widget="radio" nolabel="1" colspan="2"/>
                         <field name="calendar_ids" widget="many2many_tags" nolabel="1"
                                colspan="2" options="{'no_create': True}"
+                               invisible="apply_mode != 'schedules'"
                                placeholder="Leave empty for every working schedule of this company"/>
+                        <div colspan="2" class="text-muted small"
+                             invisible="apply_mode != 'global'">
+                            One entry per holiday, shared by every working schedule —
+                            including schedules you create later.
+                        </div>
                     </group>
 
                     <div class="alert alert-info" role="status" invisible="available_count == 0">
