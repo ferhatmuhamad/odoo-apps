@@ -85,8 +85,12 @@ class PublicHolidayImport(models.TransientModel):
                 wizard.missing_names = False
                 continue
 
+            # `_origin` resolves NewId records (an unsaved wizard in the form
+            # view) back to their real database ids. Without it the dictionary
+            # lookup below never matches and every country looks empty.
+            countries = wizard.country_ids._origin
             groups = Holiday._read_group(
-                [('country_id', 'in', wizard.country_ids.ids),
+                [('country_id', 'in', countries.ids),
                  ('year', '>=', wizard.year_from),
                  ('year', '<=', wizard.year_to)],
                 groupby=['country_id'],
@@ -94,20 +98,21 @@ class PublicHolidayImport(models.TransientModel):
             )
             counts = {country.id: count for country, count in groups}
 
-            lines, total, missing = [], 0, []
-            for country in wizard.country_ids.sorted('name'):
+            lines, total, missing_ids, missing_names = [], 0, [], []
+            for country in countries.sorted('name'):
                 found = counts.get(country.id, 0)
                 total += found
                 if found:
                     lines.append(_("%(country)s — %(count)s dates",
                                    country=country.name, count=found))
                 else:
-                    missing.append(country)
+                    missing_ids.append(country.id)
+                    missing_names.append(country.name)
 
             wizard.available_count = total
             wizard.preview = "\n".join(lines) or False
-            wizard.missing_country_ids = [(6, 0, [c.id for c in missing])]
-            wizard.missing_names = ", ".join(c.name for c in missing) or False
+            wizard.missing_country_ids = [(6, 0, missing_ids)]
+            wizard.missing_names = ", ".join(missing_names) or False
 
     # ------------------------------------------------------------------
     # selection helpers
@@ -214,7 +219,7 @@ class PublicHolidayImport(models.TransientModel):
         """
         self.ensure_one()
         self._check_input()
-        targets = self.missing_country_ids or self.country_ids
+        targets = (self.missing_country_ids or self.country_ids)._origin
         Holiday = self.env['fm.public.holiday']
         created = 0
         for country in targets:

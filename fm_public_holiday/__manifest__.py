@@ -1,6 +1,6 @@
 {
     'name': 'Public Holiday Importer',
-    'version': '18.0.1.2.0',
+    'version': '18.0.1.2.1',
     'category': 'Human Resources/Time Off',
     'summary': 'Import public holidays of 16 countries into your working schedules',
     'description': """
