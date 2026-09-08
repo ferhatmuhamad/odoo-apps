@@ -9,9 +9,10 @@
                 <field name="state" invisible="1"/>
                 <field name="library_available" invisible="1"/>
                 <field name="country_count" invisible="1"/>
+                <field name="available_count" invisible="1"/>
                 <field name="missing_country_ids" invisible="1" widget="many2many_tags"/>
 
-                <!-- ============ STEP 1 : choose ============ -->
+                <!-- ============ STEP 1 : scope ============ -->
                 <div invisible="state != 'draft'">
                     <group>
                         <group string="Countries">
@@ -41,7 +42,7 @@
 
                     <div class="alert alert-info" role="status" invisible="available_count == 0">
                         <strong><field name="available_count" class="d-inline"/> holiday date(s)</strong>
-                        <span> ready to import:</span>
+                        <span> found. You will be able to uncheck the ones you do not want.</span>
                         <pre class="mt-2 mb-0" style="white-space:pre-wrap; font-size:0.9em;"><field name="preview" nolabel="1" readonly="1"/></pre>
                     </div>
 
@@ -60,7 +61,41 @@
                     </div>
                 </div>
 
-                <!-- ============ STEP 2 : result ============ -->
+                <!-- ============ STEP 2 : pick individual holidays ============ -->
+                <div invisible="state != 'select'">
+                    <div class="alert alert-info d-flex align-items-center justify-content-between" role="status">
+                        <div>
+                            <strong><field name="selected_count" class="d-inline"/></strong>
+                            <span> of </span>
+                            <field name="available_count" class="d-inline"/>
+                            <span> holidays will be imported. Remove a line to leave it out.</span>
+                        </div>
+                        <div class="text-nowrap ms-3">
+                            <button name="action_check_all_holidays" type="object"
+                                    string="Check all" class="btn btn-link py-0"
+                                    icon="fa-check-square-o"/>
+                            <button name="action_uncheck_all_holidays" type="object"
+                                    string="Uncheck all" class="btn btn-link py-0"
+                                    icon="fa-square-o" invisible="selected_count == 0"/>
+                        </div>
+                    </div>
+
+                    <field name="holiday_ids" nolabel="1" colspan="2">
+                        <list create="0" edit="0" delete="1" limit="200">
+                            <field name="date"/>
+                            <field name="name"/>
+                            <field name="country_id"/>
+                        </list>
+                    </field>
+
+                    <div class="alert alert-warning mt-2" role="alert"
+                         invisible="selected_count != 0">
+                        Every holiday has been unchecked. Add some back with
+                        <em>Check all</em>, or go back to change the countries.
+                    </div>
+                </div>
+
+                <!-- ============ STEP 3 : result ============ -->
                 <div invisible="state != 'done'">
                     <div class="alert alert-success" role="status">
                         <h4 class="mt-0">Import finished</h4>
@@ -77,12 +112,22 @@
                 </div>
 
                 <footer>
-                    <button name="action_import" type="object" string="Import"
-                            class="btn-primary" invisible="state != 'draft' or available_count == 0"
+                    <!-- step 1 -->
+                    <button name="action_load_holidays" type="object"
+                            string="Next: choose holidays" class="btn-primary"
+                            invisible="state != 'draft' or available_count == 0"
                             data-hotkey="q"/>
                     <button name="action_fetch_from_library" type="object"
                             string="Fetch from library" class="btn-secondary"
                             invisible="state != 'draft' or not library_available or not missing_names"/>
+                    <!-- step 2 -->
+                    <button name="action_import" type="object" string="Import"
+                            class="btn-primary"
+                            invisible="state != 'select' or selected_count == 0"
+                            data-hotkey="q"/>
+                    <button name="action_back" type="object" string="Back"
+                            class="btn-secondary" invisible="state != 'select'"/>
+                    <!-- step 3 -->
                     <button name="action_back" type="object" string="Import more"
                             class="btn-primary" invisible="state != 'done'"/>
                     <button string="Close" class="btn-secondary" special="cancel"

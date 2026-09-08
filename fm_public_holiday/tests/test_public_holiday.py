@@ -86,6 +86,9 @@ class TestPublicHoliday(TransactionCase):
         wizard = self._wizard()
         expected = wizard.available_count
         self.assertTrue(expected, "there should be bundled data for 2026")
+        wizard.action_load_holidays()
+        self.assertEqual(wizard.state, 'select')
+        self.assertEqual(wizard.selected_count, expected)
         wizard.action_import()
         self.assertEqual(wizard.state, 'done')
         self.assertEqual(wizard.created_count, expected)
@@ -96,10 +99,12 @@ class TestPublicHoliday(TransactionCase):
 
     def test_import_twice_skips_existing(self):
         first = self._wizard()
+        first.action_load_holidays()
         first.action_import()
         created = first.created_count
 
         second = self._wizard()
+        second.action_load_holidays()
         second.action_import()
         self.assertEqual(second.created_count, 0)
         self.assertEqual(second.skipped_count, created)
@@ -107,6 +112,7 @@ class TestPublicHoliday(TransactionCase):
     def test_shared_date_between_countries_is_created_once(self):
         """1 January exists in both countries but must not be created twice."""
         wizard = self._wizard(countries=self.indonesia | self.singapore)
+        wizard.action_load_holidays()
         wizard.action_import()
         new_year = self.Leave.search_count([
             ('calendar_id', '=', self.calendar.id),
@@ -117,6 +123,7 @@ class TestPublicHoliday(TransactionCase):
 
     def test_leave_covers_the_whole_local_day(self):
         wizard = self._wizard()
+        wizard.action_load_holidays()
         wizard.action_import()
         leave = self.Leave.search(
             [('calendar_id', '=', self.calendar.id)], order='date_from', limit=1)
@@ -130,15 +137,59 @@ class TestPublicHoliday(TransactionCase):
         wizard = self._wizard()
         wizard.action_clear_countries()
         with self.assertRaises(UserError):
-            wizard.action_import()
+            wizard.action_load_holidays()
 
     def test_reversed_years_are_rejected(self):
         wizard = self._wizard(year_from=2027, year_to=2026)
         with self.assertRaises(UserError):
-            wizard.action_import()
+            wizard.action_load_holidays()
 
-    def test_country_without_data_raises_on_import(self):
+    def test_country_without_data_raises_on_load(self):
         antarctica = self.env.ref('base.aq')
         wizard = self._wizard(countries=antarctica)
         with self.assertRaises(UserError):
+            wizard.action_load_holidays()
+
+    # ---------------- picking individual holidays ----------------
+
+    def test_unchecking_one_holiday_excludes_it(self):
+        """Drop Christmas from the Indonesian list and it must not be imported."""
+        wizard = self._wizard()
+        wizard.action_load_holidays()
+        total = wizard.selected_count
+
+        christmas = wizard.holiday_ids.filtered(
+            lambda h: h.date.month == 12 and h.date.day == 25)
+        self.assertTrue(christmas, "Indonesia should have Christmas in 2026")
+
+        wizard.holiday_ids = [(3, christmas.id)]
+        self.assertEqual(wizard.selected_count, total - 1)
+
+        wizard.action_import()
+        self.assertEqual(wizard.created_count, total - 1)
+
+        imported = self.Leave.search([('calendar_id', '=', self.calendar.id)])
+        self.assertNotIn(christmas.name, imported.mapped('name'))
+
+    def test_uncheck_all_then_import_is_rejected(self):
+        wizard = self._wizard()
+        wizard.action_load_holidays()
+        wizard.action_uncheck_all_holidays()
+        self.assertEqual(wizard.selected_count, 0)
+        with self.assertRaises(UserError):
             wizard.action_import()
+
+    def test_check_all_restores_the_full_list(self):
+        wizard = self._wizard()
+        wizard.action_load_holidays()
+        total = wizard.selected_count
+        wizard.action_uncheck_all_holidays()
+        wizard.action_check_all_holidays()
+        self.assertEqual(wizard.selected_count, total)
+
+    def test_back_resets_the_selection(self):
+        wizard = self._wizard()
+        wizard.action_load_holidays()
+        wizard.action_back()
+        self.assertEqual(wizard.state, 'draft')
+        self.assertFalse(wizard.holiday_ids)
