@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="public_holiday_import_view_form" model="ir.ui.view">
+        <field name="name">fm.public.holiday.import.view.form</field>
+        <field name="model">fm.public.holiday.import</field>
+        <field name="arch" type="xml">
+            <form string="Import Public Holidays">
+                <field name="state" invisible="1"/>
+                <field name="library_available" invisible="1"/>
+
+                <!-- ============ STEP 1 : choose ============ -->
+                <div invisible="state != 'draft'">
+                    <group>
+                        <group>
+                            <field name="country_id" options="{'no_create': True, 'no_open': True}"/>
+                            <field name="year_from"/>
+                            <field name="year_to"/>
+                        </group>
+                        <group>
+                            <field name="calendar_ids" widget="many2many_tags"
+                                   options="{'no_create': True}"
+                                   placeholder="Leave empty for every working schedule"/>
+                        </group>
+                    </group>
+
+                    <div class="alert alert-info" role="status" invisible="available_count == 0">
+                        <field name="available_count" class="fw-bold"/>
+                        <span> holiday date(s) ready to import.</span>
+                        <pre class="mt-2 mb-0" style="white-space:pre-wrap; font-size:0.9em;"><field name="preview" nolabel="1" readonly="1"/></pre>
+                    </div>
+
+                    <div class="alert alert-warning" role="alert"
+                         invisible="not country_id or available_count > 0">
+                        <p class="mb-1">
+                            <strong>This country is not in the bundled data.</strong>
+                        </p>
+                        <p class="mb-0" invisible="not library_available">
+                            Use <em>Fetch from library</em> below to generate it.
+                        </p>
+                        <p class="mb-0" invisible="library_available">
+                            To unlock the other countries, ask your administrator to install
+                            the Python package: <code>pip install holidays</code>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- ============ STEP 2 : result ============ -->
+                <div invisible="state != 'done'">
+                    <div class="alert alert-success" role="status">
+                        <h4 class="mt-0">Import finished</h4>
+                        <group col="4" class="mb-0">
+                            <field name="created_count" string="Created"/>
+                            <field name="skipped_count" string="Already present"/>
+                            <field name="calendar_count" string="Schedules updated"/>
+                        </group>
+                    </div>
+                    <p class="text-muted">
+                        The holidays are now in <strong>Time Off → Configuration → Public Holidays</strong>
+                        and are excluded from working time on every schedule you selected.
+                    </p>
+                </div>
+
+                <footer>
+                    <button name="action_import" type="object" string="Import"
+                            class="btn-primary" invisible="state != 'draft'"
+                            data-hotkey="q"/>
+                    <button name="action_fetch_from_library" type="object"
+                            string="Fetch from library" class="btn-secondary"
+                            invisible="state != 'draft' or not library_available"/>
+                    <button name="action_back" type="object" string="Import more"
+                            class="btn-primary" invisible="state != 'done'"/>
+                    <button string="Close" class="btn-secondary" special="cancel"
+                            data-hotkey="x"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="public_holiday_import_action" model="ir.actions.act_window">
+        <field name="name">Import Public Holidays</field>
+        <field name="res_model">fm.public.holiday.import</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

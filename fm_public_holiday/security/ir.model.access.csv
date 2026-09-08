@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_fm_public_holiday_user,fm.public.holiday.user,model_fm_public_holiday,base.group_user,1,0,0,0
+access_fm_public_holiday_manager,fm.public.holiday.manager,model_fm_public_holiday,group_public_holiday_manager,1,1,1,1
+access_fm_public_holiday_import,fm.public.holiday.import.manager,model_fm_public_holiday_import,group_public_holiday_manager,1,1,1,1

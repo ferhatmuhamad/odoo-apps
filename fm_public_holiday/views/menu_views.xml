@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem id="menu_public_holiday_root"
+              name="Public Holidays"
+              web_icon="fm_public_holiday,static/description/icon.png"
+              sequence="96"
+              groups="group_public_holiday_manager"/>
+
+    <menuitem id="menu_public_holiday_list"
+              name="Reference List"
+              parent="menu_public_holiday_root"
+              action="fm_public_holiday_action"
+              sequence="10"/>
+
+    <menuitem id="menu_public_holiday_import"
+              name="Import to Schedules"
+              parent="menu_public_holiday_root"
+              action="public_holiday_import_action"
+              sequence="20"/>
+
+</odoo>
