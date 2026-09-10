@@ -22,6 +22,7 @@ Semua module dibangun **hanya di atas Odoo Community**, sehingga berjalan di
 | [`fm_quick_note`](fm_quick_note/) | Quick Notes — catatan pribadi dengan tag, prioritas, dan deadline | 17.0, 18.0, 19.0 | LGPL-3 |
 | [`fm_public_holiday`](fm_public_holiday/) | Public Holiday Importer — hari libur 16 negara ke working schedule | 17.0, 18.0, 19.0 | LGPL-3 |
 | [`fm_home_grid`](fm_home_grid/) | Modern Home Grid — app launcher full-page dengan pencarian instan | 17.0, 18.0, 19.0 | LGPL-3 |
+| [`fm_drive_hr`](fm_drive_hr/) | Team Drive for Employees — arsip dokumen per karyawan; add-on gratis untuk modul berbayar [Team Drive](https://apps.odoo.com) | 17.0, 18.0, 19.0 | LGPL-3 |
 
 ## Instalasi
 

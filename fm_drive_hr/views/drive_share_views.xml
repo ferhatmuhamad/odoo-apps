@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Puts the Department field back into the Share form, next to the
+         people picker it sits alongside. It only makes sense while this
+         bridge is installed, which is why it lives here and not in the
+         core form. -->
+    <record id="view_drive_share_form_hr" model="ir.ui.view">
+        <field name="name">fm.drive.share.form.inherit.fm.drive.hr</field>
+        <field name="model">fm.drive.share</field>
+        <field name="inherit_id" ref="fm_drive.view_drive_share_form"/>
+        <field name="arch" type="xml">
+            <field name="user_ids" position="after">
+                <field name="department_id" invisible="target_type != 'department'"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>

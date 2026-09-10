@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Both live under the Drive menus created by fm_drive; they only
+         appear once the Employees app is present. -->
+
+    <menuitem id="menu_drive_template"
+              name="Employee Archive Template"
+              parent="fm_drive.menu_drive_admin"
+              action="action_drive_template"
+              sequence="60"
+              groups="hr.group_hr_manager"/>
+
+    <menuitem id="menu_drive_expiring"
+              name="Expired Documents"
+              parent="fm_drive.menu_drive_root"
+              action="action_drive_expiring_documents"
+              sequence="20"
+              groups="hr.group_hr_user"/>
+
+</odoo>

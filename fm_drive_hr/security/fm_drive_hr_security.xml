@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ============ EMPLOYEE ARCHIVE ============ -->
+    <!--
+        HR maintains the archives, an employee sees only their OWN, and a
+        direct manager is given nothing. The "Employee Archive" root is
+        deliberately unreadable to an ordinary employee: it lists the name of
+        everyone who has an archive.
+    -->
+
+    <record id="rule_drive_folder_archive_own" model="ir.rule">
+        <field name="name">Employee Archive: employees see their own archive</field>
+        <field name="model_id" ref="fm_drive.model_fm_drive_folder"/>
+        <field name="groups" eval="[(4, ref('fm_drive.group_drive_user'))]"/>
+        <field name="domain_force">[('folder_type', '=', 'employee'), ('employee_id.user_id', '=', user.id)]</field>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="False"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+
+    <record id="rule_drive_folder_archive_hr" model="ir.rule">
+        <field name="name">Employee Archive: HR reads every archive</field>
+        <field name="model_id" ref="fm_drive.model_fm_drive_folder"/>
+        <field name="groups" eval="[(4, ref('hr.group_hr_user'))]"/>
+        <field name="domain_force">[('folder_type', '=', 'employee')]</field>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="False"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+
+    <record id="rule_drive_folder_archive_hr_manager" model="ir.rule">
+        <field name="name">Employee Archive: HR Managers maintain the archives</field>
+        <field name="model_id" ref="fm_drive.model_fm_drive_folder"/>
+        <field name="groups" eval="[(4, ref('hr.group_hr_manager'))]"/>
+        <field name="domain_force">[('folder_type', '=', 'employee')]</field>
+    </record>
+
+    <record id="rule_drive_file_archive_own" model="ir.rule">
+        <field name="name">Employee Archive: files in your own archive</field>
+        <field name="model_id" ref="fm_drive.model_fm_drive_file"/>
+        <field name="groups" eval="[(4, ref('fm_drive.group_drive_user'))]"/>
+        <field name="domain_force">[('folder_id.folder_type', '=', 'employee'), ('folder_id.employee_id.user_id', '=', user.id)]</field>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="False"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+
+    <record id="rule_drive_file_archive_hr" model="ir.rule">
+        <field name="name">Employee Archive: HR reads every document</field>
+        <field name="model_id" ref="fm_drive.model_fm_drive_file"/>
+        <field name="groups" eval="[(4, ref('hr.group_hr_user'))]"/>
+        <field name="domain_force">[('folder_id.folder_type', '=', 'employee')]</field>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="False"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+
+    <record id="rule_drive_file_archive_hr_manager" model="ir.rule">
+        <field name="name">Employee Archive: HR Managers maintain the documents</field>
+        <field name="model_id" ref="fm_drive.model_fm_drive_file"/>
+        <field name="groups" eval="[(4, ref('hr.group_hr_manager'))]"/>
+        <field name="domain_force">[('folder_id.folder_type', '=', 'employee')]</field>
+    </record>
+
+    <record id="rule_drive_template_all" model="ir.rule">
+        <field name="name">Archive Template: readable by every Drive user</field>
+        <field name="model_id" ref="model_fm_drive_folder_template"/>
+        <field name="groups" eval="[(4, ref('fm_drive.group_drive_user'))]"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="False"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+
+</odoo>
