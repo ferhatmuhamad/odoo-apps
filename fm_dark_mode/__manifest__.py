@@ -37,10 +37,16 @@ becomes visible again, so that no longer happens.
 
 Where the toggle lives
 ----------------------
-Install **Modern Home Grid** as well and a theme button appears beside
-its search box. Without this module that button is not there at all —
-neither module depends on the other; the home grid simply asks whether
-a theme service is present.
+A theme button sits in the top bar, next to your avatar. It names the
+mode in force and where the next press lands, so all three states are
+findable from the button itself.
+
+This module needs nothing else installed. On its own it already follows
+the operating system, and the top-bar button is what lets you overrule
+that. Install **Modern Home Grid** as well and a second theme button
+appears beside its search box — neither module depends on the other; the
+home grid simply asks whether a theme service is present, and leaves its
+button out when it is not.
 
 The choice is stored per browser in ``localStorage`` under
 ``fm_hg_theme``, so nothing is written to your database.
@@ -58,7 +64,10 @@ The choice is stored per browser in ``localStorage`` under
             # they leave, rather than overriding them.
             'fm_dark_mode/static/src/scss/dark_mode.scss',
             'fm_dark_mode/static/src/scss/dark_mode_coverage.scss',
+            'fm_dark_mode/static/src/scss/theme_switch.scss',
             'fm_dark_mode/static/src/js/dark_mode_service.js',
+            'fm_dark_mode/static/src/js/theme_switch.js',
+            'fm_dark_mode/static/src/xml/theme_switch.xml',
         ],
     },
     'images': [
