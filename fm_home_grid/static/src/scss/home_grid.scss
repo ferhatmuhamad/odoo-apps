@@ -631,3 +631,54 @@ $fm-speed: 0.2s;
   .o_fm_hg-date { color: #93a3b3; }
   .o_fm_hg-clock { color: #c9a6bd; }
 }
+
+
+// ============================================================
+// Theme button
+//
+// Rendered only when fm_dark_mode is installed (see hasDarkMode in
+// home_grid.js), so these rules are inert otherwise. The dark variant
+// goes under `.o_fm_hg--dark` because that is how the rest of this
+// screen already does it - the home grid themes itself from its own
+// component state, not from the body class.
+// ============================================================
+
+.o_fm_hg-theme-btn {
+  flex: 0 0 auto;
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid $fm-black-12;
+  border-radius: 10px;
+  background: $fm-white;
+  color: $fm-text-light;
+  font-size: 15px;
+  cursor: pointer;
+  box-shadow: $fm-shadow-sm;
+  transition: all $fm-speed $fm-ease;
+
+  &:hover {
+    color: $fm-brand;
+    border-color: $fm-brand;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $fm-brand;
+    outline-offset: 2px;
+  }
+}
+
+.o_fm_hg--dark {
+  .o_fm_hg-theme-btn {
+    background: $fm-white-08;
+    border-color: $fm-white-12;
+    color: rgba(255, 255, 255, 0.65);
+
+    &:hover {
+      color: #fff;
+      border-color: rgba(255, 255, 255, 0.35);
+    }
+  }
+}
