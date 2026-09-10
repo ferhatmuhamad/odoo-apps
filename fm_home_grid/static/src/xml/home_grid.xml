@@ -35,6 +35,15 @@
                         <i class="oi oi-close"/>
                     </button>
                 </div>
+
+                <!-- Only rendered when fm_dark_mode is installed: without it
+                     there is nothing for the button to switch. -->
+                <button t-if="hasDarkMode" class="o_fm_hg-theme-btn"
+                        t-on-click="cycleTheme"
+                        t-att-title="themeTitle"
+                        t-att-aria-label="themeTitle">
+                    <i class="fa" t-att-class="themeIcon"/>
+                </button>
             </div>
 
             <!-- App Grid -->
