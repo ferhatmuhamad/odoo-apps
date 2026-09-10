@@ -7,7 +7,7 @@ import {
   onMounted,
   onWillUnmount,
 } from "@odoo/owl";
-import { useService } from "@web/core/utils/hooks";
+import { useBus, useService } from "@web/core/utils/hooks";
 import { session } from "@web/session";
 import { _t } from "@web/core/l10n/translation";
 import { computeAppsAndMenuItems } from "@web/webclient/menus/menu_helpers";
@@ -37,7 +37,26 @@ export class HomeGrid extends Component {
       now: new Date(),
     });
 
+    // This button is no longer the only way to change the theme:
+    // fm_dark_mode now puts one in the systray as well. Without listening
+    // for the change, pressing that one left this button still showing
+    // the old mode - two controls on the same page disagreeing.
+    this._syncThemeMode = () => {
+      this.state.themeMode =
+        (this.darkMode && this.darkMode.mode) ||
+        localStorage.getItem("fm_hg_theme") ||
+        "system";
+    };
+    useBus(this.env.bus, "FM_HG:THEME-CHANGED", this._syncThemeMode);
+
     this._onKeyDown = this._onKeyDown.bind(this);
+    this._onStorage = (ev) => {
+      // ...and the same user in another tab, which reaches this one only
+      // as a storage event.
+      if (ev.key === "fm_hg_theme") {
+        this._syncThemeMode();
+      }
+    };
     this._onSystemThemeChange = this._onSystemThemeChange.bind(this);
     this._systemDarkMQ = window.matchMedia("(prefers-color-scheme: dark)");
 
@@ -46,6 +65,7 @@ export class HomeGrid extends Component {
         this.searchRef.el.focus();
       }
       document.addEventListener("keydown", this._onKeyDown);
+      window.addEventListener("storage", this._onStorage);
       this._systemDarkMQ.addEventListener("change", this._onSystemThemeChange);
       // Add class to body for scoping
       document.body.classList.add("o_fm_hg-active");
@@ -57,6 +77,7 @@ export class HomeGrid extends Component {
     onWillUnmount(() => {
       clearInterval(this._clock);
       document.removeEventListener("keydown", this._onKeyDown);
+      window.removeEventListener("storage", this._onStorage);
       this._systemDarkMQ.removeEventListener(
         "change",
         this._onSystemThemeChange,
