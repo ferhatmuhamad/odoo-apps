@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_employee_form_drive" model="ir.ui.view">
+        <field name="name">hr.employee.form.inherit.fm.drive</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="action_open_drive_folder" type="object"
+                        class="oe_stat_button" icon="fa-folder-open-o"
+                        groups="hr.group_hr_user">
+                    <field name="drive_file_count" widget="statinfo"
+                           string="Document"/>
+                </button>
+            </xpath>
+            <xpath expr="//page[@name='hr_settings']" position="inside">
+                <group string="Drive Archive" name="fm_drive" groups="hr.group_hr_user">
+                    <field name="drive_folder_id" readonly="1"
+                           options="{'no_open': True}"/>
+                    <div class="text-muted" colspan="2">
+                        An archive folder is created automatically for every new employee. Its contents can only be seen by HR and the employee concerned — the direct manager is NOT given access automatically. When someone really needs to see one document, share that document through the Drive app so the access grant is recorded.
+                    </div>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="action_drive_expiring_documents" model="ir.actions.act_window">
+        <field name="name">Documents Expiring Soon</field>
+        <field name="res_model">fm.drive.file</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('is_trashed', '=', False), ('date_expiry', '!=', False)]</field>
+        <field name="context">{'search_default_f_expiring': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">No document is close to its expiry</p>
+            <p>
+                Contracts, certificates, and other time-limited documents appear here as their end date approaches. A reminder is also sent automatically as a notification to the file owner and the HR Manager.
+            </p>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--
+        The default archive structure. noupdate="1" is DELIBERATE: once HR has
+        adjusted or removed one of these folders, `-u fm_drive` must not bring
+        it back.
+
+        "Document lifetime" is filled in only where a document genuinely
+        expires. Twelve months for contracts and twenty-four for certificates
+        are safe opening guesses - HR can adjust them from the Archive
+        Templates menu.
+    -->
+    <data noupdate="1">
+
+    <record id="template_contract" model="fm.drive.folder.template">
+        <field name="name">Contracts</field>
+        <field name="sequence">10</field>
+        <field name="description">Employment agreements and their renewals</field>
+        <field name="default_expiry_months">12</field>
+    </record>
+
+    <record id="template_diploma" model="fm.drive.folder.template">
+        <field name="name">Diplomas</field>
+        <field name="sequence">20</field>
+        <field name="description">Diplomas and academic transcripts</field>
+        <field name="default_expiry_months">0</field>
+    </record>
+
+    <record id="template_certificate" model="fm.drive.folder.template">
+        <field name="name">Certificates</field>
+        <field name="sequence">30</field>
+        <field name="description">Training and competency certificates</field>
+        <field name="default_expiry_months">24</field>
+    </record>
+
+    <record id="template_identity" model="fm.drive.folder.template">
+        <field name="name">Identity</field>
+        <field name="sequence">40</field>
+        <field name="description">ID card, tax number, driving licence</field>
+        <field name="default_expiry_months">0</field>
+    </record>
+
+    <record id="template_insurance" model="fm.drive.folder.template">
+        <field name="name">Insurance</field>
+        <field name="sequence">50</field>
+        <field name="description">Health and social insurance documents</field>
+        <field name="default_expiry_months">0</field>
+    </record>
+
+    <record id="template_warning" model="fm.drive.folder.template">
+        <field name="name">Warning Letters</field>
+        <field name="sequence">60</field>
+        <field name="description">Warning letters and disciplinary records</field>
+        <field name="default_expiry_months">0</field>
+    </record>
+
+    <record id="template_other" model="fm.drive.folder.template">
+        <field name="name">Other</field>
+        <field name="sequence">90</field>
+        <field name="description">Documents that do not fit the categories above</field>
+        <field name="default_expiry_months">0</field>
+    </record>
+
+    </data>
+</odoo>
