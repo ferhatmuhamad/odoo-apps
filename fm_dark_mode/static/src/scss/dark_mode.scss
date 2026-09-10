@@ -1,0 +1,4808 @@
+// ============================================================
+// Modern Global Dark Mode for Odoo 17 Backend
+// Applied via body.fm-dark class (synced from HomeGrid)
+// Light mode = no changes (default Odoo)
+// ============================================================
+
+// ── Dark Palette ─────────────────────────────────────────────
+$fm-d-1: #171920; // header, sidebar, control panel, elevated
+$fm-d-2: #1b1d26; // background, empty space, content bg
+$fm-d-3: #22242e; // cards, sheets, surface
+$fm-d-4: #2a2d38; // inputs, hover states
+$fm-d-5: #323542; // active/selected states
+
+$fm-d-text: #e0e0e8;
+$fm-d-text-secondary: #b0b0be;
+$fm-d-text-muted: #8088a0;
+$fm-d-border: rgba(255, 255, 255, 0.08);
+$fm-d-border-strong: rgba(255, 255, 255, 0.14);
+$fm-d-hover: rgba(255, 255, 255, 0.05);
+$fm-d-active: rgba(255, 255, 255, 0.08);
+
+// brand accent (Odoo purple, lightened for dark)
+$fm-d-accent: #9b8ec4;
+$fm-d-accent-soft: rgba(#9b8ec4, 0.15);
+
+// ══════════════════════════════════════════════════════════════
+// GLOBAL DARK MODE
+// ══════════════════════════════════════════════════════════════
+
+body.fm-dark {
+  // ── Root / Web Client ──────────────────────────────────────
+  background-color: $fm-d-2 !important;
+  color: $fm-d-text !important;
+
+  .o_web_client {
+    background-color: $fm-d-2 !important;
+    color: $fm-d-text !important;
+    color-scheme: dark;
+  }
+
+  // ── bg-view / bg-white / bg-light bootstrap overrides ──────
+  // bg-view uses o-print-color mixin:
+  //   --background-color: RGBA(255,255,255, var(--bg-opacity,1));
+  //   background-color: var(--background-color) !important;
+  // We must override BOTH the CSS custom prop AND the direct property
+  .bg-view {
+    --bg-opacity: 1 !important;
+    --background-color: #{$fm-d-2} !important;
+    background-color: $fm-d-2 !important;
+  }
+
+  .bg-white {
+    background-color: $fm-d-3 !important;
+  }
+
+  .bg-light {
+    background-color: $fm-d-1 !important;
+  }
+
+  .bg-100,
+  .bg-200 {
+    background-color: $fm-d-1 !important;
+  }
+
+  // ── Global CSS variable overrides ──────────────────────────
+  .o_web_client {
+    --o-webclient-color-scheme: dark;
+  }
+
+  .breadcrumb {
+    background-color: transparent !important;
+  }
+
+  // Force table background variables everywhere
+  .table,
+  table {
+    --bs-table-bg: #{$fm-d-2} !important;
+    --table-bg: #{$fm-d-2} !important;
+    --bs-table-striped-bg: #{$fm-d-3};
+    --bs-table-hover-bg: #{$fm-d-4};
+    --bs-table-color: #{$fm-d-text};
+    --bs-table-border-color: #{$fm-d-border};
+  }
+
+  // ── Odoo Primary / Brand Color Override ─────────────────
+  // Odoo default = #71639e (community purple)
+  // In dark mode we use our accent color instead
+  $fm-d-primary: #7c6bb4; // slightly lighter purple for dark bg
+  $fm-d-primary-hover: #6a5a9e; // darker hover
+  $fm-d-primary-active: #5e4f8e; // active press
+
+  .btn-primary {
+    background-color: $fm-d-primary !important;
+    border-color: $fm-d-primary !important;
+    color: #fff !important;
+
+    &:hover,
+    &:focus {
+      background-color: $fm-d-primary-hover !important;
+      border-color: $fm-d-primary-hover !important;
+      color: #fff !important;
+    }
+
+    &:active,
+    &.active {
+      background-color: $fm-d-primary-active !important;
+      border-color: $fm-d-primary-active !important;
+    }
+
+    &.disabled,
+    &:disabled {
+      background-color: rgba($fm-d-primary, 0.5) !important;
+      border-color: rgba($fm-d-primary, 0.3) !important;
+    }
+  }
+
+  .btn-outline-primary {
+    color: $fm-d-primary !important;
+    border-color: $fm-d-primary !important;
+    background-color: transparent !important;
+
+    &:hover,
+    &:focus {
+      background-color: rgba($fm-d-primary, 0.15) !important;
+      color: lighten($fm-d-primary, 10%) !important;
+    }
+  }
+
+  // Text & bg primary utilities
+  .text-primary {
+    color: lighten($fm-d-primary, 12%) !important;
+  }
+
+  .bg-primary {
+    background-color: $fm-d-primary !important;
+  }
+
+  .border-primary {
+    border-color: $fm-d-primary !important;
+  }
+
+  // Link color
+  a:not(.btn) {
+    color: lighten($fm-d-primary, 15%);
+
+    &:hover {
+      color: lighten($fm-d-primary, 25%);
+    }
+  }
+
+  // Badge primary
+  .badge.bg-primary,
+  .badge.text-bg-primary {
+    background-color: $fm-d-primary !important;
+  }
+
+  // Nav pills active
+  .nav-pills .nav-link.active {
+    background-color: $fm-d-primary !important;
+  }
+
+  // Form check / switch
+  .form-check-input:checked {
+    background-color: $fm-d-primary !important;
+    border-color: $fm-d-primary !important;
+  }
+
+  // Input focus border
+  .form-control:focus,
+  .form-select:focus {
+    border-color: rgba($fm-d-primary, 0.5) !important;
+    box-shadow: 0 0 0 0.25rem rgba($fm-d-primary, 0.15) !important;
+  }
+
+  // Statusbar current button
+  .o_form_statusbar .o_statusbar_status .o_arrow_button {
+    &.o_arrow_button_current,
+    &.btn-primary {
+      background-color: rgba($fm-d-primary, 0.2) !important;
+      color: lighten($fm-d-primary, 20%) !important;
+    }
+  }
+
+  // ── Navbar ─────────────────────────────────────────────────
+  // Odoo navbar uses CSS custom properties for each menu item:
+  //   background: var(--NavBar-entry-backgroundColor, #{$o-navbar-background})
+  // We override the custom properties so items are dark WITHOUT hover
+  .o_main_navbar {
+    background: $fm-d-1 !important;
+    border-bottom: 1px solid $fm-d-border !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+
+    // Override ALL navbar CSS custom properties
+    --NavBar-entry-backgroundColor: #{$fm-d-1};
+    --NavBar-entry-backgroundColor--hover: #{rgba(255, 255, 255, 0.08)};
+    --NavBar-entry-backgroundColor--focus: #{rgba(255, 255, 255, 0.08)};
+    --NavBar-entry-backgroundColor--active: #{rgba(255, 255, 255, 0.12)};
+    --NavBar-entry-color: #{rgba(255, 255, 255, 0.85)};
+    --NavBar-entry-color--hover: #fff;
+    --NavBar-entry-color--active: #fff;
+    --NavBar-brand-color: #{$fm-d-text};
+    --NavBar-entry-borderColor-active: transparent;
+    --o-navbar-badge-bg: #28a745;
+    --o-navbar-badge-color: #fff;
+
+    .o_menu_brand {
+      color: $fm-d-text !important;
+    }
+
+    // Menu section links + buttons
+    .o_menu_sections {
+      .o_nav_entry,
+      .dropdown-toggle {
+        background: $fm-d-1 !important;
+        color: rgba(255, 255, 255, 0.85) !important;
+        border-color: transparent !important;
+
+        &:hover {
+          background: rgba(255, 255, 255, 0.08) !important;
+          color: #fff !important;
+        }
+
+        &:focus {
+          background: rgba(255, 255, 255, 0.08) !important;
+          color: #fff !important;
+        }
+
+        &:active {
+          background: rgba(255, 255, 255, 0.12) !important;
+          color: #fff !important;
+        }
+      }
+
+      // Active dropdown (open)
+      .dropdown.show > .dropdown-toggle {
+        background: rgba(255, 255, 255, 0.12) !important;
+        color: #fff !important;
+      }
+
+      > * > a,
+      > * > button {
+        color: rgba(255, 255, 255, 0.85) !important;
+
+        &:hover,
+        &:focus {
+          background: rgba(255, 255, 255, 0.08) !important;
+          color: #fff !important;
+        }
+      }
+    }
+
+    // Apps menu (hamburger/grid icon)
+    .o_navbar_apps_menu .dropdown-toggle {
+      background: $fm-d-1 !important;
+      color: rgba(255, 255, 255, 0.85) !important;
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.08) !important;
+      }
+    }
+
+    // Systray (right-side icons)
+    .o_menu_systray {
+      .dropdown-toggle,
+      > li > a,
+      > li > button {
+        color: rgba(255, 255, 255, 0.85) !important;
+
+        &:hover {
+          background: rgba(255, 255, 255, 0.08) !important;
+          color: #fff !important;
+        }
+      }
+
+      .o-mail-DiscussSystray-class {
+        &:hover,
+        &.show {
+          background-color: rgba(255, 255, 255, 0.1) !important;
+        }
+      }
+    }
+
+    // Navbar dropdowns
+    .dropdown-menu {
+      background-color: $fm-d-3 !important;
+      border-color: $fm-d-border-strong !important;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4) !important;
+    }
+  }
+
+  // ── Action Manager ─────────────────────────────────────────
+  .o_action_manager {
+    background-color: $fm-d-2 !important;
+  }
+
+  .o_action {
+    background-color: $fm-d-2 !important;
+    color: $fm-d-text !important;
+  }
+
+  .o_content {
+    background-color: $fm-d-2 !important;
+  }
+
+  // ── Control Panel ──────────────────────────────────────────
+  .o_control_panel {
+    background-color: $fm-d-1 !important;
+    border-bottom-color: $fm-d-border !important;
+    color: $fm-d-text !important;
+    --ControlPanel-border-bottom: 1px solid #{$fm-d-border};
+  }
+
+  .o_control_panel_breadcrumbs {
+    color: $fm-d-text !important;
+  }
+
+  .breadcrumb {
+    --bs-breadcrumb-divider-color: #{$fm-d-text-muted};
+
+    .breadcrumb-item {
+      color: $fm-d-text-muted !important;
+
+      &.active {
+        color: $fm-d-text !important;
+      }
+
+      a {
+        color: $fm-d-text-secondary !important;
+
+        &:hover {
+          color: $fm-d-text !important;
+        }
+      }
+
+      + .breadcrumb-item::before {
+        color: $fm-d-text-muted !important;
+      }
+    }
+  }
+
+  // ── Search View ────────────────────────────────────────────
+  .o_searchview {
+    background-color: $fm-d-4 !important;
+    border-color: $fm-d-border-strong !important;
+    color: $fm-d-text !important;
+
+    input {
+      color: $fm-d-text !important;
+
+      &::placeholder {
+        color: $fm-d-text-muted !important;
+      }
+    }
+
+    .o_searchview_facet {
+      background-color: $fm-d-accent-soft !important;
+      border-color: rgba($fm-d-accent, 0.3) !important;
+      color: $fm-d-text !important;
+
+      .o_searchview_facet_label {
+        background-color: rgba($fm-d-accent, 0.25) !important;
+        color: $fm-d-accent !important;
+      }
+    }
+  }
+
+  // ── Search Panel (left sidebar filters) ────────────────────
+  .o_search_panel {
+    background-color: $fm-d-1 !important;
+    border-right-color: $fm-d-border !important;
+    color: $fm-d-text !important;
+
+    .o_search_panel_category_value,
+    .o_search_panel_filter_value {
+      &:hover {
+        background-color: $fm-d-hover !important;
+      }
+    }
+
+    .o_search_panel_label {
+      color: $fm-d-text !important;
+    }
+
+    .o_search_panel_section_header {
+      color: $fm-d-text-muted !important;
+    }
+
+    button:hover {
+      background-color: $fm-d-hover !important;
+    }
+
+    .active {
+      background-color: $fm-d-active !important;
+    }
+
+    input[type="text"] {
+      background-color: $fm-d-4 !important;
+      border-color: $fm-d-border-strong !important;
+      color: $fm-d-text !important;
+    }
+  }
+
+  // ── Filter Menu / Group By / Favorites ─────────────────────
+  .o_generator_menu,
+  .o_filter_menu,
+  .o_group_by_menu,
+  .o_comparison_menu,
+  .o_favorite_menu {
+    color: $fm-d-text !important;
+  }
+
+  // ── Pager ──────────────────────────────────────────────────
+  .o_pager {
+    color: $fm-d-text-muted !important;
+
+    .o_pager_value {
+      color: $fm-d-text !important;
+    }
+
+    button {
+      color: $fm-d-text-muted !important;
+
+      &:hover {
+        color: $fm-d-text !important;
+      }
+    }
+  }
+
+  // ══════════════════════════════════════════════════════════
+  // FORM VIEW
+  // ══════════════════════════════════════════════════════════
+  .o_form_view {
+    background-color: $fm-d-2 !important;
+    color: $fm-d-text !important;
+
+    .o_form_sheet_bg {
+      background-color: $fm-d-2 !important;
+    }
+
+    .o_form_sheet {
+      background-color: $fm-d-3 !important;
+      border-color: $fm-d-border !important;
+      color: $fm-d-text !important;
+    }
+
+    .o_form_nosheet {
+      background-color: $fm-d-3 !important;
+      color: $fm-d-text !important;
+    }
+
+    // note editor toolbar
+    .note-toolbar.panel-heading {
+      background: $fm-d-3 !important;
+    }
+
+    // Sub-lists inside form (one2many / many2many table headers)
+    .o_field_widget .o_list_renderer {
+      --ListRenderer-thead-bg-color: #{$fm-d-3} !important;
+      --ListRenderer-tfoot-bg-color: #{$fm-d-3} !important;
+
+      .o_list_table {
+        --table-bg: #{$fm-d-3};
+        --bs-table-bg: #{$fm-d-3};
+        background-color: $fm-d-3 !important;
+      }
+    }
+
+    // Status bar
+    .o_form_statusbar {
+      background-color: $fm-d-3 !important;
+      border-bottom-color: $fm-d-border !important;
+
+      .o_statusbar_status {
+        .o_arrow_button {
+          color: $fm-d-text-muted !important;
+          border-color: $fm-d-border !important;
+          background-color: transparent !important;
+
+          &.o_arrow_button_current,
+          &.btn-primary {
+            color: $fm-d-text !important;
+            background-color: $fm-d-accent-soft !important;
+          }
+        }
+      }
+    }
+
+    // Inner groups
+    .o_group {
+      color: $fm-d-text !important;
+    }
+
+    .o_inner_group {
+      .o_td_label,
+      .o_form_label {
+        color: $fm-d-text-muted !important;
+      }
+    }
+
+    // Separator
+    .o_horizontal_separator {
+      color: $fm-d-text !important;
+    }
+
+    // Labels globally
+    label,
+    .o_form_label {
+      color: $fm-d-text-muted !important;
+    }
+
+    // Stat buttons
+    .oe_button_box .oe_stat_button {
+      border-color: $fm-d-border !important;
+      color: $fm-d-text !important;
+
+      .o_stat_text {
+        color: $fm-d-text-muted !important;
+      }
+
+      &:hover {
+        background-color: $fm-d-hover !important;
+      }
+    }
+  }
+
+  // ══════════════════════════════════════════════════════════
+  // LIST VIEW
+  // ══════════════════════════════════════════════════════════
+  .o_list_renderer {
+    --ListRenderer-thead-bg-color: #{$fm-d-1} !important;
+    --ListRenderer-tfoot-bg-color: #{$fm-d-1} !important;
+  }
+
+  .o_list_view {
+    background-color: $fm-d-2 !important;
+    color: $fm-d-text !important;
+
+    .o_list_table {
+      --table-bg: #{$fm-d-2};
+      --bs-table-bg: #{$fm-d-2};
+      --bs-table-striped-bg: #{$fm-d-3};
+      --bs-table-hover-bg: #{$fm-d-4};
+      --bs-table-color: #{$fm-d-text};
+      --bs-table-border-color: #{$fm-d-border};
+      background-color: $fm-d-2 !important;
+      color: $fm-d-text !important;
+
+      > thead {
+        background-color: var(--ListRenderer-thead-bg-color, $fm-d-1) !important;
+
+        th {
+          color: $fm-d-text-muted !important;
+          border-color: $fm-d-border !important;
+          background-color: transparent !important;
+        }
+      }
+
+      > tbody {
+        .o_data_row {
+          background-color: $fm-d-2 !important;
+          border-color: $fm-d-border !important;
+
+          &:hover,
+          &:nth-child(even):hover {
+            background-color: $fm-d-4 !important;
+          }
+
+          &:nth-child(even) {
+            background-color: $fm-d-3 !important;
+          }
+
+          &.o_selected_row {
+            background-color: $fm-d-5 !important;
+
+            td,
+            th {
+              &:focus-within {
+                background-color: $fm-d-5 !important;
+              }
+            }
+          }
+
+          td {
+            color: $fm-d-text !important;
+            border-color: $fm-d-border !important;
+          }
+        }
+
+        // Group headers
+        .o_group_header {
+          background-color: $fm-d-1 !important;
+          color: $fm-d-text !important;
+          border-color: $fm-d-border !important;
+
+          td {
+            color: $fm-d-text !important;
+          }
+
+          .o_pager_previous,
+          .o_pager_next {
+            background-color: $fm-d-4 !important;
+          }
+        }
+      }
+
+      > tfoot {
+        background-color: var(--ListRenderer-tfoot-bg-color, $fm-d-1) !important;
+
+        td {
+          color: $fm-d-text !important;
+          border-color: $fm-d-border !important;
+        }
+      }
+    }
+
+    // actions header row
+    .o_list_actions_header {
+      background-color: $fm-d-1 !important;
+    }
+
+    // keyboard navigation focus
+    .o_keyboard_navigation .o_data_row th:focus-within,
+    .o_keyboard_navigation .o_data_row td:focus-within {
+      background-color: $fm-d-4 !important;
+    }
+
+    // optional/checkbox columns
+    .o_list_record_selector .form-check-input {
+      background-color: $fm-d-4 !important;
+      border-color: $fm-d-border-strong !important;
+    }
+  }
+
+  // ══════════════════════════════════════════════════════════
+  // KANBAN VIEW (including To-do, Project, etc.)
+  // ══════════════════════════════════════════════════════════
+  .o_kanban_view {
+    background-color: $fm-d-2 !important;
+    --Kanban-background: #{$fm-d-2};
+
+    .o_kanban_renderer {
+      background-color: $fm-d-2 !important;
+      border-top-color: $fm-d-border !important;
+    }
+
+    .o_kanban_group {
+      background-color: transparent !important;
+      --KanbanGroup-background: transparent;
+    }
+
+    .o_kanban_header {
+      color: $fm-d-text !important;
+
+      .o_kanban_header_title {
+        color: $fm-d-text !important;
+
+        .o_column_title {
+          color: $fm-d-text !important;
+        }
+      }
+
+      .o_kanban_counter {
+        color: $fm-d-text-muted !important;
+      }
+
+      .o_kanban_config .dropdown-menu {
+        background-color: $fm-d-3 !important;
+      }
+    }
+
+    // Kanban column progress bars
+    .o_kanban_counter > .o_column_progress {
+      .bg-200 {
+        background-color: $fm-d-4 !important;
+      }
+    }
+
+    // Kanban records (cards) - THIS IS KEY for To-do cards
+    .o_kanban_record {
+      background-color: $fm-d-3 !important;
+      border-color: $fm-d-border !important;
+      color: $fm-d-text !important;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2) !important;
+
+      > div:not(.o_dropdown_kanban) {
+        background-color: $fm-d-3 !important;
+        border-color: $fm-d-border !important;
+        color: $fm-d-text !important;
+      }
+
+      &:hover {
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important;
+      }
+
+      .o_kanban_record_title,
+      .o_kanban_record_headings strong {
+        color: $fm-d-text !important;
+      }
+
+      .o_kanban_record_subtitle,
+      small {
+        color: $fm-d-text-muted !important;
+      }
+
+      // Priority stars
+      .o_priority_star {
+        color: $fm-d-text-muted !important;
+        &.fa-star {
+          color: #f3cc00 !important;
+        }
+      }
+
+      // Tags inside kanban cards
+      .o_tag {
+        color: $fm-d-text !important;
+      }
+
+      // Bottom section
+      .oe_kanban_bottom_left,
+      .oe_kanban_bottom_right {
+        color: $fm-d-text-muted !important;
+      }
+
+      // Dropdown
+      .o_dropdown_kanban .dropdown-menu {
+        background-color: $fm-d-3 !important;
+        border-color: $fm-d-border-strong !important;
+      }
+    }
+
+    // Kanban quick create
+    .o_kanban_quick_create {
+      background-color: $fm-d-3 !important;
+      border-color: $fm-d-border !important;
+      color: $fm-d-text !important;
+
+      input,
+      .form-control {
+        background-color: $fm-d-4 !important;
+        border-color: $fm-d-border-strong !important;
+        color: $fm-d-text !important;
+      }
+    }
+
+    // Column quick create
+    .o_column_quick_create .o_quick_create_folded {
+      background-color: $fm-d-3 !important;
+      border-color: $fm-d-border !important;
+      color: $fm-d-text-muted !important;
+    }
+
+    .o_column_quick_create .o_quick_create_unfolded {
+      background-color: $fm-d-3 !important;
+      border-color: $fm-d-border !important;
+
+      input {
+        background-color: $fm-d-4 !important;
+        border-color: $fm-d-border-strong !important;
+        color: $fm-d-text !important;
+      }
+    }
+  }
+
+  // Ungrouped kanban
+  .o_kanban_renderer.o_kanban_ungrouped {
+    background-color: $fm-d-2 !important;
+
+    .o_kanban_record > div:not(.o_dropdown_kanban) {
+      background-color: $fm-d-3 !important;
+      border-color: $fm-d-border !important;
+      color: $fm-d-text !important;
+    }
+  }
+
+  // ══════════════════════════════════════════════════════════
+  // CALENDAR VIEW (COMPREHENSIVE)
+  // ══════════════════════════════════════════════════════════
+  .o_calendar_container {
+    background-color: $fm-d-2 !important;
+    color: $fm-d-text !important;
+  }
+
+  .o_calendar_view {
+    background-color: $fm-d-2 !important;
+    color: $fm-d-text !important;
+  }
+
+  // Calendar header (navigation buttons)
+  .o_calendar_header {
+    background-color: $fm-d-1 !important;
+    color: $fm-d-text !important;
+
+    .btn-secondary,
+    .btn-outline-secondary,
+    .btn-group .btn {
+      background-color: $fm-d-4 !important;
+      border-color: $fm-d-border-strong !important;
+      color: $fm-d-text !important;
+
+      &:hover,
+      &:focus {
+        background-color: $fm-d-5 !important;
+        color: $fm-d-text !important;
+      }
+
+      &.active,
+      &:active {
+        background-color: $fm-d-accent-soft !important;
+        color: $fm-d-text !important;
+      }
+    }
+
+    .o_calendar_button_today {
+      color: $fm-d-text !important;
+    }
+
+    .scale_button_selection {
+      color: $fm-d-text !important;
+    }
+  }
+
+  // Calendar renderer (the actual FullCalendar grid)
+  .o_calendar_renderer {
+    background-color: $fm-d-2 !important;
+
+    .o_calendar_widget {
+      color: $fm-d-text !important;
+    }
+
+    // FullCalendar CSS variables
+    .fc {
+      --fc-neutral-bg-color: #{$fm-d-3};
+      --fc-page-bg-color: #{$fm-d-2};
+      --fc-border-color: #{$fm-d-border};
+      --fc-today-bg-color: #{$fm-d-accent-soft};
+    }
+
+    // All borders in calendar
+    th,
+    td {
+      border-color: $fm-d-border !important;
+      color: $fm-d-text !important;
+    }
+
+    // Header container (day names row - sticky)
+    .fc-head-container {
+      background-color: $fm-d-1 !important;
+      border-color: $fm-d-border !important;
+
+      .fc-week-number > span {
+        background-color: $fm-d-4 !important;
+        color: $fm-d-text-muted !important;
+      }
+    }
+
+    // Day header cells (MIN, SEN, SEL, etc.)
+    .fc-day-header {
+      background-color: $fm-d-1 !important;
+      color: $fm-d-text-muted !important;
+      border-color: $fm-d-border !important;
+    }
+
+    // Column header cells (generic FullCalendar)
+    .fc-col-header-cell {
+      background-color: $fm-d-1 !important;
+      color: $fm-d-text-muted !important;
+    }
+
+    .fc-widget-header {
+      border-color: $fm-d-border !important;
+      color: $fm-d-text-muted !important;
+    }
+
+    .fc-widget-content {
+      border-color: $fm-d-border !important;
+    }
+
+    // HR separators
+    hr.fc-widget-header {
+      background: $fm-d-border-strong !important;
+    }
+
+    // Day grid cells (generic)
+    .fc-daygrid-day,
+    .fc-day {
+      background-color: $fm-d-2 !important;
+
+      &.fc-day-today:not(.o_calendar_disabled) {
+        background-color: $fm-d-accent-soft !important;
+      }
+    }
+
+    // Day number in month view
+    .fc-day-top {
+      color: $fm-d-text !important;
+
+      .fc-day-number {
+        color: $fm-d-text !important;
+      }
+
+      &.fc-today {
+        .fc-day-number {
+          color: $fm-d-text !important;
+        }
+      }
+    }
+
+    // Time grid (week/day view) - time slots
+    .fc-time-grid {
+      .fc-slats td {
+        border-color: $fm-d-border !important;
+      }
+
+      .fc-slats .fc-minor td {
+        border-top-color: rgba(255, 255, 255, 0.04) !important;
+      }
+    }
+
+    // Time axis labels (7:00, 8:00, etc.)
+    .fc-axis {
+      color: $fm-d-text-muted !important;
+      border-color: $fm-d-border !important;
+
+      &.fc-time span {
+        color: $fm-d-text-muted !important;
+      }
+    }
+
+    // All day area
+    div.fc-day-grid {
+      background-color: $fm-d-2 !important;
+      box-shadow: 0 6px 12px -6px rgba(0, 0, 0, 0.3) !important;
+
+      + hr.fc-widget-header {
+        background: $fm-d-border-strong !important;
+      }
+    }
+
+    // Current time indicator (red line)
+    .fc-now-indicator {
+      border-color: #e74c3c !important;
+    }
+
+    // Disabled days
+    .o_calendar_disabled {
+      background-color: rgba(255, 255, 255, 0.03) !important;
+    }
+
+    // More events popover
+    .fc-more-popover {
+      background-color: $fm-d-3 !important;
+      border-color: $fm-d-border-strong !important;
+
+      .fc-header {
+        background-color: $fm-d-1 !important;
+        color: $fm-d-text !important;
+      }
+
+      .fc-body {
+        background-color: $fm-d-3 !important;
+      }
+    }
+
+    // Events
+    .fc-event {
+      color: $fm-d-text !important;
+
+      &.o_past_event::after {
+        background-color: rgba($fm-d-2, var(--o-overlay-opacity, 0.5)) !important;
+      }
+    }
+
+    // "more" link
+    .fc-more {
+      color: $fm-d-accent !important;
+    }
+
+    // Today in day/week view
+    .fc-day.fc-widget-content.fc-today:not(.o_calendar_disabled) {
+      background: $fm-d-2 !important;
+    }
+
+    // Event box shadow separator
+    .fc-event:not(.o_event_allday):not(.o_homework_event) {
+      box-shadow: 0 0 0 1px $fm-d-2 !important;
+    }
+
+    // Week number cells
+    .fc-week-number {
+      color: $fm-d-text-muted !important;
+    }
+
+    // Content skeleton for month view
+    .fc-content-skeleton {
+      color: $fm-d-text !important;
+    }
+
+    // Year view
+    .fc-dayGridYear-view .fc-month-header {
+      background-color: $fm-d-1 !important;
+      color: $fm-d-text !important;
+    }
+  }
+
+  // Calendar sidebar (right panel with mini calendar + filters)
+  .o_calendar_sidebar_container {
+    background-color: $fm-d-2 !important;
+    border-left-color: $fm-d-border !important;
+
+    .o_calendar_sidebar {
+      background-color: $fm-d-2 !important;
+      color: $fm-d-text !important;
+    }
+
+    // Mini calendar (DateTimePicker)
+    .o_datetime_picker {
+      background-color: $fm-d-2 !important;
+      color: $fm-d-text !important;
+
+      .o_datetime_picker_header {
+        color: $fm-d-text !important;
+
+        button {
+          color: $fm-d-text !important;
+
+          &:hover {
+            background-color: $fm-d-hover !important;
+          }
+        }
+      }
+
+      .o_day_of_week_cell {
+        color: $fm-d-text-muted !important;
+        background-color: transparent !important;
+      }
+
+      .o_date_item_cell {
+        color: $fm-d-text !important;
+
+        .o_date_item {
+          color: $fm-d-text !important;
+
+          &.o_today {
+            background-color: $fm-d-accent !important;
+            color: #fff !important;
+          }
+
+          &.o_selected {
+            background-color: $fm-d-accent !important;
+            color: #fff !important;
+          }
+
+          &:hover:not(.o_today):not(.o_selected) {
+            background-color: $fm-d-4 !important;
+          }
+
+          &.o_out_of_range {
+            color: $fm-d-text-muted !important;
+          }
+        }
+      }
+
+      .o_cell_md {
+        color: $fm-d-text !important;
+      }
+
+      button,
+      .btn {
+        color: $fm-d-text !important;
+
+        &:hover {
+          background-color: $fm-d-hover !important;
+        }
+      }
+    }
+
+    // Calendar filters (attendees list)
+    .o_calendar_filter {
+      color: $fm-d-text !important;
+
+      .o_calendar_filter_items_checkall,
+      .o_calendar_filter_item {
+        color: $fm-d-text !important;
+
+        label {
+          color: $fm-d-text !important;
+        }
+
+        &:hover {
+          background-color: $fm-d-hover !important;
+        }
+      }
+    }
+
+    .o_calendar_filter_title,
+    .fw-bold {
+      color: $fm-d-text !important;
+    }
+
+    .o_calendar_sync {
+      color: $fm-d-text !important;
+    }
+  }
+
+  // Calendar connect banner
+  .o_calendar_container .o_view_nocontent_smiling_face,
+  .o_calendar_container .o_nocontent_help {
+    color: $fm-d-text-muted !important;
+  }
+
+  // ══════════════════════════════════════════════════════════
+  // DISCUSS / MAIL (COMPREHENSIVE)
+  // ══════════════════════════════════════════════════════════
+  .o-mail-Discuss {
+    background-color: $fm-d-2 !important;
+    color: $fm-d-text !important;
+  }
+
+  .o-mail-Discuss-content {
+    background-color: $fm-d-2 !important;
+    color: $fm-d-text !important;
+  }
+
+  // Discuss header
+  .o-mail-Discuss-header {
+    background-color: $fm-d-1 !important;
+    border-bottom-color: $fm-d-border !important;
+    color: $fm-d-text !important;
+
+    button:not(.o-isActive):hover {
+      background-color: $fm-d-4 !important;
+    }
+
+    button.o-isActive {
+      background-color: $fm-d-5 !important;
+    }
+
+    .o-mail-Discuss-threadName {
+      color: $fm-d-text !important;
+    }
+  }
+
+  // Discuss Sidebar
+  .o-mail-DiscussSidebar {
+    background-color: $fm-d-1 !important;
+    border-right-color: $fm-d-border !important;
+    color: $fm-d-text !important;
+
+    // "Mulai meeting" button
+    > .btn-primary,
+    > a.btn-primary {
+      background-color: $fm-d-accent !important;
+      border-color: $fm-d-accent !important;
+    }
+
+    .o-mail-DiscussSidebarCategory {
+      color: $fm-d-text-muted !important;
+    }
+
+    .o-mail-DiscussSidebarCategory-icon {
+      color: $fm-d-text-muted !important;
+    }
+
+    .o-mail-DiscussSidebar-item {
+      color: $fm-d-text !important;
+
+      &:hover {
+        background-color: $fm-d-hover !important;
+      }
+
+      &.o-active {
+        background-color: $fm-d-active !important;
+      }
+    }
+
+    .o-mail-DiscussSidebarChannel {
+      color: $fm-d-text !important;
+      background-color: transparent !important;
+
+      &:hover {
+        background-color: $fm-d-hover !important;
+      }
+
+      &.o-active {
+        background-color: $fm-d-active !important;
+      }
+
+      .btn-secondary {
+        background-color: transparent !important;
+        border-color: transparent !important;
+        color: $fm-d-text !important;
+      }
+    }
+
+    // Sidebar items (Kotak Pesan, Membintangi, Riwayat)
+    .o-mail-DiscussSidebar-item.btn-secondary,
+    .btn-secondary {
+      background-color: transparent !important;
+      border-color: transparent !important;
+      color: $fm-d-text !important;
+
+      &:hover {
+        background-color: $fm-d-hover !important;
+      }
+
+      &.o-active {
+        background-color: $fm-d-active !important;
+      }
+    }
+
+    .o-mail-DiscussSidebarCategory-add {
+      color: $fm-d-text-muted !important;
+
+      &:hover {
+        color: $fm-d-text !important;
+      }
+    }
+
+    .o-discuss-badge,
+    .badge {
+      color: #fff !important;
+    }
+  }
+
+  // Thread (message list area)
+  .o-mail-Thread {
+    background-color: $fm-d-2 !important;
+    color: $fm-d-text !important;
+
+    .o-mail-Thread-jumpPresent {
+      background-color: $fm-d-4 !important;
+      color: $fm-d-text !important;
+    }
+  }
+
+  // Messages
+  .o-mail-Message {
+    color: $fm-d-text !important;
+    border-color: $fm-d-border !important;
+
+    .o-mail-Message-content {
+      color: $fm-d-text !important;
+    }
+
+    .o-mail-Message-author,
+    .o-mail-Message-author-name {
+      color: $fm-d-text !important;
+    }
+
+    .o-mail-Message-date {
+      color: $fm-d-text-muted !important;
+    }
+
+    .o-mail-Message-bubble {
+      background-color: $fm-d-3 !important;
+      border-color: $fm-d-border !important;
+      color: $fm-d-text !important;
+    }
+
+    .o-mail-Message-body {
+      color: $fm-d-text !important;
+
+      blockquote {
+        border-left-color: $fm-d-border-strong !important;
+        color: $fm-d-text-secondary !important;
+      }
+
+      ul,
+      ol {
+        color: $fm-d-text !important;
+      }
+    }
+
+    .o-mail-Message-actions {
+      background-color: $fm-d-3 !important;
+      border-color: $fm-d-border !important;
+
+      button:hover,
+      .focus {
+        background-color: $fm-d-4 !important;
+      }
+    }
+
+    .o-mail-Message-moreMenu {
+      background-color: $fm-d-3 !important;
+    }
+
+    .o-mail-Message-tracking {
+      color: $fm-d-text !important;
+
+      .o-mail-Message-trackingOld {
+        color: $fm-d-text-muted !important;
+      }
+
+      .o-mail-Message-trackingNew {
+        color: $fm-d-accent !important;
+      }
+
+      .fa-long-arrow-right {
+        color: $fm-d-text-muted !important;
+      }
+    }
+
+    .o-mail-Message-subject {
+      color: $fm-d-text !important;
+      background-color: $fm-d-3 !important;
+    }
+  }
+
+  // Notification messages
+  .o-mail-NotificationMessage {
+    color: $fm-d-text-muted !important;
+
+    p {
+      color: $fm-d-text-muted !important;
+    }
+  }
+
+  // Date section dividers
+  .o-mail-DateSection {
+    color: $fm-d-text-muted !important;
+
+    hr {
+      border-color: $fm-d-border !important;
+    }
+  }
+
+  // Composer (message input area)
+  .o-mail-Composer {
+    background-color: $fm-d-1 !important;
+    border-top-color: $fm-d-border !important;
+    color: $fm-d-text !important;
+
+    .o-mail-Composer-input {
+      background-color: $fm-d-4 !important;
+      color: $fm-d-text !important;
+      border-color: $fm-d-border-strong !important;
+
+      &::placeholder {
+        color: $fm-d-text-muted !important;
+      }
+    }
+
+    .o-mail-Composer-actions button {
+      color: $fm-d-text-muted !important;
+
+      &:hover {
+        background-color: $fm-d-4 !important;
+        color: $fm-d-text !important;
+      }
+    }
+
+    .o-mail-Composer-footer {
+      color: $fm-d-text-muted !important;
+    }
+  }
+
+  // Discuss Inspector Panel
+  .o-mail-Discuss-inspector {
+    background-color: $fm-d-1 !important;
+    border-left-color: $fm-d-border !important;
+    color: $fm-d-text !important;
+  }
+
+  // Messaging Menu (systray dropdown)
+  .o-mail-MessagingMenu {
+    background-color: $fm-d-3 !important;
+    border-color: $fm-d-border-strong !important;
+    color: $fm-d-text !important;
+
+    // Override bg-view inside messaging menu
+    &.bg-view {
+      --background-color: #{$fm-d-3} !important;
+      background-color: $fm-d-3 !important;
+    }
+
+    .o-mail-MessagingMenu-header {
+      background-color: $fm-d-3 !important;
+      border-bottom-color: $fm-d-border !important;
+
+      // Override bg-view on header too
+      &.bg-view {
+        --background-color: #{$fm-d-3} !important;
+        background-color: $fm-d-3 !important;
+      }
+    }
+
+    .o-mail-MessagingMenu-navbar button,
+    .o-mail-MessagingMenu-tab {
+      color: $fm-d-text !important;
+
+      &.o-active,
+      &:hover {
+        background-color: $fm-d-4 !important;
+      }
+    }
+
+    // Buttons inside header (All, Chats, Channels)
+    .btn-link {
+      color: $fm-d-text-muted !important;
+
+      &.fw-bold,
+      &:hover {
+        color: $fm-d-text !important;
+      }
+    }
+
+    .btn-secondary {
+      background-color: $fm-d-4 !important;
+      border-color: $fm-d-border-strong !important;
+      color: $fm-d-text !important;
+
+      &:hover {
+        background-color: $fm-d-5 !important;
+      }
+    }
+
+    hr {
+      border-color: $fm-d-border !important;
+    }
+
+    // Scrollable list container
+    .list-group-flush {
+      background-color: $fm-d-3 !important;
+    }
+  }
+
+  // Notification Items - CRITICAL: these have bg-view class directly
+  .o-mail-NotificationItem {
+    // Override bg-view on notification items specifically
+    &.bg-view {
+      --background-color: #{$fm-d-3} !important;
+      background-color: $fm-d-3 !important;
+    }
+
+    // Also override as list-group-item
+    &.list-group-item {
+      background-color: $fm-d-3 !important;
+      border-color: $fm-d-border !important;
+    }
+
+    background-color: $fm-d-3 !important;
+    border-color: $fm-d-border !important;
+    color: $fm-d-text !important;
+
+    &.o-important {
+      background-color: $fm-d-4 !important;
+    }
+
+    &:hover {
+      background-color: $fm-d-4 !important;
+    }
+
+    .o-mail-NotificationItem-name {
+      color: $fm-d-text !important;
+    }
+
+    .o-mail-NotificationItem-date {
+      color: $fm-d-text-muted !important;
+    }
+
+    .o-mail-NotificationItem-text {
+      color: $fm-d-text-secondary !important;
+    }
+
+    .o-mail-NotificationItem-markAsRead {
+      background-color: transparent !important;
+
+      &:hover {
+        background-color: $fm-d-hover !important;
+      }
+    }
+  }
+
+  // DiscussSystray dropdown container (wraps the messaging menu)
+  .o-mail-DiscussSystray {
+    background-color: $fm-d-3 !important;
+
+    .bg-view {
+      --background-color: #{$fm-d-3} !important;
+      background-color: $fm-d-3 !important;
+    }
+  }
+
+  // Chat Window
+  .o-mail-ChatWindow {
+    background-color: $fm-d-3 !important;
+    border-color: $fm-d-border-strong !important;
+    box-shadow: -5px -5px 10px rgba(0, 0, 0, 0.3) !important;
+
+    .o-mail-ChatWindow-header {
+      background-color: $fm-d-1 !important;
+      border-bottom-color: $fm-d-border !important;
+      color: $fm-d-text !important;
+    }
+
+    .o-mail-ChatWindow-command {
+      &:hover,
+      &.o-active {
+        background-color: $fm-d-4 !important;
+      }
+    }
+
+    .o-mail-Thread {
+      background-color: $fm-d-3 !important;
+    }
+  }
+
+  // Chatter (in form views)
+  .o-mail-Chatter {
+    background-color: $fm-d-2 !important;
+    color: $fm-d-text !important;
+
+    .o-mail-Chatter-top {
+      background-color: $fm-d-2 !important;
+    }
+
+    .o-mail-Chatter-topbar {
+      border-bottom-color: $fm-d-border !important;
+    }
+  }
+
+  .o_ChatterTopbar {
+    border-bottom-color: $fm-d-border !important;
+    color: $fm-d-text !important;
+  }
+
+  // Followers
+  .o-mail-Followers-button:focus {
+    background-color: $fm-d-4 !important;
+  }
+
+  .o-mail-Followers-dropdown {
+    background-color: $fm-d-3 !important;
+    border-color: $fm-d-border-strong !important;
+
+    .o-mail-Follower-details:hover,
+    .o-mail-Follower-action:hover {
+      background-color: $fm-d-4 !important;
+    }
+  }
+
+  // Activity widget
+  .o-mail-Activity {
+    background-color: $fm-d-3 !important;
+    border-color: $fm-d-border !important;
+    color: $fm-d-text !important;
+  }
+
+  // Channel member list
+  .o-discuss-ChannelMember {
+    &:hover {
+      background-color: $fm-d-hover !important;
+    }
+  }
+
+  // Search / pinned messages panels
+  .o-mail-SearchMessagesPanel,
+  .o-discuss-PinnedMessagesPanel {
+    background-color: $fm-d-1 !important;
+    border-left-color: $fm-d-border !important;
+    color: $fm-d-text !important;
+
+    .card {
+      background-color: $fm-d-3 !important;
+      border-color: $fm-d-border !important;
+    }
+  }
+
+  .o-mail-ActionPanel {
+    background-color: $fm-d-1 !important;
+    border-left-color: $fm-d-border !important;
+    color: $fm-d-text !important;
+
+    .o-mail-ActionPanel-header {
+      border-bottom-color: $fm-d-border !important;
+    }
+  }
+
+  // list-group-item (used by notification items, discuss)
+  .list-group-item {
+    background-color: $fm-d-3 !important;
+    border-color: $fm-d-border !important;
+    color: $fm-d-text !important;
+
+    &:hover {
+      background-color: $fm-d-4 !important;
+    }
+  }
+
+  // ══════════════════════════════════════════════════════════
+  // PIVOT VIEW
+  // ══════════════════════════════════════════════════════════
+  .o_pivot {
+    background-color: $fm-d-2 !important;
+    color: $fm-d-text !important;
+
+    table {
+      color: $fm-d-text !important;
+
+      th {
+        background-color: $fm-d-1 !important;
+        color: $fm-d-text-muted !important;
+        border-color: $fm-d-border !important;
+      }
+
+      td {
+        border-color: $fm-d-border !important;
+        color: $fm-d-text !important;
+      }
+    }
+  }
+
+  // ══════════════════════════════════════════════════════════
+  // GRAPH VIEW
+  // ══════════════════════════════════════════════════════════
+  .o_graph_view {
+    background-color: $fm-d-2 !important;
+    color: $fm-d-text !important;
+  }
+
+  // ══════════════════════════════════════════════════════════
+  // ACTIVITY VIEW
+  // ══════════════════════════════════════════════════════════
+  .o_activity_view {
+    background-color: $fm-d-2 !important;
+    color: $fm-d-text !important;
+
+    table {
+      color: $fm-d-text !important;
+
+      thead th {
+        background-color: $fm-d-1 !important;
+        color: $fm-d-text-muted !important;
+        border-color: $fm-d-border !important;
+      }
+
+      td {
+        border-color: $fm-d-border !important;
+        color: $fm-d-text !important;
+      }
+    }
+
+    // Record row (left column with task name, user, etc.)
+    .o_activity_record {
+      color: $fm-d-text !important;
+      background-color: $fm-d-3 !important;
+
+      > div {
+        color: $fm-d-text !important;
+
+        .o_text_bold {
+          color: $fm-d-text !important;
+        }
+
+        .o_text_block {
+          color: $fm-d-text !important;
+        }
+
+        // Muted text (dates, subtitles)
+        .text-muted {
+          color: $fm-d-text-muted !important;
+        }
+      }
+    }
+
+    // ── Activity summary cells (colored status cells) ──
+    .o_activity_summary_cell {
+      border-color: $fm-d-border !important;
+
+      // Overdue — vivid red (matching progress bar danger)
+      &.overdue {
+        background-color: #dc3545 !important;
+        color: #fff !important;
+
+        a {
+          color: #fff !important;
+        }
+
+        .o-mail-ActivityCell-counter {
+          color: #fff !important;
+        }
+      }
+
+      // Today — vivid yellow (matching progress bar warning)
+      &.today {
+        background-color: #ffc107 !important;
+        color: #fff !important;
+
+        a {
+          color: #fff !important;
+        }
+
+        .o-mail-ActivityCell-counter {
+          color: #fff !important;
+        }
+      }
+
+      // Planned — vivid green (matching progress bar success)
+      &.planned {
+        background-color: #198754 !important;
+        color: #fff !important;
+
+        a {
+          color: #fff !important;
+        }
+
+        .o-mail-ActivityCell-counter {
+          color: #fff !important;
+        }
+      }
+
+      // Done — gray
+      &.done {
+        background-color: rgba(#6c757d, 0.2) !important;
+        color: $fm-d-text-muted !important;
+
+        a {
+          color: $fm-d-text-muted !important;
+        }
+      }
+
+      // Empty cell hover — "+" icon
+      &.o_activity_empty_cell:hover {
+        background-color: $fm-d-4 !important;
+
+        > i {
+          color: $fm-d-text-muted !important;
+        }
+      }
+
+      // Default counter text on non-colored cells
+      .o-mail-ActivityCell-counter {
+        color: $fm-d-text !important;
+      }
+
+      // Date text inside cells
+      .o-mail-ActivityCell-deadline,
+      span,
+      div {
+        color: #fff !important;
+      }
+    }
+
+    // ── Activity type column headers (Email, To-Do, etc.) ──
+    .o_activity_type_cell {
+      background-color: $fm-d-1 !important;
+      color: $fm-d-text !important;
+      border-color: $fm-d-border !important;
+
+      // Progress bar
+      .o_activity_counter > .o_column_progress {
+        background-color: $fm-d-4 !important;
+
+        > div {
+          // green/yellow/red bars keep their color, just adjust borders
+          &.active {
+            border-color: $fm-d-border-strong !important;
+          }
+        }
+      }
+    }
+
+    // ── Row highlight filters ──
+    .o_activity_filter_planned {
+      background-color: rgba(#198754, 0.06) !important;
+    }
+    .o_activity_filter_today {
+      background-color: rgba(#ffc107, 0.06) !important;
+    }
+    .o_activity_filter_overdue {
+      background-color: rgba(#dc3545, 0.06) !important;
+    }
+
+    // ── "Jadwalkan aktivitas" link at bottom ──
+    a {
+      color: $fm-d-accent !important;
+
+      &:hover {
+        color: lighten($fm-d-accent, 10%) !important;
+      }
+    }
+
+    // Ensure links inside colored cells keep their cell color
+    .o_activity_summary_cell a {
+      color: inherit !important;
+    }
+  }
+
+  // ══════════════════════════════════════════════════════════
+  // SETTINGS (Comprehensive – targets Odoo 17 CSS custom properties)
+  // ══════════════════════════════════════════════════════════
+
+  // Override CSS custom properties defined on the settings form renderer
+  .o_base_settings_view .o_form_renderer {
+    --settings__tab-bg: #{$fm-d-1} !important;
+    --settings__tab-bg--active: #{$fm-d-5} !important;
+    --settings__tab-color: #{$fm-d-text-secondary} !important;
+    --settings__title-bg: #{$fm-d-1} !important;
+  }
+
+  // The outer settings view wrapper
+  .o_base_settings_view,
+  .o_base_settings {
+    background-color: $fm-d-2 !important;
+    color: $fm-d-text !important;
+  }
+
+  .o_base_settings_view .o_form_renderer,
+  .o_base_settings_view .o_form_nosheet {
+    background-color: $fm-d-2 !important;
+    color: $fm-d-text !important;
+  }
+
+  // ── Left Sidebar (module tabs) ──
+  .o_setting_container .settings_tab {
+    background: $fm-d-1 !important;
+    border-right: 1px solid $fm-d-border !important;
+
+    .tab {
+      color: $fm-d-text-secondary !important;
+
+      &:hover {
+        color: $fm-d-text !important;
+        background-color: $fm-d-4 !important;
+      }
+
+      &.selected {
+        background-color: $fm-d-5 !important;
+        color: $fm-d-text !important;
+        box-shadow: inset 2px 0 0 $fm-d-accent !important;
+      }
+
+      .icon {
+        filter: brightness(1.2) !important;
+      }
+    }
+  }
+
+  // ── Right Content Area ──
+  .o_setting_container .settings {
+    background-color: $fm-d-2 !important;
+
+    // Section headers (h2 – "Pengguna", "Bahasa", "Perusahaan", etc.)
+    > .app_settings_block h2 {
+      background-color: $fm-d-1 !important;
+      color: $fm-d-text !important;
+      border-bottom: 1px solid $fm-d-border !important;
+    }
+
+    // Sub-section headers
+    > .app_settings_block h3 {
+      color: $fm-d-text-secondary !important;
+    }
+
+    // Search result section header
+    .settingSearchHeader {
+      background-color: $fm-d-1 !important;
+      color: $fm-d-text !important;
+    }
+
+    // App settings header banner (bg-warning)
+    .app_settings_header {
+      background-color: rgba($fm-d-accent, 0.12) !important;
+      color: $fm-d-text !important;
+
+      &.bg-warning {
+        background-color: rgba(#d97706, 0.15) !important;
+      }
+    }
+
+    // Search highlight
+    .highlighter {
+      background: rgba($fm-d-accent, 0.25) !important;
+      color: $fm-d-text !important;
+    }
+  }
+
+  // ── Settings Container (rows of setting boxes) ──
+  .o_settings_container {
+    .o_setting_box {
+      background-color: transparent !important;
+      color: $fm-d-text !important;
+
+      .o_setting_right_pane {
+        border-left-color: $fm-d-border !important;
+        color: $fm-d-text !important;
+      }
+
+      .o_setting_left_pane {
+        color: $fm-d-text !important;
+      }
+    }
+  }
+
+  // ── Labels & text inside settings ──
+  .o_base_settings_view {
+    .o_form_label,
+    label {
+      color: $fm-d-text-muted !important;
+    }
+
+    .text-muted {
+      color: $fm-d-text-muted !important;
+    }
+
+    .o_field_widget {
+      color: $fm-d-text !important;
+    }
+
+    // Selection / dropdowns inside settings
+    select,
+    .o_field_selection select {
+      background-color: $fm-d-4 !important;
+      color: $fm-d-text !important;
+      border-color: $fm-d-border !important;
+    }
+
+    // Input fields
+    input.o_input,
+    .o_field_char input,
+    .o_field_integer input,
+    textarea {
+      background-color: $fm-d-4 !important;
+      color: $fm-d-text !important;
+      border-color: $fm-d-border !important;
+    }
+
+    // Links
+    a:not(.btn) {
+      color: $fm-d-accent !important;
+    }
+
+    // Enterprise label badge
+    .o_enterprise_label {
+      opacity: 0.7;
+    }
+
+    // Setting highlight (search match)
+    .o_setting_highlight {
+      background-color: rgba($fm-d-accent, 0.15) !important;
+    }
+  }
+
+  // ── Legacy settings tab buttons (fallback) ──
+  .o_base_settings .o_setting_tabs {
+    .o_settings_tab_btn {
+      color: $fm-d-text !important;
+
+      &.selected,
+      &:hover {
+        background-color: $fm-d-5 !important;
+      }
+    }
+  }
+
+  // ══════════════════════════════════════════════════════════
+  // NOTEBOOK / TABS
+  // ══════════════════════════════════════════════════════════
+  .o_notebook {
+    // The .nav bar background (KEY: Odoo sets this to $o-view-background-color = white)
+    > .nav,
+    .nav-tabs,
+    .nav {
+      background-color: $fm-d-3 !important;
+      border-bottom-color: $fm-d-border !important;
+
+      .nav-item .nav-link,
+      .nav-link {
+        color: $fm-d-text-muted !important;
+        border-color: transparent !important;
+        --notebook-link-border-color: transparent;
+        --notebook-link-border-color-active: #{$fm-d-border};
+        --notebook-link-border-color-hover: #{$fm-d-4};
+        --notebook-link-border-color-active-accent: #{$fm-d-border};
+
+        &.active {
+          color: $fm-d-text !important;
+          background-color: $fm-d-3 !important;
+          border-color: $fm-d-border $fm-d-border $fm-d-3 !important;
+          border-bottom-color: $fm-d-3 !important; // blend with content
+        }
+
+        &:hover:not(.active) {
+          border-color: $fm-d-border !important;
+          color: $fm-d-text !important;
+          background-color: $fm-d-4 !important;
+        }
+      }
+    }
+
+    .tab-content {
+      background-color: $fm-d-3 !important;
+      color: $fm-d-text !important;
+    }
+
+    .tab-pane {
+      color: $fm-d-text !important;
+      background-color: transparent !important;
+    }
+
+    // Vertical tabs
+    &.vertical .nav-link.active {
+      border-right-color: $fm-d-3 !important;
+    }
+  }
+
+  // Generic nav-tabs (outside notebook too)
+  .nav-tabs {
+    border-bottom-color: $fm-d-border !important;
+
+    .nav-link {
+      color: $fm-d-text-muted !important;
+
+      &.active {
+        color: $fm-d-text !important;
+        background-color: $fm-d-3 !important;
+        border-color: $fm-d-border $fm-d-border $fm-d-3 !important;
+        border-bottom-color: $fm-d-3 !important;
+      }
+
+      &:hover:not(.active) {
+        border-color: $fm-d-border !important;
+        color: $fm-d-text !important;
+      }
+    }
+  }
+
+  // Nav pills (used in some views)
+  .nav-pills .nav-link {
+    color: $fm-d-text-muted !important;
+
+    &.active {
+      background-color: $fm-d-accent !important;
+      color: #fff !important;
+    }
+
+    &:hover:not(.active) {
+      background-color: $fm-d-hover !important;
+      color: $fm-d-text !important;
+    }
+  }
+
+  // ══════════════════════════════════════════════════════════
+  // BOOTSTRAP FORMS / INPUTS
+  // ══════════════════════════════════════════════════════════
+  .form-control,
+  .form-select {
+    background-color: $fm-d-4 !important;
+    border-color: $fm-d-border-strong !important;
+    color: $fm-d-text !important;
+
+    &::placeholder {
+      color: $fm-d-text-muted !important;
+    }
+
+    &:focus {
+      background-color: lighten($fm-d-4, 3%) !important;
+      border-color: $fm-d-accent !important;
+      color: $fm-d-text !important;
+      box-shadow: 0 0 0 0.2rem rgba($fm-d-accent, 0.2) !important;
+    }
+
+    &:disabled,
+    &[readonly] {
+      background-color: $fm-d-1 !important;
+      color: $fm-d-text-muted !important;
+      opacity: 0.7;
+    }
+  }
+
+  .form-check-input {
+    background-color: $fm-d-4 !important;
+    border-color: $fm-d-border-strong !important;
+
+    &:checked {
+      background-color: $fm-d-accent !important;
+      border-color: $fm-d-accent !important;
+    }
+  }
+
+  .form-switch .form-check-input {
+    background-color: $fm-d-4 !important;
+
+    &:checked {
+      background-color: $fm-d-accent !important;
+    }
+  }
+
+  // ══════════════════════════════════════════════════════════
+  // BOOTSTRAP CARDS
+  // ══════════════════════════════════════════════════════════
+  .card {
+    background-color: $fm-d-3 !important;
+    border-color: $fm-d-border !important;
+    color: $fm-d-text !important;
+
+    .card-header {
+      background-color: $fm-d-1 !important;
+      border-bottom-color: $fm-d-border !important;
+      color: $fm-d-text !important;
+    }
+
+    .card-footer {
+      background-color: $fm-d-1 !important;
+      border-top-color: $fm-d-border !important;
+    }
+
+    .card-body {
+      color: $fm-d-text !important;
+    }
+  }
+
+  // ══════════════════════════════════════════════════════════
+  // BOOTSTRAP TABLES
+  // ══════════════════════════════════════════════════════════
+  .table {
+    --bs-table-bg: #{$fm-d-3};
+    --table-bg: #{$fm-d-3};
+    --bs-table-color: #{$fm-d-text};
+    --bs-table-border-color: #{$fm-d-border};
+    --bs-table-striped-bg: #{$fm-d-4};
+    --bs-table-hover-bg: #{$fm-d-4};
+    background-color: var(--bs-table-bg) !important;
+    color: $fm-d-text !important;
+    border-color: $fm-d-border !important;
+
+    > :not(caption) > * > * {
+      border-bottom-color: $fm-d-border !important;
+      color: $fm-d-text !important;
+      background-color: inherit !important;
+    }
+
+    thead th {
+      background-color: $fm-d-1 !important;
+      color: $fm-d-text-muted !important;
+    }
+
+    tbody tr {
+      background-color: $fm-d-3 !important;
+
+      &:hover {
+        background-color: $fm-d-4 !important;
+      }
+    }
+  }
+
+  // ══════════════════════════════════════════════════════════
+  // MODALS
+  // ══════════════════════════════════════════════════════════
+  .modal-content {
+    background-color: $fm-d-3 !important;
+    border-color: $fm-d-border-strong !important;
+    color: $fm-d-text !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5) !important;
+  }
+
+  .modal-header {
+    border-bottom-color: $fm-d-border !important;
+    color: $fm-d-text !important;
+
+    .btn-close {
+      filter: invert(1) !important;
+    }
+  }
+
+  .modal-footer {
+    border-top-color: $fm-d-border !important;
+  }
+
+  // ══════════════════════════════════════════════════════════
+  // DROPDOWNS (generic)
+  // ══════════════════════════════════════════════════════════
+  .dropdown-menu {
+    background-color: $fm-d-3 !important;
+    border-color: $fm-d-border-strong !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4) !important;
+    color: $fm-d-text !important;
+
+    .dropdown-item {
+      color: $fm-d-text !important;
+
+      &:hover,
+      &:focus {
+        background-color: $fm-d-4 !important;
+        color: $fm-d-text !important;
+      }
+
+      &.active,
+      &:active {
+        background-color: $fm-d-accent-soft !important;
+        color: $fm-d-text !important;
+      }
+    }
+
+    .dropdown-divider {
+      border-color: $fm-d-border !important;
+    }
+
+    .dropdown-header {
+      color: $fm-d-text-muted !important;
+    }
+  }
+
+  // ══════════════════════════════════════════════════════════
+  // POPOVER
+  // ══════════════════════════════════════════════════════════
+  .popover {
+    background-color: $fm-d-3 !important;
+    border-color: $fm-d-border-strong !important;
+    color: $fm-d-text !important;
+
+    .popover-header {
+      background-color: $fm-d-1 !important;
+      border-bottom-color: $fm-d-border !important;
+      color: $fm-d-text !important;
+    }
+
+    .popover-body {
+      color: $fm-d-text !important;
+    }
+
+    .popover-arrow::before {
+      border-color: $fm-d-border-strong !important;
+    }
+
+    .popover-arrow::after {
+      border-color: $fm-d-3 !important;
+    }
+  }
+
+  // ══════════════════════════════════════════════════════════
+  // TOOLTIP
+  // ══════════════════════════════════════════════════════════
+  .tooltip .tooltip-inner {
+    background-color: $fm-d-1 !important;
+    color: $fm-d-text !important;
+  }
+
+  // ══════════════════════════════════════════════════════════
+  // MANY2ONE / RELATION FIELDS
+  // ══════════════════════════════════════════════════════════
+  .o_field_many2one,
+  .o_field_many2many_tags {
+    .badge {
+      background-color: $fm-d-4 !important;
+      border-color: $fm-d-border-strong !important;
+      color: $fm-d-text !important;
+    }
+  }
+
+  // ══════════════════════════════════════════════════════════
+  // HEADINGS
+  // ══════════════════════════════════════════════════════════
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: $fm-d-text !important;
+  }
+
+  // ══════════════════════════════════════════════════════════
+  // LINKS
+  // ══════════════════════════════════════════════════════════
+  a:not(.btn):not(.nav-link):not(.dropdown-item) {
+    color: $fm-d-accent !important;
+
+    &:hover {
+      color: lighten($fm-d-accent, 10%) !important;
+    }
+  }
+
+  // ══════════════════════════════════════════════════════════
+  // TEXT UTILITIES
+  // ══════════════════════════════════════════════════════════
+  .text-muted {
+    color: $fm-d-text-muted !important;
+  }
+
+  .text-dark {
+    color: $fm-d-text !important;
+  }
+
+  .text-body {
+    color: $fm-d-text !important;
+  }
+
+  // ══════════════════════════════════════════════════════════
+  // ALERTS
+  // ══════════════════════════════════════════════════════════
+  .alert {
+    border-color: $fm-d-border !important;
+  }
+
+  .alert-info {
+    background-color: rgba(#17a2b8, 0.15) !important;
+    color: lighten(#17a2b8, 20%) !important;
+    border-color: rgba(#17a2b8, 0.25) !important;
+  }
+
+  .alert-warning {
+    background-color: rgba(#ffc107, 0.15) !important;
+    color: lighten(#ffc107, 15%) !important;
+    border-color: rgba(#ffc107, 0.25) !important;
+  }
+
+  .alert-danger {
+    background-color: rgba(#dc3545, 0.15) !important;
+    color: lighten(#dc3545, 20%) !important;
+    border-color: rgba(#dc3545, 0.25) !important;
+  }
+
+  .alert-success {
+    background-color: rgba(#28a745, 0.15) !important;
+    color: lighten(#28a745, 20%) !important;
+    border-color: rgba(#28a745, 0.25) !important;
+  }
+
+  // ══════════════════════════════════════════════════════════
+  // NOCONTENT / DASHBOARD
+  // ══════════════════════════════════════════════════════════
+  .o_nocontent_help {
+    color: $fm-d-text-muted !important;
+
+    .o_empty_folder {
+      opacity: 0.6;
+    }
+  }
+
+  .o_view_nocontent_smiling_face::before {
+    opacity: 0.6 !important;
+  }
+
+  .o_dashboard {
+    background-color: $fm-d-2 !important;
+    color: $fm-d-text !important;
+  }
+
+  // ══════════════════════════════════════════════════════════
+  // KANBAN DASHBOARD (Accounting, Sales, CRM, Inventory, etc.)
+  // ══════════════════════════════════════════════════════════
+  .o_kanban_dashboard,
+  .o_kanban_view.o_kanban_dashboard {
+    background-color: $fm-d-2 !important;
+    --Kanban-background: #{$fm-d-2} !important;
+
+    .o_kanban_renderer {
+      background: $fm-d-2 !important;
+    }
+
+    // Dashboard kanban cards
+    .o_kanban_record {
+      background-color: $fm-d-3 !important;
+      border-color: $fm-d-border !important;
+      color: $fm-d-text !important;
+
+      > div:not(.o_dropdown_kanban) {
+        background-color: $fm-d-3 !important;
+        color: $fm-d-text !important;
+      }
+    }
+
+    // Account kanban specific
+    &.o_account_kanban {
+      .o_kanban_card_header {
+        background-color: $fm-d-3 !important;
+        color: $fm-d-text !important;
+      }
+
+      .o_kanban_card_settings {
+        border-color: $fm-d-border !important;
+        background-color: $fm-d-3 !important;
+      }
+
+      .o_kanban_manage_button_section {
+        color: $fm-d-text !important;
+      }
+
+      .o_kanban_card_manage_pane {
+        background-color: $fm-d-3 !important;
+        border-color: $fm-d-border !important;
+        color: $fm-d-text !important;
+      }
+    }
+
+    // Bottom block (footer area in dashboard cards)
+    .o_kanban_primary_bottom {
+      &.bottom_block {
+        background-color: $fm-d-1 !important;
+        border-top-color: $fm-d-border !important;
+      }
+    }
+
+    // Dashboard counters
+    .o_kanban_counter_side {
+      border-left-color: $fm-d-border !important;
+    }
+
+    // Kanban manage pane tooltips
+    .o_kanban_manage_toggle_button {
+      color: $fm-d-text-muted !important;
+    }
+  }
+
+  // Accounting Dashboard
+  .journal-card {
+    background: #16171b !important;
+  }
+
+  .invoice-summary-stats .stat-row {
+    background: #16171b !important;
+  }
+
+  .recent-activities-table tbody tr.activity-row:nth-child(even) {
+    background-color: #2a2d38 !important;
+  }
+
+  // ══════════════════════════════════════════════════════════
+  // PROJECT KANBAN (project.project list view)
+  // ══════════════════════════════════════════════════════════
+  .o_kanban_dashboard.o_project_kanban {
+    .o_kanban_record {
+      // Project name / title — override kanban dashboard title mixin
+      // which sets color: $headings-color (dark) via o-kanban-record-title
+      .o_kanban_primary_left .o_primary > span:first-child {
+        color: $fm-d-text !important;
+      }
+
+      .o_project_kanban_main {
+        color: $fm-d-text !important;
+
+        .o_kanban_card_content,
+        .o_kanban_primary_left,
+        .o_primary {
+          color: $fm-d-text !important;
+        }
+
+        .o_primary > span.o_text_overflow {
+          color: $fm-d-text !important;
+        }
+
+        // Partner name
+        .o_primary > span.o_text_overflow.text-muted {
+          color: $fm-d-text-muted !important;
+        }
+      }
+
+      // Task count link & label
+      .o_project_kanban_boxes {
+        .o_project_kanban_box {
+          color: $fm-d-text !important;
+
+          .o_value {
+            color: $fm-d-text !important;
+          }
+
+          .o_label {
+            color: $fm-d-text-muted !important;
+          }
+        }
+      }
+
+      // Record bottom section
+      .o_kanban_record_bottom {
+        color: $fm-d-text-muted !important;
+      }
+    }
+  }
+
+  // ══════════════════════════════════════════════════════════
+  // RECRUITMENT KANBAN (hr.job "Jabatan Kerja" dashboard)
+  // ══════════════════════════════════════════════════════════
+  .o_kanban_dashboard.o_hr_recruitment_kanban {
+    .o_kanban_record {
+      // Job title — uses o-kanban-record-title mixin which sets
+      // color: $headings-color (dark), invisible on dark bg
+      .o_kanban_card_header_title .o_primary {
+        color: $fm-d-text !important;
+
+        span,
+        a {
+          color: $fm-d-text !important;
+        }
+      }
+
+      // Recruiter / company / alias subtitles
+      .o_kanban_card_header_title .text-muted,
+      .o_kanban_card_header_title .o_secondary {
+        color: $fm-d-text-muted !important;
+      }
+
+      // "X Untuk Merekrut" / activities list — keep muted readable
+      .o_job_activities .text-secondary {
+        color: $fm-d-text-secondary !important;
+      }
+    }
+  }
+
+  // CRM Dashboard specific
+  .o_crm_kanban .o_kanban_record {
+    background-color: $fm-d-3 !important;
+    color: $fm-d-text !important;
+
+    > div:not(.o_dropdown_kanban) {
+      background-color: $fm-d-3 !important;
+      color: $fm-d-text !important;
+    }
+  }
+
+  .pipeline-stage {
+    background: $fm-d-2 !important;
+  }
+
+  .stage-name {
+    color: #6c757d !important;
+  }
+
+  .salesperson-item {
+    background: $fm-d-2 !important;
+  }
+
+  .salesperson-item .name {
+    color: $fm-d-text !important;
+  }
+
+  .activity-item {
+    background: $fm-d-3 !important;
+  }
+
+  activity-title {
+    color: $fm-d-text !important;
+  }
+
+  .team-card {
+    background: $fm-d-3 !important;
+  }
+
+  .team-name {
+    color: $fm-d-text !important;
+  }
+
+  // Sales Dashboard
+  .o_sale_order_kanban .o_kanban_record > div:not(.o_dropdown_kanban) {
+    background-color: $fm-d-3 !important;
+    color: $fm-d-text !important;
+  }
+
+  // Generic view containers for dashboards
+  .o_view_controller .o_content {
+    background-color: $fm-d-2 !important;
+  }
+
+  // ══════════════════════════════════════════════════════════
+  // LOADING INDICATOR
+  // ══════════════════════════════════════════════════════════
+  .o_loading_indicator {
+    background-color: $fm-d-accent !important;
+  }
+
+  // ══════════════════════════════════════════════════════════
+  // FIELD WIDGETS
+  // ══════════════════════════════════════════════════════════
+  .o_field_widget {
+    color: $fm-d-text !important;
+  }
+
+  // ══════════════════════════════════════════════════════════
+  // BADGES / TAGS
+  // ══════════════════════════════════════════════════════════
+  .badge {
+    &.text-bg-light,
+    &.bg-light {
+      background-color: $fm-d-4 !important;
+      color: $fm-d-text !important;
+    }
+  }
+
+  // ══════════════════════════════════════════════════════════
+  // AUTOCOMPLETE
+  // ══════════════════════════════════════════════════════════
+  .o_field_many2one_selection,
+  .ui-autocomplete {
+    background-color: $fm-d-3 !important;
+    border-color: $fm-d-border-strong !important;
+    color: $fm-d-text !important;
+
+    .ui-menu-item {
+      color: $fm-d-text !important;
+
+      &:hover,
+      &.ui-state-active {
+        background-color: $fm-d-4 !important;
+      }
+    }
+  }
+
+  // ══════════════════════════════════════════════════════════
+  // SCROLLBARS
+  // ══════════════════════════════════════════════════════════
+  * {
+    scrollbar-color: rgba(255, 255, 255, 0.15) transparent;
+    scrollbar-width: thin;
+  }
+
+  ::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 4px;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.25);
+    }
+  }
+
+  // ══════════════════════════════════════════════════════════
+  // MISCELLANEOUS
+  // ══════════════════════════════════════════════════════════
+  hr {
+    border-color: $fm-d-border !important;
+    opacity: 1;
+  }
+
+  ::selection {
+    background-color: rgba($fm-d-accent, 0.3);
+    color: $fm-d-text;
+  }
+
+  .border,
+  .border-bottom,
+  .border-top,
+  .border-start,
+  .border-end {
+    border-color: $fm-d-border !important;
+  }
+
+  .shadow-sm,
+  .shadow {
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3) !important;
+  }
+
+  // ══════════════════════════════════════════════════════════
+  // ONE2MANY / MANY2MANY SUB-LISTS
+  // ══════════════════════════════════════════════════════════
+  .o_field_one2many,
+  .o_field_many2many {
+    .o_list_table {
+      > thead th {
+        background-color: $fm-d-1 !important;
+        color: $fm-d-text-muted !important;
+      }
+
+      > tbody .o_data_row {
+        background-color: $fm-d-3 !important;
+
+        &:nth-child(even) {
+          background-color: darken($fm-d-3, 2%) !important;
+        }
+
+        &:hover {
+          background-color: $fm-d-4 !important;
+        }
+
+        td {
+          color: $fm-d-text !important;
+          border-color: $fm-d-border !important;
+        }
+      }
+    }
+  }
+
+  // ══════════════════════════════════════════════════════════
+  // USER MENU / NOTIFICATIONS
+  // ══════════════════════════════════════════════════════════
+  .o_user_menu .dropdown-menu {
+    background-color: $fm-d-3 !important;
+  }
+
+  .o_notification {
+    background-color: $fm-d-3 !important;
+    border-color: $fm-d-border-strong !important;
+    color: $fm-d-text !important;
+  }
+
+  // ══════════════════════════════════════════════════════════
+  // DATEPICKER POPUPS
+  // ══════════════════════════════════════════════════════════
+  .o_datetime_picker,
+  .o_date_picker {
+    background-color: $fm-d-3 !important;
+    border-color: $fm-d-border-strong !important;
+    color: $fm-d-text !important;
+
+    // Override .bg-view inside date picker
+    &.bg-view,
+    .bg-view {
+      background-color: $fm-d-3 !important;
+    }
+
+    .o_datetime_picker_header {
+      color: $fm-d-text !important;
+
+      button {
+        color: $fm-d-text !important;
+      }
+    }
+
+    .o_day_of_week_cell {
+      color: $fm-d-text-muted !important;
+    }
+
+    .o_date_item_cell {
+      color: $fm-d-text !important;
+
+      .o_date_item {
+        color: $fm-d-text !important;
+
+        &.o_today {
+          background-color: $fm-d-accent !important;
+          color: #fff !important;
+        }
+
+        &.o_selected {
+          background-color: $fm-d-accent !important;
+          color: #fff !important;
+        }
+
+        &:hover:not(.o_today):not(.o_selected) {
+          background-color: $fm-d-4 !important;
+        }
+
+        &.o_out_of_range {
+          color: $fm-d-text-muted !important;
+        }
+      }
+    }
+
+    .o_cell_md {
+      color: $fm-d-text !important;
+    }
+
+    button,
+    .btn {
+      color: $fm-d-text !important;
+
+      &:hover {
+        background-color: $fm-d-hover !important;
+      }
+    }
+  }
+
+  // Datepicker dropdown/popover container
+  .o_popover,
+  .o-datepicker-popover {
+    background-color: $fm-d-3 !important;
+    border-color: $fm-d-border-strong !important;
+
+    .bg-view {
+      background-color: $fm-d-3 !important;
+    }
+  }
+
+  // ══════════════════════════════════════════════════════════
+  // BTN-SECONDARY / BTN-LIGHT OVERRIDES
+  // ══════════════════════════════════════════════════════════
+  .btn-secondary {
+    background-color: $fm-d-4 !important;
+    border-color: $fm-d-border-strong !important;
+    color: $fm-d-text !important;
+
+    &:hover,
+    &:focus {
+      background-color: $fm-d-5 !important;
+      color: $fm-d-text !important;
+    }
+
+    &:active,
+    &.active {
+      background-color: $fm-d-5 !important;
+    }
+  }
+
+  .btn-light {
+    background-color: $fm-d-4 !important;
+    border-color: $fm-d-border-strong !important;
+    color: $fm-d-text !important;
+
+    &:hover {
+      background-color: $fm-d-5 !important;
+    }
+  }
+
+  .btn-outline-secondary {
+    border-color: $fm-d-border-strong !important;
+    color: $fm-d-text !important;
+
+    &:hover {
+      background-color: $fm-d-4 !important;
+      color: $fm-d-text !important;
+    }
+  }
+
+  // ══════════════════════════════════════════════════════════
+  // KANBAN PROGRESS BAR STATUS COLORS
+  // ══════════════════════════════════════════════════════════
+  .o_kanban_group_show_success {
+    --KanbanGroup-background: rgba(40, 167, 69, 0.05) !important;
+  }
+  .o_kanban_group_show_warning {
+    --KanbanGroup-background: rgba(255, 193, 7, 0.05) !important;
+  }
+  .o_kanban_group_show_danger {
+    --KanbanGroup-background: rgba(220, 53, 69, 0.05) !important;
+  }
+
+  // ══════════════════════════════════════════════════════════
+  // ONBOARDING / BANNERS
+  // ══════════════════════════════════════════════════════════
+  .o_onboarding_container {
+    background-color: $fm-d-3 !important;
+    border-color: $fm-d-border !important;
+    color: $fm-d-text !important;
+
+    .o_onboarding_step {
+      border-color: $fm-d-border !important;
+    }
+  }
+
+  // ══════════════════════════════════════════════════════════
+  // GANTT / MAP / SPREADSHEET
+  // ══════════════════════════════════════════════════════════
+  .o_gantt_view {
+    background-color: $fm-d-2 !important;
+    color: $fm-d-text !important;
+  }
+
+  .o_map_view {
+    background-color: $fm-d-2 !important;
+  }
+
+  .o_spreadsheet_dashboard {
+    background-color: $fm-d-2 !important;
+  }
+
+  // ══════════════════════════════════════════════════════════
+  // ATTACHMENT / FILE PREVIEWS
+  // ══════════════════════════════════════════════════════════
+  .o_attachment_preview {
+    background-color: $fm-d-2 !important;
+  }
+
+  .o_AttachmentBox {
+    background-color: $fm-d-2 !important;
+  }
+
+  .o-mail-AttachmentCard {
+    background-color: $fm-d-3 !important;
+    border-color: $fm-d-border !important;
+    color: $fm-d-text !important;
+  }
+
+  // ══════════════════════════════════════════════════════════
+  // MOBILE / SYSTRAY FULLSCREEN
+  // ══════════════════════════════════════════════════════════
+  .o-mail-systrayFullscreenDropdownMenu {
+    background-color: $fm-d-2 !important;
+  }
+
+  // ══════════════════════════════════════════════════════════
+  // CP ACTION MENUS / CALENDAR POPOVER
+  // ══════════════════════════════════════════════════════════
+  .o_cp_action_menus .dropdown-menu {
+    background-color: $fm-d-3 !important;
+    border-color: $fm-d-border-strong !important;
+  }
+
+  .o_cw_popover {
+    background-color: $fm-d-3 !important;
+    border-color: $fm-d-border-strong !important;
+    color: $fm-d-text !important;
+
+    .o_cw_popover_fields_secondary {
+      color: $fm-d-text-secondary !important;
+    }
+  }
+
+  // ══════════════════════════════════════════════════════════
+  // FINANCIAL REPORTS / ACCOUNTING
+  // ══════════════════════════════════════════════════════════
+  .o_account_financial_reports {
+    background-color: $fm-d-2 !important;
+    color: $fm-d-text !important;
+
+    table {
+      background-color: $fm-d-2 !important;
+      --bs-table-bg: #{$fm-d-2};
+
+      tr {
+        background-color: $fm-d-2 !important;
+
+        &:hover {
+          background-color: $fm-d-4 !important;
+        }
+
+        td,
+        th {
+          color: $fm-d-text !important;
+          border-color: $fm-d-border !important;
+        }
+      }
+    }
+  }
+
+  // Account Reports widget
+  .o_account_reports_page {
+    background-color: $fm-d-2 !important;
+    color: $fm-d-text !important;
+  }
+
+  // Account journal dashboard (main accounting dashboard)
+  .o_account_kanban {
+    .o_kanban_record {
+      background-color: $fm-d-3 !important;
+      border-color: $fm-d-border !important;
+      color: $fm-d-text !important;
+
+      > div:not(.o_dropdown_kanban) {
+        background-color: $fm-d-3 !important;
+        color: $fm-d-text !important;
+      }
+
+      .o_kanban_card_header {
+        color: $fm-d-text !important;
+      }
+
+      a {
+        color: $fm-d-accent !important;
+      }
+    }
+  }
+
+  // ══════════════════════════════════════════════════════════
+  // DISCUSS SYSTRAY
+  // ══════════════════════════════════════════════════════════
+  .o-mail-DiscussSystray {
+    --border-color: #{$fm-d-border} !important;
+  }
+
+  // ══════════════════════════════════════════════════════════
+  // KANBAN SAMPLE DATA
+  // ══════════════════════════════════════════════════════════
+  .o_view_sample_data .o_kanban_record {
+    opacity: 0.4 !important;
+  }
+
+  // ══════════════════════════════════════════════════════════
+  // STATUSBAR / PIPELINE (CRM arrows)
+  // ══════════════════════════════════════════════════════════
+  .o_statusbar_buttons {
+    .btn-secondary {
+      background-color: $fm-d-4 !important;
+      border-color: $fm-d-border-strong !important;
+      color: $fm-d-text !important;
+    }
+  }
+
+  // ══════════════════════════════════════════════════════════
+  // CHATTER BUTTONS (Kirim pesan, Log catatan, Aktivitas)
+  // ══════════════════════════════════════════════════════════
+  .o-mail-Chatter {
+    .btn-secondary {
+      background-color: $fm-d-4 !important;
+      border-color: $fm-d-border-strong !important;
+      color: $fm-d-text !important;
+
+      &:hover,
+      &:focus {
+        background-color: $fm-d-5 !important;
+      }
+    }
+  }
+
+  // ══════════════════════════════════════════════════════════
+  // KANBAN DASHBOARD CSS VARS (ensures all dashboards dark)
+  // ══════════════════════════════════════════════════════════
+  .o_kanban_renderer {
+    --Kanban-background: #{$fm-d-2};
+    --KanbanGroup-background: transparent;
+    --KanbanColumn__highlight-background: #{$fm-d-accent-soft};
+    background: var(--Kanban-background) !important;
+
+    .o_kanban_record {
+      > div:not(.o_dropdown_kanban) {
+        background-color: $fm-d-3 !important;
+        color: $fm-d-text !important;
+      }
+    }
+  }
+
+  // ══════════════════════════════════════════════════════════
+  // SWITCH TOGGLE
+  // ══════════════════════════════════════════════════════════
+  .o_switch_toggle {
+    background-color: $fm-d-4 !important;
+
+    &.o_field_boolean .form-check-input:checked {
+      background-color: $fm-d-accent !important;
+    }
+  }
+
+  // ══════════════════════════════════════════════════════════
+  // EMOJI PICKER
+  // ══════════════════════════════════════════════════════════
+  .o-EmojiPicker {
+    background-color: $fm-d-3 !important;
+    border-color: $fm-d-border-strong !important;
+
+    .bg-view {
+      background-color: $fm-d-3 !important;
+    }
+
+    .o-EmojiPicker-search input {
+      background-color: $fm-d-4 !important;
+      border-color: $fm-d-border-strong !important;
+      color: $fm-d-text !important;
+    }
+
+    .o-EmojiPicker-category {
+      color: $fm-d-text-muted !important;
+    }
+  }
+
+  // ══════════════════════════════════════════════════════════
+  // GENERIC WHITE BACKGROUNDS KILL
+  // ══════════════════════════════════════════════════════════
+  // Any inline white backgrounds in kanban records
+  .o_kanban_record[style*="background-color: white"],
+  .o_kanban_record[style*="background-color:#fff"],
+  .o_kanban_record[style*="background-color: #fff"] {
+    background-color: $fm-d-3 !important;
+  }
+
+  // Spreadsheet / Pivot anchors
+  .o_spreadsheet_dashboard {
+    background-color: $fm-d-2 !important;
+
+    .o_spreadsheet {
+      background-color: $fm-d-2 !important;
+    }
+  }
+
+  // CRM lead merge
+  .crm_lead_merge_summary .tag {
+    background-color: $fm-d-4 !important;
+    color: $fm-d-text !important;
+  }
+
+  // ══════════════════════════════════════════════════════════
+  // CALENDAR CONNECT BANNER (white box at top)
+  // ══════════════════════════════════════════════════════════
+  .o_calendar_container {
+    .o_view_nocontent {
+      background-color: $fm-d-2 !important;
+
+      .o_nocontent_help {
+        color: $fm-d-text-muted !important;
+
+        .btn-outline-primary,
+        .btn-secondary {
+          color: $fm-d-text !important;
+          border-color: $fm-d-border-strong !important;
+          background-color: $fm-d-4 !important;
+        }
+      }
+    }
+  }
+
+  // ══════════════════════════════════════════════════════════
+  // VENDOR DASHBOARD ADDONS (Sales, CRM, Finance, Inventory)
+  // These have hardcoded white backgrounds in their own CSS
+  // ══════════════════════════════════════════════════════════
+
+  // --- Sales Dashboard (comprehensive) ---
+  .fm-sales-dashboard {
+    background: $fm-d-2 !important;
+
+    // ─ KPI Cards ─
+    .sales-kpi-card {
+      background: $fm-d-3 !important;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25) !important;
+      color: $fm-d-text !important;
+
+      .kpi-label,
+      .kpi-title {
+        color: $fm-d-text-muted !important;
+      }
+
+      .kpi-value {
+        color: $fm-d-text !important;
+      }
+
+      .kpi-footer,
+      .kpi-subvalue {
+        color: $fm-d-text-muted !important;
+      }
+
+      &.clickable::after {
+        color: rgba(255, 255, 255, 0.2) !important;
+      }
+    }
+
+    // ─ Pipeline ─
+    .sales-pipeline {
+      h2,
+      h3 {
+        color: $fm-d-text !important;
+      }
+    }
+
+    .sales-pipeline-header h2 {
+      color: $fm-d-text !important;
+    }
+
+    .pipeline-column {
+      background: $fm-d-3 !important;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25) !important;
+    }
+
+    .pipeline-column-header {
+      h3 {
+        color: $fm-d-text !important;
+      }
+
+      .stat {
+        color: $fm-d-text-muted !important;
+
+        strong {
+          color: $fm-d-text !important;
+        }
+      }
+
+      &:hover {
+        background: $fm-d-hover !important;
+      }
+    }
+
+    .pipeline-card {
+      background: $fm-d-4 !important;
+      color: $fm-d-text !important;
+
+      .card-title {
+        color: $fm-d-text !important;
+      }
+
+      .card-customer {
+        color: $fm-d-text-muted !important;
+      }
+
+      .card-amount {
+        color: #4caf50 !important;
+      }
+
+      .card-date,
+      .card-user {
+        color: $fm-d-text-muted !important;
+      }
+
+      &:hover {
+        background: $fm-d-5 !important;
+      }
+    }
+
+    .no-orders-placeholder {
+      color: $fm-d-text-muted !important;
+    }
+
+    // ─ Sales Card (generic card for charts/teams/activity) ─
+    .sales-card {
+      background: $fm-d-3 !important;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25) !important;
+      color: $fm-d-text !important;
+      border-color: $fm-d-border !important;
+
+      .card-header {
+        background: $fm-d-3 !important;
+        border-bottom: 1px solid $fm-d-border !important;
+
+        h3 {
+          color: $fm-d-text !important;
+        }
+      }
+
+      .card-body {
+        background: $fm-d-3 !important;
+        color: $fm-d-text !important;
+      }
+
+      .card-footer {
+        background: $fm-d-4 !important;
+        border-top: 1px solid $fm-d-border !important;
+      }
+    }
+
+    // Recent sales activities card specifically
+    .recent-sales-activities-card {
+      background: $fm-d-3 !important;
+
+      .card-body {
+        background: $fm-d-3 !important;
+      }
+    }
+
+    // ─ Chart containers ─
+    .chart-container,
+    .chart-card {
+      background: $fm-d-3 !important;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25) !important;
+      color: $fm-d-text !important;
+    }
+
+    .chart-header h3,
+    .section-header h2 {
+      color: $fm-d-text !important;
+    }
+
+    // ─ Sales target card ─
+    .sales-target {
+      background: $fm-d-3 !important;
+      color: $fm-d-text !important;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25) !important;
+    }
+
+    // ─ Recent sales table ─
+    .recent-sales-table {
+      color: $fm-d-text !important;
+      background-color: $fm-d-3 !important;
+
+      thead {
+        background: $fm-d-1 !important;
+      }
+
+      th {
+        background: $fm-d-1 !important;
+        color: $fm-d-text-muted !important;
+        border-bottom: 2px solid $fm-d-border-strong !important;
+      }
+
+      td {
+        color: $fm-d-text !important;
+        border-color: $fm-d-border !important;
+      }
+
+      tbody {
+        background-color: $fm-d-3 !important;
+      }
+
+      tbody tr {
+        background-color: $fm-d-3 !important;
+      }
+
+      tbody tr.sales-activity-row {
+        background-color: $fm-d-3 !important;
+        border-bottom: 1px solid $fm-d-border !important;
+
+        &:nth-child(even) {
+          background-color: $fm-d-4 !important;
+        }
+
+        &:hover,
+        &:nth-child(even):hover {
+          background: $fm-d-5 !important;
+        }
+      }
+
+      .order-number {
+        color: #64b5f6 !important;
+      }
+
+      .customer-cell {
+        color: $fm-d-text !important;
+
+        i {
+          color: $fm-d-text-muted !important;
+        }
+      }
+
+      .salesperson-cell {
+        color: $fm-d-text-secondary !important;
+
+        i {
+          color: $fm-d-text-muted !important;
+        }
+      }
+
+      .order-cell .customer-name {
+        color: $fm-d-text-muted !important;
+
+        i {
+          color: $fm-d-text-muted !important;
+        }
+      }
+
+      .date-cell {
+        .date-main {
+          color: $fm-d-text !important;
+        }
+        .date-ago {
+          color: $fm-d-text-muted !important;
+        }
+      }
+
+      .sales-amount-value {
+        color: #4caf50 !important;
+      }
+    }
+
+    // ─ Status badges ─
+    .invoice-status {
+      background: $fm-d-4 !important;
+      color: $fm-d-text-secondary !important;
+
+      &[data-status="Nothing to Invoice"] {
+        background: $fm-d-4 !important;
+        color: $fm-d-text-muted !important;
+      }
+    }
+
+    .delivery-status {
+      background: $fm-d-4 !important;
+      color: $fm-d-text-secondary !important;
+    }
+
+    // ─ Top products/customers tables ─
+    .table-card {
+      background: $fm-d-3 !important;
+      color: $fm-d-text !important;
+
+      th {
+        background: $fm-d-1 !important;
+        color: $fm-d-text-muted !important;
+      }
+
+      td {
+        color: $fm-d-text !important;
+        border-color: $fm-d-border !important;
+      }
+
+      tr:hover {
+        background: $fm-d-4 !important;
+      }
+    }
+
+    // ─ Sales table (generic) ─
+    .sales-table {
+      th {
+        background: $fm-d-1 !important;
+        color: $fm-d-text !important;
+      }
+
+      td {
+        color: $fm-d-text-secondary !important;
+        border-color: $fm-d-border !important;
+      }
+
+      tbody tr:hover {
+        background: $fm-d-4 !important;
+      }
+    }
+
+    // inline tfoot summary bg
+    tfoot tr,
+    tr[style*="background: #f8f9fa"] {
+      background: $fm-d-4 !important;
+    }
+
+    // ─ Activities timeline ─
+    .activity-item {
+      border-bottom: 1px solid $fm-d-border !important;
+
+      &:hover {
+        background: $fm-d-4 !important;
+      }
+    }
+
+    .activity-title {
+      color: $fm-d-text !important;
+    }
+
+    .activity-subtitle {
+      color: $fm-d-text-muted !important;
+    }
+
+    .activity-meta {
+      color: $fm-d-text-muted !important;
+    }
+
+    .activity-amount .amount {
+      color: $fm-d-text !important;
+    }
+
+    .activities-timeline {
+      &::-webkit-scrollbar-track {
+        background: $fm-d-4 !important;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: $fm-d-5 !important;
+      }
+    }
+
+    // ─ Top items list ─
+    .top-item {
+      border-bottom: 1px solid $fm-d-border !important;
+
+      &:hover {
+        background: $fm-d-4 !important;
+      }
+
+      .item-name {
+        color: $fm-d-text !important;
+      }
+
+      .item-detail {
+        color: $fm-d-text-muted !important;
+      }
+
+      .item-amount {
+        color: #4caf50 !important;
+      }
+    }
+
+    // ─ Stat items ─
+    .stat-item .stat-label {
+      color: $fm-d-text-muted !important;
+    }
+
+    .stat-comparison {
+      border-top: 1px solid $fm-d-border !important;
+    }
+
+    // ─ Invoice status cards ─
+    .invoice-status-card {
+      background: $fm-d-4 !important;
+
+      .status-name {
+        color: $fm-d-text-muted !important;
+      }
+
+      .status-count {
+        color: $fm-d-text !important;
+      }
+
+      .status-amount {
+        color: $fm-d-text-muted !important;
+      }
+    }
+
+    // ─ Salesperson list ─
+    .salesperson-item {
+      border-bottom: 1px solid $fm-d-border !important;
+
+      .person-name {
+        color: $fm-d-text !important;
+      }
+
+      .person-stats {
+        color: $fm-d-text-muted !important;
+      }
+
+      .person-amount {
+        color: #4caf50 !important;
+      }
+    }
+
+    // ─ Team cards ─
+    .team-card {
+      background: $fm-d-4 !important;
+
+      .team-name {
+        color: $fm-d-text !important;
+      }
+
+      .team-amount {
+        color: #4caf50 !important;
+      }
+
+      .team-orders {
+        color: $fm-d-text-muted !important;
+      }
+    }
+
+    // ─ Progress bar ─
+    .progress-bar-wrapper {
+      background: $fm-d-4 !important;
+    }
+
+    .progress-label {
+      .name {
+        color: $fm-d-text !important;
+      }
+      .value {
+        color: $fm-d-text-muted !important;
+      }
+    }
+
+    // ─ Empty states ─
+    .empty-sales-state,
+    .empty-state {
+      background: $fm-d-3 !important;
+      color: $fm-d-text-muted !important;
+
+      h4 {
+        color: $fm-d-text !important;
+      }
+
+      p {
+        color: $fm-d-text-muted !important;
+      }
+    }
+
+    // ─ Loading overlay ─
+    .loading-overlay {
+      background: rgba(23, 25, 32, 0.95) !important;
+    }
+
+    .loading-spinner {
+      border: 4px solid $fm-d-4 !important;
+      border-top-color: $fm-d-accent !important;
+    }
+
+    // ─ Date filter inputs ─
+    .date-filter input {
+      color: $fm-d-text !important;
+      background: $fm-d-4 !important;
+      border-color: $fm-d-border !important;
+    }
+
+    // ─ bg-light bootstrap override ─
+    .bg-light {
+      background: $fm-d-4 !important;
+    }
+
+    // ─ Mobile view card bg ─
+    @media (max-width: 576px) {
+      .recent-sales-table tr.sales-activity-row {
+        background: $fm-d-3 !important;
+        border: 1px solid $fm-d-border !important;
+      }
+    }
+
+    // ─ Headings ─
+    h2,
+    h3,
+    h4,
+    h5 {
+      color: $fm-d-text !important;
+    }
+
+    .text-muted {
+      color: $fm-d-text-muted !important;
+    }
+  }
+
+  // --- CRM Dashboard (comprehensive) ---
+  .fm-crm-dashboard {
+    background: $fm-d-2 !important;
+
+    // ─ KPI Cards ─
+    .kpi-card {
+      background: $fm-d-3 !important;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25) !important;
+      color: $fm-d-text !important;
+      border-color: $fm-d-border !important;
+
+      .kpi-title {
+        color: $fm-d-text-muted !important;
+      }
+
+      .kpi-value {
+        color: $fm-d-text !important;
+      }
+
+      .kpi-change {
+        &.positive {
+          color: #4caf50 !important;
+        }
+        &.negative {
+          color: #ef5350 !important;
+        }
+      }
+
+      &.clickable::after {
+        color: rgba(255, 255, 255, 0.2) !important;
+      }
+    }
+
+    // ─ Dashboard Cards (generic) ─
+    .dashboard-card,
+    .card {
+      background: $fm-d-3 !important;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25) !important;
+      color: $fm-d-text !important;
+      border-color: $fm-d-border !important;
+    }
+
+    .card-header {
+      background: $fm-d-3 !important;
+      border-bottom: 1px solid $fm-d-border !important;
+      color: $fm-d-text !important;
+
+      h3 {
+        color: $fm-d-text !important;
+      }
+    }
+
+    .card-body {
+      background: $fm-d-3 !important;
+      color: $fm-d-text !important;
+    }
+
+    .kpi-label,
+    .card-subtitle {
+      color: $fm-d-text-muted !important;
+    }
+
+    .kpi-value,
+    .card-title {
+      color: $fm-d-text !important;
+    }
+
+    // ─ Pipeline Kanban ─
+    .pipeline-stage {
+      background: $fm-d-4 !important;
+      border-color: transparent !important;
+
+      &:hover {
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3) !important;
+      }
+
+      .stage-name {
+        color: $fm-d-text !important;
+      }
+
+      .stage-revenue {
+        color: $fm-d-text-muted !important;
+      }
+    }
+
+    .pipeline-column,
+    .stage-column {
+      background: $fm-d-3 !important;
+
+      .pipeline-card,
+      .lead-card {
+        background: $fm-d-4 !important;
+        color: $fm-d-text !important;
+
+        &:hover {
+          background: $fm-d-5 !important;
+        }
+      }
+    }
+
+    // ─ Team Cards ─
+    .team-card {
+      background: $fm-d-4 !important;
+
+      .team-name {
+        color: $fm-d-text !important;
+      }
+
+      .team-stats .stat-label {
+        color: $fm-d-text-muted !important;
+      }
+    }
+
+    // ─ Salesperson Items ─
+    .salesperson-item {
+      background: $fm-d-4 !important;
+
+      &:hover {
+        background: $fm-d-5 !important;
+      }
+
+      .name {
+        color: $fm-d-text !important;
+      }
+
+      .stats {
+        color: $fm-d-text-muted !important;
+      }
+    }
+
+    // ─ Opportunities Table ─
+    .opportunities-table {
+      th {
+        background: $fm-d-1 !important;
+        color: $fm-d-text-muted !important;
+      }
+
+      td {
+        border-bottom-color: $fm-d-border !important;
+      }
+
+      tbody tr:hover {
+        background: $fm-d-4 !important;
+      }
+
+      .opp-name {
+        color: $fm-d-text !important;
+      }
+
+      .opp-partner {
+        color: $fm-d-text-muted !important;
+      }
+    }
+
+    // ─ Tables ─
+    table {
+      color: $fm-d-text !important;
+
+      th {
+        background: $fm-d-1 !important;
+        color: $fm-d-text-muted !important;
+      }
+
+      td {
+        color: $fm-d-text !important;
+        border-color: $fm-d-border !important;
+      }
+
+      tr:hover {
+        background: $fm-d-4 !important;
+      }
+    }
+
+    // ─ Activity Items ─
+    .activity-item {
+      background: $fm-d-4 !important;
+      border-left-color: inherit !important;
+
+      &:hover {
+        background: $fm-d-5 !important;
+      }
+
+      .activity-title {
+        color: $fm-d-text !important;
+      }
+
+      .activity-subtitle {
+        color: $fm-d-text-muted !important;
+      }
+
+      .activity-meta {
+        color: $fm-d-text-muted !important;
+      }
+
+      .activity-amount .amount {
+        color: $fm-d-text !important;
+      }
+    }
+
+    // ─ Activity Summary Cards ─
+    .activity-summary-card {
+      background: $fm-d-4 !important;
+
+      .label {
+        color: $fm-d-text-muted !important;
+      }
+
+      &.overdue {
+        background: rgba(220, 53, 69, 0.15) !important;
+        border-color: rgba(220, 53, 69, 0.3) !important;
+      }
+
+      &.today {
+        background: rgba(255, 193, 7, 0.15) !important;
+        border-color: rgba(255, 193, 7, 0.3) !important;
+      }
+
+      &.planned {
+        background: rgba(40, 167, 69, 0.15) !important;
+        border-color: rgba(40, 167, 69, 0.3) !important;
+      }
+    }
+
+    // ─ Source Stats ─
+    .source-item {
+      background: $fm-d-4 !important;
+
+      .source-name {
+        color: $fm-d-text !important;
+      }
+    }
+
+    // ─ Stat Comparison ─
+    .stat-comparison {
+      border-top-color: $fm-d-border !important;
+
+      .stat-label {
+        color: $fm-d-text-muted !important;
+      }
+    }
+
+    // ─ Empty State ─
+    .empty-state {
+      color: $fm-d-text-muted !important;
+
+      h4 {
+        color: $fm-d-text-muted !important;
+      }
+
+      i {
+        color: $fm-d-text-muted !important;
+      }
+    }
+
+    // ─ Loading Overlay ─
+    .loading-overlay {
+      background: rgba(23, 25, 32, 0.95) !important;
+    }
+
+    .loading-spinner {
+      border: 4px solid $fm-d-4 !important;
+      border-top-color: $fm-d-accent !important;
+    }
+
+    // ─ Date Filter Inputs ─
+    .date-filter input {
+      color: $fm-d-text !important;
+      background: $fm-d-4 !important;
+      border-color: $fm-d-border !important;
+    }
+
+    // ─ Scrollbar ─
+    .activities-timeline {
+      &::-webkit-scrollbar-track {
+        background: $fm-d-4 !important;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: $fm-d-5 !important;
+      }
+    }
+
+    // ─ Headings ─
+    h2,
+    h3,
+    h4,
+    h5 {
+      color: $fm-d-text !important;
+    }
+
+    .text-muted {
+      color: $fm-d-text-muted !important;
+    }
+  }
+
+  // --- Finance Dashboard (comprehensive) ---
+  .fm-finance-dashboard {
+    background: $fm-d-2 !important;
+
+    // ─ KPI Cards ─
+    .kpi-card {
+      background: $fm-d-3 !important;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25) !important;
+      color: $fm-d-text !important;
+      border-color: $fm-d-border !important;
+
+      .kpi-title {
+        color: $fm-d-text-muted !important;
+      }
+
+      .kpi-value {
+        color: $fm-d-text !important;
+      }
+
+      .kpi-change {
+        &.positive {
+          color: #4caf50 !important;
+        }
+        &.negative {
+          color: #ef5350 !important;
+        }
+      }
+
+      &.clickable::after {
+        color: rgba(255, 255, 255, 0.2) !important;
+      }
+    }
+
+    // ─ Dashboard Cards ─
+    .dashboard-card,
+    .card,
+    .finance-card {
+      background: $fm-d-3 !important;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25) !important;
+      color: $fm-d-text !important;
+      border-color: $fm-d-border !important;
+    }
+
+    .card-header {
+      background: $fm-d-3 !important;
+      border-bottom: 1px solid $fm-d-border !important;
+      color: $fm-d-text !important;
+
+      h3 {
+        color: $fm-d-text !important;
+      }
+    }
+
+    .card-body {
+      background: $fm-d-3 !important;
+      color: $fm-d-text !important;
+    }
+
+    .card-footer {
+      background: $fm-d-4 !important;
+      border-top: 1px solid $fm-d-border !important;
+      color: $fm-d-text !important;
+    }
+
+    .kpi-label,
+    .card-subtitle {
+      color: $fm-d-text-muted !important;
+    }
+
+    .kpi-value,
+    .card-title {
+      color: $fm-d-text !important;
+    }
+
+    // ─ Chart Containers ─
+    .chart-container,
+    .chart-card {
+      background: $fm-d-3 !important;
+      color: $fm-d-text !important;
+    }
+
+    // ─ Aged receivable/payable ─
+    .aged-card,
+    .aging-card {
+      background: $fm-d-3 !important;
+      color: $fm-d-text !important;
+    }
+
+    // ─ Journal Cards ─
+    .journal-card {
+      background: $fm-d-4 !important;
+      border-color: $fm-d-border !important;
+
+      &:hover {
+        border-color: $fm-d-accent !important;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3) !important;
+      }
+
+      &.clickable::after {
+        color: rgba(255, 255, 255, 0.15) !important;
+      }
+
+      .journal-name {
+        color: $fm-d-text !important;
+      }
+
+      .journal-amount {
+        color: $fm-d-text-muted !important;
+      }
+    }
+
+    // ─ Journal Items ─
+    .journal-item {
+      background: $fm-d-4 !important;
+      color: $fm-d-text !important;
+
+      &:hover {
+        background: $fm-d-5 !important;
+      }
+    }
+
+    // ─ Tables ─
+    table,
+    .dashboard-table {
+      color: $fm-d-text !important;
+
+      th {
+        background: $fm-d-1 !important;
+        color: $fm-d-text-muted !important;
+      }
+
+      td {
+        color: $fm-d-text !important;
+        border-color: $fm-d-border !important;
+      }
+
+      tr:hover {
+        background: $fm-d-4 !important;
+      }
+    }
+
+    // ─ Recent Activities Table ─
+    .recent-activities-table {
+      color: $fm-d-text !important;
+      background-color: $fm-d-3 !important;
+
+      thead {
+        background: $fm-d-1 !important;
+      }
+
+      th {
+        background: $fm-d-1 !important;
+        color: $fm-d-text-muted !important;
+        border-bottom: 2px solid $fm-d-border-strong !important;
+      }
+
+      td {
+        color: $fm-d-text !important;
+        border-color: $fm-d-border !important;
+      }
+
+      tbody tr.activity-row {
+        background-color: $fm-d-3 !important;
+        border-bottom: 1px solid $fm-d-border !important;
+
+        &:nth-child(even) {
+          background-color: $fm-d-4 !important;
+        }
+
+        &:hover,
+        &:nth-child(even):hover {
+          background: $fm-d-5 !important;
+        }
+      }
+
+      .activity-name-cell {
+        .ref-number {
+          color: #64b5f6 !important;
+        }
+
+        .partner-name {
+          color: $fm-d-text-muted !important;
+
+          i {
+            color: $fm-d-text-muted !important;
+          }
+        }
+      }
+
+      .date-cell {
+        .date-main {
+          color: $fm-d-text !important;
+        }
+        .date-ago {
+          color: $fm-d-text-muted !important;
+        }
+      }
+
+      .amount-value {
+        color: $fm-d-text !important;
+      }
+    }
+
+    // ─ Invoice Summary Stats ─
+    .invoice-summary-stats .stat-row {
+      background: $fm-d-4 !important;
+
+      .stat-label {
+        color: $fm-d-text-muted !important;
+      }
+
+      .stat-value {
+        color: $fm-d-text !important;
+      }
+    }
+
+    // ─ Balance Sheet ─
+    .balance-section h4 {
+      color: $fm-d-text !important;
+    }
+
+    .balance-item {
+      border-bottom-color: $fm-d-border !important;
+
+      .label {
+        color: $fm-d-text-secondary !important;
+      }
+
+      .value {
+        color: $fm-d-text !important;
+      }
+    }
+
+    .balance-total {
+      border-top-color: $fm-d-border-strong !important;
+      color: $fm-d-text !important;
+    }
+
+    // ─ Activities Timeline ─
+    .activity-item {
+      background: $fm-d-4 !important;
+      border-bottom-color: $fm-d-border !important;
+
+      &:hover {
+        background: $fm-d-5 !important;
+      }
+
+      .activity-title {
+        color: $fm-d-text !important;
+      }
+
+      .activity-subtitle {
+        color: $fm-d-text-muted !important;
+      }
+
+      .activity-meta {
+        color: $fm-d-text-muted !important;
+      }
+
+      .activity-amount .amount {
+        color: $fm-d-text !important;
+      }
+    }
+
+    .activities-timeline {
+      &::-webkit-scrollbar-track {
+        background: $fm-d-4 !important;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: $fm-d-5 !important;
+      }
+    }
+
+    // ─ Progress ─
+    .progress {
+      background-color: $fm-d-4 !important;
+    }
+
+    .progress-bar-wrapper {
+      background: $fm-d-4 !important;
+    }
+
+    .progress-label {
+      .name {
+        color: $fm-d-text !important;
+      }
+
+      .value {
+        color: $fm-d-text-muted !important;
+      }
+    }
+
+    // ─ Stat Comparison ─
+    .stat-comparison {
+      border-top-color: $fm-d-border !important;
+    }
+
+    .stat-item .stat-label {
+      color: $fm-d-text-muted !important;
+    }
+
+    // ─ Gauge ─
+    .gauge-value {
+      color: $fm-d-text !important;
+    }
+
+    .gauge-label {
+      color: $fm-d-text-muted !important;
+    }
+
+    // ─ Payment Approval ─
+    .approval-stat-item {
+      background: $fm-d-4 !important;
+      border-color: $fm-d-border !important;
+
+      .stat-label {
+        color: $fm-d-text-muted !important;
+      }
+
+      .stat-amount {
+        color: $fm-d-text-secondary !important;
+      }
+
+      &.draft {
+        background: rgba(108, 117, 125, 0.12) !important;
+        border-color: rgba(108, 117, 125, 0.25) !important;
+      }
+
+      &.requested {
+        background: rgba(255, 193, 7, 0.12) !important;
+        border-color: rgba(255, 193, 7, 0.25) !important;
+      }
+
+      &.approved {
+        background: rgba(0, 123, 255, 0.12) !important;
+        border-color: rgba(0, 123, 255, 0.25) !important;
+      }
+
+      &:hover {
+        background: $fm-d-5 !important;
+      }
+    }
+
+    // ─ Empty States ─
+    .empty-state,
+    .empty-activities-state {
+      background: $fm-d-3 !important;
+      color: $fm-d-text-muted !important;
+
+      h4 {
+        color: $fm-d-text !important;
+      }
+
+      p {
+        color: $fm-d-text-muted !important;
+      }
+    }
+
+    // ─ Loading Overlay ─
+    .loading-overlay {
+      background: rgba(23, 25, 32, 0.9) !important;
+    }
+
+    .loading-spinner {
+      border: 4px solid $fm-d-4 !important;
+      border-top-color: $fm-d-accent !important;
+    }
+
+    // ─ Date Filter Inputs ─
+    .date-filter input {
+      color: $fm-d-text !important;
+      background: $fm-d-4 !important;
+      border-color: $fm-d-border !important;
+    }
+
+    // ─ Headings ─
+    h2,
+    h3,
+    h4,
+    h5 {
+      color: $fm-d-text !important;
+    }
+
+    .text-muted {
+      color: $fm-d-text-muted !important;
+    }
+  }
+
+  // --- Inventory Dashboard (comprehensive) ---
+  .fm-inventory-dashboard {
+    background: $fm-d-2 !important;
+
+    // ─ KPI Cards ─
+    .kpi-card {
+      background: $fm-d-3 !important;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25) !important;
+      color: $fm-d-text !important;
+      border-color: $fm-d-border !important;
+
+      .kpi-title {
+        color: $fm-d-text-muted !important;
+      }
+
+      .kpi-value {
+        color: $fm-d-text !important;
+      }
+
+      &.clickable::after {
+        color: rgba(255, 255, 255, 0.2) !important;
+      }
+    }
+
+    // ─ Dashboard cards (generic) ─
+    .dashboard-card {
+      background: $fm-d-3 !important;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25) !important;
+      color: $fm-d-text !important;
+      border-color: $fm-d-border !important;
+
+      .card-header {
+        border-bottom: 1px solid $fm-d-border !important;
+
+        h3 {
+          color: $fm-d-text !important;
+        }
+      }
+
+      .card-body {
+        color: $fm-d-text !important;
+      }
+    }
+
+    .card {
+      background: $fm-d-3 !important;
+      border-color: $fm-d-border !important;
+      color: $fm-d-text !important;
+    }
+
+    .card-header {
+      background: $fm-d-1 !important;
+      border-bottom-color: $fm-d-border !important;
+      color: $fm-d-text !important;
+    }
+
+    .card-body {
+      background: $fm-d-3 !important;
+      color: $fm-d-text !important;
+    }
+
+    .kpi-label,
+    .card-subtitle {
+      color: $fm-d-text-muted !important;
+    }
+
+    .kpi-value,
+    .card-title {
+      color: $fm-d-text !important;
+    }
+
+    // ─ Chart containers ─
+    .chart-container,
+    .chart-card {
+      background: $fm-d-3 !important;
+      color: $fm-d-text !important;
+    }
+
+    // ─ Warehouse cards ─
+    .warehouse-card {
+      background: $fm-d-4 !important;
+      color: $fm-d-text !important;
+
+      .wh-name {
+        color: $fm-d-text !important;
+      }
+
+      .wh-code {
+        color: $fm-d-text-muted !important;
+      }
+    }
+
+    // ─ Operation cards ─
+    .operation-card {
+      background: $fm-d-3 !important;
+      border: 1px solid $fm-d-border !important;
+      color: $fm-d-text !important;
+
+      .op-name {
+        color: $fm-d-text !important;
+      }
+    }
+
+    // ─ Stock progress bar ─
+    .stock-progress {
+      background: $fm-d-4 !important;
+    }
+
+    .progress {
+      background-color: $fm-d-4 !important;
+    }
+
+    // ─ Late items, low stock, out of stock ─
+    .late-item {
+      .item-name {
+        color: $fm-d-text !important;
+      }
+
+      .item-detail {
+        color: $fm-d-text-muted !important;
+      }
+    }
+
+    .low-stock-item {
+      .product-name {
+        color: $fm-d-text !important;
+      }
+
+      .stock-detail {
+        color: $fm-d-text-muted !important;
+      }
+
+      .min-qty {
+        color: $fm-d-text-muted !important;
+      }
+    }
+
+    // ─ Top product items ─
+    .top-product-item {
+      border-bottom: 1px solid $fm-d-border !important;
+
+      .product-name {
+        color: $fm-d-text !important;
+      }
+
+      .movement-stats {
+        color: $fm-d-text-muted !important;
+      }
+    }
+
+    // ─ Activity items ─
+    .activity-item {
+      background: $fm-d-4 !important;
+
+      &:hover {
+        background: $fm-d-5 !important;
+      }
+
+      .activity-title {
+        color: $fm-d-text !important;
+      }
+
+      .activity-detail {
+        color: $fm-d-text-muted !important;
+      }
+
+      .activity-time {
+        color: $fm-d-text-muted !important;
+      }
+    }
+
+    // ─ Picking stats ─
+    .picking-stat {
+      background: $fm-d-4 !important;
+
+      .stat-number {
+        color: $fm-d-text !important;
+      }
+
+      .stat-label {
+        color: $fm-d-text-muted !important;
+      }
+    }
+
+    // ─ Stat items + comparison ─
+    .stat-item {
+      .stat-label {
+        color: $fm-d-text-muted !important;
+      }
+
+      .stat-value {
+        color: $fm-d-text !important;
+      }
+    }
+
+    .stat-comparison {
+      border-top: 1px solid $fm-d-border !important;
+    }
+
+    // ─ Valuation total ─
+    .valuation-total {
+      background: $fm-d-4 !important;
+
+      .label {
+        color: $fm-d-text-muted !important;
+      }
+    }
+
+    // ─ Summary rows ─
+    .summary-row {
+      border-bottom: 1px solid $fm-d-border !important;
+
+      .label {
+        color: $fm-d-text-muted !important;
+      }
+
+      .value {
+        color: $fm-d-text !important;
+      }
+    }
+
+    // ─ Empty states ─
+    .empty-state {
+      color: $fm-d-text-muted !important;
+
+      h4 {
+        color: $fm-d-text-muted !important;
+      }
+
+      i {
+        color: $fm-d-text-muted !important;
+      }
+    }
+
+    // ─ Loading overlay ─
+    .loading-overlay {
+      background: rgba(23, 25, 32, 0.95) !important;
+    }
+
+    .loading-spinner {
+      border: 4px solid $fm-d-4 !important;
+      border-top-color: $fm-d-accent !important;
+    }
+
+    // ─ Filter inputs ─
+    .date-filter input,
+    .date-filter select,
+    .warehouse-filter select {
+      color: $fm-d-text !important;
+      background: $fm-d-4 !important;
+      border-color: $fm-d-border !important;
+    }
+
+    // ─ Warehouse items, location items ─
+    .warehouse-item,
+    .location-item {
+      background: $fm-d-4 !important;
+      color: $fm-d-text !important;
+
+      &:hover {
+        background: $fm-d-5 !important;
+      }
+    }
+
+    // ─ Tables ─
+    table {
+      color: $fm-d-text !important;
+
+      th {
+        background: $fm-d-1 !important;
+        color: $fm-d-text-muted !important;
+      }
+
+      td {
+        color: $fm-d-text !important;
+        border-color: $fm-d-border !important;
+      }
+
+      tr:hover {
+        background: $fm-d-4 !important;
+      }
+    }
+
+    // ─ Scrollbar styling ─
+    .late-items-list,
+    .low-stock-list,
+    .out-of-stock-list,
+    .top-products-list,
+    .activities-timeline {
+      &::-webkit-scrollbar-track {
+        background: $fm-d-4 !important;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: $fm-d-5 !important;
+      }
+    }
+
+    // ─ Headings ─
+    h2,
+    h3,
+    h4,
+    h5 {
+      color: $fm-d-text !important;
+    }
+
+    .text-muted {
+      color: $fm-d-text-muted !important;
+    }
+  }
+
+  // --- Odoo default accounting dashboard (uses kanban journal cards) ---
+  .o_account_dashboard {
+    background-color: $fm-d-2 !important;
+  }
+
+  // Any remaining dashboard-* or *-dashboard containers
+  [class*="-dashboard"] {
+    .card,
+    .dashboard-card {
+      background: $fm-d-3 !important;
+      border-color: $fm-d-border !important;
+      color: $fm-d-text !important;
+    }
+  }
+
+  .o_timeoff_dashboard {
+    background-color: $fm-d-5 !important;
+  }
+
+  // ══════════════════════════════════════════════════════════════════════════
+  // FINANCIAL REPORT ADDONS – Dark Mode
+  // Override CSS custom properties + hardcoded whites for all 11 reports
+  // ══════════════════════════════════════════════════════════════════════════
+
+  // ── Override CSS custom properties (covers ~90% of the UI) ──
+  .fm-report {
+    --f-bg: #{$fm-d-2};
+    --f-card: #{$fm-d-3};
+    --f-text: #{$fm-d-text};
+    --f-text-secondary: #{$fm-d-text-secondary};
+    --f-text-muted: #{$fm-d-text-muted};
+    --f-border: #{$fm-d-border-strong};
+    --f-border-light: #{$fm-d-4};
+    --f-primary: #{$fm-d-primary};
+    --f-primary-light: #{lighten($fm-d-primary, 8%)};
+    --f-primary-dark: #{darken($fm-d-primary, 6%)};
+    --f-primary-50: #{rgba($fm-d-primary, 0.08)};
+    --f-primary-100: #{rgba($fm-d-primary, 0.15)};
+    --f-success: #34d399;
+    --f-success-light: #{rgba(#34d399, 0.15)};
+    --f-warning: #fbbf24;
+    --f-warning-light: #{rgba(#fbbf24, 0.12)};
+    --f-danger: #f87171;
+    --f-danger-light: #{rgba(#f87171, 0.12)};
+    --f-info: #22d3ee;
+    --f-info-light: #{rgba(#22d3ee, 0.12)};
+    --f-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), 0 1px 2px rgba(0, 0, 0, 0.2);
+    --f-shadow-md:
+      0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -2px rgba(0, 0, 0, 0.2);
+    --f-shadow-lg:
+      0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -4px rgba(0, 0, 0, 0.2);
+
+    background: $fm-d-2 !important;
+    color: $fm-d-text !important;
+  }
+
+  // ── Hardcoded 'white' overrides ──
+  .fm-report .f-btn-outline {
+    background: $fm-d-3 !important;
+    color: $fm-d-text-secondary !important;
+    border-color: $fm-d-border-strong !important;
+
+    &:hover {
+      background: $fm-d-4 !important;
+      border-color: $fm-d-primary !important;
+      color: $fm-d-accent !important;
+    }
+  }
+
+  .fm-report .f-filter-input,
+  .fm-report .f-filter-select {
+    background: $fm-d-4 !important;
+    color: $fm-d-text !important;
+    border-color: $fm-d-border-strong !important;
+
+    &:focus {
+      border-color: $fm-d-primary !important;
+      box-shadow: 0 0 0 3px rgba($fm-d-primary, 0.15) !important;
+    }
+  }
+
+  .fm-report .f-chip {
+    background: $fm-d-3 !important;
+    color: $fm-d-text-secondary !important;
+    border-color: $fm-d-border-strong !important;
+
+    &:hover {
+      background: rgba($fm-d-primary, 0.1) !important;
+      border-color: $fm-d-primary !important;
+      color: $fm-d-accent !important;
+    }
+
+    &.active {
+      background: $fm-d-primary !important;
+      color: #ffffff !important;
+      border-color: $fm-d-primary !important;
+    }
+  }
+
+  // ── Header icon gradient ──
+  .fm-report .f-header-icon {
+    background: linear-gradient(
+      135deg,
+      $fm-d-primary,
+      darken($fm-d-primary, 10%)
+    ) !important;
+  }
+
+  // ── Table overrides ──
+  .fm-report .f-table {
+    thead th {
+      background-color: $fm-d-primary !important;
+      color: #ffffff !important;
+      border-bottom-color: $fm-d-border-strong !important;
+    }
+
+    tbody tr {
+      border-bottom-color: $fm-d-border !important;
+
+      &:hover {
+        background-color: rgba($fm-d-primary, 0.08) !important;
+      }
+    }
+
+    tbody td {
+      color: $fm-d-text !important;
+      border-bottom-color: $fm-d-border !important;
+    }
+  }
+
+  // ── Section / Subtotal / Total rows ──
+  .fm-report .f-section-row td {
+    background-color: rgba($fm-d-primary, 0.08) !important;
+    color: $fm-d-accent !important;
+    border-left-color: $fm-d-primary !important;
+  }
+
+  .fm-report .f-subsection-row td {
+    color: $fm-d-text !important;
+  }
+
+  .fm-report .f-detail-row td {
+    color: $fm-d-text-secondary !important;
+  }
+
+  .fm-report .f-subtotal-row td {
+    background-color: $fm-d-4 !important;
+    color: $fm-d-text !important;
+    border-top-color: $fm-d-border-strong !important;
+  }
+
+  .fm-report .f-total-row td {
+    background: $fm-d-primary !important;
+    color: #ffffff !important;
+  }
+
+  .fm-report .f-grand-total-row td {
+    background: linear-gradient(135deg, $fm-d-1, $fm-d-5) !important;
+    color: #ffffff !important;
+  }
+
+  // ── Summary cards ──
+  .fm-report .f-summary-card {
+    background: $fm-d-3 !important;
+    border-color: $fm-d-border-strong !important;
+    color: $fm-d-text !important;
+
+    .f-summary-label {
+      color: $fm-d-text-muted !important;
+    }
+
+    .f-summary-value {
+      color: $fm-d-text !important;
+    }
+
+    &.positive .f-summary-value {
+      color: #34d399 !important;
+    }
+    &.negative .f-summary-value {
+      color: #f87171 !important;
+    }
+    &.info .f-summary-value {
+      color: $fm-d-accent !important;
+    }
+  }
+
+  // ── Loading & empty states ──
+  .fm-report .f-loading {
+    color: $fm-d-text-muted !important;
+  }
+
+  .fm-report .f-loading-spinner {
+    border-color: $fm-d-border !important;
+    border-top-color: $fm-d-primary !important;
+  }
+
+  .fm-report .f-empty {
+    color: $fm-d-text-muted !important;
+  }
+
+  // ── Badges ──
+  .fm-report .f-badge {
+    background: rgba($fm-d-primary, 0.15) !important;
+    color: $fm-d-accent !important;
+  }
+
+  .fm-report .f-badge-success {
+    background: rgba(#34d399, 0.15) !important;
+    color: #34d399 !important;
+  }
+
+  .fm-report .f-badge-warning {
+    background: rgba(#fbbf24, 0.15) !important;
+    color: #fbbf24 !important;
+  }
+
+  // ── Links ──
+  .fm-report .f-link {
+    color: $fm-d-accent !important;
+  }
+
+  // ── Equity Changes special row ──
+  .fm-report .f-equity-movement td {
+    background: rgba(#22d3ee, 0.08) !important;
+    color: $fm-d-text !important;
+  }
+
+  // ── Amount styling ──
+  .fm-report .f-negative {
+    color: #f87171 !important;
+  }
+
+  // ── Collapse toggle ──
+  .fm-report .f-collapse-toggle {
+    color: $fm-d-text !important;
+
+    &:hover {
+      color: $fm-d-accent !important;
+    }
+  }
+}

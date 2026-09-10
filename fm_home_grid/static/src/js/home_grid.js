@@ -11,6 +11,7 @@ import { useService } from "@web/core/utils/hooks";
 import { session } from "@web/session";
 import { _t } from "@web/core/l10n/translation";
 import { computeAppsAndMenuItems } from "@web/webclient/menus/menu_helpers";
+import { registry } from "@web/core/registry";
 
 export class HomeGrid extends Component {
   setup() {
@@ -18,9 +19,16 @@ export class HomeGrid extends Component {
     this.actionService = useService("action");
     this.searchRef = useRef("searchInput");
 
+    // The theme button is only worth showing when something can act on
+    // it. fm_dark_mode registers a service of its own name; asking the
+    // registry keeps this module free of any dependency on it, and the
+    // button simply is not rendered when it is not installed.
+    this.hasDarkMode = registry.category("services").contains("fm_dark_mode");
+    this.darkMode = this.hasDarkMode ? useService("fm_dark_mode") : null;
+
     // themeMode: "light" | "dark" | "system"
-    // No toggle button is shipped, so "system" is the only sensible default:
-    // without it the theme would be stuck on light forever.
+    // "system" is the default so the interface follows the OS out of the
+    // box rather than being stuck on light until someone touches it.
     const savedMode = localStorage.getItem("fm_hg_theme") || "system";
     this.state = useState({
       query: "",
@@ -209,6 +217,29 @@ export class HomeGrid extends Component {
     return false;
   }
 
+
+  /** Cycle light -> dark -> system. Only reachable when fm_dark_mode
+   *  is installed, since the button is not rendered otherwise. */
+  cycleTheme() {
+    if (!this.darkMode) {
+      return;
+    }
+    this.state.themeMode = this.darkMode.cycle();
+  }
+
+  /** Icon for the CURRENT mode, so the button says what is in force
+   *  rather than what pressing it would do. */
+  get themeIcon() {
+    if (this.state.themeMode === "dark") return "fa-moon-o";
+    if (this.state.themeMode === "light") return "fa-sun-o";
+    return "fa-adjust";
+  }
+
+  get themeTitle() {
+    if (this.state.themeMode === "dark") return _t("Theme: Dark");
+    if (this.state.themeMode === "light") return _t("Theme: Light");
+    return _t("Theme: follows your system");
+  }
 
   /** React to OS theme change while in system mode */
   _onSystemThemeChange() {

@@ -1,0 +1,232 @@
+// ============================================================
+// Dark mode — structural coverage
+//
+// WHY THIS FILE EXISTS
+//
+// dark_mode.scss recolours Odoo by naming its selectors one at a
+// time. That works for the screens it was written against, and not
+// at all for anything else: a module that ships its own markup is
+// simply not in the list, so it stays white on a dark page. It also
+// never touched `.o-overlay-container`, which is where Odoo 17 puts
+// every notification, dialog, popover and tooltip — so those stayed
+// light no matter what.
+//
+// This file takes the opposite approach. It styles the STRUCTURAL
+// containers and the Bootstrap components that essentially every
+// Odoo module builds on, so a module nobody has written yet still
+// lands on sane colours. It is loaded AFTER dark_mode.scss, so the
+// hand-tuned rules there keep winning where they exist; this only
+// fills the holes.
+//
+// The palette is published as custom properties so other modules
+// can follow the theme instead of guessing at hex values.
+// ============================================================
+
+body.fm-dark {
+  // ── Published palette ────────────────────────────────────
+  // Any module may read these. fm_home_grid uses them for its
+  // banner, which is what stopped it rendering white on a dark page.
+  --fm-d-elevated:    #171920; // header, sidebar, control panel
+  --fm-d-bg:          #1b1d26; // page background
+  --fm-d-surface:     #22242e; // cards, sheets, dialogs
+  --fm-d-input:       #2a2d38; // inputs, hover
+  --fm-d-active:      #323542; // active / selected
+  --fm-d-text:        #e0e0e8;
+  --fm-d-text-muted:  #8088a0;
+  --fm-d-border:      rgba(255, 255, 255, 0.08);
+  --fm-d-accent:      #9b8ec4;
+
+  // Native widgets — scrollbars, date pickers, spinners, the
+  // dropdown list a <select> opens. Without this they stay bright
+  // white and there is no CSS that can reach inside them.
+  color-scheme: dark;
+
+  // ══════════════════════════════════════════════════════════
+  // 1. THE OVERLAY LAYER  (fixes: notifications stayed light)
+  //
+  // Odoo 17 renders notifications, dialogs, popovers and tooltips
+  // into `.o-overlay-container`, a sibling of the web client. The
+  // original stylesheet never mentioned it once.
+  // ══════════════════════════════════════════════════════════
+  .o-overlay-container {
+    color: var(--fm-d-text);
+
+    .o_notification,
+    .toast {
+      background-color: var(--fm-d-surface);
+      border-color: var(--fm-d-border);
+      color: var(--fm-d-text);
+      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.45);
+    }
+
+    // The close "x" is a bare button and inherits nothing useful.
+    .o_notification_close,
+    .btn-close {
+      color: var(--fm-d-text);
+      filter: invert(1) grayscale(1) brightness(1.6);
+    }
+
+    // Keep the semantic colours readable: Odoo tints these with
+    // light-mode text colours that vanish against a dark surface.
+    .text-success { color: #63c78a !important; }
+    .text-danger  { color: #f2777a !important; }
+    .text-warning { color: #e0b062 !important; }
+    .text-info    { color: #6fb3d2 !important; }
+  }
+
+  // ══════════════════════════════════════════════════════════
+  // 2. GENERIC COMPONENTS  (fixes: new modules stayed light)
+  //
+  // Named by what they ARE, not by which module ships them.
+  // ══════════════════════════════════════════════════════════
+
+  // Dialogs and modals
+  .modal-content,
+  .o_dialog .modal-content {
+    background-color: var(--fm-d-surface);
+    color: var(--fm-d-text);
+    border-color: var(--fm-d-border);
+  }
+  .modal-header,
+  .modal-footer {
+    border-color: var(--fm-d-border);
+  }
+
+  // Floating surfaces
+  .dropdown-menu,
+  .o_popover,
+  .popover,
+  .offcanvas {
+    background-color: var(--fm-d-surface);
+    color: var(--fm-d-text);
+    border-color: var(--fm-d-border);
+  }
+  .dropdown-item {
+    color: var(--fm-d-text);
+
+    &:hover,
+    &:focus {
+      background-color: var(--fm-d-input);
+      color: var(--fm-d-text);
+    }
+  }
+  .dropdown-divider {
+    border-color: var(--fm-d-border);
+  }
+  .tooltip-inner {
+    background-color: var(--fm-d-elevated);
+    color: var(--fm-d-text);
+  }
+
+  // Panels
+  .card,
+  .list-group-item,
+  .accordion-item,
+  .accordion-button {
+    background-color: var(--fm-d-surface);
+    color: var(--fm-d-text);
+    border-color: var(--fm-d-border);
+  }
+
+  // Form controls — every module has forms
+  .form-control,
+  .form-select,
+  .input-group-text,
+  textarea,
+  select,
+  input[type="text"],
+  input[type="number"],
+  input[type="email"],
+  input[type="search"],
+  input[type="password"],
+  input[type="date"],
+  input[type="datetime-local"] {
+    background-color: var(--fm-d-input);
+    color: var(--fm-d-text);
+    border-color: var(--fm-d-border);
+
+    &::placeholder { color: var(--fm-d-text-muted); }
+
+    &:focus {
+      background-color: var(--fm-d-input);
+      color: var(--fm-d-text);
+      border-color: var(--fm-d-accent);
+      box-shadow: 0 0 0 2px rgba(155, 142, 196, 0.25);
+    }
+
+    &:disabled,
+    &[readonly] {
+      background-color: var(--fm-d-bg);
+      color: var(--fm-d-text-muted);
+    }
+  }
+
+  // Tables
+  .table {
+    --bs-table-bg: transparent;
+    --bs-table-color: var(--fm-d-text);
+    --bs-table-border-color: var(--fm-d-border);
+    --bs-table-striped-bg: rgba(255, 255, 255, 0.03);
+    --bs-table-striped-color: var(--fm-d-text);
+    --bs-table-hover-bg: rgba(255, 255, 255, 0.05);
+    --bs-table-hover-color: var(--fm-d-text);
+    color: var(--fm-d-text);
+  }
+
+  // Neutral buttons. Coloured buttons keep their own palette:
+  // a blue Save button is still legible on a dark surface, and
+  // repainting it would only make the interface harder to read.
+  .btn-secondary,
+  .btn-light,
+  .btn-outline-secondary {
+    background-color: var(--fm-d-input);
+    color: var(--fm-d-text);
+    border-color: var(--fm-d-border);
+
+    &:hover { background-color: var(--fm-d-active); color: var(--fm-d-text); }
+  }
+
+  // Tabs and pills
+  .nav-tabs,
+  .nav-pills {
+    border-color: var(--fm-d-border);
+
+    .nav-link {
+      color: var(--fm-d-text-muted);
+
+      &.active {
+        background-color: var(--fm-d-surface);
+        color: var(--fm-d-text);
+        border-color: var(--fm-d-border);
+      }
+    }
+  }
+
+  // Bootstrap's white/light helpers are used liberally by third
+  // party modules and are the single biggest source of bright
+  // patches on an otherwise dark page.
+  .bg-white,
+  .bg-light,
+  .bg-body,
+  .bg-body-tertiary {
+    background-color: var(--fm-d-surface) !important;
+    color: var(--fm-d-text);
+  }
+  .text-dark,
+  .text-body {
+    color: var(--fm-d-text) !important;
+  }
+  .text-muted,
+  .text-secondary {
+    color: var(--fm-d-text-muted) !important;
+  }
+  .border,
+  .border-top,
+  .border-bottom,
+  .border-start,
+  .border-end {
+    border-color: var(--fm-d-border) !important;
+  }
+
+  hr { border-color: var(--fm-d-border); }
+}
