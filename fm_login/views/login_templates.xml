@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!--
+        The login page is the one page in Odoo nobody can recover from
+        through the interface: break it and every account is locked out,
+        administrator included. Two rules follow from that, and both are
+        load-bearing.
+
+        1. Anything other than a style this template knows renders Odoo's
+           STOCK layout, reproduced below verbatim. An empty setting, a
+           typo, a value left behind by an older version - all of them land
+           on a login page that works.
+
+        2. Every style keeps `<t t-out="0"/>`. That is where Odoo injects
+           the real form: the fields, the CSRF token, the error messages,
+           the OAuth buttons. None of it is reimplemented here, so none of
+           it can be got wrong.
+    -->
+    <template id="login_layout" inherit_id="web.login_layout" name="Modern Login">
+        <xpath expr="//t[@t-call='web.frontend_layout']" position="replace">
+            <t t-set="fm_cfg" t-value="request.env['ir.config_parameter'].sudo()"/>
+            <t t-set="fm_style" t-value="fm_cfg.get_param('fm_login.style') or 'odoo'"/>
+            <t t-set="fm_color" t-value="fm_cfg.get_param('fm_login.color') or '#1C1C22'"/>
+            <t t-set="fm_on_light" t-value="fm_cfg.get_param('fm_login.on_light') in ('True', 'true', '1')"/>
+            <t t-set="fm_logo" t-value="'/web/binary/company_logo' + ('?dbname=' + db if db else '')"/>
+
+            <!-- ═══ Odoo default, and the fallback for anything unknown ═══ -->
+            <t t-if="fm_style not in ('split', 'card', 'open')">
+                <t t-call="web.frontend_layout">
+                    <t t-set="html_data" t-value="{'style': 'height: 100%;'}"/>
+                    <t t-set="body_classname" t-value="'bg-100'"/>
+                    <t t-set="no_header" t-value="True"/>
+                    <t t-set="no_footer" t-value="True"/>
+
+                    <div class="container py-5">
+                        <div t-attf-class="card border-0 mx-auto bg-100 {{login_card_classes}} o_database_list" style="max-width: 300px;">
+                            <div class="card-body">
+                                <div t-attf-class="text-center pb-3 border-bottom {{'mb-3' if form_small else 'mb-4'}}">
+                                    <img t-att-src="fm_logo" alt="Logo" style="max-height:120px; max-width: 100%; width:auto"/>
+                                </div>
+                                <t t-out="0"/>
+                                <div class="text-center small mt-4 pt-3 border-top" t-if="not disable_footer">
+                                    <t t-if="not disable_database_manager">
+                                        <a class="border-end pe-2 me-1" href="/web/database/manager">Manage Databases</a>
+                                    </t>
+                                    <a href="https://www.odoo.com?utm_source=db&amp;utm_medium=auth" target="_blank">Powered by <span>Odoo</span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+
+            <!-- ═══ The three designs ═══ -->
+            <t t-else="">
+                <t t-call="web.frontend_layout">
+                    <t t-set="html_data" t-value="{'style': 'height: 100%;'}"/>
+                    <t t-set="body_classname" t-value="'fm_login fm_login--' + fm_style + (' fm_login--on-light' if fm_on_light else '')"/>
+                    <t t-set="no_header" t-value="True"/>
+                    <t t-set="no_footer" t-value="True"/>
+
+                    <!-- ── Split ── -->
+                    <t t-if="fm_style == 'split'">
+                        <div class="fm_l_split">
+                            <aside class="fm_l_brand">
+                                <span class="fm_l_blob fm_l_blob--1"/>
+                                <span class="fm_l_blob fm_l_blob--2"/>
+                                <span class="fm_l_blob fm_l_blob--3"/>
+                                <div class="fm_l_brand_inner">
+                                    <div class="fm_l_logo_ring">
+                                        <img t-att-src="fm_logo" alt="Logo" class="fm_l_logo"/>
+                                    </div>
+                                    <h1 class="fm_l_hero">Welcome back</h1>
+                                    <p class="fm_l_hero_sub">Sign in to continue to your workspace.</p>
+                                </div>
+                            </aside>
+                            <main class="fm_l_pane">
+                                <div class="fm_l_form">
+                                    <h2 class="fm_l_title">Sign in</h2>
+                                    <p class="fm_l_sub">Enter your credentials to continue</p>
+                                    <t t-out="0"/>
+                                    <t t-call="fm_login.footer"/>
+                                </div>
+                            </main>
+                        </div>
+                    </t>
+
+                    <!-- ── Card ── -->
+                    <t t-elif="fm_style == 'card'">
+                        <div class="fm_l_cardwrap">
+                            <div class="fm_l_card">
+                                <img t-att-src="fm_logo" alt="Logo" class="fm_l_card_logo"/>
+                                <h2 class="fm_l_title">Sign in</h2>
+                                <p class="fm_l_sub">Enter your credentials to continue</p>
+                                <t t-out="0"/>
+                                <t t-call="fm_login.footer"/>
+                            </div>
+                        </div>
+                    </t>
+
+                    <!-- ── Open ── -->
+                    <t t-else="">
+                        <div class="fm_l_open" t-attf-style="--fm-ground: {{ fm_color }};">
+                            <span class="fm_l_rule"/>
+                            <img t-att-src="fm_logo" alt="Logo" class="fm_l_open_logo"/>
+                            <div class="fm_l_open_inner">
+                                <h1 class="fm_l_open_title">Sign in.</h1>
+                                <p class="fm_l_sub" t-if="db"><t t-out="db"/></p>
+                                <t t-out="0"/>
+                                <t t-call="fm_login.footer"/>
+                            </div>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </xpath>
+    </template>
+
+    <!-- Kept in one place so the three designs cannot drift apart on the
+         database link, which is the one thing here that has to keep working. -->
+    <template id="footer" name="Modern Login - footer">
+        <div class="fm_l_foot" t-if="not disable_footer">
+            <a t-if="not disable_database_manager" href="/web/database/manager">Manage databases</a>
+            <a href="https://www.odoo.com?utm_source=db&amp;utm_medium=auth" target="_blank">Powered by <span>Odoo</span></a>
+        </div>
+    </template>
+
+</odoo>
