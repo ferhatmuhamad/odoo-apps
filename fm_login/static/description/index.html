@@ -1,0 +1,106 @@
+<section style="padding:36px 0; background:#1C1C22; color:#F2EFE9; text-align:center;">
+    <h1 style="margin:0 0 8px; font-size:38px; font-weight:700; letter-spacing:-0.5px;">Modern Login</h1>
+    <p style="margin:0; font-size:18px; color:#A9A4B4;">Three login screens &mdash; the administrator picks one in Settings</p>
+</section>
+
+<section style="padding:28px 0;">
+    <div style="max-width:820px; margin:0 auto; text-align:center;">
+        <p style="font-size:16px; line-height:1.7; color:#3E4A55;">
+            Odoo's login page is the first thing anyone sees of your system, and the one
+            screen you cannot change from the interface. This module gives you three
+            finished designs for it. An administrator opens
+            <strong>Settings &rarr; Login Screen</strong>, picks one from a list, sees a
+            preview of it right there, and that is what everyone gets.
+        </p>
+    </div>
+</section>
+
+<section style="padding:8px 0 12px;">
+    <h2 style="text-align:center; font-size:26px; color:#1C1C22; margin:0 0 6px;">Split</h2>
+    <p style="max-width:760px; margin:0 auto 16px; text-align:center; font-size:15px; line-height:1.6; color:#4C5865;">
+        A brand panel beside the form. Your logo gets half the screen, on a gradient with
+        soft shapes behind it &mdash; the choice for a company that wants the login page to
+        look like theirs.
+    </p>
+    <img src="images/split.png" alt="The Split login screen: a purple brand panel with the logo and a welcome message beside a white form"
+         style="display:block; max-width:100%; height:auto; margin:0 auto; border:1px solid #D6DEE6;"/>
+</section>
+
+<section style="padding:26px 0 12px;">
+    <h2 style="text-align:center; font-size:26px; color:#1C1C22; margin:0 0 6px;">Card</h2>
+    <p style="max-width:760px; margin:0 auto 16px; text-align:center; font-size:15px; line-height:1.6; color:#4C5865;">
+        One card on a plain ground. No panel, no imagery, no motion. For people who sign in
+        several times a day and want the screen out of the way.
+    </p>
+    <img src="images/card.png" alt="The Card login screen: a single white card centred on a light grey page"
+         style="display:block; max-width:100%; height:auto; margin:0 auto; border:1px solid #D6DEE6;"/>
+</section>
+
+<section style="padding:26px 0 12px;">
+    <h2 style="text-align:center; font-size:26px; color:#1C1C22; margin:0 0 6px;">Open</h2>
+    <p style="max-width:760px; margin:0 auto 16px; text-align:center; font-size:15px; line-height:1.6; color:#4C5865;">
+        No card and no second column at all. The form stands directly on a field of colour,
+        ranged left, with underlines instead of boxes. <strong>The colour is a setting</strong> &mdash;
+        type a hex value and the whole screen follows it.
+    </p>
+    <img src="images/open.png" alt="The Open login screen: a large heading and underlined fields on a dark field of colour"
+         style="display:block; max-width:100%; height:auto; margin:0 auto; border:1px solid #D6DEE6;"/>
+</section>
+
+<section style="padding:30px 0 34px;">
+    <h2 style="text-align:center; font-size:26px; color:#1C1C22; margin:0 0 24px;">Safe by construction</h2>
+    <table style="width:100%; max-width:900px; margin:0 auto; border-collapse:separate; border-spacing:14px;">
+        <tr>
+            <td style="width:33%; vertical-align:top; background:#F5F3F7; border:1px solid #DEDBE2; padding:18px;">
+                <h3 style="margin:0 0 8px; font-size:17px; color:#714B67;">Odoo still renders the form</h3>
+                <p style="margin:0; font-size:14px; line-height:1.6; color:#4C5865;">
+                    None of the three screens reimplements the login form. Odoo injects its own,
+                    so the fields, the CSRF token, the error messages, password reset and any
+                    OAuth buttons keep working exactly as they do without this module.
+                </p>
+            </td>
+            <td style="width:33%; vertical-align:top; background:#F5F3F7; border:1px solid #DEDBE2; padding:18px;">
+                <h3 style="margin:0 0 8px; font-size:17px; color:#714B67;">Anything unknown falls back</h3>
+                <p style="margin:0; font-size:14px; line-height:1.6; color:#4C5865;">
+                    The login page is the one page nobody can recover from through the
+                    interface. Any setting this module does not recognise &mdash; an empty value,
+                    a typo, something left by an older version &mdash; renders <strong>Odoo's own
+                    login page</strong>, reproduced unchanged.
+                </p>
+            </td>
+            <td style="width:33%; vertical-align:top; background:#F5F3F7; border:1px solid #DEDBE2; padding:18px;">
+                <h3 style="margin:0 0 8px; font-size:17px; color:#714B67;">A pale colour still reads</h3>
+                <p style="margin:0; font-size:14px; line-height:1.6; color:#4C5865;">
+                    The background colour is checked as a plain six-digit hex before it is
+                    stored, and whether the text on it should be light or dark is worked out
+                    from the colour's luminance &mdash; so a pale colour cannot produce a login
+                    page nobody can read.
+                </p>
+            </td>
+        </tr>
+    </table>
+</section>
+
+<section style="padding:8px 0 34px;">
+    <h2 style="text-align:center; font-size:26px; color:#1C1C22; margin:0 0 6px;">Chosen in Settings, with a preview</h2>
+    <p style="max-width:760px; margin:0 auto 16px; text-align:center; font-size:15px; line-height:1.6; color:#4C5865;">
+        No developer mode, no editing a template. The setting is database-wide by nature: the
+        login page renders before anyone is identified, so there is no user to read a
+        preference from.
+    </p>
+    <img src="images/settings.png" alt="The Login Screen page in Odoo Settings: a list of the four screens and a preview of the selected one"
+         style="display:block; max-width:100%; height:auto; margin:0 auto; border:1px solid #D6DEE6;"/>
+</section>
+
+<section style="padding:8px 0 40px;">
+    <div style="max-width:820px; margin:0 auto; text-align:center;">
+        <h2 style="font-size:22px; color:#1C1C22; margin:0 0 10px;">Community and Enterprise</h2>
+        <p style="font-size:15px; line-height:1.7; color:#4C5865; margin:0;">
+            Built on Odoo Community modules only, so it runs on both editions. Available for
+            Odoo 17.0, 18.0 and 19.0. It depends on <code>web</code> and <code>base_setup</code>,
+            adds no model and writes nothing to any user record &mdash; both settings live in
+            <code>ir.config_parameter</code>. Uninstall at any time and the standard Odoo login
+            returns.
+        </p>
+    </div>
+</section>
