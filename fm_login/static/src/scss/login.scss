@@ -1,0 +1,373 @@
+// ============================================================
+// Modern Login — three screens, one stylesheet
+//
+// Scoped under a body class the template sets, so nothing here
+// touches any page other than the login. Odoo's own form markup
+// is left alone and only re-skinned: the fields, the button and
+// the error messages all keep their Odoo classes, which is what
+// lets OAuth buttons and validation errors keep working.
+// ============================================================
+
+$fm-l-ease: cubic-bezier(0.4, 0, 0.2, 1);
+
+// Odoo renders the form itself. These are the handles it gives us.
+%fm-l-field {
+  .form-control,
+  .form-select {
+    width: 100%;
+    font-size: 0.95rem;
+    transition: border-color 0.18s $fm-l-ease, box-shadow 0.18s $fm-l-ease;
+  }
+  .btn-primary {
+    width: 100%;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+  }
+  .alert { font-size: 0.87rem; }
+
+  // Odoo 19 membungkus isian sandi dalam .input-group bersama tombol
+  // "tampilkan sandi". `width: 100%` di atas membuat isian itu memenuhi
+  // seluruh baris dan tombolnya jatuh ke baris berikutnya sebagai kotak
+  // liar. Anggota input-group dikembalikan ke perilaku Bootstrap.
+  .input-group > .form-control {
+    width: 1%;
+    flex: 1 1 auto;
+  }
+}
+
+body.fm_login {
+  height: 100%;
+  margin: 0;
+
+  .oe_login_form,
+  .oe_signup_form,
+  .oe_reset_password_form { width: 100%; }
+
+  .fm_l_title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    margin: 0 0 0.25rem;
+  }
+  .fm_l_sub {
+    font-size: 0.87rem;
+    margin: 0 0 1.6rem;
+  }
+
+  .fm_l_foot {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1.6rem;
+    padding-top: 1rem;
+    font-size: 0.78rem;
+
+    a { text-decoration: none; }
+  }
+}
+
+// ══════════════════════════════════════════════════════════
+// SPLIT — brand panel beside the form
+// ══════════════════════════════════════════════════════════
+body.fm_login--split {
+  @extend %fm-l-field;
+
+  .fm_l_split {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 46% 54%;
+  }
+
+  .fm_l_brand {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    padding: 3rem;
+    color: #fff;
+    background: linear-gradient(135deg, #714b67 0%, #9c6b90 100%);
+  }
+  .fm_l_brand_inner { position: relative; z-index: 1; max-width: 26rem; }
+
+  .fm_l_blob {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.09);
+  }
+  // Diukur terhadap LEBAR PANEL, bukan rem tetap: pada panel selebar
+  // 660px, 22rem menjadi lingkaran raksasa yang menelan setengah layar
+  // alih-alih dekorasi halus.
+  .fm_l_blob--1 { width: 42%; aspect-ratio: 1; top: -12%; right: -10%; }
+  .fm_l_blob--2 { width: 26%; aspect-ratio: 1; bottom: 6%; left: -9%; }
+  .fm_l_blob--3 {
+    width: 14%; aspect-ratio: 1; bottom: 30%; right: 14%;
+    background: rgba(255, 255, 255, 0.13);
+  }
+
+  .fm_l_logo_ring {
+    min-width: 4.5rem;
+    height: 4.5rem;
+    padding: 0 1rem;
+    border-radius: 1.1rem;
+    background: rgba(255, 255, 255, 0.18);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.6rem;
+  }
+  .fm_l_logo { max-width: 9rem; max-height: 2.6rem; }
+
+  .fm_l_hero {
+    font-size: 2.1rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin: 0 0 0.5rem;
+  }
+  .fm_l_hero_sub { font-size: 1rem; opacity: 0.82; margin: 0; }
+
+  .fm_l_pane {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem;
+    background: #fff;
+  }
+  .fm_l_form { width: 100%; max-width: 23rem; }
+
+  .fm_l_title { color: #2b2b33; }
+  .fm_l_sub { color: #8a8a95; }
+
+  .form-control {
+    background: #f5f4f7;
+    border: 1px solid #e5e3e9;
+    &:focus { border-color: #714b67; box-shadow: 0 0 0 3px rgba(113, 75, 103, 0.12); }
+  }
+  .btn-primary {
+    background: #714b67;
+    border-color: #714b67;
+    &:hover { background: #5b3a53; border-color: #5b3a53; }
+  }
+  .fm_l_foot { border-top: 1px solid #eceaef; a { color: #8a8a95; } }
+
+  // Below this the two columns cannot both hold their content, so the
+  // brand panel becomes a band above the form rather than shrinking.
+  @media (max-width: 860px) {
+    .fm_l_split { grid-template-columns: 1fr; min-height: 100%; }
+    .fm_l_brand { padding: 2.5rem 1.5rem; }
+    .fm_l_hero { font-size: 1.6rem; }
+    .fm_l_pane { padding: 2rem 1.5rem 3rem; }
+  }
+}
+
+// ══════════════════════════════════════════════════════════
+// CARD — one card on a plain ground
+// ══════════════════════════════════════════════════════════
+body.fm_login--card {
+  @extend %fm-l-field;
+  background: #eceaee;
+
+  .fm_l_cardwrap {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1.25rem;
+  }
+  .fm_l_card {
+    width: 100%;
+    max-width: 25rem;
+    background: #fff;
+    border: 1px solid #dedbe2;
+    border-radius: 0.9rem;
+    padding: 2.5rem 2.25rem;
+    box-shadow: 0 1.25rem 3rem rgba(40, 35, 45, 0.08);
+    text-align: center;
+  }
+  .fm_l_card_logo {
+    max-height: 3rem;
+    max-width: 60%;
+    margin: 0 auto 1.5rem;
+    display: block;
+  }
+  .fm_l_title { color: #23232b; }
+  .fm_l_sub { color: #8b8b96; }
+
+  // The form itself reads left, even though the header is centred:
+  // centred labels above left-aligned inputs look like a mistake.
+  .oe_login_form { text-align: left; }
+
+  .form-control {
+    background: #fff;
+    border: 1px solid #d9d6de;
+    &:focus { border-color: #23232b; box-shadow: 0 0 0 3px rgba(35, 35, 43, 0.1); }
+  }
+  .btn-primary {
+    background: #23232b;
+    border-color: #23232b;
+    &:hover { background: #35353f; border-color: #35353f; }
+  }
+  .fm_l_foot { border-top: 1px solid #eceaef; a { color: #8b8b96; } }
+}
+
+// ══════════════════════════════════════════════════════════
+// OPEN — the form on a field of colour
+//
+// `--fm-ground` is written onto the element by the template from
+// the administrator's setting. Everything else is derived from it,
+// with plain fallbacks first so a browser without color-mix still
+// gets a readable page rather than an unreadable one.
+// ══════════════════════════════════════════════════════════
+body.fm_login--open {
+  @extend %fm-l-field;
+
+  .fm_l_open {
+    --fm-ink: #f2efe9;
+    --fm-accent: #d9a441;
+    --fm-on-accent: #1c1c22;
+
+    min-height: 100vh;
+    background: var(--fm-ground, #1c1c22);
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 4rem 3rem;
+  }
+  .fm_l_rule {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: var(--fm-accent);
+  }
+  .fm_l_open_logo {
+    position: absolute;
+    top: 2.5rem;
+    left: 3rem;
+    max-height: 2.2rem;
+    max-width: 9rem;
+  }
+  .fm_l_open_inner { width: 100%; max-width: 27rem; }
+
+  .fm_l_open_title {
+    font-size: 3.2rem;
+    font-weight: 700;
+    line-height: 1.02;
+    letter-spacing: -0.03em;
+    // Jarak ini melekat pada judul, bukan pada subjudul: nama database
+    // tidak selalu ada, dan saat ia hilang judulnya menempel ke label
+    // isian pertama.
+    margin: 0 0 1.8rem;
+    color: var(--fm-ink);
+  }
+  .fm_l_open_title + .fm_l_sub { margin-top: -1.4rem; }
+  .fm_l_sub {
+    color: rgba(242, 239, 233, 0.62);
+    color: color-mix(in srgb, var(--fm-ink) 62%, transparent);
+  }
+
+  // Underlines rather than boxes - the whole point of this design.
+  .form-control {
+    background: transparent;
+    border: 0;
+    border-bottom: 2px solid rgba(242, 239, 233, 0.3);
+    border-bottom-color: color-mix(in srgb, var(--fm-ink) 30%, transparent);
+    border-radius: 0;
+    padding-left: 0;
+    padding-right: 0;
+    font-size: 1.05rem;
+    color: var(--fm-ink);
+
+    &::placeholder {
+      color: rgba(242, 239, 233, 0.4);
+      color: color-mix(in srgb, var(--fm-ink) 40%, transparent);
+    }
+    &:focus {
+      background: transparent;
+      color: var(--fm-ink);
+      border-bottom-color: var(--fm-accent);
+      box-shadow: none;
+    }
+  }
+  // Garis bawahnya pindah ke input-group supaya isian dan tombol mata
+  // berbagi satu garis, bukan dua potongan yang tidak sejajar.
+  .input-group {
+    border-bottom: 2px solid rgba(242, 239, 233, 0.3);
+    border-bottom-color: color-mix(in srgb, var(--fm-ink) 30%, transparent);
+
+    .form-control { border-bottom: 0; }
+    &:focus-within { border-bottom-color: var(--fm-accent); }
+  }
+  // Odoo mengkompilasi utility Bootstrap menjadi warna harfiah ber-!important
+  // - diukur pada halaman yang berjalan: .border menjadi #dee2e6 dan
+  // .text-muted menjadi rgba(33,37,41,.75), bukan var(--bs-*). Menimpa
+  // variabel karena itu tidak berpengaruh sama sekali, dan !important di dua
+  // tempat berikut bukan pilihan gaya melainkan satu-satunya jalan.
+  .o_show_password {
+    border: 0 !important;
+    background: transparent;
+    color: rgba(242, 239, 233, 0.55);
+    color: color-mix(in srgb, var(--fm-ink) 55%, transparent);
+    &:hover { color: var(--fm-ink); }
+  }
+  .o_login_auth .text-muted {
+    color: rgba(242, 239, 233, 0.55) !important;
+    color: color-mix(in srgb, var(--fm-ink) 55%, transparent) !important;
+  }
+
+  // Tautan "Use a Passkey" pada Odoo 19 adalah .list-group-item: latarnya
+  // putih, sementara tulisannya mengambil warna <a> di atas - tanpa ini ia
+  // menjadi teks terang di atas kotak putih.
+  .list-group-item {
+    background: transparent;
+    border-color: rgba(242, 239, 233, 0.3);
+    border-color: color-mix(in srgb, var(--fm-ink) 30%, transparent);
+    color: var(--fm-ink);
+
+    &:hover,
+    &:focus {
+      color: var(--fm-ink);
+      background: rgba(242, 239, 233, 0.08);
+      background: color-mix(in srgb, var(--fm-ink) 8%, transparent);
+    }
+  }
+
+  label,
+  .col-form-label {
+    color: rgba(242, 239, 233, 0.55);
+    color: color-mix(in srgb, var(--fm-ink) 55%, transparent);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  .btn-primary {
+    background: var(--fm-accent);
+    border-color: var(--fm-accent);
+    color: var(--fm-on-accent);
+    border-radius: 0.35rem;
+    padding: 0.7rem 1rem;
+    &:hover { filter: brightness(1.07); }
+  }
+  a { color: rgba(242, 239, 233, 0.72); color: color-mix(in srgb, var(--fm-ink) 72%, transparent); }
+  .fm_l_foot { border-top: 1px solid rgba(255, 255, 255, 0.12); }
+
+  // A light ground flips the type, not the layout. Worked out server
+  // side from the colour's luminance, so a pale colour cannot produce
+  // white text on white.
+  &.fm_login--on-light .fm_l_open {
+    --fm-ink: #1c1c22;
+    --fm-accent: #1c1c22;
+    --fm-on-accent: #ffffff;
+
+    .fm_l_foot { border-top-color: rgba(0, 0, 0, 0.12); }
+  }
+
+  @media (max-width: 640px) {
+    .fm_l_open { padding: 5.5rem 1.5rem 3rem; }
+    .fm_l_open_title { font-size: 2.3rem; }
+    .fm_l_open_logo { left: 1.5rem; top: 2rem; }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.fm_login * { transition: none !important; animation: none !important; }
+}
