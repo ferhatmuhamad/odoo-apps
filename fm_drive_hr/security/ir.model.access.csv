@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_drive_template_user,Archive Template - User,model_fm_drive_folder_template,fm_drive.group_drive_user,1,0,0,0
+access_drive_template_hr,Archive Template - HR Manager,model_fm_drive_folder_template,hr.group_hr_manager,1,1,1,1
+access_drive_template_admin,Archive Template - Administrator,model_fm_drive_folder_template,fm_drive.group_drive_admin,1,1,1,1

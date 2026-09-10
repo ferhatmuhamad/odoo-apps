@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_drive_template_tree" model="ir.ui.view">
+        <field name="name">fm.drive.folder.template.tree</field>
+        <field name="model">fm.drive.folder.template</field>
+        <field name="arch" type="xml">
+            <tree string="Employee Archive Template" editable="bottom">
+                <field name="sequence" widget="handle"/>
+                <field name="name" string="Folder Name"/>
+                <field name="description" string="Description"/>
+                <field name="default_expiry_months" string="Document Lifetime (months)"/>
+                <field name="company_id" string="Company"
+                       groups="base.group_multi_company" optional="show"/>
+                <field name="active" string="Active" optional="hide"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_drive_template_form" model="ir.ui.view">
+        <field name="name">fm.drive.folder.template.form</field>
+        <field name="model">fm.drive.folder.template</field>
+        <field name="arch" type="xml">
+            <form string="Archive Template">
+                <header>
+                    <button name="action_apply_to_all_employees" type="object"
+                            string="Apply to All Employees" class="btn-primary"
+                            confirm="Folders that do not exist yet will be created in every employee archive. Existing folders are skipped, not duplicated. Continue?"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" placeholder="e.g. Contracts"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="sequence"/>
+                            <field name="description"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                            <field name="active"/>
+                        </group>
+                        <group>
+                            <field name="default_expiry_months"/>
+                        </group>
+                    </group>
+                    <div class="alert alert-info" role="alert">
+                        The folders on this list are created automatically inside every employee archive. Adding a new line does NOT change the existing archives right away — press <b>Apply to All Employees</b> to catch them up.<br/><b>Document Lifetime</b> fills in the expiry date automatically for every file uploaded into this folder, so HR does not have to type dates one by one for hundreds of employees.
+                    </div>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_drive_template" model="ir.actions.act_window">
+        <field name="name">Employee Archive Template</field>
+        <field name="res_model">fm.drive.folder.template</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Define the employee archive structure</p>
+            <p>
+                Every line here becomes one sub folder in every employee archive (Contract, Diploma, Certificate, and so on). The structure is set here, not in the code, so it can be changed at any time without technical help.
+            </p>
+        </field>
+    </record>
+
+</odoo>
