@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-name="fm_attendance_geo.GeoReasonDialog">
+        <Dialog title="title" size="'md'">
+            <p class="mb-3" t-esc="props.message"/>
+            <label class="form-label fw-bold" for="fm_geo_reason_input">Reason</label>
+            <textarea id="fm_geo_reason_input" class="form-control" rows="3" t-ref="input"
+                      t-model="state.reason" t-on-keydown="onKeydown"
+                      placeholder="Where you are and why, for example: client visit at PT Maju Jaya"/>
+            <t t-set-slot="footer">
+                <button class="btn btn-primary" t-on-click="onConfirm" t-att-disabled="!canConfirm">
+                    Check in
+                </button>
+                <button class="btn btn-secondary" t-on-click="onCancel">Cancel</button>
+            </t>
+        </Dialog>
+    </t>
+
+</templates>

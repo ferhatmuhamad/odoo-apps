@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_employee_form_geo" model="ir.ui.view">
+        <field name="name">hr.employee.form.inherit.fm.geo</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="(//field[@name='work_location_id'])[1]" position="after">
+                <field name="fm_geo_extra_location_ids" widget="many2many_tags"
+                       options="{'no_create': True}"
+                       placeholder="Other offices this person may check in at"/>
+                <field name="fm_geo_exempt"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
