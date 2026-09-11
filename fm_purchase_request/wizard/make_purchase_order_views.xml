@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_make_purchase_order_form" model="ir.ui.view">
+        <field name="name">fm.purchase.request.make.po.form</field>
+        <field name="model">fm.purchase.request.make.po</field>
+        <field name="arch" type="xml">
+            <form string="Create Purchase Orders">
+                <p class="text-muted">
+                    Give every item a product and a vendor. One order is created per vendor;
+                    with the option below, lines join the vendor's open RFQ instead.
+                </p>
+                <group>
+                    <!-- force_save: readonly values are not sent on save unless told
+                         to, and both of these are what the wizard works from. -->
+                    <field name="request_ids" widget="many2many_tags" force_save="1"/>
+                    <field name="merge_draft_po"/>
+                    <field name="create_missing_products"/>
+                </group>
+                <field name="line_ids">
+                    <list editable="bottom" create="false">
+                        <field name="request_id" readonly="1" optional="show"/>
+                        <!-- Hidden by default: the product column needs the room more. -->
+                        <field name="requester_id" widget="many2one_avatar_employee" readonly="1" optional="hide"/>
+                        <field name="name" readonly="1"/>
+                        <field name="url" widget="url" readonly="1" optional="hide"/>
+                        <field name="product_id" options="{'no_create': True}"
+                               placeholder="Pick one, or tick 'Create products' above"/>
+                        <field name="product_qty"/>
+                        <field name="product_uom_id" groups="uom.group_uom"/>
+                        <field name="price_unit"/>
+                        <!-- Not required in the view on purpose: the server refuses with a
+                             message that names the item, which beats "a mandatory field is not set". -->
+                        <field name="vendor_id"/>
+                        <field name="company_id" column_invisible="1"/>
+                        <field name="currency_id" column_invisible="1"/>
+                        <field name="request_line_id" column_invisible="1" force_save="1"/>
+                    </list>
+                </field>
+                <footer>
+                    <button name="action_create" string="Create Purchase Orders" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+</odoo>
