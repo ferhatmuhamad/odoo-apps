@@ -26,6 +26,7 @@ Semua module dibangun **hanya di atas Odoo Community**, sehingga berjalan di
 | [`fm_drive_hr`](fm_drive_hr/) | Team Drive for Employees — arsip dokumen per karyawan; add-on gratis untuk modul berbayar [Team Drive](https://apps.odoo.com) | 17.0, 18.0, 19.0 | LGPL-3 |
 | [`fm_login`](fm_login/) | Modern Login — tiga tampilan halaman login, dipilih administrator dari Settings | 17.0, 18.0, 19.0 | LGPL-3 |
 | [`fm_attendance_geo`](fm_attendance_geo/) | Attendance Geofence — radius per lokasi kerja, peta di tiap absensi, kebijakan per kantor untuk yang di luar area | 17.0, 18.0, 19.0 | LGPL-3 |
+| [`fm_purchase_request`](fm_purchase_request/) | Purchase Request — staf minta dengan kata-kata sendiri, atasan menyetujui, pembelian membuat PO satu klik; smart button dua arah | 17.0, 18.0, 19.0 | LGPL-3 |
 
 ## Instalasi
 

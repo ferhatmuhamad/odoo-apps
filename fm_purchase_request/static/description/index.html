@@ -1,0 +1,140 @@
+<section style="padding:36px 0; background:#16202B; color:#ffffff; text-align:center;">
+    <h1 style="margin:0 0 8px; font-size:38px; font-weight:700;">Purchase Request</h1>
+    <p style="margin:0; font-size:18px; color:#A8BAB7;">Staff ask in their own words. Managers approve. Purchasing orders in one click.</p>
+</section>
+
+<section style="padding:28px 0;">
+    <div style="max-width:820px; margin:0 auto; text-align:center;">
+        <p style="font-size:16px; line-height:1.7; color:#3E4A55;">
+            The person who opens a purchase request most often is not a buyer. They do not
+            know product codes, they have no access to the Purchase app, and what they want
+            to know is simply <em>where is my request now</em>. This module is written from
+            that side of the desk: a request is a plain list of things in the requester's
+            own words, an approval by their own manager, and a state that tells them what
+            happened &mdash; all the way to <strong>it has arrived</strong>.
+        </p>
+    </div>
+</section>
+
+<section style="padding:8px 0 20px;">
+    <img src="images/form.png" alt="A purchase request: requested by, department, approver, what it is for, and items written in plain words with quantity, estimated price, a link and a suggested vendor"
+         style="display:block; max-width:100%; height:auto; margin:0 auto; border:1px solid #D6DEE6;"/>
+    <p style="max-width:820px; margin:12px auto 0; text-align:center; font-size:14px; color:#6B6B7B;">
+        Items are free text &mdash; <em>"HDMI cable, 2 m"</em> &mdash; with a quantity, an estimated
+        price and, if there is one, a link to where they saw it. A product is optional; purchasing
+        picks it when ordering. The approver is the requester's own manager, taken from the employee record.
+    </p>
+</section>
+
+<section style="padding:8px 0 34px;">
+    <h2 style="text-align:center; font-size:26px; color:#16202B; margin:0 0 24px;">Three people, three jobs</h2>
+    <table style="width:100%; max-width:900px; margin:0 auto; border-collapse:separate; border-spacing:14px;">
+        <tr>
+            <td style="width:33%; vertical-align:top; background:#F4F6F9; border:1px solid #D6DEE6; padding:18px;">
+                <h3 style="margin:0 0 8px; font-size:17px; color:#0D5F5B;">The requester</h3>
+                <p style="margin:0; font-size:14px; line-height:1.6; color:#4C5865;">
+                    An app of its own, <strong>My Requests</strong>, with no Purchase access
+                    needed. Every step lands in their inbox: approved, rejected with the
+                    reason, ordered with the order number, the order confirmed with the vendor.
+                    The last word is theirs: <strong>Received</strong> is pressed by the person who asked.
+                </p>
+            </td>
+            <td style="width:33%; vertical-align:top; background:#F4F6F9; border:1px solid #D6DEE6; padding:18px;">
+                <h3 style="margin:0 0 8px; font-size:17px; color:#0D5F5B;">The manager</h3>
+                <p style="margin:0; font-size:14px; line-height:1.6; color:#4C5865;">
+                    Requests from their own people, found through Odoo's employee hierarchy
+                    &mdash; nothing to configure. An activity on submit, one button to approve.
+                    Reject asks for a reason; the requester reads it, fixes the request and
+                    resubmits. Above an amount you set, a purchase manager validates as well.
+                </p>
+            </td>
+            <td style="width:33%; vertical-align:top; background:#F4F6F9; border:1px solid #D6DEE6; padding:18px;">
+                <h3 style="margin:0 0 8px; font-size:17px; color:#0D5F5B;">Purchasing</h3>
+                <p style="margin:0; font-size:14px; line-height:1.6; color:#4C5865;">
+                    Approved requests from everyone, in the Purchase app where they work.
+                    <strong>Create Purchase Order</strong> from one request or many at once:
+                    give each item a product and a vendor, and the orders are made &mdash; one
+                    per vendor, or added to the vendor's open RFQ.
+                </p>
+            </td>
+        </tr>
+    </table>
+</section>
+
+<section style="padding:8px 0 20px;">
+    <img src="images/kanban.png" alt="My Requests as a kanban: columns Draft, Waiting Approval, Approved, Ordered, Received, one card per request with the amount, the date needed and a badge with the number of orders"
+         style="display:block; max-width:100%; height:auto; margin:0 auto; border:1px solid #D6DEE6;"/>
+    <p style="max-width:820px; margin:12px auto 0; text-align:center; font-size:14px; color:#6B6B7B;">
+        My Requests, for the requester: each request moves across the columns as it goes from
+        draft to received. A star for urgent, a badge for the orders it became.
+    </p>
+</section>
+
+<section style="padding:8px 0 20px;">
+    <table style="width:100%; max-width:900px; margin:0 auto; border-collapse:separate; border-spacing:14px;">
+        <tr>
+            <td style="vertical-align:top; text-align:center;">
+                <img src="images/wizard.png" alt="The Create Purchase Orders dialog: every open item with a product, a quantity, a unit price and a vendor, and two options - add to the vendor's open RFQ, and create products for items without one"
+                     style="max-width:100%; height:auto; border:1px solid #D6DEE6;"/>
+            </td>
+        </tr>
+    </table>
+    <p style="max-width:820px; margin:4px auto 0; text-align:center; font-size:14px; color:#6B6B7B;">
+        Words into orders. Give every item a product and a vendor. For the one-off things nobody
+        will buy again, tick <em>Create products for items without one</em> and a consumable named
+        after the item is made on the spot. A week of small requests to the same vendor becomes
+        one order instead of nine.
+    </p>
+</section>
+
+<section style="padding:8px 0 20px;">
+    <img src="images/purchase_order.png" alt="A purchase order with a Requests smart button showing 2, and order lines carrying the requester's descriptions"
+         style="display:block; max-width:100%; height:auto; margin:0 auto; border:1px solid #D6DEE6;"/>
+    <p style="max-width:820px; margin:12px auto 0; text-align:center; font-size:14px; color:#6B6B7B;">
+        The order keeps the requester's words on every line and knows which request each one
+        fulfils. Smart buttons both ways: from a request to its orders, from an order to its
+        requests. Quantities ordered and received flow back to the request.
+    </p>
+</section>
+
+<section style="padding:8px 0 34px;">
+    <h2 style="text-align:center; font-size:26px; color:#16202B; margin:0 0 24px;">Also in the box</h2>
+    <table style="width:100%; max-width:900px; margin:0 auto; border-collapse:separate; border-spacing:14px;">
+        <tr>
+            <td style="width:33%; vertical-align:top; background:#F4F6F9; border:1px solid #D6DEE6; padding:18px;">
+                <h3 style="margin:0 0 8px; font-size:17px; color:#0D5F5B;">A printable request</h3>
+                <p style="margin:0; font-size:14px; line-height:1.6; color:#4C5865;">
+                    A PDF with the items, the estimated total and the approval trail: who
+                    submitted, who approved, who validated, and when.
+                </p>
+            </td>
+            <td style="width:33%; vertical-align:top; background:#F4F6F9; border:1px solid #D6DEE6; padding:18px;">
+                <h3 style="margin:0 0 8px; font-size:17px; color:#0D5F5B;">Partial orders</h3>
+                <p style="margin:0; font-size:14px; line-height:1.6; color:#4C5865;">
+                    Order some items now and the rest later; the request shows what is still
+                    open, and the next order proposes exactly the remaining quantity. Units are
+                    converted back to the requester's.
+                </p>
+            </td>
+            <td style="width:33%; vertical-align:top; background:#F4F6F9; border:1px solid #D6DEE6; padding:18px;">
+                <h3 style="margin:0 0 8px; font-size:17px; color:#0D5F5B;">No new groups</h3>
+                <p style="margin:0; font-size:14px; line-height:1.6; color:#4C5865;">
+                    Every employee can ask. The Purchase app's own groups say who buys and who
+                    manages. Requesters see their own requests; approvers see the ones waiting
+                    for them; purchasing sees all.
+                </p>
+            </td>
+        </tr>
+    </table>
+</section>
+
+<section style="padding:8px 0 40px;">
+    <div style="max-width:820px; margin:0 auto; text-align:center;">
+        <h2 style="font-size:22px; color:#16202B; margin:0 0 10px;">Community and Enterprise</h2>
+        <p style="font-size:15px; line-height:1.7; color:#4C5865; margin:0;">
+            Built on Odoo Community modules only, so it runs on both editions. Available for
+            Odoo 17.0, 18.0 and 19.0. It depends on <code>purchase</code> and <code>hr</code>,
+            and can be uninstalled at any time; purchase orders it created stay as they are.
+        </p>
+    </div>
+</section>

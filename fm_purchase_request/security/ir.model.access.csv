@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_purchase_request_user,fm.purchase.request user,model_fm_purchase_request,base.group_user,1,1,1,1
+access_purchase_request_line_user,fm.purchase.request.line user,model_fm_purchase_request_line,base.group_user,1,1,1,1
+access_purchase_request_make_po,fm.purchase.request.make.po,model_fm_purchase_request_make_po,purchase.group_purchase_user,1,1,1,1
+access_purchase_request_make_po_line,fm.purchase.request.make.po.line,model_fm_purchase_request_make_po_line,purchase.group_purchase_user,1,1,1,1
+access_purchase_request_reject,fm.purchase.request.reject,model_fm_purchase_request_reject,base.group_user,1,1,1,1
