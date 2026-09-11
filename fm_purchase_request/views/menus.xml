@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- An app of its own, because the requester does not have Purchase. -->
+    <menuitem id="menu_purchase_request_root" name="Purchase Requests" sequence="45"
+              web_icon="fm_purchase_request,static/description/icon.png"/>
+
+    <menuitem id="menu_purchase_request_my" name="My Requests"
+              parent="menu_purchase_request_root" sequence="10"
+              action="action_purchase_request_my"/>
+
+    <menuitem id="menu_purchase_request_to_approve" name="To Approve"
+              parent="menu_purchase_request_root" sequence="20"
+              action="action_purchase_request_to_approve"/>
+
+    <menuitem id="menu_purchase_request_all" name="All Requests"
+              parent="menu_purchase_request_root" sequence="30"
+              action="action_purchase_request_all"
+              groups="purchase.group_purchase_user"/>
+
+    <!-- Purchasing also finds them where they work. -->
+    <menuitem id="menu_purchase_request_in_purchase" name="Purchase Requests"
+              parent="purchase.menu_procurement_management" sequence="5"
+              action="action_purchase_request_all"
+              groups="purchase.group_purchase_user"/>
+
+</odoo>
