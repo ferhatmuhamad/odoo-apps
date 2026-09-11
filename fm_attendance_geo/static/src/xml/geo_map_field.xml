@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-name="fm_attendance_geo.GeoMapField">
+        <div t-if="hasContent and !state.failed" class="fm_geo_map" t-ref="map"/>
+        <div t-elif="state.failed" class="fm_geo_map fm_geo_map--empty">
+            The map could not be loaded.
+        </div>
+        <div t-else="" class="fm_geo_map fm_geo_map--empty" t-esc="emptyText"/>
+    </t>
+
+</templates>

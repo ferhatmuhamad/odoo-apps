@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="res_config_settings_view_form_geo" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.fm.geo</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="hr_attendance.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//block[@name='kiosk_mode_setting_container']" position="after">
+                <block title="Geofence" name="fm_geo_settings">
+                    <setting string="Location tracking" company_dependent="1"
+                             help="Odoo 19 records GPS coordinates only when Device &amp; Location Tracking is on (in Modes, above). Without it every check-in is judged as No position.">
+                        <div class="alert alert-warning mb-0" role="alert" invisible="attendance_device_tracking">
+                            Device &amp; Location Tracking is off for this company. Turn it on above, or the geofence has nothing to judge.
+                        </div>
+                        <div class="text-success" invisible="not attendance_device_tracking">
+                            <i class="fa fa-check me-1"/>Device &amp; Location Tracking is on.
+                        </div>
+                    </setting>
+                    <setting string="Default radius"
+                             help="Proposed when a geofence is added to a work location. The radius itself is set per location.">
+                        <div class="content-group">
+                            <div class="row mt8">
+                                <label for="fm_geo_default_radius" class="col-lg-4 o_light_label"/>
+                                <field name="fm_geo_default_radius" class="col-lg-4"/>
+                            </div>
+                        </div>
+                    </setting>
+                    <setting string="Flagging"
+                             help="A position that trips any of these is marked GPS flagged, with a note saying which. Flagged, not refused.">
+                        <div class="content-group">
+                            <div class="row mt8">
+                                <label for="fm_geo_max_accuracy" class="col-lg-7 o_light_label"/>
+                                <field name="fm_geo_max_accuracy" class="col-lg-3"/>
+                            </div>
+                            <div class="row mt8">
+                                <label for="fm_geo_max_age_min" class="col-lg-7 o_light_label"/>
+                                <field name="fm_geo_max_age_min" class="col-lg-3"/>
+                            </div>
+                            <div class="row mt8">
+                                <label for="fm_geo_max_speed_kmh" class="col-lg-7 o_light_label"/>
+                                <field name="fm_geo_max_speed_kmh" class="col-lg-3"/>
+                            </div>
+                        </div>
+                    </setting>
+                    <setting string="Map tiles"
+                             help="Any XYZ tile server. The public OpenStreetMap server is the default and is fine for an office; heavy traffic belongs on your own provider.">
+                        <div class="content-group">
+                            <div class="row mt8">
+                                <label for="fm_geo_tile_url" class="col-lg-3 o_light_label"/>
+                                <field name="fm_geo_tile_url" class="col-lg-9"/>
+                            </div>
+                            <div class="row mt8">
+                                <label for="fm_geo_tile_attribution" class="col-lg-3 o_light_label"/>
+                                <field name="fm_geo_tile_attribution" class="col-lg-9"/>
+                            </div>
+                        </div>
+                    </setting>
+                </block>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

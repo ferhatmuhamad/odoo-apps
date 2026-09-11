@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ── Form: the verdict and a map, under each of Check In / Check Out ── -->
+    <record id="hr_attendance_view_form_geo" model="ir.ui.view">
+        <field name="name">hr.attendance.form.inherit.fm.geo</field>
+        <field name="model">hr.attendance</field>
+        <field name="inherit_id" ref="hr_attendance.hr_attendance_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='in_latitude']/ancestor::group[2]" position="after">
+                <group colspan="2" name="fm_geo_in" invisible="not in_fm_geo_status">
+                    <group>
+                        <field name="in_fm_geo_status" widget="badge"
+                               decoration-success="in_fm_geo_status == 'in'"
+                               decoration-danger="in_fm_geo_status == 'out'"
+                               decoration-warning="in_fm_geo_status == 'unknown'"
+                               decoration-muted="in_fm_geo_status == 'exempt'"/>
+                        <field name="in_fm_geo_location_id"/>
+                        <field name="in_fm_geo_distance" invisible="not in_fm_geo_distance"/>
+                        <field name="in_fm_geo_reason" invisible="not in_fm_geo_reason"/>
+                        <field name="in_fm_geo_flagged" invisible="not in_fm_geo_flagged"/>
+                        <field name="in_fm_geo_note" invisible="not in_fm_geo_note"/>
+                    </group>
+                    <!-- A cell of its own, not a field inside a <group>: a
+                         group's grid sizes its cells to their content, and a
+                         map has none, so it came out two pixels wide. -->
+                    <div class="fm_geo_form_map">
+                        <field name="in_fm_geo_fence" widget="fm_geo_map" nolabel="1"
+                               options="{'mode': 'point', 'side': 'in'}"/>
+                    </div>
+                </group>
+            </xpath>
+            <xpath expr="//field[@name='out_latitude']/ancestor::group[2]" position="after">
+                <group colspan="2" name="fm_geo_out" invisible="not out_fm_geo_status">
+                    <group>
+                        <field name="out_fm_geo_status" widget="badge"
+                               decoration-success="out_fm_geo_status == 'in'"
+                               decoration-danger="out_fm_geo_status == 'out'"
+                               decoration-warning="out_fm_geo_status == 'unknown'"
+                               decoration-muted="out_fm_geo_status == 'exempt'"/>
+                        <field name="out_fm_geo_location_id"/>
+                        <field name="out_fm_geo_distance" invisible="not out_fm_geo_distance"/>
+                        <field name="out_fm_geo_reason" invisible="not out_fm_geo_reason"/>
+                        <field name="out_fm_geo_flagged" invisible="not out_fm_geo_flagged"/>
+                        <field name="out_fm_geo_note" invisible="not out_fm_geo_note"/>
+                    </group>
+                    <!-- A cell of its own, not a field inside a <group>: a
+                         group's grid sizes its cells to their content, and a
+                         map has none, so it came out two pixels wide. -->
+                    <div class="fm_geo_form_map">
+                        <field name="out_fm_geo_fence" widget="fm_geo_map" nolabel="1"
+                               options="{'mode': 'point', 'side': 'out'}"/>
+                    </div>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- ── List: the verdict beside every row ── -->
+    <record id="view_attendance_tree_geo" model="ir.ui.view">
+        <field name="name">hr.attendance.tree.inherit.fm.geo</field>
+        <field name="model">hr.attendance</field>
+        <field name="inherit_id" ref="hr_attendance.view_attendance_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='check_out']" position="after">
+                <field name="in_fm_geo_status" optional="show" widget="badge"
+                       decoration-success="in_fm_geo_status == 'in'"
+                       decoration-danger="in_fm_geo_status == 'out'"
+                       decoration-warning="in_fm_geo_status == 'unknown'"
+                       decoration-muted="in_fm_geo_status == 'exempt'"/>
+                <field name="in_fm_geo_location_id" optional="show"/>
+                <field name="in_fm_geo_distance" optional="hide"/>
+                <field name="out_fm_geo_status" optional="hide"/>
+                <field name="fm_geo_flagged" optional="show" widget="boolean_toggle" readonly="1"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- ── Search: filters and group-bys ── -->
+    <record id="hr_attendance_view_filter_geo" model="ir.ui.view">
+        <field name="name">hr.attendance.search.inherit.fm.geo</field>
+        <field name="model">hr.attendance</field>
+        <field name="inherit_id" ref="hr_attendance.hr_attendance_view_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//filter[1]" position="before">
+                <filter name="fm_geo_in" string="In area" domain="[('in_fm_geo_status', '=', 'in')]"/>
+                <filter name="fm_geo_out" string="Out of area" domain="[('in_fm_geo_status', '=', 'out')]"/>
+                <filter name="fm_geo_unknown" string="No position" domain="[('in_fm_geo_status', '=', 'unknown')]"/>
+                <filter name="fm_geo_flagged" string="GPS flagged" domain="[('fm_geo_flagged', '=', True)]"/>
+                <separator/>
+            </xpath>
+            <xpath expr="//group" position="inside">
+                <filter name="fm_geo_group_location" string="Location" context="{'group_by': 'in_fm_geo_location_id'}"/>
+                <filter name="fm_geo_group_status" string="Area" context="{'group_by': 'in_fm_geo_status'}"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- ── Report by location ── -->
+    <record id="hr_attendance_view_pivot_geo" model="ir.ui.view">
+        <field name="name">hr.attendance.pivot.fm.geo</field>
+        <field name="model">hr.attendance</field>
+        <field name="arch" type="xml">
+            <pivot string="Attendances by location" sample="1">
+                <field name="in_fm_geo_location_id" type="row"/>
+                <field name="in_fm_geo_status" type="col"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="hr_attendance_view_graph_geo" model="ir.ui.view">
+        <field name="name">hr.attendance.graph.fm.geo</field>
+        <field name="model">hr.attendance</field>
+        <field name="arch" type="xml">
+            <graph string="Attendances by location" type="bar" stacked="1" sample="1">
+                <field name="in_fm_geo_location_id"/>
+                <field name="in_fm_geo_status"/>
+            </graph>
+        </field>
+    </record>
+
+    <record id="hr_attendance_action_geo_report" model="ir.actions.act_window">
+        <field name="name">Attendances by Location</field>
+        <field name="res_model">hr.attendance</field>
+        <field name="view_mode">list,pivot,graph,form</field>
+        <field name="search_view_id" ref="hr_attendance.hr_attendance_view_filter"/>
+        <field name="domain">[('in_fm_geo_status', '!=', False)]</field>
+        <field name="context">{'search_default_fm_geo_group_location': 1, 'create': 0}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">No geofenced attendances yet</p>
+            <p>Enable a geofence on a work location, and every check-in from then on is judged against it.
+               For attendances recorded before that, select them in the list and use
+               <i>Action &#8594; Evaluate geofence</i>.</p>
+        </field>
+    </record>
+
+    <record id="hr_attendance_action_geo_report_pivot" model="ir.actions.act_window.view">
+        <field name="sequence">2</field>
+        <field name="view_mode">pivot</field>
+        <field name="view_id" ref="hr_attendance_view_pivot_geo"/>
+        <field name="act_window_id" ref="hr_attendance_action_geo_report"/>
+    </record>
+    <record id="hr_attendance_action_geo_report_graph" model="ir.actions.act_window.view">
+        <field name="sequence">3</field>
+        <field name="view_mode">graph</field>
+        <field name="view_id" ref="hr_attendance_view_graph_geo"/>
+        <field name="act_window_id" ref="hr_attendance_action_geo_report"/>
+    </record>
+
+    <!-- ── Action menu: judge selected attendances again ── -->
+    <record id="action_fm_geo_evaluate" model="ir.actions.server">
+        <field name="name">Evaluate geofence</field>
+        <field name="model_id" ref="hr_attendance.model_hr_attendance"/>
+        <field name="binding_model_id" ref="hr_attendance.model_hr_attendance"/>
+        <field name="binding_view_types">list,form</field>
+        <field name="group_ids" eval="[(4, ref('hr_attendance.group_hr_attendance_officer'))]"/>
+        <field name="state">code</field>
+        <field name="code">records.action_fm_geo_evaluate()</field>
+    </record>
+
+</odoo>

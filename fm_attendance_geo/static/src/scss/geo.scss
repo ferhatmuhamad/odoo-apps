@@ -1,0 +1,134 @@
+// Odoo wraps a field widget in an inline-block .o_field_widget with no width
+// of its own. A map has no intrinsic width either, so without this the two
+// of them agreed on 2 px - measured, on both forms.
+.o_field_fm_geo_map {
+  display: block;
+  width: 100%;
+}
+
+// Maps are sized by their container; Leaflet only paints what has a height.
+.fm_geo_map {
+  width: 100%;
+  height: 320px;
+  border: 1px solid var(--border-color, #dee2e6);
+  border-radius: 0.375rem;
+  overflow: hidden;
+  // Leaflet's panes use z-index up to 1000, which would float above Odoo's
+  // dropdowns and dialogs. Isolating the stacking context keeps them inside.
+  isolation: isolate;
+  z-index: 0;
+}
+
+.fm_geo_map--empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #6c757d;
+  background: #f5f6f8;
+  font-size: 0.9rem;
+}
+
+.fm_geo_form_map {
+  margin-top: 0.5rem;
+}
+
+.fm_geo_pin {
+  background: transparent;
+  border: 0;
+}
+.fm_geo_pin_dot {
+  display: block;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #fff;
+  border: 4px solid #4b6cb7;
+  box-sizing: border-box;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.15);
+}
+
+.fm_geo_popup {
+  font-size: 0.85rem;
+  line-height: 1.45;
+  b { font-weight: 600; }
+}
+
+// ── The map of a day ─────────────────────────────────────────────
+.fm_geo_day {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+
+  .fm_geo_day_bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.6rem 1rem;
+    border-bottom: 1px solid var(--border-color, #dee2e6);
+  }
+  .fm_geo_day_bar input[type="date"] {
+    max-width: 11rem;
+  }
+  .fm_geo_day_stats {
+    display: flex;
+    gap: 1rem;
+    margin-left: auto;
+    font-size: 0.85rem;
+    white-space: nowrap;
+  }
+  .fm_geo_day_stat b {
+    font-variant-numeric: tabular-nums;
+  }
+  .fm_geo_day_dot {
+    display: inline-block;
+    width: 0.65rem;
+    height: 0.65rem;
+    border-radius: 50%;
+    margin-right: 0.3rem;
+    vertical-align: -1px;
+  }
+  .fm_geo_day_body {
+    display: flex;
+    flex: 1;
+    min-height: 0;
+  }
+  .fm_geo_day_map {
+    flex: 1;
+    min-width: 0;
+    height: auto;
+    border: 0;
+    border-radius: 0;
+  }
+  .fm_geo_day_list {
+    width: 20rem;
+    flex-shrink: 0;
+    overflow: auto;
+    border-left: 1px solid var(--border-color, #dee2e6);
+    font-size: 0.85rem;
+  }
+  .fm_geo_day_row {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 0.5rem;
+    align-items: center;
+    padding: 0.45rem 0.75rem;
+    border-bottom: 1px solid var(--border-color, #eef0f2);
+    cursor: pointer;
+    &:hover { background: rgba(0, 0, 0, 0.03); }
+    .fm_geo_day_name { font-weight: 600; }
+    .fm_geo_day_meta { color: #6c757d; font-size: 0.78rem; }
+    .fm_geo_day_time { font-variant-numeric: tabular-nums; color: #6c757d; }
+  }
+  .fm_geo_day_empty {
+    padding: 1.5rem;
+    color: #6c757d;
+    text-align: center;
+  }
+  @media (max-width: 900px) {
+    .fm_geo_day_body { flex-direction: column; }
+    .fm_geo_day_map { min-height: 45vh; }
+    .fm_geo_day_list { width: auto; border-left: 0; border-top: 1px solid var(--border-color, #dee2e6); }
+  }
+}
