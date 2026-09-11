@@ -1,0 +1,196 @@
+<section style="padding:36px 0; background:#16202B; color:#ffffff; text-align:center;">
+    <h1 style="margin:0 0 8px; font-size:38px; font-weight:700;">Attendance Geofence</h1>
+    <p style="margin:0; font-size:18px; color:#A8BAB7;">A radius on every office, a map on every check-in, and a policy for people outside it</p>
+</section>
+
+<section style="padding:28px 0;">
+    <div style="max-width:820px; margin:0 auto; text-align:center;">
+        <p style="font-size:16px; line-height:1.7; color:#3E4A55;">
+            Draw a circle around each office. Every check-in and check-out Odoo records is
+            then judged against it &mdash; <strong>In area</strong>, <strong>Out of area</strong>
+            or <strong>No position</strong> &mdash; with the distance, a map, and a rule for what
+            happens next. Built on the coordinates and the work locations Odoo already keeps,
+            so there is no second list of offices and no second GPS capture.
+        </p>
+    </div>
+</section>
+
+<section style="padding:8px 0 20px;">
+    <img src="images/day_map.png" alt="The Geofence Map: every check-in of the day on one map, the office circle, and a list beside it with the people outside the area first"
+         style="display:block; max-width:100%; height:auto; margin:0 auto; border:1px solid #D6DEE6;"/>
+    <p style="max-width:820px; margin:12px auto 0; text-align:center; font-size:14px; color:#6B6B7B;">
+        The map of the day. Every office with its circle, every check-in as a dot coloured by its
+        verdict, and a list beside it with the problems first. Click a person to see the distance
+        and the reason they gave; click through to the attendance.
+    </p>
+</section>
+
+<section style="padding:8px 0 34px;">
+    <h2 style="text-align:center; font-size:26px; color:#16202B; margin:0 0 24px;">Built on what Odoo already has</h2>
+    <table style="width:100%; max-width:900px; margin:0 auto; border-collapse:separate; border-spacing:14px;">
+        <tr>
+            <td style="width:33%; vertical-align:top; background:#F4F6F9; border:1px solid #D6DEE6; padding:18px;">
+                <h3 style="margin:0 0 8px; font-size:17px; color:#0D5F5B;">Odoo's own coordinates</h3>
+                <p style="margin:0; font-size:14px; line-height:1.6; color:#4C5865;">
+                    Odoo records GPS coordinates on every check-in from the systray and the
+                    kiosk. This module judges those. It captures nothing of its own, so it
+                    cannot disagree with Odoo about where someone was.
+                </p>
+            </td>
+            <td style="width:33%; vertical-align:top; background:#F4F6F9; border:1px solid #D6DEE6; padding:18px;">
+                <h3 style="margin:0 0 8px; font-size:17px; color:#0D5F5B;">Odoo's own offices</h3>
+                <p style="margin:0; font-size:14px; line-height:1.6; color:#4C5865;">
+                    The radius lives on <em>Work Locations</em>, which Odoo already links to
+                    every employee. Any number of branches; and when HR moves someone to
+                    another branch, the geofence moves with them.
+                </p>
+            </td>
+            <td style="width:33%; vertical-align:top; background:#F4F6F9; border:1px solid #D6DEE6; padding:18px;">
+                <h3 style="margin:0 0 8px; font-size:17px; color:#0D5F5B;">More than one office</h3>
+                <p style="margin:0; font-size:14px; line-height:1.6; color:#4C5865;">
+                    An employee is judged against their work location plus any others they
+                    are allowed at. Inside any of them is In area. People whose work is not at
+                    a fixed address can be exempted.
+                </p>
+            </td>
+        </tr>
+    </table>
+</section>
+
+<section style="padding:8px 0 20px;">
+    <img src="images/location.png" alt="A work location with its geofence: radius, policy, coordinates, and a map with the pin and the circle"
+         style="display:block; max-width:100%; height:auto; margin:0 auto; border:1px solid #D6DEE6;"/>
+    <p style="max-width:820px; margin:12px auto 0; text-align:center; font-size:14px; color:#6B6B7B;">
+        Setting up an office: click the map to place the pin, type a radius and watch the circle
+        follow, or take the coordinates from the address. Then choose what happens to someone outside it.
+    </p>
+</section>
+
+<section style="padding:8px 0 34px;">
+    <h2 style="text-align:center; font-size:26px; color:#16202B; margin:0 0 24px;">A policy per location</h2>
+    <table style="width:100%; max-width:900px; margin:0 auto; border-collapse:separate; border-spacing:14px;">
+        <tr>
+            <td style="width:33%; vertical-align:top; background:#F4F6F9; border:1px solid #D6DEE6; padding:18px;">
+                <h3 style="margin:0 0 8px; font-size:17px; color:#0D5F5B;">Record and flag</h3>
+                <p style="margin:0; font-size:14px; line-height:1.6; color:#4C5865;">
+                    The check-in succeeds and is marked Out of area with the distance. HR sees
+                    it in the list, the map and the report. Nobody is interrupted.
+                </p>
+            </td>
+            <td style="width:33%; vertical-align:top; background:#F4F6F9; border:1px solid #D6DEE6; padding:18px;">
+                <h3 style="margin:0 0 8px; font-size:17px; color:#0D5F5B;">Ask for a reason</h3>
+                <p style="margin:0; font-size:14px; line-height:1.6; color:#4C5865;">
+                    Before the check-in, the person sees how far they are from which office and
+                    types why. The reason is stored with the attendance.
+                </p>
+            </td>
+            <td style="width:33%; vertical-align:top; background:#F4F6F9; border:1px solid #D6DEE6; padding:18px;">
+                <h3 style="margin:0 0 8px; font-size:17px; color:#0D5F5B;">Block</h3>
+                <p style="margin:0; font-size:14px; line-height:1.6; color:#4C5865;">
+                    The check-in is refused, and the message says by how much. Enforced on the
+                    server at the one method every check-in goes through, so nothing in a
+                    browser can get around it.
+                </p>
+            </td>
+        </tr>
+    </table>
+    <table style="width:100%; max-width:900px; margin:0 auto; border-collapse:separate; border-spacing:14px;">
+        <tr>
+            <td style="width:60%; vertical-align:top; text-align:center;">
+                <img src="images/reason.png" alt="The dialog asking for a reason: You are 1.0 km from Building 1, outside its 100 m area. Please give a reason."
+                     style="max-width:100%; height:auto; border:1px solid #D6DEE6;"/>
+            </td>
+            <td style="width:40%; vertical-align:top; text-align:center;">
+                <img src="images/blocked.png" alt="The notification when a check-in is blocked, naming the distance and the office"
+                     style="max-width:100%; height:auto; border:1px solid #D6DEE6;"/>
+            </td>
+        </tr>
+    </table>
+    <p style="max-width:820px; margin:4px auto 0; text-align:center; font-size:14px; color:#6B6B7B;">
+        The head office can be strict and the field team's base lenient. When someone is outside
+        all of their locations, the policy of the nearest one applies.
+    </p>
+</section>
+
+<section style="padding:8px 0 20px;">
+    <img src="images/attendance.png" alt="An attendance record with the verdict: Out of area, the location, the distance, and a map showing the person, the office and the circle"
+         style="display:block; max-width:100%; height:auto; margin:0 auto; border:1px solid #D6DEE6;"/>
+    <p style="max-width:820px; margin:12px auto 0; text-align:center; font-size:14px; color:#6B6B7B;">
+        On every attendance: the verdict, the office, the distance, the reason if one was given,
+        and a map of the person against the circle as it was that day. Check-out is judged too.
+    </p>
+</section>
+
+<section style="padding:8px 0 34px;">
+    <h2 style="text-align:center; font-size:26px; color:#16202B; margin:0 0 24px;">Positions that look wrong</h2>
+    <table style="width:100%; max-width:900px; margin:0 auto; border-collapse:separate; border-spacing:14px;">
+        <tr>
+            <td style="width:50%; vertical-align:top; background:#F4F6F9; border:1px solid #D6DEE6; padding:18px;">
+                <h3 style="margin:0 0 8px; font-size:17px; color:#0D5F5B;">What the device says about itself</h3>
+                <p style="margin:0; font-size:14px; line-height:1.6; color:#4C5865;">
+                    An accuracy of exactly 0 m, which real GPS hardware never reports. A fix
+                    minutes old, served from a cache. A device claiming highway speed while
+                    standing at a desk. Each is flagged with a note saying which.
+                </p>
+            </td>
+            <td style="width:50%; vertical-align:top; background:#F4F6F9; border:1px solid #D6DEE6; padding:18px;">
+                <h3 style="margin:0 0 8px; font-size:17px; color:#0D5F5B;">What the server can work out alone</h3>
+                <p style="margin:0; font-size:14px; line-height:1.6; color:#4C5865;">
+                    A check-out 35 km from the check-in five minutes earlier would have needed
+                    420 km/h. That needs no cooperation from the device at all, which is the
+                    point. Flagged, not refused: the decision stays with HR.
+                </p>
+            </td>
+        </tr>
+    </table>
+</section>
+
+<section style="padding:8px 0 34px;">
+    <h2 style="text-align:center; font-size:26px; color:#16202B; margin:0 0 24px;">Also in the box</h2>
+    <table style="width:100%; max-width:900px; margin:0 auto; border-collapse:separate; border-spacing:14px;">
+        <tr>
+            <td style="width:33%; vertical-align:top; background:#F4F6F9; border:1px solid #D6DEE6; padding:18px;">
+                <h3 style="margin:0 0 8px; font-size:17px; color:#0D5F5B;">Report by location</h3>
+                <p style="margin:0; font-size:14px; line-height:1.6; color:#4C5865;">
+                    Attendances grouped by office, with In area / Out of area counts, as a list,
+                    a pivot and a chart. Filters for each verdict and for flagged positions on
+                    the normal attendance views too.
+                </p>
+            </td>
+            <td style="width:33%; vertical-align:top; background:#F4F6F9; border:1px solid #D6DEE6; padding:18px;">
+                <h3 style="margin:0 0 8px; font-size:17px; color:#0D5F5B;">Kiosk</h3>
+                <p style="margin:0; font-size:14px; line-height:1.6; color:#4C5865;">
+                    Kiosk check-ins are judged and mapped like any other. A kiosk is a shared
+                    device standing where HR put it, so it does not ask for reasons, and Block
+                    only applies when it actually has a position.
+                </p>
+            </td>
+            <td style="width:33%; vertical-align:top; background:#F4F6F9; border:1px solid #D6DEE6; padding:18px;">
+                <h3 style="margin:0 0 8px; font-size:17px; color:#0D5F5B;">Judge again, later</h3>
+                <p style="margin:0; font-size:14px; line-height:1.6; color:#4C5865;">
+                    Verdicts are records of the past and keep the circle they were judged
+                    against. Moved a pin, or installed on a database with months of attendances?
+                    Select them and use <em>Evaluate geofence</em>.
+                </p>
+            </td>
+        </tr>
+    </table>
+</section>
+
+<section style="padding:8px 0 40px;">
+    <div style="max-width:820px; margin:0 auto; text-align:center;">
+        <h2 style="font-size:22px; color:#16202B; margin:0 0 10px;">Community and Enterprise</h2>
+        <p style="font-size:15px; line-height:1.7; color:#4C5865; margin:0 0 14px;">
+            Built on Odoo Community modules only, so it runs on both editions. Available for
+            Odoo 17.0, 18.0 and 19.0. It depends on <code>hr_attendance</code> and nothing else,
+            adds no model of its own, and stores everything on Odoo's work locations, employees
+            and attendances &mdash; nothing to migrate, nothing lost on uninstall. Maps are drawn
+            with Leaflet (bundled) on OpenStreetMap tiles; the tile server is a setting.
+        </p>
+        <p style="font-size:14px; line-height:1.7; color:#6B6B7B; margin:0;">
+            On Odoo 19, coordinates are only recorded when <em>Device &amp; Location Tracking</em>
+            and <em>Attendances from Backend</em> are enabled in the Attendances settings; both are
+            off by default there, and the settings page says so.
+        </p>
+    </div>
+</section>

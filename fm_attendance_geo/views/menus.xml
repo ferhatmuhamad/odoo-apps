@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_fm_geo_day_map" model="ir.actions.client">
+        <field name="name">Geofence Map</field>
+        <field name="tag">fm_attendance_geo.day_map</field>
+    </record>
+
+    <menuitem id="menu_fm_geo_day_map" name="Geofence Map"
+              parent="hr_attendance.menu_hr_attendance_root" sequence="12"
+              action="action_fm_geo_day_map"
+              groups="hr_attendance.group_hr_attendance_officer"/>
+
+    <menuitem id="menu_fm_geo_report" name="By Location"
+              parent="hr_attendance.menu_hr_attendance_root" sequence="13"
+              action="hr_attendance_action_geo_report"
+              groups="hr_attendance.group_hr_attendance_officer"/>
+
+</odoo>

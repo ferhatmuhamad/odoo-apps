@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="hr_work_location_form_view_geo" model="ir.ui.view">
+        <field name="name">hr.work.location.form.inherit.fm.geo</field>
+        <field name="model">hr.work.location</field>
+        <field name="inherit_id" ref="hr.hr_work_location_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet/group" position="after">
+                <group string="Geofence" name="fm_geo">
+                    <group>
+                        <field name="fm_geo_enabled"/>
+                        <field name="fm_geo_radius" invisible="not fm_geo_enabled"/>
+                        <field name="fm_geo_policy" invisible="not fm_geo_enabled" widget="radio"/>
+                    </group>
+                    <group invisible="not fm_geo_enabled">
+                        <field name="fm_geo_latitude"/>
+                        <field name="fm_geo_longitude"/>
+                        <button name="action_fm_geo_use_address" type="object"
+                                string="Take coordinates from the address"
+                                class="btn btn-link ps-0" icon="fa-map-marker"
+                                colspan="2"/>
+                    </group>
+                </group>
+                <div invisible="not fm_geo_enabled" class="fm_geo_form_map">
+                    <p class="text-muted small mb-1">Click the map to place the pin. The circle is the radius.</p>
+                    <field name="fm_geo_map" widget="fm_geo_map" options="{'mode': 'fence'}" nolabel="1"/>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="hr_work_location_tree_view_geo" model="ir.ui.view">
+        <field name="name">hr.work.location.tree.inherit.fm.geo</field>
+        <field name="model">hr.work.location</field>
+        <field name="inherit_id" ref="hr.hr_work_location_tree_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='location_type']" position="after">
+                <field name="fm_geo_enabled" string="Geofence"/>
+                <field name="fm_geo_radius" optional="show"/>
+                <field name="fm_geo_policy" optional="show"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

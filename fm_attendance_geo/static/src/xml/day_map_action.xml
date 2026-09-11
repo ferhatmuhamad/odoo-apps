@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-name="fm_attendance_geo.DayMapAction">
+        <div class="fm_geo_day o_action">
+            <div class="fm_geo_day_bar">
+                <button class="btn btn-secondary btn-sm" t-on-click="() => this.shiftDay(-1)" title="Previous day">
+                    <i class="fa fa-chevron-left"/>
+                </button>
+                <input type="date" class="form-control form-control-sm" t-att-value="state.day" t-on-change="onDayChange"/>
+                <button class="btn btn-secondary btn-sm" t-on-click="() => this.shiftDay(1)" title="Next day">
+                    <i class="fa fa-chevron-right"/>
+                </button>
+                <span t-if="state.loading" class="text-muted small">Loading…</span>
+                <div class="fm_geo_day_stats" t-if="state.summary">
+                    <span class="fm_geo_day_stat">
+                        <span class="fm_geo_day_dot" t-attf-style="background: {{ statusColor('in') }}"/>
+                        <b t-esc="state.summary.in"/> in area
+                    </span>
+                    <span class="fm_geo_day_stat">
+                        <span class="fm_geo_day_dot" t-attf-style="background: {{ statusColor('out') }}"/>
+                        <b t-esc="state.summary.out"/> out of area
+                    </span>
+                    <span class="fm_geo_day_stat">
+                        <span class="fm_geo_day_dot" t-attf-style="background: {{ statusColor('unknown') }}"/>
+                        <b t-esc="state.summary.unknown"/> no position
+                    </span>
+                    <span class="fm_geo_day_stat" t-if="state.summary.flagged">
+                        <i class="fa fa-flag" t-attf-style="color: {{ statusColor('out') }}"/>
+                        <b t-esc="state.summary.flagged"/> flagged
+                    </span>
+                    <span class="fm_geo_day_stat text-muted">
+                        <b t-esc="state.summary.total"/> check-ins
+                    </span>
+                </div>
+            </div>
+            <div class="fm_geo_day_body">
+                <div class="fm_geo_map fm_geo_day_map" t-ref="map"/>
+                <div class="fm_geo_day_list">
+                    <div t-if="state.failed" class="fm_geo_day_empty">The map could not be loaded.</div>
+                    <div t-elif="!state.loading and !state.points.length" class="fm_geo_day_empty">
+                        No check-in with a position on this day.
+                    </div>
+                    <t t-foreach="rows" t-as="p" t-key="p.id">
+                        <div class="fm_geo_day_row" t-on-click="() => this.focus(p)">
+                            <span class="fm_geo_day_dot" t-attf-style="background: {{ statusColor(p.status) }}"/>
+                            <div>
+                                <div class="fm_geo_day_name">
+                                    <t t-esc="p.employee"/>
+                                    <i t-if="p.flagged" class="fa fa-flag ms-1" t-attf-style="color: {{ statusColor('out') }}" title="GPS flagged"/>
+                                </div>
+                                <div class="fm_geo_day_meta">
+                                    <t t-esc="statusLabel(p.status)"/>
+                                    <t t-if="p.location and p.distance !== false and p.distance !== null">
+                                        · <t t-esc="formatDistance(p.distance)"/> from <t t-esc="p.location"/>
+                                    </t>
+                                </div>
+                            </div>
+                            <span class="fm_geo_day_time" t-esc="p.check_in"/>
+                        </div>
+                    </t>
+                </div>
+            </div>
+        </div>
+    </t>
+
+</templates>

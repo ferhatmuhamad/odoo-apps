@@ -25,6 +25,7 @@ Semua module dibangun **hanya di atas Odoo Community**, sehingga berjalan di
 | [`fm_dark_mode`](fm_dark_mode/) | Modern Dark Mode — tema gelap untuk seluruh backend, tiga keadaan: Light / Dark / System | 17.0, 18.0, 19.0 | LGPL-3 |
 | [`fm_drive_hr`](fm_drive_hr/) | Team Drive for Employees — arsip dokumen per karyawan; add-on gratis untuk modul berbayar [Team Drive](https://apps.odoo.com) | 17.0, 18.0, 19.0 | LGPL-3 |
 | [`fm_login`](fm_login/) | Modern Login — tiga tampilan halaman login, dipilih administrator dari Settings | 17.0, 18.0, 19.0 | LGPL-3 |
+| [`fm_attendance_geo`](fm_attendance_geo/) | Attendance Geofence — radius per lokasi kerja, peta di tiap absensi, kebijakan per kantor untuk yang di luar area | 17.0, 18.0, 19.0 | LGPL-3 |
 
 ## Instalasi
 
