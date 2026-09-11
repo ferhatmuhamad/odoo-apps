@@ -368,6 +368,33 @@ class TestPurchaseRequest(TransactionCase):
         req2.with_user(self.u_req).action_cancel()
         self.assertEqual(req2.state, 'cancelled')
 
+    # ── multi-company ────────────────────────────────────────────────────
+
+    def test_multi_company_isolation(self):
+        """A group of companies: a buyer of company B never sees company
+        A's requests, and an order made from an A request is an A order."""
+        company_b = self.env['res.company'].create({'name': 'Company B'})
+        u_buy_b = new_test_user(self.env, login='pr_buy_b',
+                                groups='base.group_user,purchase.group_purchase_user',
+                                company_id=company_b.id, company_ids=[(6, 0, company_b.ids)])
+        req = self._approved()                       # company A (self.company)
+        self.assertEqual(req.company_id, self.company)
+        Request = self.env['fm.purchase.request'].with_user(u_buy_b)
+        self.assertNotIn(req, Request.search([]), 'a buyer of B does not see A')
+        with self.assertRaises(AccessError):
+            req.with_user(u_buy_b).read(['purpose'])
+        # Ordering from A stays in A, whoever the buyer is allowed to see.
+        self._wizard(req, product_id=self.product.id, vendor_id=self.vendor_a.id).action_create()
+        self.assertEqual(req.purchase_order_ids.company_id, self.company)
+        # A requester employed by B makes B requests.
+        e_b = self.env['hr.employee'].create({
+            'name': 'Req B', 'user_id': u_buy_b.id, 'company_id': company_b.id})
+        req_b = self.env['fm.purchase.request'].with_user(u_buy_b).with_company(company_b).create({
+            'purpose': 'B thing', 'line_ids': [(0, 0, {'name': 'x', 'product_qty': 1})]})
+        self.assertEqual(req_b.company_id, company_b)
+        self.assertEqual(req_b.requester_id, e_b)
+        self.assertNotIn(req_b, self.env['fm.purchase.request'].with_user(self.u_buy).search([]))
+
     def test_report_renders(self):
         req = self._approved()
         html = self.env['ir.actions.report']._render_qweb_html(
