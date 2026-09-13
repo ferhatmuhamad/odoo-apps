@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-name="fm_deadline_alert.Systray">
+        <div class="fm_da o_menu_systray_item d-flex">
+            <button type="button" class="fm_da_bell" t-ref="button" t-on-click="toggle"
+                    t-att-class="{ 'has-overdue': overdueCount > 0, 'has-alerts': count > 0, 'is-open': state.open }"
+                    t-att-title="count ? count + ' deadline(s)' : 'No deadline due'" aria-haspopup="true" t-att-aria-expanded="state.open">
+                <i class="fa fa-bell-o" role="img" aria-label="Deadlines"/>
+                <span t-if="count" class="fm_da_badge" t-esc="count"/>
+            </button>
+
+            <div t-if="state.open" class="fm_da_panel" t-ref="panel" t-att-style="state.panelStyle" role="dialog" aria-label="Deadlines">
+                <div class="fm_da_head">
+                    <span class="fm_da_title">Deadlines</span>
+                    <span class="fm_da_window">next <t t-esc="state.settings.window_hours"/> h and overdue</span>
+                    <button type="button" class="btn btn-link btn-sm p-0 ms-auto" t-on-click="openAll">All activities</button>
+                </div>
+
+                <div t-if="!count" class="fm_da_empty">
+                    <i class="fa fa-check-circle-o"/>
+                    <span>Nothing due within <t t-esc="state.settings.window_hours"/> hours.</span>
+                </div>
+
+                <div t-foreach="sections" t-as="section" t-key="section.key" class="fm_da_section" t-attf-class="fm_da_section--{{ section.key }}">
+                    <div class="fm_da_section_head">
+                        <span t-esc="section.label"/>
+                        <span class="fm_da_section_count" t-esc="section.items.length"/>
+                    </div>
+                    <ul class="fm_da_list">
+                        <li t-foreach="section.items" t-as="a" t-key="a.key" class="fm_da_item" t-att-data-kind="a.kind" t-on-click="() => this.openRecord(a)">
+                            <span class="fm_da_icon"><i t-attf-class="fa {{ a.icon }}"/></span>
+                            <span class="fm_da_body">
+                                <span class="fm_da_item_title" t-esc="a.title"/>
+                                <span class="fm_da_item_meta">
+                                    <span class="fm_da_pill" t-esc="a.badge"/>
+                                    <span t-if="a.summary and a.summary !== a.badge" class="fm_da_item_summary" t-esc="a.summary"/>
+                                </span>
+                            </span>
+                            <span class="fm_da_when" t-esc="when(a)"/>
+                            <button t-if="a.kind === 'activity'" type="button" class="fm_da_done" title="Mark as done"
+                                    t-on-click="(ev) => this.markDone(ev, a)"><i class="fa fa-check"/></button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </t>
+
+</templates>
