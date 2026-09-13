@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-name="fm_sales_dashboard.Dashboard">
+        <div class="fm_sd o_action" t-att-class="{ 'fm_sd--loading': state.loading }">
+
+            <!-- ── Period bar ── -->
+            <header class="fm_sd_bar">
+                <div class="fm_sd_heading">
+                    <div class="fm_sd_eyebrow" t-esc="state.data ? state.data.meta.company : ''"/>
+                    <h1 class="fm_sd_h1">Sales Dashboard</h1>
+                    <div class="fm_sd_sub">
+                        <span t-esc="periodLabel"/>
+                        <span t-if="state.data and state.data.meta.role === 'own'" class="fm_sd_role">
+                            · <i class="fa fa-user me-1"/>your own orders
+                        </span>
+                    </div>
+                </div>
+                <div class="fm_sd_controls">
+                    <div class="fm_sd_segments" role="tablist">
+                        <t t-foreach="presets" t-as="p" t-key="p.key">
+                            <button type="button" class="fm_sd_segment" role="tab"
+                                    t-att-class="{ 'is-active': state.preset === p.key }"
+                                    t-on-click="() => this.setPreset(p.key)" t-esc="p.label"/>
+                        </t>
+                    </div>
+                    <div class="fm_sd_dates">
+                        <input type="date" class="form-control form-control-sm" t-att-value="state.dateFrom"
+                               t-on-change="(ev) => this.onDateChange('dateFrom', ev)"/>
+                        <span class="fm_sd_dash">–</span>
+                        <input type="date" class="form-control form-control-sm" t-att-value="state.dateTo"
+                               t-on-change="(ev) => this.onDateChange('dateTo', ev)"/>
+                    </div>
+                    <button type="button" class="btn btn-sm btn-secondary fm_sd_refresh" t-on-click="() => this.load()" title="Refresh">
+                        <i class="fa fa-refresh" t-att-class="{ 'fa-spin': state.loading }"/>
+                        <span t-if="state.lastRefresh" class="ms-1 fm_sd_muted" t-esc="state.lastRefresh"/>
+                    </button>
+                </div>
+            </header>
+
+            <div t-if="state.error" class="alert alert-danger m-3" role="alert" t-esc="state.error"/>
+
+            <t t-set="d" t-value="state.data"/>
+            <t t-if="d">
+                <!-- ── Headline figures ── -->
+                <section class="fm_sd_kpis">
+                    <button type="button" class="fm_sd_kpi" t-on-click="() => this.open('confirmed')">
+                        <span class="fm_sd_kpi_label">Revenue</span>
+                        <span class="fm_sd_kpi_value" t-att-title="money(d.kpi.revenue)" t-esc="money(d.kpi.revenue, { compact: true })"/>
+                        <span class="fm_sd_kpi_note">
+                            <t t-if="d.kpi.revenue_growth !== null">
+                                <span class="fm_sd_delta" t-att-class="{ 'is-up': d.kpi.revenue_growth >= 0, 'is-down': d.kpi.revenue_growth &lt; 0 }" t-esc="percent(d.kpi.revenue_growth)"/>
+                                vs <t t-esc="prevLabel"/>
+                            </t>
+                            <t t-else="">confirmed orders</t>
+                        </span>
+                    </button>
+                    <button type="button" class="fm_sd_kpi" t-on-click="() => this.open('confirmed')">
+                        <span class="fm_sd_kpi_label">Confirmed orders</span>
+                        <span class="fm_sd_kpi_value" t-esc="number(d.kpi.confirmed_orders)"/>
+                        <span class="fm_sd_kpi_note">
+                            <t t-set="dc" t-value="delta(d.kpi.confirmed_orders, d.kpi.prev.confirmed_orders)"/>
+                            <span t-if="dc !== null" class="fm_sd_delta" t-att-class="{ 'is-up': dc >= 0, 'is-down': dc &lt; 0 }" t-esc="percent(dc)"/>
+                            <t t-esc="d.summary.conversion_rate.toFixed(0)"/>% of all orders
+                        </span>
+                    </button>
+                    <button type="button" class="fm_sd_kpi" t-on-click="() => this.open('quotations')">
+                        <span class="fm_sd_kpi_label">Quotations</span>
+                        <span class="fm_sd_kpi_value" t-esc="number(d.summary.quotation_count)"/>
+                        <span class="fm_sd_kpi_note" t-esc="money(d.summary.quotation_amount, { compact: true })"/>
+                    </button>
+                    <button type="button" class="fm_sd_kpi" t-on-click="() => this.open('cancelled')">
+                        <span class="fm_sd_kpi_label">Cancelled</span>
+                        <span class="fm_sd_kpi_value" t-esc="number(d.summary.cancelled_count)"/>
+                        <span class="fm_sd_kpi_note" t-esc="money(d.summary.cancelled_amount, { compact: true })"/>
+                    </button>
+                    <button type="button" class="fm_sd_kpi" t-on-click="() => this.open('confirmed')">
+                        <span class="fm_sd_kpi_label">Average order</span>
+                        <span class="fm_sd_kpi_value" t-att-title="money(d.kpi.avg_order_value)" t-esc="money(d.kpi.avg_order_value, { compact: true })"/>
+                        <span class="fm_sd_kpi_note">
+                            <t t-set="da" t-value="delta(d.kpi.avg_order_value, d.kpi.prev.avg_order_value)"/>
+                            <span t-if="da !== null" class="fm_sd_delta" t-att-class="{ 'is-up': da >= 0, 'is-down': da &lt; 0 }" t-esc="percent(da)"/>
+                            per confirmed order
+                        </span>
+                    </button>
+                    <button type="button" class="fm_sd_kpi" t-on-click="() => this.open('confirmed')">
+                        <span class="fm_sd_kpi_label">Customers</span>
+                        <span class="fm_sd_kpi_value" t-esc="number(d.kpi.unique_customers)"/>
+                        <span class="fm_sd_kpi_note">
+                            <t t-set="du" t-value="delta(d.kpi.unique_customers, d.kpi.prev.unique_customers)"/>
+                            <span t-if="du !== null" class="fm_sd_delta" t-att-class="{ 'is-up': du >= 0, 'is-down': du &lt; 0 }" t-esc="percent(du)"/>
+                            who bought
+                        </span>
+                    </button>
+                </section>
+
+                <section class="fm_sd_grid">
+                    <!-- Monthly trend -->
+                    <div class="fm_sd_panel fm_sd_span8">
+                        <div class="fm_sd_panel_head">
+                            <span class="fm_sd_eyebrow">Last 12 months</span>
+                            <span class="fm_sd_panel_title">Monthly trend</span>
+                        </div>
+                        <div class="fm_sd_chart fm_sd_chart--tall"><canvas t-ref="trend"/></div>
+                    </div>
+
+                    <!-- By state -->
+                    <div class="fm_sd_panel fm_sd_span4">
+                        <div class="fm_sd_panel_head">
+                            <span class="fm_sd_eyebrow">This period</span>
+                            <span class="fm_sd_panel_title">Orders by status</span>
+                        </div>
+                        <div class="fm_sd_ring"><canvas t-ref="byState"/></div>
+                        <ul class="fm_sd_legend">
+                            <li t-foreach="d.by_state" t-as="s" t-key="s.state" class="fm_sd_legend_row"
+                                t-on-click="() => this.open('state', { state: s.state })">
+                                <span class="fm_sd_swatch" t-attf-style="background: {{ colors().series[s.state] }}"/>
+                                <span class="fm_sd_legend_label" t-esc="s.label"/>
+                                <span class="fm_sd_legend_count" t-esc="number(s.count)"/>
+                                <span class="fm_sd_legend_value" t-esc="money(s.amount, { compact: true })"/>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Top customers -->
+                    <div class="fm_sd_panel fm_sd_span6">
+                        <div class="fm_sd_panel_head">
+                            <span class="fm_sd_eyebrow">Confirmed orders</span>
+                            <span class="fm_sd_panel_title">Top customers</span>
+                        </div>
+                        <div t-if="!d.top_customers.length" class="fm_sd_empty">No confirmed orders in this period.</div>
+                        <ol t-else="" class="fm_sd_ranked">
+                            <li t-foreach="d.top_customers" t-as="cst" t-key="cst.id" class="fm_sd_rank"
+                                t-on-click="() => this.open('customer', { partner_id: cst.id })">
+                                <span class="fm_sd_rank_n" t-esc="cst_index + 1"/>
+                                <span class="fm_sd_rank_body">
+                                    <span class="fm_sd_rank_name" t-esc="cst.name"/>
+                                    <span class="fm_sd_rank_bar"><span t-attf-style="width: {{ share(cst.amount, maxCustomer) }}%"/></span>
+                                </span>
+                                <span class="fm_sd_rank_meta" t-esc="plural(cst.order_count, 'order', 'orders')"/>
+                                <span class="fm_sd_rank_value" t-esc="money(cst.amount, { compact: true })"/>
+                            </li>
+                        </ol>
+                    </div>
+
+                    <!-- Top products -->
+                    <div class="fm_sd_panel fm_sd_span6">
+                        <div class="fm_sd_panel_head">
+                            <span class="fm_sd_eyebrow">Confirmed order lines</span>
+                            <span class="fm_sd_panel_title">Top products</span>
+                        </div>
+                        <div t-if="!d.top_products.length" class="fm_sd_empty">No confirmed orders in this period.</div>
+                        <ol t-else="" class="fm_sd_ranked">
+                            <li t-foreach="d.top_products" t-as="prd" t-key="prd.id" class="fm_sd_rank"
+                                t-on-click="() => this.open('product_lines', { product_id: prd.id })">
+                                <span class="fm_sd_rank_n" t-esc="prd_index + 1"/>
+                                <span class="fm_sd_rank_body">
+                                    <span class="fm_sd_rank_name" t-esc="prd.name"/>
+                                    <span class="fm_sd_rank_bar"><span t-attf-style="width: {{ share(prd.amount, maxProduct) }}%"/></span>
+                                </span>
+                                <span class="fm_sd_rank_meta" t-esc="plural(Math.round(prd.qty * 100) / 100, 'unit', 'units')"/>
+                                <span class="fm_sd_rank_value" t-esc="money(prd.amount, { compact: true })"/>
+                            </li>
+                        </ol>
+                    </div>
+
+                    <!-- Teams -->
+                    <div class="fm_sd_panel fm_sd_span6">
+                        <div class="fm_sd_panel_head">
+                            <span class="fm_sd_eyebrow">Confirmed orders</span>
+                            <span class="fm_sd_panel_title">Sales teams</span>
+                        </div>
+                        <div t-if="!d.teams.length" class="fm_sd_empty">No team has a confirmed order in this period.</div>
+                        <div t-else="" class="fm_sd_chart" t-attf-style="height: {{ 40 + d.teams.length * 32 }}px"><canvas t-ref="teams"/></div>
+                    </div>
+
+                    <!-- Salespersons -->
+                    <div class="fm_sd_panel fm_sd_span6">
+                        <div class="fm_sd_panel_head">
+                            <span class="fm_sd_eyebrow">Confirmed orders</span>
+                            <span class="fm_sd_panel_title">Salespersons</span>
+                        </div>
+                        <div t-if="!d.salespersons.length" class="fm_sd_empty">Nobody has a confirmed order in this period.</div>
+                        <div t-else="" class="fm_sd_chart" t-attf-style="height: {{ 40 + d.salespersons.length * 32 }}px"><canvas t-ref="salespersons"/></div>
+                    </div>
+
+                    <!-- Invoice status -->
+                    <div class="fm_sd_panel fm_sd_span4">
+                        <div class="fm_sd_panel_head">
+                            <span class="fm_sd_eyebrow">Confirmed orders</span>
+                            <span class="fm_sd_panel_title">Invoicing</span>
+                        </div>
+                        <div class="fm_sd_ring"><canvas t-ref="invoice"/></div>
+                        <ul class="fm_sd_legend">
+                            <li t-foreach="d.invoice_status" t-as="s" t-key="s.status" class="fm_sd_legend_row"
+                                t-on-click="() => this.open('invoice_status', { invoice_status: s.status })">
+                                <span class="fm_sd_swatch" t-attf-style="background: {{ colors().series[s.status] }}"/>
+                                <span class="fm_sd_legend_label" t-esc="s.label"/>
+                                <span class="fm_sd_legend_count" t-esc="number(s.count)"/>
+                                <span class="fm_sd_legend_value" t-esc="money(s.amount, { compact: true })"/>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Pipeline -->
+                    <div class="fm_sd_panel fm_sd_span8">
+                        <div class="fm_sd_panel_head">
+                            <span class="fm_sd_eyebrow">This period · latest first</span>
+                            <span class="fm_sd_panel_title">Pipeline</span>
+                        </div>
+                        <div class="fm_sd_pipeline">
+                            <div t-foreach="d.pipeline" t-as="stage" t-key="stage.state" class="fm_sd_stage">
+                                <button type="button" class="fm_sd_stage_head" t-on-click="() => this.open('state', { state: stage.state })">
+                                    <span class="fm_sd_swatch" t-attf-style="background: {{ colors().series[stage.state] }}"/>
+                                    <span class="fm_sd_stage_label" t-esc="stage.label"/>
+                                    <span class="fm_sd_stage_count" t-esc="number(stage.count)"/>
+                                    <span class="fm_sd_stage_amount" t-esc="money(stage.amount, { compact: true })"/>
+                                </button>
+                                <ul class="fm_sd_stage_list">
+                                    <li t-foreach="stage.orders" t-as="o" t-key="o.id" class="fm_sd_stage_order"
+                                        t-on-click="() => this.open('order', { res_id: o.id })">
+                                        <span class="fm_sd_stage_order_name" t-esc="o.name"/>
+                                        <span class="fm_sd_stage_order_partner" t-esc="o.partner"/>
+                                        <span class="fm_sd_stage_order_amount" t-esc="money(o.amount, { compact: true })"/>
+                                    </li>
+                                    <li t-if="!stage.orders.length" class="fm_sd_stage_empty">—</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recent -->
+                    <div class="fm_sd_panel fm_sd_span12">
+                        <div class="fm_sd_panel_head">
+                            <span class="fm_sd_eyebrow">Last changed first</span>
+                            <span class="fm_sd_panel_title">Recent activity</span>
+                            <button type="button" class="btn btn-link btn-sm ms-auto p-0" t-on-click="() => this.open('recent')">All orders</button>
+                        </div>
+                        <div t-if="!d.recent.length" class="fm_sd_empty">Nothing happened in this period.</div>
+                        <div t-else="" class="fm_sd_table_wrap">
+                            <table class="fm_sd_table">
+                                <thead>
+                                    <tr><th>Order</th><th>Customer</th><th class="text-end">Amount</th><th>Status</th><th>Invoicing</th><th>Salesperson</th><th class="text-end">Updated</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr t-foreach="d.recent" t-as="o" t-key="o.id" t-on-click="() => this.open('order', { res_id: o.id })">
+                                        <td class="fm_sd_mono" t-esc="o.name"/>
+                                        <td t-esc="o.partner"/>
+                                        <td class="text-end fm_sd_num"><t t-esc="o.currency_symbol"/> <t t-esc="number(Math.round(o.amount))"/></td>
+                                        <td><span class="fm_sd_state" t-attf-style="--fm-sd-state: {{ colors().series[o.state] }}" t-esc="o.state_label"/></td>
+                                        <td class="fm_sd_muted" t-esc="o.invoice_label"/>
+                                        <td t-esc="o.user"/>
+                                        <td class="text-end fm_sd_muted fm_sd_num" t-esc="o.date"/>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+            </t>
+            <div t-if="state.loading and !state.data" class="fm_sd_loading">Loading…</div>
+        </div>
+    </t>
+
+</templates>
