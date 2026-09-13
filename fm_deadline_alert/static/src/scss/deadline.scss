@@ -1,0 +1,92 @@
+// The bell and its panel. Colours come from Odoo's own variables so the
+// panel is a native Odoo surface in whatever theme the backend is in;
+// only the three severities are named here.
+
+.fm_da { position: relative; }
+
+.fm_da_bell {
+  position: relative;
+  display: flex; align-items: center; height: 100%;
+  padding: 0 0.6rem; border: 0; background: transparent;
+  color: var(--NavBar-entry-color, rgba(255, 255, 255, 0.9));
+  font-size: 1.05rem;
+  &:hover, &.is-open { color: var(--NavBar-entry-color--hover, #fff); background: rgba(255, 255, 255, 0.1); }
+  &:focus { box-shadow: none; }
+  &.has-overdue .fm_da_badge { background: #d0393b; }
+}
+.fm_da_badge {
+  position: absolute; top: 4px; right: 1px;
+  min-width: 1.05rem; height: 1.05rem; padding: 0 0.3rem;
+  border-radius: 999px; background: #d98a12; color: #fff;
+  font-size: 0.66rem; font-weight: 700; line-height: 1.05rem; text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.fm_da_panel {
+  position: fixed; z-index: 1055;
+  width: 26rem; max-width: calc(100vw - 1rem);
+  max-height: 70vh; overflow: auto;
+  background: var(--o-view-background-color, #fff);
+  color: var(--body-color, #212529);
+  border: 1px solid var(--border-color, #dee2e6);
+  border-radius: 0.5rem;
+  box-shadow: 0 0.75rem 2rem rgba(0, 0, 0, 0.16);
+  font-size: 0.85rem;
+}
+.fm_da_head {
+  display: flex; align-items: baseline; gap: 0.5rem;
+  padding: 0.75rem 1rem 0.55rem; border-bottom: 1px solid var(--border-color, #dee2e6);
+}
+.fm_da_title { font-weight: 700; font-size: 0.95rem; }
+.fm_da_window { color: var(--o-text-muted, #6c757d); font-size: 0.75rem; }
+.fm_da_empty {
+  display: flex; align-items: center; gap: 0.6rem; padding: 1.5rem 1rem; color: #6c757d;
+  i { font-size: 1.3rem; color: #2fae6c; }
+}
+
+.fm_da_section_head {
+  display: flex; align-items: center; gap: 0.5rem;
+  padding: 0.55rem 1rem 0.25rem;
+  font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+}
+.fm_da_section_count { font-weight: 600; opacity: 0.7; }
+.fm_da_section--overdue .fm_da_section_head { color: #c9302c; }
+.fm_da_section--today .fm_da_section_head { color: #b8720e; }
+.fm_da_section--upcoming .fm_da_section_head { color: #2a78d6; }
+
+.fm_da_list { list-style: none; margin: 0; padding: 0; }
+.fm_da_item {
+  display: grid; grid-template-columns: auto minmax(0, 1fr) auto auto; gap: 0.6rem; align-items: center;
+  padding: 0.5rem 0.75rem 0.5rem 1rem; cursor: pointer;
+  border-left: 3px solid transparent;
+  &:hover { background: rgba(0, 0, 0, 0.035); }
+}
+// The severity is a rail on the left, not a coloured row: the text stays text.
+.fm_da_section--overdue .fm_da_item { border-left-color: #d0393b; }
+.fm_da_section--today .fm_da_item { border-left-color: #d98a12; }
+.fm_da_section--upcoming .fm_da_item { border-left-color: #2a78d6; }
+
+.fm_da_icon {
+  width: 1.9rem; height: 1.9rem; border-radius: 50%;
+  display: grid; place-items: center; background: rgba(0, 0, 0, 0.05); color: #6c757d; font-size: 0.85rem;
+}
+.fm_da_body { display: flex; flex-direction: column; gap: 0.15rem; min-width: 0; }
+.fm_da_item_title { font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.fm_da_item_meta { display: flex; align-items: center; gap: 0.4rem; min-width: 0; color: #6c757d; font-size: 0.78rem; }
+.fm_da_pill {
+  flex-shrink: 0; padding: 0 0.45rem; border-radius: 999px;
+  border: 1px solid var(--border-color, #dee2e6); font-size: 0.7rem; font-weight: 600; letter-spacing: 0.02em;
+}
+.fm_da_item_summary { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.fm_da_when { font-size: 0.75rem; color: #6c757d; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.fm_da_done {
+  width: 1.7rem; height: 1.7rem; border-radius: 50%; border: 1px solid var(--border-color, #dee2e6);
+  background: transparent; color: #6c757d; display: grid; place-items: center; font-size: 0.75rem;
+  &:hover { background: #2fae6c; border-color: #2fae6c; color: #fff; }
+}
+
+// A dark backend: same surfaces the theme paints, plus softer neutrals.
+body.fm-dark .fm_da_panel { box-shadow: 0 0.75rem 2rem rgba(0, 0, 0, 0.5); }
+body.fm-dark .fm_da_item:hover { background: rgba(255, 255, 255, 0.05); }
+body.fm-dark .fm_da_icon { background: rgba(255, 255, 255, 0.08); color: #a3a5b3; }
+body.fm-dark .fm_da_item_meta, body.fm-dark .fm_da_when, body.fm-dark .fm_da_window, body.fm-dark .fm_da_empty { color: #a3a5b3; }

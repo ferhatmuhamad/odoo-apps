@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_deadline_source_tree" model="ir.ui.view">
+        <field name="name">fm.deadline.source.tree</field>
+        <field name="model">fm.deadline.source</field>
+        <field name="arch" type="xml">
+            <tree string="Deadline Sources">
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="model_id"/>
+                <field name="date_field_id"/>
+                <field name="user_field_id"/>
+                <field name="icon" optional="hide"/>
+                <field name="active" widget="boolean_toggle"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_deadline_source_form" model="ir.ui.view">
+        <field name="name">fm.deadline.source.form</field>
+        <field name="model">fm.deadline.source</field>
+        <field name="arch" type="xml">
+            <form string="Deadline Source">
+                <sheet>
+                    <widget name="web_ribbon" title="Archived" bg_color="text-bg-danger" invisible="active"/>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1><field name="name" placeholder="e.g. Task deadline"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="model_id" options="{'no_create': True}"/>
+                            <field name="date_field_id" options="{'no_create': True}"/>
+                            <field name="user_field_id" options="{'no_create': True}"/>
+                            <field name="model_name" invisible="1"/>
+                        </group>
+                        <group>
+                            <field name="icon" placeholder="fa-tasks"/>
+                            <field name="active" invisible="1"/>
+                        </group>
+                    </group>
+                    <group string="Only records matching">
+                        <field name="domain" nolabel="1" colspan="2" widget="domain" options="{'model': 'model_name'}"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_deadline_sources" model="ir.actions.act_window">
+        <field name="name">Deadline Sources</field>
+        <field name="res_model">fm.deadline.source</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">No deadline source yet</p>
+            <p>A source is a model, its deadline field, and the field that says whose record it is.
+               Tasks, quotations and invoices were added on install if those apps were present.</p>
+        </field>
+    </record>
+
+    <record id="res_config_settings_view_form_deadline" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.fm.deadline.alert</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base_setup.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//app[@name='general_settings']//block[@name='integration']" position="before">
+                <block title="Deadline Alerts" name="fm_deadline_alert_settings">
+                    <setting string="The bell" help="Activities and record deadlines assigned to you, due within this window or overdue, in the top bar.">
+                        <div class="content-group">
+                            <div class="row mt8">
+                                <label for="fm_da_window_hours" class="col-lg-7 o_light_label"/>
+                                <field name="fm_da_window_hours" class="col-lg-3"/>
+                            </div>
+                        </div>
+                        <div class="mt8">
+                            <field name="fm_da_toast"/>
+                            <label for="fm_da_toast"/>
+                        </div>
+                        <div class="mt8">
+                            <field name="fm_da_count_planned"/>
+                            <label for="fm_da_count_planned"/>
+                        </div>
+                    </setting>
+                    <setting string="Record deadlines" help="Which models' own deadline fields the bell watches, besides activities.">
+                        <button name="%(action_deadline_sources)d" type="action" string="Deadline sources" icon="oi-arrow-right" class="btn-link"/>
+                    </setting>
+                </block>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
