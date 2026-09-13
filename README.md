@@ -28,6 +28,7 @@ Semua module dibangun **hanya di atas Odoo Community**, sehingga berjalan di
 | [`fm_attendance_geo`](fm_attendance_geo/) | Attendance Geofence — radius per lokasi kerja, peta di tiap absensi, kebijakan per kantor untuk yang di luar area | 17.0, 18.0, 19.0 | LGPL-3 |
 | [`fm_purchase_request`](fm_purchase_request/) | Purchase Request — staf minta dengan kata-kata sendiri, atasan menyetujui, pembelian membuat PO satu klik; smart button dua arah | 17.0, 18.0, 19.0 | LGPL-3 |
 | [`fm_sales_dashboard`](fm_sales_dashboard/) | Sales Dashboard — satu halaman keadaan penjualan: angka vs periode lalu, tren, status, pelanggan & produk teratas, tim, faktur; tiap angka bisa diklik | 17.0, 18.0, 19.0 | LGPL-3 |
+| [`fm_sales_scoreboard`](fm_sales_scoreboard/) | Sales Scoreboard — papan untuk TV ruang sales: satu salesperson per slide, won / in progress / lost, konversi & target, lalu ranking; auto-slide & auto-refresh | 17.0, 18.0, 19.0 | LGPL-3 |
 
 ## Instalasi
 
