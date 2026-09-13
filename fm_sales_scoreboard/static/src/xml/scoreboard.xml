@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-name="fm_sales_scoreboard.Board">
+        <div class="fm_sb o_action" t-ref="root" t-att-class="{ 'fm_sb--fullscreen': state.fullscreen, 'fm_sb--loading': state.loading }">
+            <t t-set="d" t-value="state.data"/>
+            <t t-set="sp" t-value="current"/>
+
+            <!-- ── Top bar ── -->
+            <header class="fm_sb_bar">
+                <div class="fm_sb_brand">
+                    <span class="fm_sb_eyebrow" t-esc="d ? d.company : ''"/>
+                    <span class="fm_sb_title">Sales Scoreboard</span>
+                </div>
+                <div class="fm_sb_controls" t-if="d">
+                    <div class="fm_sb_seg">
+                        <button type="button" t-att-class="{ 'is-on': state.mode === 'month' }" t-on-click="(ev) => this.onFilter('mode', { target: { value: 'month' } })">Year</button>
+                        <button type="button" t-att-class="{ 'is-on': state.mode === 'day' }" t-on-click="(ev) => this.onFilter('mode', { target: { value: 'day' } })">Month</button>
+                    </div>
+                    <select class="fm_sb_select" t-on-change="(ev) => this.onFilter('year', ev)">
+                        <option t-foreach="d.years" t-as="y" t-key="y" t-att-value="y" t-att-selected="y === d.year" t-esc="y"/>
+                    </select>
+                    <select class="fm_sb_select" t-on-change="(ev) => this.onFilter('month', ev)">
+                        <option t-foreach="d.months" t-as="m" t-key="m_index" t-att-value="m_index + 1" t-att-selected="m_index + 1 === d.month" t-esc="m"/>
+                    </select>
+                    <div class="fm_sb_seg">
+                        <button type="button" t-att-class="{ 'is-on': state.metric === 'value' }" t-on-click="() => this.onMetric('value')">Value</button>
+                        <button type="button" t-att-class="{ 'is-on': state.metric === 'count' }" t-on-click="() => this.onMetric('count')">Count</button>
+                    </div>
+                    <select class="fm_sb_select" t-on-change="(ev) => this.onFilter('teamId', ev)">
+                        <option value="">All teams</option>
+                        <option t-foreach="d.filters.teams" t-as="t" t-key="t.id" t-att-value="t.id" t-att-selected="t.id == state.teamId" t-esc="t.name"/>
+                        <option t-if="d.filters.has_teamless" value="none" t-att-selected="state.teamId === 'none'">No team</option>
+                    </select>
+                    <select class="fm_sb_select" t-on-change="(ev) => this.onFilter('creatorId', ev)">
+                        <option value="">Created by anyone</option>
+                        <option t-foreach="d.filters.creators" t-as="c" t-key="c.id" t-att-value="c.id" t-att-selected="c.id == state.creatorId" t-esc="c.name"/>
+                    </select>
+                    <button type="button" class="fm_sb_icon" t-on-click="togglePause" t-att-title="state.paused ? 'Resume (space)' : 'Pause (space)'">
+                        <i t-att-class="state.paused ? 'fa fa-play' : 'fa fa-pause'"/>
+                    </button>
+                    <button type="button" class="fm_sb_icon" t-on-click="toggleFullscreen" title="Fullscreen (f)">
+                        <i t-att-class="state.fullscreen ? 'fa fa-compress' : 'fa fa-expand'"/>
+                    </button>
+                    <span class="fm_sb_refresh" t-att-title="'Refreshed ' + state.lastRefresh">
+                        <i class="fa fa-refresh" t-att-class="{ 'fa-spin': state.loading }"/> <t t-esc="state.lastRefresh"/>
+                    </span>
+                </div>
+            </header>
+
+            <div t-if="state.error" class="fm_sb_error" t-esc="state.error"/>
+            <div t-if="d and !people.length" class="fm_sb_empty">No salesperson owns a lead in this company yet.</div>
+
+            <!-- ── One salesperson ── -->
+            <main t-if="sp" class="fm_sb_stage">
+                <aside class="fm_sb_profile">
+                    <div class="fm_sb_avatar">
+                        <img t-if="sp.avatar" t-att-src="sp.avatar" t-att-alt="sp.name"/>
+                        <span t-else="" class="fm_sb_avatar_initials" t-esc="initials(sp.name)"/>
+                    </div>
+                    <div class="fm_sb_name" t-esc="sp.name"/>
+                    <div class="fm_sb_role">
+                        <t t-esc="sp.job_title"/>
+                        <t t-if="sp.job_title and (sp.team or sp.department)"> · </t>
+                        <t t-esc="sp.team || sp.department"/>
+                    </div>
+                    <dl class="fm_sb_facts">
+                        <div t-if="sp.since"><dt>Since</dt><dd t-esc="sp.since"/></div>
+                        <div t-if="sp.phone"><dt>Phone</dt><dd t-esc="sp.phone"/></div>
+                        <div t-if="sp.email"><dt>Email</dt><dd t-esc="sp.email"/></div>
+                    </dl>
+
+                    <div class="fm_sb_kpis">
+                        <button type="button" class="fm_sb_kpi" t-on-click="() => this.open(sp, 'kpi_won')">
+                            <span class="fm_sb_kpi_label">Conversion · <t t-esc="d.kpi_month"/></span>
+                            <span class="fm_sb_kpi_value" t-esc="pct(sp.summary.conversion)"/>
+                            <span class="fm_sb_kpi_note"><t t-esc="number(sp.summary.month_won)"/> won of <t t-esc="number(sp.summary.month_created)"/> leads in</span>
+                            <span class="fm_sb_meter"><span t-attf-style="width: {{ Math.min(100, sp.summary.conversion) }}%"/></span>
+                        </button>
+                        <button type="button" class="fm_sb_kpi" t-on-click="() => this.open(sp, 'kpi_won')">
+                            <span class="fm_sb_kpi_label">Target · <t t-esc="d.kpi_month"/></span>
+                            <t t-if="sp.summary.achievement !== null">
+                                <span class="fm_sb_kpi_value" t-esc="pct(sp.summary.achievement)"/>
+                                <span class="fm_sb_kpi_note"><t t-esc="money(sp.summary.month_revenue)"/> of <t t-esc="money(sp.summary.target)"/></span>
+                                <span class="fm_sb_meter fm_sb_meter--target"><span t-attf-style="width: {{ Math.min(100, sp.summary.achievement) }}%"/></span>
+                            </t>
+                            <t t-else="">
+                                <span class="fm_sb_kpi_value" t-esc="money(sp.summary.month_revenue)"/>
+                                <span class="fm_sb_kpi_note">closed this month · set a target in Settings</span>
+                            </t>
+                        </button>
+                    </div>
+                </aside>
+
+                <section class="fm_sb_chart_panel">
+                    <div class="fm_sb_panel_head">
+                        <span class="fm_sb_eyebrow"><t t-esc="d.period_label"/> · by date the lead came in</span>
+                        <span class="fm_sb_panel_title" t-esc="state.metric === 'count' ? 'Leads in, by outcome' : 'Value of leads in, by outcome'"/>
+                    </div>
+                    <div class="fm_sb_chart"><canvas t-ref="chart"/></div>
+                </section>
+
+                <aside class="fm_sb_summary">
+                    <div class="fm_sb_panel_head">
+                        <span class="fm_sb_eyebrow" t-esc="d.period_label"/>
+                        <span class="fm_sb_panel_title">Summary</span>
+                    </div>
+                    <ul class="fm_sb_rows">
+                        <li class="fm_sb_row" t-on-click="() => this.open(sp, 'created')">
+                            <span class="fm_sb_row_label">Leads in</span>
+                            <span class="fm_sb_row_value" t-esc="metricValue(sp, 'leads')"/>
+                            <span class="fm_sb_row_sub" t-esc="state.metric === 'count' ? money(sp.summary.leads_value) : number(sp.summary.leads) + ' leads'"/>
+                        </li>
+                        <li class="fm_sb_row" t-on-click="() => this.open(sp, 'created_won')">
+                            <span class="fm_sb_dot" style="background:#2fae6c"/>
+                            <span class="fm_sb_row_label">Won</span>
+                            <span class="fm_sb_row_value" t-esc="metricValue(sp, 'won')"/>
+                            <span class="fm_sb_row_sub" t-esc="state.metric === 'count' ? money(sp.summary.won_value) : number(sp.summary.won) + ' leads'"/>
+                        </li>
+                        <li class="fm_sb_row" t-on-click="() => this.open(sp, 'created_open')">
+                            <span class="fm_sb_dot" style="background:#9085e9"/>
+                            <span class="fm_sb_row_label">In progress</span>
+                            <span class="fm_sb_row_value" t-esc="metricValue(sp, 'open')"/>
+                            <span class="fm_sb_row_sub" t-esc="state.metric === 'count' ? money(sp.summary.open_value) : number(sp.summary.open) + ' leads'"/>
+                        </li>
+                        <li class="fm_sb_row" t-on-click="() => this.open(sp, 'created_lost')">
+                            <span class="fm_sb_dot" style="background:#e66767"/>
+                            <span class="fm_sb_row_label">Lost</span>
+                            <span class="fm_sb_row_value" t-esc="metricValue(sp, 'lost')"/>
+                            <span class="fm_sb_row_sub" t-esc="state.metric === 'count' ? money(sp.summary.lost_value) : number(sp.summary.lost) + ' leads'"/>
+                        </li>
+                        <li class="fm_sb_row fm_sb_row--closed" t-on-click="() => this.open(sp, 'won_closed')">
+                            <span class="fm_sb_row_label">Closed <small>by close date</small></span>
+                            <span class="fm_sb_row_value" t-esc="money(sp.summary.closed_value)"/>
+                            <span class="fm_sb_row_sub"><t t-esc="number(sp.summary.closed_count)"/> deals</span>
+                        </li>
+                        <li class="fm_sb_row" t-on-click="() => this.open(sp, 'pipeline')">
+                            <span class="fm_sb_row_label">Open pipeline <small>now</small></span>
+                            <span class="fm_sb_row_value" t-esc="money(sp.summary.pipeline_value)"/>
+                            <span class="fm_sb_row_sub"><t t-esc="number(sp.summary.pipeline_count)"/> opportunities · weighted <t t-esc="money(sp.summary.pipeline_weighted)"/></span>
+                        </li>
+                    </ul>
+                </aside>
+            </main>
+
+            <!-- ── Ranking ── -->
+            <main t-if="isRanking" class="fm_sb_ranking">
+                <div class="fm_sb_panel_head">
+                    <span class="fm_sb_eyebrow"><t t-esc="d.period_label"/> · closed value, by close date</span>
+                    <span class="fm_sb_panel_title">Ranking</span>
+                </div>
+                <ol class="fm_sb_rank_list">
+                    <li t-foreach="ranking" t-as="r" t-key="r.user_id" class="fm_sb_rank" t-on-click="() => this.select(people.indexOf(r))">
+                        <span class="fm_sb_rank_pos" t-esc="r_index + 1"/>
+                        <span class="fm_sb_rank_avatar">
+                            <img t-if="r.avatar" t-att-src="r.avatar" t-att-alt="r.name"/>
+                            <span t-else="" t-esc="initials(r.name)"/>
+                        </span>
+                        <span class="fm_sb_rank_body">
+                            <span class="fm_sb_rank_name" t-esc="r.name"/>
+                            <span class="fm_sb_rank_bar"><span t-attf-style="width: {{ maxClosed ? Math.max(2, Math.round(r.summary.closed_value / maxClosed * 100)) : 0 }}%"/></span>
+                        </span>
+                        <span class="fm_sb_rank_cell"><span class="fm_sb_rank_num" t-esc="number(r.summary.closed_count)"/><span class="fm_sb_rank_lbl">deals</span></span>
+                        <span class="fm_sb_rank_cell"><span class="fm_sb_rank_num" t-esc="pct(r.summary.conversion)"/><span class="fm_sb_rank_lbl">conversion</span></span>
+                        <span class="fm_sb_rank_cell" t-if="d.target > 0"><span class="fm_sb_rank_num" t-esc="pct(r.summary.achievement)"/><span class="fm_sb_rank_lbl">of target</span></span>
+                        <span class="fm_sb_rank_value" t-esc="money(r.summary.closed_value)"/>
+                    </li>
+                </ol>
+            </main>
+
+            <!-- ── Strip: everyone, and where the slide is ── -->
+            <footer t-if="people.length" class="fm_sb_strip">
+                <button type="button" class="fm_sb_arrow" t-on-click="() => { this.step(-1); this.startTimers(); }" title="Previous (←)"><i class="fa fa-chevron-left"/></button>
+                <div class="fm_sb_chips">
+                    <button t-foreach="people" t-as="p" t-key="p.user_id" type="button" class="fm_sb_chip"
+                            t-att-class="{ 'is-on': p_index === state.active }" t-on-click="() => this.select(p_index)">
+                        <span class="fm_sb_chip_avatar">
+                            <img t-if="p.avatar" t-att-src="p.avatar" t-att-alt="p.name"/>
+                            <span t-else="" t-esc="initials(p.name)"/>
+                        </span>
+                        <span class="fm_sb_chip_name" t-esc="p.name"/>
+                    </button>
+                    <button type="button" class="fm_sb_chip fm_sb_chip--rank" t-att-class="{ 'is-on': isRanking }" t-on-click="() => this.select(people.length)">
+                        <span class="fm_sb_chip_avatar"><i class="fa fa-trophy"/></span>
+                        <span class="fm_sb_chip_name">Ranking</span>
+                    </button>
+                </div>
+                <button type="button" class="fm_sb_arrow" t-on-click="() => { this.step(1); this.startTimers(); }" title="Next (→)"><i class="fa fa-chevron-right"/></button>
+                <div class="fm_sb_progress" t-att-class="{ 'is-paused': state.paused }">
+                    <span t-att-key="state.active + '-' + (d ? d.config.slide_seconds : 0)" t-attf-style="animation-duration: {{ d ? d.config.slide_seconds : 10 }}s"/>
+                </div>
+            </footer>
+        </div>
+    </t>
+
+</templates>
