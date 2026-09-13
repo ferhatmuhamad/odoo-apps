@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_scoreboard" model="ir.actions.client">
+        <field name="name">Sales Scoreboard</field>
+        <field name="tag">fm_sales_scoreboard.board</field>
+    </record>
+
+    <menuitem id="menu_scoreboard" name="Scoreboard"
+              parent="crm.crm_menu_root" sequence="2"
+              action="action_scoreboard"
+              groups="fm_sales_scoreboard.group_scoreboard"/>
+
+    <record id="res_config_settings_view_form_scoreboard" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.fm.sales.scoreboard</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="crm.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//block[@name='generate_lead_setting_container']" position="after">
+                <block title="Sales Scoreboard" name="fm_sales_scoreboard_settings">
+                    <setting string="Timing" help="How often the board moves to the next salesperson, and how often it fetches fresh figures.">
+                        <div class="content-group">
+                            <div class="row mt8">
+                                <label for="fm_sb_slide_seconds" class="col-lg-7 o_light_label"/>
+                                <field name="fm_sb_slide_seconds" class="col-lg-3"/>
+                            </div>
+                            <div class="row mt8">
+                                <label for="fm_sb_refresh_seconds" class="col-lg-7 o_light_label"/>
+                                <field name="fm_sb_refresh_seconds" class="col-lg-3"/>
+                            </div>
+                        </div>
+                    </setting>
+                    <setting string="Monthly target" help="Closed value each salesperson is expected to reach in a month. Drawn as a line on the chart and used for the achievement figure. Zero: none.">
+                        <div class="content-group">
+                            <div class="row mt8">
+                                <label for="fm_sb_target" class="col-lg-5 o_light_label"/>
+                                <field name="fm_sb_target" class="col-lg-6"/>
+                            </div>
+                        </div>
+                    </setting>
+                    <setting string="Won stages" help="Stages that count as won. Leave empty to use every stage marked 'Is Won' in CRM.">
+                        <field name="fm_sb_won_stage_ids" widget="many2many_tags"/>
+                    </setting>
+                    <setting string="Who is on the board" help="Leave empty to show everyone who owns a lead in the current companies.">
+                        <field name="fm_sb_user_ids" widget="many2many_tags"/>
+                    </setting>
+                    <setting string="'Created by' filter" help="Users offered in the board's 'Created by' filter. Leave empty to offer everyone who has created a lead.">
+                        <field name="fm_sb_creator_ids" widget="many2many_tags"/>
+                    </setting>
+                </block>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
