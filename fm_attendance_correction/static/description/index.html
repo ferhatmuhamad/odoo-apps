@@ -23,6 +23,111 @@
          style="display:block; max-width:100%; height:auto; margin:0 auto; border:1px solid #D6DEE6;"/>
 </section>
 
+<!-- ───────────────────  SETUP  ─────────────────── -->
+<section style="padding:30px 0 10px; background:#F4F6F9;">
+    <h2 style="text-align:center; font-size:28px; color:#16202B; margin:0 0 6px;">Setting it up</h2>
+    <p style="text-align:center; font-size:15px; color:#6B6B7B; margin:0 0 24px;">
+        Three steps, about two minutes. Nothing to connect, nothing to schedule.
+    </p>
+    <table style="width:100%; max-width:980px; margin:0 auto 22px; border-collapse:separate; border-spacing:14px;">
+        <tr>
+            <td style="width:33%; vertical-align:top; background:#ffffff; border:1px solid #D6DEE6; padding:18px;">
+                <div style="font-size:13px; color:#0D5F5B; font-weight:700; letter-spacing:.08em;">STEP 1</div>
+                <h3 style="margin:6px 0 8px; font-size:17px; color:#16202B;">Install it</h3>
+                <p style="margin:0; font-size:14px; line-height:1.65; color:#4C5865;">
+                    It pulls in Attendances if you do not have it yet. A new <em>Attendance
+                    Corrections</em> app appears in the menu for everyone who may use it.
+                </p>
+            </td>
+            <td style="width:33%; vertical-align:top; background:#ffffff; border:1px solid #D6DEE6; padding:18px;">
+                <div style="font-size:13px; color:#0D5F5B; font-weight:700; letter-spacing:.08em;">STEP 2</div>
+                <h3 style="margin:6px 0 8px; font-size:17px; color:#16202B;">Hand out two accesses</h3>
+                <p style="margin:0; font-size:14px; line-height:1.65; color:#4C5865;">
+                    In <em>Settings &rarr; Users</em>, under <strong>Attendance Correction</strong>:
+                    give <strong>Employee</strong> to everybody who clocks in, and
+                    <strong>Officer</strong> to whoever in HR should validate. Managers need nothing
+                    extra &mdash; they are read from the org chart.
+                </p>
+            </td>
+            <td style="width:33%; vertical-align:top; background:#ffffff; border:1px solid #D6DEE6; padding:18px;">
+                <div style="font-size:13px; color:#0D5F5B; font-weight:700; letter-spacing:.08em;">STEP 3</div>
+                <h3 style="margin:6px 0 8px; font-size:17px; color:#16202B;">Check the two settings</h3>
+                <p style="margin:0; font-size:14px; line-height:1.65; color:#4C5865;">
+                    <em>Settings &rarr; General Settings &rarr; Attendance Corrections</em>: how far
+                    back a correction may go (14 days by default), and whether HR validates after the
+                    manager. That is the whole configuration.
+                </p>
+            </td>
+        </tr>
+    </table>
+    <div style="max-width:980px; margin:0 auto 10px;">
+        <img src="images/settings.png" alt="The Attendance Corrections block in General Settings: how far back, set to 14 days, and HR validates after the manager, ticked"
+             style="display:block; width:100%; height:auto; border:1px solid #D6DEE6;"/>
+    </div>
+    <p style="max-width:860px; margin:10px auto 0; text-align:center; font-size:14px; color:#6B6B7B;">
+        For each employee to be found, their Odoo user must be linked to their employee record
+        (<em>Employees &rarr; HR Settings &rarr; Related User</em>) &mdash; the same link Attendances
+        itself needs.
+    </p>
+</section>
+
+<!-- ───────────────────  WALKTHROUGH  ─────────────────── -->
+<section style="padding:30px 0 10px;">
+    <h2 style="text-align:center; font-size:28px; color:#16202B; margin:0 0 6px;">How one correction goes</h2>
+    <p style="text-align:center; font-size:15px; color:#6B6B7B; margin:0 0 24px;">
+        Four steps, each one leaving its mark on the record.
+    </p>
+    <table style="width:100%; max-width:980px; margin:0 auto; border-collapse:collapse; font-size:14px;">
+        <tbody style="color:#4C5865;">
+            <tr style="background:#F4F6F9;">
+                <td style="padding:12px; border:1px solid #D6DEE6; width:22%;"><strong>1. The employee files</strong><br/>
+                    <span style="font-size:13px; color:#6B6B7B;">My Corrections &rarr; New</span></td>
+                <td style="padding:12px; border:1px solid #D6DEE6;">
+                    They pick what happened (forgot to check in, to check out, or both) and the day.
+                    The form fills in the hours they were due to work that day; they change them if
+                    needed, write what happened, attach evidence, and press <strong>Submit</strong>.
+                    Their own name and manager are filled in for them and cannot be typed over.
+                </td>
+            </tr>
+            <tr>
+                <td style="padding:12px; border:1px solid #D6DEE6;"><strong>2. The manager approves</strong><br/>
+                    <span style="font-size:13px; color:#6B6B7B;">To Approve</span></td>
+                <td style="padding:12px; border:1px solid #D6DEE6;">
+                    The manager from the org chart gets an activity and finds the request under
+                    <em>To Approve</em>. They approve, or refuse with a reason. Nothing has touched the
+                    attendance yet.
+                </td>
+            </tr>
+            <tr style="background:#F4F6F9;">
+                <td style="padding:12px; border:1px solid #D6DEE6;"><strong>3. HR validates</strong><br/>
+                    <span style="font-size:13px; color:#6B6B7B;">All Corrections</span></td>
+                <td style="padding:12px; border:1px solid #D6DEE6;">
+                    <strong>Validate &amp; apply</strong> is the step that actually writes the
+                    attendance &mdash; created, or closed if one was left open. A smart button on the
+                    request opens the attendance it produced.
+                </td>
+            </tr>
+            <tr>
+                <td style="padding:12px; border:1px solid #D6DEE6;"><strong>4. Everyone can see why</strong><br/>
+                    <span style="font-size:13px; color:#6B6B7B;">The record itself</span></td>
+                <td style="padding:12px; border:1px solid #D6DEE6;">
+                    The request keeps who approved it and when, who validated it and when, the
+                    employee's own explanation, the evidence, and the attendance it changed. The
+                    attendance carries a note naming the request.
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div style="max-width:980px; margin:20px auto 0;">
+        <img src="images/employee.png" alt="The employee's own list: their corrections with the day, what happened, the times and the status - and nothing belonging to anybody else"
+             style="display:block; width:100%; height:auto; border:1px solid #D6DEE6;"/>
+        <p style="margin:10px 0 0; text-align:center; font-size:14px; color:#6B6B7B;">
+            What the employee sees: their own requests and their status. Nobody else's.
+        </p>
+    </div>
+</section>
+
+<!-- ───────────────────  CARE  ─────────────────── -->
 <section style="padding:26px 0 10px; background:#F4F6F9;">
     <h2 style="text-align:center; font-size:26px; color:#16202B; margin:0 0 22px;">What it takes care of</h2>
     <table style="width:100%; max-width:980px; margin:0 auto; border-collapse:separate; border-spacing:14px;">
@@ -39,8 +144,7 @@
                 <h3 style="margin:0 0 8px; font-size:17px; color:#0D5F5B;">Two clicks, usually</h3>
                 <p style="margin:0; font-size:14px; line-height:1.65; color:#4C5865;">
                     Pick the day and the form offers that employee's own scheduled hours for it,
-                    read from their working calendar. Most requests need nothing typed but the
-                    reason.
+                    read from their working calendar. Most requests need nothing typed but the reason.
                 </p>
             </td>
             <td style="width:33%; vertical-align:top; background:#ffffff; border:1px solid #D6DEE6; padding:18px;">
@@ -70,17 +174,17 @@
                 </p>
             </td>
             <td style="vertical-align:top; background:#ffffff; border:1px solid #D6DEE6; padding:18px;">
-                <h3 style="margin:0 0 8px; font-size:17px; color:#0D5F5B;">How far back</h3>
+                <h3 style="margin:0 0 8px; font-size:17px; color:#0D5F5B;">Nothing is deleted</h3>
                 <p style="margin:0; font-size:14px; line-height:1.65; color:#4C5865;">
-                    Two weeks by default, and a setting. Older than that and the employee is told to
-                    ask HR, who may always enter it directly. The manager step can be the only step if
-                    that suits you better.
+                    A request in the middle of its approval cannot be deleted, only cancelled, and the
+                    hours cannot be edited once it has been sent. The trail is the point.
                 </p>
             </td>
         </tr>
     </table>
 </section>
 
+<!-- ───────────────────  ROLES  ─────────────────── -->
 <section style="padding:26px 0 10px;">
     <h2 style="text-align:center; font-size:24px; color:#16202B; margin:0 0 18px;">Who does what</h2>
     <div style="max-width:980px; margin:0 auto 14px;">
@@ -91,7 +195,7 @@
         <tbody style="color:#4C5865;">
             <tr style="background:#F4F6F9;">
                 <td style="padding:10px; border:1px solid #D6DEE6; width:26%;"><strong>Employee</strong></td>
-                <td style="padding:10px; border:1px solid #D6DEE6;">Files their own correction and follows it. Sees nobody else's.</td>
+                <td style="padding:10px; border:1px solid #D6DEE6;">Files their own correction and follows it. Sees nobody else's &mdash; enforced by a record rule, not by hiding a menu.</td>
             </tr>
             <tr>
                 <td style="padding:10px; border:1px solid #D6DEE6;"><strong>Manager</strong></td>
@@ -104,21 +208,52 @@
         </tbody>
     </table>
     <p style="max-width:860px; margin:12px auto 0; text-align:center; font-size:14px; color:#6B6B7B;">
-        An employee without a manager in the org chart goes straight to HR, rather than waiting for
-        an approval that will never come.
+        An employee without a manager in the org chart goes straight to HR, rather than waiting for an
+        approval that will never come.
     </p>
 </section>
 
+<!-- ───────────────────  FAQ  ─────────────────── -->
 <section style="padding:26px 0 10px; background:#F4F6F9;">
-    <h2 style="text-align:center; font-size:24px; color:#16202B; margin:0 0 18px;">Settings</h2>
-    <div style="max-width:980px; margin:0 auto 12px;">
-        <img src="images/settings.png" alt="General Settings, Attendance Corrections block: how far back a correction may go, and whether HR validates after the manager"
-             style="display:block; width:100%; height:auto; border:1px solid #D6DEE6;"/>
+    <h2 style="text-align:center; font-size:24px; color:#16202B; margin:0 0 18px;">Questions people ask first</h2>
+    <div style="max-width:880px; margin:0 auto; font-size:14px; line-height:1.75; color:#4C5865;">
+        <p style="margin:0 0 12px;"><strong>Does it work with the kiosk and the systray timer?</strong><br/>
+            Yes. It writes ordinary <code>hr.attendance</code> records, the same ones the kiosk, the
+            systray timer and any badge integration produce. Worked hours and overtime are computed by
+            Odoo exactly as for any other attendance.</p>
+        <p style="margin:0 0 12px;"><strong>Can HR skip the manager?</strong><br/>
+            An officer can approve as well as validate, so a request never gets stuck behind somebody on
+            holiday. And if you would rather have one step only, switch off <em>HR validates after the
+            manager</em>: the manager's approval then writes the attendance.</p>
+        <p style="margin:0 0 12px;"><strong>What if the employee's manager is also the one filing?</strong><br/>
+            The request goes to HR instead. Nobody approves their own.</p>
+        <p style="margin:0 0 12px;"><strong>Can somebody correct the same day twice?</strong><br/>
+            No. If an attendance already covers those hours the request is refused when it is
+            submitted, with the time of the attendance that is in the way.</p>
+        <p style="margin:0 0 12px;"><strong>Our people have no Odoo accounts.</strong><br/>
+            Then they cannot file requests themselves &mdash; but an officer can file on their behalf
+            and validate, and the trail is the same.</p>
+        <p style="margin:0 0 12px;"><strong>Multi-company?</strong><br/>
+            Requests stay inside the companies the user is allowed to see, like everything else in Odoo.</p>
+        <p style="margin:0;"><strong>Can I change the wording or add a field?</strong><br/>
+            It is LGPL-3 and plain Odoo: one model, standard views, no JavaScript to fight with.</p>
     </div>
-    <p style="max-width:860px; margin:0 auto; text-align:center; font-size:14px; color:#6B6B7B;">
-        Two settings, both in General Settings. Nothing else to configure, no scheduled job, nothing
-        fetched from the internet.
-    </p>
+</section>
+
+<!-- ───────────────────  LIMITS  ─────────────────── -->
+<section style="padding:26px 0 10px;">
+    <h2 style="text-align:center; font-size:24px; color:#16202B; margin:0 0 14px;">What it does not do</h2>
+    <div style="max-width:860px; margin:0 auto; font-size:14px; line-height:1.75; color:#4C5865;">
+        <ul style="margin:0; padding-left:1.2rem;">
+            <li>It does not plan shifts or decide what hours somebody <em>should</em> have worked &mdash;
+                it offers their schedule as a starting point and writes what is approved.</li>
+            <li>It does not change payroll. It changes attendance; whatever reads attendance follows.</li>
+            <li>It has no approval chain beyond manager and HR. Two steps cover the overwhelming
+                majority of cases, and a third would mostly add waiting.</li>
+            <li>It does not delete or archive attendances. Removing hours that were really worked is a
+                decision for a person, in the Attendances app.</li>
+        </ul>
+    </div>
 </section>
 
 <section style="padding:26px 0 44px;">
@@ -127,7 +262,7 @@
         <p style="font-size:15px; line-height:1.75; color:#4C5865; margin:0;">
             Depends only on <code>hr_attendance</code>, <code>mail</code> and <code>base_setup</code>
             &mdash; all Odoo Community. Available for Odoo 17.0, 18.0 and 19.0, free and open source
-            under LGPL-3.
+            under LGPL-3. No scheduled job, nothing fetched from the internet.
         </p>
     </div>
 </section>
