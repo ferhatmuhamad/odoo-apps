@@ -1,0 +1,133 @@
+<section style="padding:38px 0; background:#0d1020; color:#ffffff; text-align:center;">
+    <h1 style="margin:0 0 10px; font-size:38px; font-weight:700;">Attendance Correction</h1>
+    <p style="margin:0 0 6px; font-size:18px; color:#9aa0bb;">
+        Somebody forgot to clock in. Fix it the way an audit would want it fixed.
+    </p>
+    <p style="margin:0; font-size:14px; color:#6f7691;">Odoo 17.0 &middot; 18.0 &middot; 19.0 &nbsp;|&nbsp; Community &amp; Enterprise &nbsp;|&nbsp; Free, LGPL-3</p>
+</section>
+
+<section style="padding:28px 0;">
+    <div style="max-width:860px; margin:0 auto; text-align:center;">
+        <p style="font-size:16px; line-height:1.75; color:#3E4A55;">
+            Today the fix is a message to HR and a hand-edited attendance: no record of who asked, who
+            agreed, or why the hours changed. Here the employee files the correction themselves &mdash;
+            the day, the time, what happened, a photo of the gate log if they have one. Their manager
+            approves it, HR validates it, and <strong>only then</strong> does the attendance move. The
+            whole trail stays attached to the record it changed.
+        </p>
+    </div>
+</section>
+
+<section style="padding:8px 0 22px;">
+    <img src="images/form.png" alt="A correction request: the employee, their manager, the day, the time they checked in, what happened in their own words, and a trail section showing who approved it and when - with Validate and Refuse in the header"
+         style="display:block; max-width:100%; height:auto; margin:0 auto; border:1px solid #D6DEE6;"/>
+</section>
+
+<section style="padding:26px 0 10px; background:#F4F6F9;">
+    <h2 style="text-align:center; font-size:26px; color:#16202B; margin:0 0 22px;">What it takes care of</h2>
+    <table style="width:100%; max-width:980px; margin:0 auto; border-collapse:separate; border-spacing:14px;">
+        <tr>
+            <td style="width:33%; vertical-align:top; background:#ffffff; border:1px solid #D6DEE6; padding:18px;">
+                <h3 style="margin:0 0 8px; font-size:17px; color:#0D5F5B;">Three kinds of forgetting</h3>
+                <p style="margin:0; font-size:14px; line-height:1.65; color:#4C5865;">
+                    Missed the check-in, missed the check-out, or missed both. A missed check-out
+                    <strong>closes the attendance that is still open</strong> rather than adding a
+                    second one beside it &mdash; the mistake most hand-fixes make.
+                </p>
+            </td>
+            <td style="width:33%; vertical-align:top; background:#ffffff; border:1px solid #D6DEE6; padding:18px;">
+                <h3 style="margin:0 0 8px; font-size:17px; color:#0D5F5B;">Two clicks, usually</h3>
+                <p style="margin:0; font-size:14px; line-height:1.65; color:#4C5865;">
+                    Pick the day and the form offers that employee's own scheduled hours for it,
+                    read from their working calendar. Most requests need nothing typed but the
+                    reason.
+                </p>
+            </td>
+            <td style="width:33%; vertical-align:top; background:#ffffff; border:1px solid #D6DEE6; padding:18px;">
+                <h3 style="margin:0 0 8px; font-size:17px; color:#0D5F5B;">It refuses the impossible</h3>
+                <p style="margin:0; font-size:14px; line-height:1.65; color:#4C5865;">
+                    Hours in the future, a check-out before its check-in, a day already covered by an
+                    attendance, a check-out for a day nothing was left open &mdash; each is stopped at
+                    the door, before anyone is asked to approve it.
+                </p>
+            </td>
+        </tr>
+        <tr>
+            <td style="vertical-align:top; background:#ffffff; border:1px solid #D6DEE6; padding:18px;">
+                <h3 style="margin:0 0 8px; font-size:17px; color:#0D5F5B;">The day that is still running</h3>
+                <p style="margin:0; font-size:14px; line-height:1.65; color:#4C5865;">
+                    A forgotten check-in from this morning is entered <em>open</em>, so the employee
+                    clocks out normally at the end of the day. One from last week is closed at the end
+                    of that day's schedule, or at the next attendance if one started earlier.
+                </p>
+            </td>
+            <td style="vertical-align:top; background:#ffffff; border:1px solid #D6DEE6; padding:18px;">
+                <h3 style="margin:0 0 8px; font-size:17px; color:#0D5F5B;">Refusing takes a reason</h3>
+                <p style="margin:0; font-size:14px; line-height:1.65; color:#4C5865;">
+                    A correction turned down without one just comes back tomorrow as the same
+                    question. The reason goes to the employee, and the request can be put right and
+                    sent again.
+                </p>
+            </td>
+            <td style="vertical-align:top; background:#ffffff; border:1px solid #D6DEE6; padding:18px;">
+                <h3 style="margin:0 0 8px; font-size:17px; color:#0D5F5B;">How far back</h3>
+                <p style="margin:0; font-size:14px; line-height:1.65; color:#4C5865;">
+                    Two weeks by default, and a setting. Older than that and the employee is told to
+                    ask HR, who may always enter it directly. The manager step can be the only step if
+                    that suits you better.
+                </p>
+            </td>
+        </tr>
+    </table>
+</section>
+
+<section style="padding:26px 0 10px;">
+    <h2 style="text-align:center; font-size:24px; color:#16202B; margin:0 0 18px;">Who does what</h2>
+    <div style="max-width:980px; margin:0 auto 14px;">
+        <img src="images/list.png" alt="The list of corrections: reference, employee, day, what happened, the times, and a status badge - waiting for the manager, waiting for HR, applied, refused"
+             style="display:block; width:100%; height:auto; border:1px solid #D6DEE6;"/>
+    </div>
+    <table style="width:100%; max-width:860px; margin:0 auto; border-collapse:collapse; font-size:14px;">
+        <tbody style="color:#4C5865;">
+            <tr style="background:#F4F6F9;">
+                <td style="padding:10px; border:1px solid #D6DEE6; width:26%;"><strong>Employee</strong></td>
+                <td style="padding:10px; border:1px solid #D6DEE6;">Files their own correction and follows it. Sees nobody else's.</td>
+            </tr>
+            <tr>
+                <td style="padding:10px; border:1px solid #D6DEE6;"><strong>Manager</strong></td>
+                <td style="padding:10px; border:1px solid #D6DEE6;">Taken from the org chart, not typed. Sees and approves their own team's requests, and gets an activity for each one.</td>
+            </tr>
+            <tr style="background:#F4F6F9;">
+                <td style="padding:10px; border:1px solid #D6DEE6;"><strong>Officer</strong></td>
+                <td style="padding:10px; border:1px solid #D6DEE6;">Validates, which is the step that actually writes the attendance. Sees every request and may file one on somebody's behalf.</td>
+            </tr>
+        </tbody>
+    </table>
+    <p style="max-width:860px; margin:12px auto 0; text-align:center; font-size:14px; color:#6B6B7B;">
+        An employee without a manager in the org chart goes straight to HR, rather than waiting for
+        an approval that will never come.
+    </p>
+</section>
+
+<section style="padding:26px 0 10px; background:#F4F6F9;">
+    <h2 style="text-align:center; font-size:24px; color:#16202B; margin:0 0 18px;">Settings</h2>
+    <div style="max-width:980px; margin:0 auto 12px;">
+        <img src="images/settings.png" alt="General Settings, Attendance Corrections block: how far back a correction may go, and whether HR validates after the manager"
+             style="display:block; width:100%; height:auto; border:1px solid #D6DEE6;"/>
+    </div>
+    <p style="max-width:860px; margin:0 auto; text-align:center; font-size:14px; color:#6B6B7B;">
+        Two settings, both in General Settings. Nothing else to configure, no scheduled job, nothing
+        fetched from the internet.
+    </p>
+</section>
+
+<section style="padding:26px 0 44px;">
+    <div style="max-width:860px; margin:0 auto; text-align:center;">
+        <h2 style="font-size:22px; color:#16202B; margin:0 0 10px;">Community and Enterprise</h2>
+        <p style="font-size:15px; line-height:1.75; color:#4C5865; margin:0;">
+            Depends only on <code>hr_attendance</code>, <code>mail</code> and <code>base_setup</code>
+            &mdash; all Odoo Community. Available for Odoo 17.0, 18.0 and 19.0, free and open source
+            under LGPL-3.
+        </p>
+    </div>
+</section>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem id="menu_correction_root" name="Attendance Corrections" sequence="87"
+              web_icon="fm_attendance_correction,static/description/icon.png"
+              groups="fm_attendance_correction.group_attendance_correction_user"/>
+
+    <menuitem id="menu_correction_mine" name="My Corrections" parent="menu_correction_root"
+              action="action_correction_mine" sequence="10"/>
+    <menuitem id="menu_correction_to_approve" name="To Approve" parent="menu_correction_root"
+              action="action_correction_to_approve" sequence="20"/>
+    <menuitem id="menu_correction_all" name="All Corrections" parent="menu_correction_root"
+              action="action_correction_all" sequence="30"
+              groups="fm_attendance_correction.group_attendance_correction_officer"/>
+
+</odoo>

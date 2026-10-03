@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="seq_attendance_correction" model="ir.sequence">
+            <field name="name">Attendance Correction</field>
+            <field name="code">fm.attendance.correction</field>
+            <field name="prefix">AC/%(year)s/</field>
+            <field name="padding">4</field>
+            <field name="company_id" eval="False"/>
+        </record>
+    </data>
+</odoo>

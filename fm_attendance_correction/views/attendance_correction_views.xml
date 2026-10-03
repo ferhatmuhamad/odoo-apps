@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_correction_list" model="ir.ui.view">
+        <field name="name">fm.attendance.correction.list</field>
+        <field name="model">fm.attendance.correction</field>
+        <field name="arch" type="xml">
+            <list string="Attendance Corrections" sample="1"
+                  decoration-muted="state in ('cancel', 'refused')"
+                  decoration-success="state == 'done'">
+                <field name="name"/>
+                <field name="employee_id"/>
+                <field name="department_id" optional="show"/>
+                <field name="date"/>
+                <field name="kind"/>
+                <field name="check_in" optional="show"/>
+                <field name="check_out" optional="show"/>
+                <field name="manager_id" optional="hide"/>
+                <field name="state" widget="badge"
+                       decoration-success="state == 'done'"
+                       decoration-warning="state in ('to_approve', 'to_validate')"
+                       decoration-danger="state == 'refused'"/>
+                <field name="company_id" groups="base.group_multi_company" optional="hide"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_correction_form" model="ir.ui.view">
+        <field name="name">fm.attendance.correction.form</field>
+        <field name="model">fm.attendance.correction</field>
+        <field name="arch" type="xml">
+            <form string="Attendance Correction">
+                <header>
+                    <button name="action_submit" type="object" string="Submit" class="btn-primary"
+                            invisible="not can_submit"/>
+                    <button name="action_approve" type="object" string="Approve" class="btn-primary"
+                            invisible="not can_approve"/>
+                    <button name="action_validate" type="object" string="Validate &amp; apply"
+                            class="btn-primary" invisible="not can_validate"/>
+                    <button name="action_open_refuse" type="object" string="Refuse"
+                            invisible="not can_refuse"/>
+                    <button name="action_cancel" type="object" string="Cancel"
+                            invisible="not can_cancel"/>
+                    <button name="action_reset" type="object" string="Back to draft"
+                            invisible="not can_reset"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,to_approve,to_validate,done"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_open_attendance" type="object" class="oe_stat_button"
+                                icon="fa-clock-o" invisible="not attendance_id">
+                            <div class="o_field_widget o_stat_info">
+                                <span class="o_stat_text">Attendance</span>
+                            </div>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <h1><field name="name" readonly="1"/></h1>
+                    </div>
+                    <div class="alert alert-danger" role="alert" invisible="state != 'refused'">
+                        <b>Refused by <field name="refused_by" nolabel="1" readonly="1" class="oe_inline"/>:</b>
+                        <field name="refuse_reason" nolabel="1" readonly="1"/>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="employee_id" readonly="state != 'draft' or not is_officer"
+                                   options="{'no_create': True}"/>
+                            <field name="department_id"/>
+                            <field name="manager_id"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                        </group>
+                        <group>
+                            <field name="kind" readonly="state != 'draft'"/>
+                            <field name="date" readonly="state != 'draft'"/>
+                            <field name="check_in" readonly="state != 'draft'"
+                                   invisible="kind == 'check_out'"
+                                   required="kind in ('check_in', 'both')"/>
+                            <field name="check_out" readonly="state != 'draft'"
+                                   invisible="kind == 'check_in'"
+                                   required="kind in ('check_out', 'both')"/>
+                            <field name="worked_hours" widget="float_time" invisible="not attendance_id"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="reason" readonly="state != 'draft'" placeholder="The badge reader was down, I came in at 08:05 and only noticed at lunch."/>
+                        <field name="evidence" filename="evidence_filename" readonly="state != 'draft'"/>
+                        <field name="evidence_filename" invisible="1"/>
+                    </group>
+                    <group string="Trail" invisible="state in ('draft', 'to_approve')">
+                        <group>
+                            <field name="approved_by" invisible="not approved_by"/>
+                            <field name="approved_on" invisible="not approved_by"/>
+                        </group>
+                        <group>
+                            <field name="validated_by" invisible="not validated_by"/>
+                            <field name="validated_on" invisible="not validated_by"/>
+                        </group>
+                    </group>
+                    <field name="can_submit" invisible="1"/>
+                    <field name="can_approve" invisible="1"/>
+                    <field name="can_validate" invisible="1"/>
+                    <field name="can_refuse" invisible="1"/>
+                    <field name="can_cancel" invisible="1"/>
+                    <field name="can_reset" invisible="1"/>
+                    <field name="is_officer" invisible="1"/>
+                    <field name="attendance_id" invisible="1"/>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_correction_search" model="ir.ui.view">
+        <field name="name">fm.attendance.correction.search</field>
+        <field name="model">fm.attendance.correction</field>
+        <field name="arch" type="xml">
+            <search string="Attendance Corrections">
+                <field name="name"/>
+                <field name="employee_id"/>
+                <field name="department_id"/>
+                <filter name="mine" string="My requests" domain="[('user_id', '=', uid)]"/>
+                <filter name="to_me" string="Waiting for me"
+                        domain="['|', '&amp;', ('state', '=', 'to_approve'), ('manager_user_id', '=', uid),
+                                      ('state', '=', 'to_validate')]"/>
+                <separator/>
+                <filter name="pending" string="In progress" domain="[('state', 'in', ('to_approve', 'to_validate'))]"/>
+                <filter name="done" string="Applied" domain="[('state', '=', 'done')]"/>
+                <filter name="refused" string="Refused" domain="[('state', '=', 'refused')]"/>
+                <separator/>
+                <filter name="this_month" string="This month"
+                        domain="[('date', '&gt;=', (context_today() + relativedelta(day=1)).strftime('%Y-%m-%d'))]"/>
+                <group expand="0" string="Group By">
+                    <filter name="group_employee" string="Employee" context="{'group_by': 'employee_id'}"/>
+                    <filter name="group_department" string="Department" context="{'group_by': 'department_id'}"/>
+                    <filter name="group_state" string="Status" context="{'group_by': 'state'}"/>
+                    <filter name="group_month" string="Month" context="{'group_by': 'date:month'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_correction_mine" model="ir.actions.act_window">
+        <field name="name">My Corrections</field>
+        <field name="res_model">fm.attendance.correction</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('user_id', '=', uid)]</field>
+        <field name="search_view_id" ref="view_correction_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Forgot to clock in or out?</p>
+            <p>File it here. Your manager approves, HR validates, and the attendance is corrected
+               with the whole trail attached.</p>
+        </field>
+    </record>
+
+    <record id="action_correction_to_approve" model="ir.actions.act_window">
+        <field name="name">To Approve</field>
+        <field name="res_model">fm.attendance.correction</field>
+        <field name="view_mode">list,form</field>
+        <field name="context">{'search_default_to_me': 1}</field>
+        <field name="search_view_id" ref="view_correction_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Nothing waiting for you</p>
+            <p>Requests from your team land here the moment they are submitted.</p>
+        </field>
+    </record>
+
+    <record id="action_correction_all" model="ir.actions.act_window">
+        <field name="name">All Corrections</field>
+        <field name="res_model">fm.attendance.correction</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_correction_search"/>
+    </record>
+
+</odoo>
