@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <record id="module_category_fm_attendance_correction" model="ir.module.category">
+            <field name="name">Attendance Correction</field>
+            <field name="description">Who files corrections, and who validates them.</field>
+            <field name="sequence">44</field>
+        </record>
+
+        <record id="privilege_fm_attendance_correction" model="res.groups.privilege">
+            <field name="name">Attendance Correction</field>
+            <field name="sequence">44</field>
+            <field name="category_id" ref="module_category_fm_attendance_correction"/>
+        </record>
+
+        <record id="group_attendance_correction_user" model="res.groups">
+            <field name="name">Employee</field>
+            <field name="privilege_id" ref="privilege_fm_attendance_correction"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+            <field name="comment">Files corrections for their own attendance and follows them. Managers also see and approve their team's.</field>
+        </record>
+
+        <record id="group_attendance_correction_officer" model="res.groups">
+            <field name="name">Officer</field>
+            <field name="privilege_id" ref="privilege_fm_attendance_correction"/>
+            <field name="implied_ids" eval="[(4, ref('group_attendance_correction_user'))]"/>
+            <field name="user_ids" eval="[(4, ref('base.user_admin'))]"/>
+            <field name="comment">Validates corrections, which is what actually moves the attendance, and sees every request.</field>
+        </record>
+
+        <!-- An employee sees their own requests, and a manager their team's. -->
+        <record id="rule_correction_own" model="ir.rule">
+            <field name="name">Attendance corrections: own and my team's</field>
+            <field name="model_id" ref="model_fm_attendance_correction"/>
+            <field name="domain_force">['|', ('employee_id.user_id', '=', user.id),
+                                             ('manager_id.user_id', '=', user.id)]</field>
+            <field name="groups" eval="[(4, ref('group_attendance_correction_user'))]"/>
+        </record>
+
+        <record id="rule_correction_officer" model="ir.rule">
+            <field name="name">Attendance corrections: officers see all</field>
+            <field name="model_id" ref="model_fm_attendance_correction"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="groups" eval="[(4, ref('group_attendance_correction_officer'))]"/>
+        </record>
+
+        <record id="rule_correction_company" model="ir.rule">
+            <field name="name">Attendance corrections: own companies</field>
+            <field name="model_id" ref="model_fm_attendance_correction"/>
+            <field name="global" eval="True"/>
+            <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="res_config_settings_view_form_correction" model="ir.ui.view">
+        <field name="name">res.config.settings.form.fm.attendance.correction</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base_setup.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//app[@name='general_settings']//block[@name='integration']" position="before">
+                <block title="Attendance Corrections" name="fm_ac_block"
+                       groups="fm_attendance_correction.group_attendance_correction_officer">
+                    <setting string="How far back" help="Older than this and the employee has to ask HR directly.">
+                        <field name="fm_ac_days_back"/>
+                        <span class="ms-1">days</span>
+                    </setting>
+                    <setting string="HR validates after the manager"
+                             help="Off: the manager's approval writes the attendance straight away.">
+                        <field name="fm_ac_require_hr"/>
+                    </setting>
+                </block>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
