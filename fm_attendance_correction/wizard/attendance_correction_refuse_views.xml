@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_correction_refuse_form" model="ir.ui.view">
+        <field name="name">fm.attendance.correction.refuse.form</field>
+        <field name="model">fm.attendance.correction.refuse</field>
+        <field name="arch" type="xml">
+            <form string="Refuse">
+                <group>
+                    <field name="request_id" invisible="1"/>
+                    <field name="reason" nolabel="1"
+                           placeholder="The gate log shows you badged in at 09:40, not 08:05."/>
+                </group>
+                <footer>
+                    <button name="action_refuse" type="object" string="Refuse" class="btn-primary"/>
+                    <button string="Keep it" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+</odoo>

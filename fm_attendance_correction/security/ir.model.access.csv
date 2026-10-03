@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_fm_ac_user,fm.attendance.correction.user,model_fm_attendance_correction,group_attendance_correction_user,1,1,1,1
+access_fm_ac_officer,fm.attendance.correction.officer,model_fm_attendance_correction,group_attendance_correction_officer,1,1,1,1
+access_fm_ac_refuse_user,fm.attendance.correction.refuse.user,model_fm_attendance_correction_refuse,group_attendance_correction_user,1,1,1,1
