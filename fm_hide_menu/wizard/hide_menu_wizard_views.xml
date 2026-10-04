@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_hide_menu_wizard_form" model="ir.ui.view">
+        <field name="name">fm.hide.menu.wizard.form</field>
+        <field name="model">fm.hide.menu.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Hide Menus">
+                <div class="alert alert-info" role="alert">
+                    Hiding tidies a menu. It is not a lock: use access rights to take access away.
+                </div>
+                <group>
+                    <field name="mode" widget="radio"/>
+                </group>
+                <group>
+                    <group>
+                        <field name="group_id" options="{'no_create': True}"/>
+                        <field name="user_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                    </group>
+                    <group>
+                        <field name="app_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                        <field name="menu_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="action_apply" type="object" string="Apply" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_hide_menu_wizard" model="ir.actions.act_window">
+        <field name="name">Hide Menus for Several Users</field>
+        <field name="res_model">fm.hide.menu.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="menu_hide_menu_wizard" name="Hide Menus" parent="base.menu_users"
+              action="action_hide_menu_wizard" sequence="95"
+              groups="base.group_system"/>
+
+</odoo>
