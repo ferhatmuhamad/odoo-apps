@@ -113,6 +113,31 @@ class TestHideMenu(TransactionCase):
         self.assertNotIn(app.id, after['root']['children'],
                          "the cached menu was rebuilt after the change")
 
+    def _a_child_this_user_sees(self, user):
+        """A menu inside an app that this particular person actually has -
+        the Settings children, for instance, are invisible to them anyway."""
+        loaded = self._menus(user)
+        for key, menu in loaded.items():
+            if key != 'root' and menu.get('parent_id'):
+                return self.Menu.browse(menu['id'])
+        return self.Menu
+
+    def test_a_hidden_entry_disappears_from_the_loaded_menu(self):
+        child = self._a_child_this_user_sees(self.user)
+        if not child:
+            self.skipTest("this user has no menu entry inside an app")
+        self.assertIn(child.id, self._menus(self.user), "it is there to begin with")
+        self.user.fm_hidden_menu_ids = child
+        self.assertNotIn(child.id, self._menus(self.user),
+                         "a single entry really leaves the menu, not just the list")
+
+    def test_a_hidden_entry_stays_for_everybody_else(self):
+        child = self._a_child_this_user_sees(self.user)
+        if not child:
+            self.skipTest("this user has no menu entry inside an app")
+        self.user.fm_hidden_menu_ids = child
+        self.assertIn(child.id, self._menus(self.other))
+
     # ── the wizard ───────────────────────────────────────────────────────
     def _wizard(self, **values):
         return self.env['fm.hide.menu.wizard'].create(values)
