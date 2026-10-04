@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_users_form_hide_menu" model="ir.ui.view">
+        <field name="name">res.users.form.hide.menu</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Menu" name="fm_hide_menu" groups="base.group_system">
+                    <div class="alert alert-info" role="alert">
+                        This hides entries from this person's menu. It does not take away access:
+                        somebody who knows the address can still open what is hidden. For that, use
+                        access rights.
+                    </div>
+                    <group>
+                        <field name="fm_hidden_app_ids" widget="many2many_tags"
+                               options="{'no_create': True}"
+                               placeholder="Calendar, Discuss, Contacts…"/>
+                        <field name="fm_hidden_menu_ids" widget="many2many_tags"
+                               options="{'no_create': True}"
+                               placeholder="A single entry inside an app they otherwise use…"/>
+                    </group>
+                    <div>
+                        <button name="action_fm_show_everything" type="object" class="btn btn-link"
+                                invisible="fm_hidden_count == 0"
+                                confirm="Give this person their whole menu back?">
+                            <i class="fa fa-undo me-1"/>Show everything again
+                        </button>
+                        <field name="fm_hidden_count" invisible="1"/>
+                    </div>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
