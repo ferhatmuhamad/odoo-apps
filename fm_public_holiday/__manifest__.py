@@ -53,6 +53,8 @@ both Odoo Community and Odoo Enterprise.
     ],
     'images': [
         'static/description/images/main_screenshot.png',
+        'static/description/images/calendar.png',
+        'static/description/images/list.png',
     ],
     'installable': True,
     'application': True,
