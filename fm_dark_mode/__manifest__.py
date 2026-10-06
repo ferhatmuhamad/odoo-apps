@@ -72,6 +72,9 @@ The choice is stored per browser in ``localStorage`` under
     },
     'images': [
         'static/description/images/main_screenshot.png',
+        'static/description/images/home_dark.png',
+        'static/description/images/home_light.png',
+        'static/description/images/settings.png',
     ],
     'installable': True,
     'application': False,
