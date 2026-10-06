@@ -92,6 +92,11 @@ uninstall.
     },
     'images': [
         'static/description/images/main_screenshot.png',
+        'static/description/images/attendance.png',
+        'static/description/images/blocked.png',
+        'static/description/images/day_map.png',
+        'static/description/images/location.png',
+        'static/description/images/reason.png',
     ],
     'installable': True,
     'application': False,

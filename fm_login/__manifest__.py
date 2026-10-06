@@ -58,6 +58,13 @@ Nothing is written to any user record: both settings live in
     },
     'images': [
         'static/description/images/main_screenshot.png',
+        'static/description/images/card.png',
+        'static/description/images/open.png',
+        'static/description/images/preview_card.png',
+        'static/description/images/preview_open.png',
+        'static/description/images/preview_split.png',
+        'static/description/images/settings.png',
+        'static/description/images/split.png',
     ],
     'installable': True,
     'application': False,
