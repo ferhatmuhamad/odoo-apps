@@ -66,6 +66,8 @@ Chart.js bundle - nothing from the internet.
     },
     'images': [
         'static/description/images/main_screenshot.png',
+        'static/description/images/board.png',
+        'static/description/images/ranking.png',
     ],
     'installable': True,
     'application': False,

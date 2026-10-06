@@ -46,6 +46,8 @@ Requires only the Odoo `web` module, so it runs on any Odoo installation.
     },
     'images': [
         'static/description/images/main_screenshot.png',
+        'static/description/images/inside_app.png',
+        'static/description/images/launcher.png',
     ],
     'installable': True,
     'application': False,

@@ -73,6 +73,11 @@ the Purchase app's groups already say who buys and who manages.
     },
     'images': [
         'static/description/images/main_screenshot.png',
+        'static/description/images/form.png',
+        'static/description/images/kanban.png',
+        'static/description/images/list.png',
+        'static/description/images/purchase_order.png',
+        'static/description/images/wizard.png',
     ],
     'installable': True,
     'application': True,

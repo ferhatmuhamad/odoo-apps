@@ -62,6 +62,10 @@ light or dark.
     },
     'images': [
         'static/description/images/main_screenshot.png',
+        'static/description/images/dark.png',
+        'static/description/images/overview.png',
+        'static/description/images/recent.png',
+        'static/description/images/teams_pipeline.png',
     ],
     'installable': True,
     'application': False,
