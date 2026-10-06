@@ -42,6 +42,10 @@ Odoo Community and Odoo Enterprise.
     ],
     'images': [
         'static/description/images/main_screenshot.png',
+        'static/description/images/form.png',
+        'static/description/images/kanban.png',
+        'static/description/images/list.png',
+        'static/description/images/tags.png',
     ],
     'installable': True,
     'application': True,
