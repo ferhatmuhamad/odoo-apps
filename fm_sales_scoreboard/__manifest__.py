@@ -68,6 +68,7 @@ Chart.js bundle - nothing from the internet.
         'static/description/images/main_screenshot.png',
         'static/description/images/board.png',
         'static/description/images/ranking.png',
+        'static/description/images/settings.png',
     ],
     'installable': True,
     'application': False,
