@@ -66,6 +66,9 @@ the teams underneath it.
     ],
     'images': [
         'static/description/images/main_screenshot.png',
+        'static/description/images/employee.png',
+        'static/description/images/expiring.png',
+        'static/description/images/templates.png',
     ],
     'auto_install': True,
     'application': False,
