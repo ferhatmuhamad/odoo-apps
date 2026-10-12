@@ -1,10 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates xml:space="preserve">
 
-    <!-- Replace the apps dropdown with a home-grid toggle button.
-         Shows the current module's icon; on hover swaps to the grid icon. -->
+    <!-- Put a home-grid toggle in the navbar, in place of the apps dropdown.
+
+         The button is appended to the root of the template, and the stock
+         apps menu is hidden in CSS (see navbar.scss), rather than the button
+         replacing the <Dropdown> node by xpath.
+
+         That is deliberate. An xpath whose target is missing does not fail
+         quietly: it throws during the web client's render and the whole
+         backend goes blank, with no menu left to uninstall this module from.
+         And the target does go missing - Odoo Enterprise puts its own home
+         menu there, and so does any other launcher or theme a customer has
+         installed. `expr="."` is the template's own root, so it is always
+         there, whatever anyone else did to the inside of it. If the hiding
+         rule ever stops matching, the customer sees two buttons; they do not
+         see a white screen. -->
     <t t-name="web.NavBar.AppsMenu" t-inherit="web.NavBar.AppsMenu" t-inherit-mode="extension">
-        <xpath expr="//Dropdown" position="replace">
+        <xpath expr="." position="inside">
             <div class="o_fm_hg-navbar-btn" t-on-click.stop.prevent="() => this.env.bus.trigger('FM_HG:TOGGLE-HOME')" role="button" aria-label="Home Menu" tabindex="0">
                 <t t-if="fmAppIconSrc">
                     <!-- Module app icon (hidden on hover) -->
