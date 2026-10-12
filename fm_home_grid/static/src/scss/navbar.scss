@@ -12,13 +12,19 @@ $fm-navbar-bg-dark: #112a37;
 // 1. HOME-GRID TOGGLE BUTTON (always present)
 // ============================================================
 
-// Odoo wraps the apps menu in a plain block element. `align-self` on the
-// button alone therefore does nothing and it sticks to the top of the 46px
-// bar instead of lining up with the menu entries next to it.
-.o_main_navbar .o_navbar_apps_menu {
-  display: flex !important;
-  align-items: center;
-  align-self: stretch;
+// The stock apps menu is hidden here rather than removed from the template
+// by xpath. Replacing a node that another module has already replaced throws
+// while the web client renders, and the customer gets a blank backend with
+// no menu left to uninstall from - see the note in xml/navbar.xml.
+//
+// Two selectors because the markup differs by version: 17 puts the class on
+// the dropdown itself, 18 and 19 wrap it in a div and use a plain link
+// below the small breakpoint.
+.o_main_navbar {
+  .o_navbar_apps_menu,
+  .o_menu_toggle {
+    display: none !important;
+  }
 }
 
 .o_fm_hg-navbar-btn {

@@ -1,8 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates xml:space="preserve">
 
+    <!-- Mount the launcher inside the web client.
+
+         Appended to the template's own root rather than inserted before
+         <ActionContainer/>: see the note in navbar.xml. An xpath that cannot
+         find its target throws while the web client renders, which leaves the
+         customer with a blank page and no way back. The root cannot go
+         missing. The launcher covers the action manager, which is hidden
+         while the launcher is up, so coming after it in the markup changes
+         nothing on screen. -->
     <t t-name="web.WebClient" t-inherit="web.WebClient" t-inherit-mode="extension">
-        <xpath expr="//ActionContainer" position="before">
+        <xpath expr="." position="inside">
             <t t-if="fmHgState and fmHgState.showHomeGrid">
                 <HomeGrid/>
             </t>
