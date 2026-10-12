@@ -1,6 +1,6 @@
 {
     'name': 'Modern Home Grid',
-    'version': '17.0.1.0.0',
+    'version': '17.0.1.0.1',
     'category': 'Productivity',
     'summary': 'Full-page app launcher with instant search for Odoo Community',
     'description': """
